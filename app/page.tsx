@@ -1,65 +1,334 @@
-import Image from "next/image";
+import { FaChartLine, FaFingerprint, FaUsers } from "react-icons/fa";
+
+import { ParallaxBackground, ParallaxImage } from "./parallax-background";
+import { ScrollCardStrip } from "./scroll-card-strip";
+
+const pageInset =
+  "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
 export default function Home() {
+  const scrollCards = [
+    {
+      src: "/scroll-cards/card-1.jpg",
+      alt: "DPD scroll card 1",
+    },
+    {
+      src: "/scroll-cards/card-2.jpg",
+      alt: "DPD scroll card 2",
+    },
+    {
+      src: "/scroll-cards/card-3.jpg",
+      alt: "DPD scroll card 3",
+    },
+    {
+      src: "/scroll-cards/card-4.jpg",
+      alt: "DPD scroll card 4",
+    },
+    {
+      src: "/scroll-cards/card-5.jpg",
+      alt: "DPD scroll card 5",
+    },
+    {
+      src: "/scroll-cards/card-6.jpg",
+      alt: "DPD scroll card 6",
+    },
+    {
+      src: "/scroll-cards/card-7.jpg",
+      alt: "DPD scroll card 7",
+    },
+    {
+      src: "/scroll-cards/card-8.jpg",
+      alt: "DPD scroll card 8",
+    },
+  ];
+  const strategySteps = [
+    {
+      title: "Discover every team member's persona profile",
+      description:
+        "Members complete the DPD assessment to uncover their tendencies, building self-awareness and a understanding of how they naturally contribute.",
+      Icon: FaFingerprint,
+    },
+    {
+      title: "Create a shared language for better collaboration",
+      description:
+        "DPD gives teams a simple framework to align in real time - knowing when to dream, when to plan, and when to execute together.",
+      Icon: FaUsers,
+    },
+    {
+      title: "Give leaders visibility into team dynamics",
+      description:
+        "The DPD dashboard helps managers understand team strengths, identify gaps, and guide teams toward stronger communication, better coordination, and faster execution.",
+      Icon: FaChartLine,
+    },
+  ];
+  const transformationMetrics = [
+    {
+      direction: "up",
+      value: "99",
+      suffix: "%",
+      label: "accuracy of team behavior coordination.",
+    },
+    {
+      direction: "up",
+      value: "99x",
+      suffix: "",
+      label: "communication efficiency.",
+    },
+    {
+      direction: "down",
+      value: "99",
+      suffix: "%",
+      label: "time to decision.",
+    },
+    {
+      direction: "up",
+      value: "99",
+      suffix: "%",
+      label: "team alignment.",
+    },
+  ];
+  const platformOptions = [
+    {
+      tag: "LOREM",
+      title: "Lorem ipsum dolor sit amet",
+      description:
+        "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      tag: "IPSUM",
+      title: "Sed do eiusmod tempor",
+      description:
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+    },
+    {
+      tag: "DOLOR",
+      title: "Ut enim ad minim veniam",
+      description:
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    },
+    {
+      tag: "AMET",
+      title: "Excepteur sint occaecat",
+      description:
+        "Sunt in culpa qui officia deserunt mollit anim id est laborum, lorem ipsum dolor sit amet.",
+    },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="flex-1 overflow-x-clip bg-background">
+      <section
+        id="home"
+        className="relative isolate flex min-h-[calc(100svh-4rem)] overflow-hidden bg-white text-[#111111]"
+      >
+        <div
+          className={`relative z-10 ${pageInset} flex flex-col items-center justify-center py-20 text-center sm:py-24 lg:py-28`}
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-black/55">
+            Discover your persona
+          </p>
+          <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+            Behavior Coordination for{" "}
+            <span className="text-[#FF9900]">
+              individuals, coaches, and teams.
+            </span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-6 max-w-2xl text-base font-medium leading-7 text-black/75 sm:text-lg">
+            Only 10 minutes to gain practical insight into how your team
+            collaborates, communicates, and works best together.
+          </p>
+          <a
+            href="#contact"
+            className="mt-9 inline-flex h-14 items-center gap-3 rounded-full bg-[#FF9900] px-8 text-sm font-bold text-black shadow-[0_14px_30px_rgba(255,153,0,0.28)] transition hover:-translate-y-0.5 hover:bg-[#e68a00] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+          >
+            Take the Test
+            <span aria-hidden="true" className="text-xl leading-none">
+              &#8594;
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section
+        id="services"
+        className="overflow-x-clip bg-background py-20 text-[#111111]"
+      >
+        <div className={pageInset}>
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-24">
+            <h2 className="max-w-xl text-4xl font-medium leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+              Dream. Plan. Do. Together in Flow.
+            </h2>
+            <div className="grid gap-5">
+              <p className="max-w-xl text-base font-medium leading-6 text-black/85 sm:text-lg sm:leading-7">
+                DPD is not a personality test. It is a persona based behavior
+                coordination system that helps people move in sync.
+              </p>
+              <p className="max-w-xl text-base font-medium leading-6 text-black/85 sm:text-lg sm:leading-7">
+                Personality describes tendencies. DPD coordinates behavior.
+              </p>
+            </div>
+          </div>
+
+          <ScrollCardStrip cards={scrollCards} />
+
+          <div className="mt-14 grid gap-5 lg:grid-cols-[1fr_0.95fr] lg:gap-24">
+            <div />
+            <div className="max-w-xl">
+              <h3 className="text-base font-bold">
+                DPD offers a more precise path:
+              </h3>
+              <p className="mt-5 text-base font-medium leading-6 text-black/85 sm:text-lg sm:leading-7">
+                Like an orchestra, everyone brings a different instrument. DPD
+                gives the team the same sheet music. That is the power of
+                DPDing. A word. A sound. A signal. A call to action for
+                everyone.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="about" className="bg-background py-20 text-[#111111]">
+        <div
+          className={`${pageInset} grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-24`}
+        >
+          <h2 className="max-w-2xl text-4xl font-medium leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+            Coordinate how your team works - <span className="text-[#FF9900]">together.</span>
+          </h2>
+
+          <div className="relative">
+            <div className="absolute bottom-10 left-7 top-7 hidden w-px bg-black/15 sm:block" />
+            <div className="space-y-14">
+              {strategySteps.map((step) => (
+                <div
+                  key={step.title}
+                  className="relative grid gap-5 sm:grid-cols-[3.5rem_1fr_1.1fr] sm:gap-7"
+                >
+                  <div className="relative z-10 flex size-14 items-center justify-center rounded-full bg-black text-[0.68rem] font-bold tracking-widest text-white">
+                    <step.Icon className="size-5" aria-hidden="true" />
+                  </div>
+                  <h3 className="max-w-xs text-lg font-bold leading-6">
+                    {step.title}
+                  </h3>
+                  <p className="max-w-sm text-sm font-medium leading-5 text-black/80 sm:text-base sm:leading-6">
+                    {step.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section
+        id="transformation"
+        className="relative overflow-hidden bg-black text-white"
+      >
+        <ParallaxBackground />
+        <div className={`relative z-10 ${pageInset} py-18 sm:py-20`}>
+          <h2 className="text-xl font-medium tracking-tight text-white/95 sm:text-2xl">
+            What transformation looks like
+          </h2>
+
+          <div className="mt-6 grid border border-white/20 md:grid-cols-2">
+            {transformationMetrics.map((metric, index) => (
+              <div
+                key={metric.label}
+                className={`grid min-h-44 gap-6 border-white/20 p-6 sm:grid-cols-[10rem_1fr] sm:items-start sm:p-8 lg:min-h-52 lg:grid-cols-[14rem_1fr] ${
+                  index > 0 ? "border-t md:border-t-0" : ""
+                } ${index > 1 ? "md:border-t" : ""} ${
+                  index % 2 === 1 ? "md:border-l" : ""
+                }`}
+              >
+                <div className="flex items-start gap-3">
+                  <span className="mt-3 text-3xl font-light text-[#d7ff44]">
+                    {metric.direction === "up" ? "\u2191" : "\u2193"}
+                  </span>
+                  <p className="flex items-start text-[clamp(4.5rem,10vw,7rem)] font-medium leading-none tracking-tighter">
+                    {metric.value}
+                    {metric.suffix ? (
+                      <span className="ml-1 mt-3 text-3xl tracking-tight sm:text-4xl">
+                        {metric.suffix}
+                      </span>
+                    ) : null}
+                  </p>
+                </div>
+                <p className="max-w-sm text-sm font-bold leading-5 text-white/90 sm:pt-5 sm:text-base">
+                  {metric.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-5 text-xs font-medium leading-5 text-white/70 sm:text-sm">
+            * Placeholder text and metrics.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+      </section>
+
+      <SectionDivider />
+
+      <section className="bg-background py-20 text-[#111111]">
+        <div className={pageInset}>
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-24">
+            <h2 className="max-w-xl text-4xl font-medium leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+              Lorem ipsum dolor sit amet.
+            </h2>
+
+            <p className="max-w-xl text-base font-medium leading-6 text-black/85 sm:text-lg sm:leading-7">
+              Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+              nostrud exercitation ullamco laboris.
+            </p>
+          </div>
+
+          <div className="relative mt-16 min-h-88 overflow-hidden bg-black shadow-[0_24px_70px_rgba(17,17,17,0.18)] sm:min-h-112">
+            <ParallaxImage
+              src="/bg-2.jpg"
+              alt="Abstract orange motion background representing the DPD platform"
+              sizes="(min-width: 640px) calc(100vw - 90px), calc(100vw - 40px)"
+              imageWrapperClassName="-inset-y-20"
+              speed={0.12}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <div className="absolute inset-x-0 inset-y-5 flex items-center justify-center">
+              <div className="flex h-full w-full items-center justify-center border-y border-white/25 bg-white/12 px-8 text-2xl font-semibold tracking-tight text-white shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:text-3xl">
+                placeholder
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-7 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {platformOptions.map((option) => (
+              <article key={option.tag}>
+                <div className="relative aspect-[1.06] overflow-hidden bg-black">
+                  <span className="absolute left-4 top-4 rounded-sm bg-white/20 px-3 py-1 text-xs font-bold tracking-widest text-white">
+                    {option.tag}
+                  </span>
+                </div>
+                <h3 className="mt-5 text-2xl font-medium leading-7 tracking-tight">
+                  {option.title}
+                </h3>
+                <p className="mt-4 text-sm font-medium leading-5 text-black/85 sm:text-base sm:leading-6">
+                  {option.description}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
-      </main>
+      </section>
+    </main>
+  );
+}
+
+function SectionDivider() {
+  return (
+    <div className="bg-background" aria-hidden="true">
+      <div className={`${pageInset} h-px bg-black/10`} />
     </div>
   );
 }
