@@ -64,27 +64,27 @@ export default function Home() {
   const transformationMetrics = [
     {
       direction: "up",
-      value: "99",
+      value: "75",
       suffix: "%",
-      label: "accuracy of team behavior coordination.",
+      label: "Improvement in team behavior coordination",
     },
     {
       direction: "up",
-      value: "99x",
-      suffix: "",
-      label: "communication efficiency.",
+      value: "50",
+      suffix: "%",
+      label: "Reduction in decision latency",
     },
     {
       direction: "down",
-      value: "99",
+      value: "60",
       suffix: "%",
-      label: "time to decision.",
+      label: "Improvement in communication efficiency",
     },
     {
       direction: "up",
-      value: "99",
+      value: "70",
       suffix: "%",
-      label: "team alignment.",
+      label: "Improvement in team alignment",
     },
   ];
   const platformOptions = [
@@ -137,7 +137,7 @@ export default function Home() {
             collaborates, communicates, and works best together.
           </p>
           <a
-            href="#contact"
+            href="/survey"
             className="mt-9 inline-flex h-14 items-center gap-3 rounded-full bg-[#FF9900] px-8 text-sm font-bold text-black shadow-[0_14px_30px_rgba(255,153,0,0.28)] transition hover:-translate-y-0.5 hover:bg-[#e68a00] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
           >
             Take the Test
@@ -265,8 +265,9 @@ export default function Home() {
             ))}
           </div>
 
-          <p className="mt-5 text-xs font-medium leading-5 text-white/70 sm:text-sm">
-            * Placeholder text and metrics.
+          <p className="mt-5 text-xs font-normal italic leading-5 text-white/70 sm:text-sm">
+            *Illustrative model of possibility. Results depend on adoption,
+            leadership participation, and consistent DPDing.
           </p>
         </div>
       </section>
@@ -276,15 +277,35 @@ export default function Home() {
       <section className="bg-background py-20 text-[#111111]">
         <div className={pageInset}>
           <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-24">
-            <h2 className="max-w-xl text-4xl font-medium leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
-              Lorem ipsum dolor sit amet.
-            </h2>
+            <div className="max-w-xl space-y-8">
+              <p className="text-4xl font-bold leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+                Some tools describe people and never coordinate behavior.
+              </p>
+              <p className="text-4xl font-bold leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+                Others structure work and never align behavior.
+              </p>
+              <p className="text-4xl font-bold leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+                We do both.
+              </p>
+            </div>
 
-            <p className="max-w-xl text-base font-medium leading-6 text-black/85 sm:text-lg sm:leading-7">
-              Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-              nostrud exercitation ullamco laboris.
-            </p>
+            <div className="grid max-w-xl gap-5 pt-[50px]">
+              <p className="text-lg font-normal leading-7 text-black/85 sm:text-xl sm:leading-8">
+                Personality assessments help people understand tendencies.
+                Process frameworks help teams organize work. DPD fills the
+                missing layer: behavior coordination.
+              </p>
+              <p className="text-lg font-normal leading-7 text-black/85 sm:text-xl sm:leading-8">
+                As a Persona Based Behavioral Operating System and GPS, DPD
+                helps individuals, coaches, teams, and organizations know when
+                to Dream, when to Plan, when to Do, and how to move together in
+                flow.
+              </p>
+              <p className="text-lg font-normal leading-7 text-black/85 sm:text-xl sm:leading-8">
+                That is how DPD increases the ROI of the systems you already
+                use.
+              </p>
+            </div>
           </div>
 
           <div className="relative mt-16 min-h-88 overflow-hidden bg-black shadow-[0_24px_70px_rgba(17,17,17,0.18)] sm:min-h-112">

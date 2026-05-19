@@ -13,7 +13,7 @@ import {
   type RefObject,
 } from "react";
 
-const DARK_SECTION_IDS = ["transformation", "see-better"] as const;
+const DARK_SECTION_IDS = ["transformation"] as const;
 
 /** Matches `h-20` on the nav row */
 const HEADER_HEIGHT_PX = 80;
@@ -24,7 +24,7 @@ function headerOverlapsSection(section: HTMLElement): boolean {
 }
 
 const navItems = [
-  { label: "Take Survey", href: "#services" },
+  { label: "Take Survey", href: "/survey" },
   { label: "Company", href: "#contact" },
 ];
 
