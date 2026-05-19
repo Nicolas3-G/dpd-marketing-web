@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 
+import { createPageMetadata } from "@/lib/metadata";
 import {
   AboutScrollCardStrip,
   type AboutScrollCard,
@@ -26,9 +27,7 @@ const displaySerif = Instrument_Serif({
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
-export const metadata: Metadata = {
-  title: "About",
-};
+export const metadata = createPageMetadata("About");
 
 export default function AboutPage() {
   return (
@@ -50,7 +49,7 @@ export default function AboutPage() {
               <div className="flex flex-wrap gap-2">
                 <Link
                   href="/#contact"
-                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full bg-[#b9075c] px-4 text-xs font-semibold leading-tight text-white transition hover:-translate-y-0.5 hover:bg-[#a00652] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111]"
+                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full bg-[#FF9900] px-4 text-xs font-semibold leading-tight text-[#111111] shadow-[0_8px_20px_rgba(255,153,0,0.28)] transition hover:-translate-y-0.5 hover:bg-[#e68a00] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111]"
                 >
                   Talk to our team
                 </Link>
@@ -98,11 +97,14 @@ export default function AboutPage() {
               Dreaming, Planning, and Doing.
             </p>
 
-            <div
-              className="flex aspect-16/10 w-full items-center justify-center overflow-hidden rounded-2xl border border-black/6 bg-[#ebe8df] text-sm font-medium tracking-wide text-[#111111]/40 lg:col-start-1 lg:row-start-2"
-              aria-hidden
-            >
-              Image placeholder
+            <div className="relative aspect-16/10 w-full overflow-hidden rounded-2xl border border-black/6 bg-[#ebe8df] lg:col-start-1 lg:row-start-2">
+              <Image
+                src="/about-page.jpg"
+                alt="Team collaborating around a table reviewing plans and sketches"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>

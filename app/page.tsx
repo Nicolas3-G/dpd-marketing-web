@@ -1,7 +1,11 @@
+import Image from "next/image";
 import { FaChartLine, FaFingerprint, FaUsers } from "react-icons/fa";
 
+import { createPageMetadata } from "@/lib/metadata";
 import { ParallaxBackground, ParallaxImage } from "./parallax-background";
 import { ScrollCardStrip } from "./scroll-card-strip";
+
+export const metadata = createPageMetadata("Home");
 
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
@@ -89,28 +93,36 @@ export default function Home() {
   ];
   const platformOptions = [
     {
-      tag: "LOREM",
-      title: "Lorem ipsum dolor sit amet",
+      tag: "SCIENCE",
+      title: "Priming Theory",
+      image: "/science-cards/card-1.jpg",
+      imageAlt: "Priming Theory",
       description:
-        "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Activated by: Dreaming, Planning, Doing cues, meeting mode priming, and persona prompts.",
     },
     {
-      tag: "IPSUM",
-      title: "Sed do eiusmod tempor",
+      tag: "SCIENCE",
+      title: "Game Theory",
+      image: "/science-cards/card-2.jpg",
+      imageAlt: "Game Theory",
       description:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+        "Activated by: shared team cues, coordinated behavior, role clarity, and aligned action.",
     },
     {
-      tag: "DOLOR",
-      title: "Ut enim ad minim veniam",
+      tag: "SCIENCE",
+      title: "Neuroplasticity",
+      image: "/science-cards/card-3.jpg",
+      imageAlt: "Neuroplasticity",
       description:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "Activated by: repeated persona switching, deliberate practice, and behavioral reinforcement over time.",
     },
     {
-      tag: "AMET",
-      title: "Excepteur sint occaecat",
+      tag: "SCIENCE",
+      title: "Embodied Cognition",
+      image: "/science-cards/card-4.jpg",
+      imageAlt: "Embodied Cognition",
       description:
-        "Sunt in culpa qui officia deserunt mollit anim id est laborum, lorem ipsum dolor sit amet.",
+        "Activated by: physical cues, posture, coins, and behavior-linked action.",
     },
   ];
 
@@ -199,26 +211,29 @@ export default function Home() {
             Coordinate how your team works - <span className="text-[#FF9900]">together.</span>
           </h2>
 
-          <div className="relative">
-            <div className="absolute bottom-10 left-7 top-7 hidden w-px bg-black/15 sm:block" />
-            <div className="space-y-14">
-              {strategySteps.map((step) => (
-                <div
-                  key={step.title}
-                  className="relative grid gap-5 sm:grid-cols-[3.5rem_1fr_1.1fr] sm:gap-7"
-                >
-                  <div className="relative z-10 flex size-14 items-center justify-center rounded-full bg-black text-[0.68rem] font-bold tracking-widest text-white">
-                    <step.Icon className="size-5" aria-hidden="true" />
-                  </div>
-                  <h3 className="max-w-xs text-lg font-bold leading-6">
-                    {step.title}
-                  </h3>
-                  <p className="max-w-sm text-sm font-medium leading-5 text-black/80 sm:text-base sm:leading-6">
-                    {step.description}
-                  </p>
+          <div className="relative space-y-14">
+            {strategySteps.map((step, index) => (
+              <div
+                key={step.title}
+                className="relative grid gap-5 sm:grid-cols-[3.5rem_1fr_1.1fr] sm:gap-7"
+              >
+                {index < strategySteps.length - 1 ? (
+                  <div
+                    className="absolute left-7 top-14 hidden h-[calc(100%+3.5rem)] w-px bg-black/15 sm:block"
+                    aria-hidden
+                  />
+                ) : null}
+                <div className="relative z-10 flex size-14 items-center justify-center self-start rounded-full bg-black text-[0.68rem] font-bold tracking-widest text-white">
+                  <step.Icon className="size-5" aria-hidden="true" />
                 </div>
-              ))}
-            </div>
+                <h3 className="max-w-xs self-start text-lg font-bold leading-6">
+                  {step.title}
+                </h3>
+                <p className="max-w-sm self-start text-sm font-medium leading-5 text-black/80 sm:text-base sm:leading-6">
+                  {step.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -317,17 +332,31 @@ export default function Home() {
               speed={0.12}
             />
             <div className="absolute inset-x-0 inset-y-5 flex items-center justify-center">
-              <div className="flex h-full w-full items-center justify-center border-y border-white/25 bg-white/12 px-8 text-2xl font-semibold tracking-tight text-white shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:text-3xl">
-                placeholder
+              <div className="flex h-full w-full flex-wrap items-center justify-center gap-x-10 gap-y-4 border-y border-white/25 bg-white/12 px-8 py-8 text-center text-2xl font-semibold leading-[1.12] tracking-tight text-white shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:gap-x-14 sm:py-10 sm:text-3xl sm:leading-[1.1] lg:gap-x-20">
+                <p className="shrink-0">
+                  Science that supports{" "}
+                  <span className="text-[#FF9900]">DPD.</span>
+                </p>
+                <p className="shrink-0">
+                  <span className="text-[#FF9900]">Behavior coordination</span>{" "}
+                  that scales.
+                </p>
               </div>
             </div>
           </div>
 
           <div className="mt-7 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {platformOptions.map((option) => (
-              <article key={option.tag}>
+              <article key={option.title}>
                 <div className="relative aspect-[1.06] overflow-hidden bg-black">
-                  <span className="absolute left-4 top-4 rounded-sm bg-white/20 px-3 py-1 text-xs font-bold tracking-widest text-white">
+                  <Image
+                    src={option.image}
+                    alt={option.imageAlt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                  <span className="absolute left-4 top-4 z-10 rounded-sm bg-black/50 px-3 py-1 text-xs font-bold tracking-widest text-white backdrop-blur-sm">
                     {option.tag}
                   </span>
                 </div>

@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import { FaArrowRight } from "react-icons/fa6";
 
+import { createPageMetadata } from "@/lib/metadata";
 import {
   getFeaturedPost,
   getLatestPosts,
@@ -22,9 +22,7 @@ const pageInset =
 /** Swap for your real press or media inbox. */
 const MEDIA_EMAIL = "Info@DPDing.com";
 
-export const metadata: Metadata = {
-  title: "Blog",
-};
+export const metadata = createPageMetadata("Blog");
 
 export default function BlogPage() {
   const featuredPost = getFeaturedPost();
@@ -71,9 +69,11 @@ export default function BlogPage() {
                 <h2 className="text-[1.65rem] font-bold leading-[1.15] tracking-[-0.02em] text-white sm:text-3xl lg:text-[2rem] xl:text-[2.25rem]">
                   {featuredPost.title}
                 </h2>
-                <p className="text-lg font-normal leading-snug text-white/90 sm:text-xl">
-                  {featuredPost.subtext}
-                </p>
+                {featuredPost.subtext ? (
+                  <p className="text-lg font-normal leading-snug text-white/90 sm:text-xl">
+                    {featuredPost.subtext}
+                  </p>
+                ) : null}
               </div>
               <Link
                 href={getPostHref(featuredPost.slug)}
@@ -95,7 +95,11 @@ export default function BlogPage() {
             <div className="relative mx-auto aspect-4/3 w-[min(100%,36rem)] overflow-hidden shadow-2xl shadow-black/50 sm:w-[min(100%,40rem)] xl:w-[min(100%,44rem)]">
               <Image
                 src={featuredPost.image}
-                alt={`${featuredPost.title}: ${featuredPost.subtext}`}
+                alt={
+                  featuredPost.subtext
+                    ? `${featuredPost.title}: ${featuredPost.subtext}`
+                    : featuredPost.title
+                }
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, min(672px, 45vw)"

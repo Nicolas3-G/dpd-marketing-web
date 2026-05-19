@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Instrument_Serif } from "next/font/google";
 
 import { BlogPostShare } from "../blog-post-share";
+import { pageTitle } from "@/lib/metadata";
 import {
   getAllPostSlugs,
   getPostBySlug,
@@ -38,12 +39,12 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
 
   if (!post) {
-    return { title: "Post not found" };
+    return { title: pageTitle("Post not found") };
   }
 
   return {
-    title: post.title,
-    description: post.subtext,
+    title: pageTitle(post.title),
+    description: post.subtext ?? post.title,
   };
 }
 
@@ -59,6 +60,21 @@ function ArticleBody({ post }: { post: BlogPost }) {
             >
               {block.text}
             </h2>
+          );
+        }
+
+        if (block.type === "link") {
+          return (
+            <p key={index}>
+              <a
+                href={block.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#FF9900] underline decoration-[#FF9900]/50 underline-offset-4 transition hover:text-[#e68a00] hover:decoration-[#e68a00] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FF9900]"
+              >
+                {block.label}
+              </a>
+            </p>
           );
         }
 
