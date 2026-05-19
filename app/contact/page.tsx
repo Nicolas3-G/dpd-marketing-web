@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { FaCheck } from "react-icons/fa6";
 import { Instrument_Serif } from "next/font/google";
 
+import { createPageMetadata } from "@/lib/metadata";
 import { ContactForm } from "./contact-form";
 
 const displaySerif = Instrument_Serif({
@@ -11,9 +11,7 @@ const displaySerif = Instrument_Serif({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Contact",
-};
+export const metadata = createPageMetadata("Contact");
 
 const bullets = [
   "See how DPDing gives your team a shared language for dreaming, planning, and executing together.",

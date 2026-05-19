@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
 import type { SVGProps } from "react";
 import Link from "next/link";
 
+import { createPageMetadata } from "@/lib/metadata";
 import {
   StepOneIllustration,
   StepThreeIllustration,
@@ -9,11 +9,10 @@ import {
 } from "./survey-illustrations";
 import { SurveyAssessment } from "./survey-assessment";
 
-export const metadata: Metadata = {
-  title: "Take the Survey",
+export const metadata = createPageMetadata("Take the Survey", {
   description:
     "Complete the DPD persona assessment, view your results, and unlock practical guidance for how you dream, plan, and do.",
-};
+});
 
 const steps = [
   {
