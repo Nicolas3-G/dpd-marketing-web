@@ -4,6 +4,12 @@ import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import { FaArrowRight } from "react-icons/fa6";
 
+import {
+  getFeaturedPost,
+  getLatestPosts,
+  getPostHref,
+} from "./posts";
+
 const displaySerif = Instrument_Serif({
   weight: "400",
   subsets: ["latin"],
@@ -13,49 +19,17 @@ const displaySerif = Instrument_Serif({
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
-const FEATURE_IMAGE = "/scroll-cards-about/card-1.jpg";
-
-const latestPosts = [
-  {
-    date: "May 6, 2026",
-    title:
-      "Announcement: DPD opens early access for teams coordinating across hybrid workflows",
-    href: "#",
-  },
-  {
-    date: "April 18, 2026",
-    title:
-      "Blog: Why a shared language for dream, plan, and execute beats another tool rollout",
-    href: "#",
-  },
-  {
-    date: "March 4, 2026",
-    title:
-      "Product release: Dashboard updates for clearer team rhythm and accountability",
-    href: "#",
-  },
-  {
-    date: "January 22, 2026",
-    title:
-      "Blog: Running on empty: closing the gap between intent and how work actually happens",
-    href: "#",
-  },
-  {
-    date: "November 10, 2025",
-    title:
-      "Announcement: DPD partners with research leaders on adaptive performance measurement",
-    href: "#",
-  },
-] as const;
-
 /** Swap for your real press or media inbox. */
-const MEDIA_EMAIL = "press@example.com";
+const MEDIA_EMAIL = "Info@DPDing.com";
 
 export const metadata: Metadata = {
   title: "Blog",
 };
 
 export default function BlogPage() {
+  const featuredPost = getFeaturedPost();
+  const latestPosts = getLatestPosts();
+
   return (
     <main className="flex-1 bg-background">
       <section className="w-full bg-[#f7f6f0]">
@@ -63,7 +37,7 @@ export default function BlogPage() {
           className={`${pageInset} pb-20 pt-24 sm:pb-24 sm:pt-28 lg:pb-28 lg:pt-32`}
         >
           <h1
-            className={`${displaySerif.className} max-w-[20ch] text-[2.5rem] leading-[1.08] tracking-[-0.02em] text-[#111111] sm:max-w-none sm:text-[3rem] lg:text-[3.25rem] xl:text-[3.5rem]`}
+            className={`${displaySerif.className} max-w-[20ch] text-[3rem] font-bold leading-[1.08] tracking-[-0.02em] text-[#111111] sm:max-w-none sm:text-[3.75rem] lg:text-[4.25rem] xl:text-[4.75rem]`}
           >
             DPD Blog
           </h1>
@@ -82,7 +56,7 @@ export default function BlogPage() {
       <section className="relative w-full overflow-hidden bg-[#0a1628]">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
-            src={FEATURE_IMAGE}
+            src={featuredPost.image}
             alt=""
             fill
             className="scale-110 object-cover opacity-70 blur-sm"
@@ -93,14 +67,16 @@ export default function BlogPage() {
         <div className="relative z-10 grid lg:grid-cols-2 lg:items-stretch">
           <div className="relative flex min-h-[380px] flex-col justify-center px-6 py-14 sm:px-10 lg:min-h-[min(85vh,640px)] lg:px-12 xl:px-16">
             <div className="relative z-10 flex max-w-xl flex-col gap-8">
-              <p className="text-lg font-semibold tracking-tight text-white sm:text-xl">
-                DPD
-              </p>
-              <h2 className="text-[1.65rem] font-bold leading-[1.15] tracking-[-0.02em] text-white sm:text-3xl lg:text-[2rem] xl:text-[2.25rem]">
-                How teams stay coordinated when the work keeps changing
-              </h2>
-              <a
-                href="#"
+              <div className="flex flex-col gap-3">
+                <h2 className="text-[1.65rem] font-bold leading-[1.15] tracking-[-0.02em] text-white sm:text-3xl lg:text-[2rem] xl:text-[2.25rem]">
+                  {featuredPost.title}
+                </h2>
+                <p className="text-lg font-normal leading-snug text-white/90 sm:text-xl">
+                  {featuredPost.subtext}
+                </p>
+              </div>
+              <Link
+                href={getPostHref(featuredPost.slug)}
                 className="group relative inline-flex w-fit items-center gap-2.5 overflow-hidden rounded-full bg-[#b9075c] px-5 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 <span
@@ -111,15 +87,15 @@ export default function BlogPage() {
                   Read the article
                   <FaArrowRight className="size-4 shrink-0 opacity-95" aria-hidden />
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
 
           <div className="relative flex min-h-[260px] w-full flex-col items-center justify-center px-6 py-10 sm:px-8 sm:py-12 lg:min-h-[min(85vh,640px)] lg:px-10 lg:py-14 xl:px-14 xl:py-16">
             <div className="relative mx-auto aspect-4/3 w-[min(100%,36rem)] overflow-hidden shadow-2xl shadow-black/50 sm:w-[min(100%,40rem)] xl:w-[min(100%,44rem)]">
               <Image
-                src={FEATURE_IMAGE}
-                alt="Featured story"
+                src={featuredPost.image}
+                alt={`${featuredPost.title}: ${featuredPost.subtext}`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, min(672px, 45vw)"
@@ -131,17 +107,15 @@ export default function BlogPage() {
       </section>
 
       <section className="w-full bg-[#f7f6f0]">
-        <div
-          className={`${pageInset} py-16 sm:py-20 lg:py-24`}
-        >
+        <div className={`${pageInset} py-16 sm:py-20 lg:py-24`}>
           <h2 className="text-2xl font-bold tracking-[-0.02em] text-[#111111] sm:text-3xl">
             Latest from DPD
           </h2>
           <ul className="mt-10 max-w-4xl list-none space-y-10 sm:mt-12 sm:space-y-12">
-            {latestPosts.map((post, index) => (
-              <li key={index}>
+            {latestPosts.map((post) => (
+              <li key={post.slug}>
                 <Link
-                  href={post.href}
+                  href={getPostHref(post.slug)}
                   className="group block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111]"
                 >
                   <p className="text-sm font-normal text-[#111111]">{post.date}</p>

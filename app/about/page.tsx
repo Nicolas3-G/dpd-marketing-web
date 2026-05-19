@@ -81,12 +81,21 @@ export default function AboutPage() {
             </h2>
 
             <p className="text-base font-normal leading-relaxed text-[#111111]/85 sm:text-[17px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-lg lg:pt-0.5">
-              DPD grew from watching smart groups stall: same goals, different
-              instincts for when to dream, plan, and ship. Today, as tools and
-              expectations change by the week, that problem only gets louder.
-              This section is placeholder copy you can replace with your origin
-              story, positioning, and proof points, grounded in how you help
-              leaders coordinate behavior at scale.
+              The DPD Framework was born from founder Kokoro Robinson&apos;s early
+              fascination with Biological and Cognitive Psychology and a single
+              question: If personality can fragment unconsciously under distress,
+              what would happen if people could intentionally switch into the
+              personas needed to meet the demands of any moment—the way
+              orchestras organize collective behavior to make great music,
+              professional sports teams coordinate to execute plays, or actors
+              and actresses invoke and assume different personas for the roles
+              they perform? Over 25 years later, as AI and rapidly changing
+              workplaces transform how teams operate, that question has evolved
+              into the world&apos;s first Persona Behavioral Operating System™—a
+              science-forward platform helping SMBs, enterprise organizations,
+              coaches, and leaders improve communication, collaboration,
+              innovation, and execution through Dynamic Persona Switching:
+              Dreaming, Planning, and Doing.
             </p>
 
             <div
@@ -109,19 +118,25 @@ export default function AboutPage() {
           <div className="flex max-w-4xl flex-col gap-6 sm:gap-8">
             <div className="flex items-center gap-2.5 text-[#111111]">
               <span
-                className="mt-0.5 size-1 shrink-0 rounded-full bg-[#111111]"
+                className="shrink-0 text-2xl font-bold leading-none sm:text-3xl"
                 aria-hidden
-              />
-              <h2 className="text-sm font-normal leading-none tracking-normal">
+              >
+                •
+              </span>
+              <h2 className="text-xl font-normal leading-none tracking-normal sm:text-2xl">
                 Our mission
               </h2>
             </div>
             <p className="text-[1.375rem] font-semibold leading-tight tracking-[-0.02em] text-[#111111] sm:text-2xl sm:leading-[1.2] lg:text-[1.75rem] lg:leading-[1.22] xl:text-[2rem]">
-              DPD exists to help people work with greater clarity about how they
-              naturally dream, plan, and execute, and to help organizations turn
-              that shared language into steadier coordination and performance.
-              That mission shows up in how we build the assessment, how teams
-              use the dashboard, and how leaders measure progress together.
+              The DPD Framework exists to help individuals and teams build
+              Perspective Dexterity, Cognitive Agility, and relational awareness
+              through persona-based behavioral coordination. By improving
+              collaboration, innovation, and execution with greater clarity,
+              alignment, and flow, DPD helps organizations transform human
+              adaptability into sustained performance through Dynamic Persona
+              Switching: Dreaming, Planning, and Doing. That mission shows up in
+              how we build our platform, design our training, develop our tools,
+              and measure success.
             </p>
           </div>
         </div>
