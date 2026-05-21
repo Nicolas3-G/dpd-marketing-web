@@ -155,7 +155,10 @@ function PersonaTabList({ activeIndex, onSelect }: PersonaTabListProps) {
       return;
     }
     const tab = t.closest('[role="tab"]');
-    if (!tab || !containerRef.current?.contains(tab)) {
+    if (
+      !(tab instanceof HTMLElement) ||
+      !containerRef.current?.contains(tab)
+    ) {
       return;
     }
     syncLine(tab);
