@@ -47,7 +47,7 @@ export function SiteFooter() {
 
       <section
         id="contact"
-        className="relative overflow-hidden pt-16 text-[#111111] sm:pt-20"
+        className="relative overflow-hidden pt-16 text-white sm:pt-20"
       >
         <ParallaxImage
           src="/footer-bg.jpg"
@@ -63,10 +63,10 @@ export function SiteFooter() {
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="text-4xl font-medium leading-none tracking-tighter sm:text-5xl lg:text-6xl">
                 See the{" "}
-                <span className="font-bold text-[#FF9900]">DPD</span>
+                <span className="font-bold text-brand-orange">DPD</span>
                 ing in action.
               </h2>
-              <p className="mt-7 text-base font-medium leading-6 text-[#111111]/85 sm:text-lg">
+              <p className="mt-7 text-base font-medium leading-6 text-white/85 sm:text-lg">
                 Experience the DPD Persona Based Behavioral Operating System
                 and GPS for teams, personalized to your goals, metrics, and
                 team.
@@ -74,13 +74,13 @@ export function SiteFooter() {
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
                   href="mailto:hello@example.com"
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-[#FF9900] px-7 text-sm font-bold text-black transition hover:-translate-y-0.5 hover:bg-[#e68a00] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111]"
+                  className="inline-flex h-11 items-center justify-center rounded-full bg-brand-orange px-7 text-sm font-bold text-black transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
                   Request a Demo
                 </a>
                 <a
                   href="#home"
-                  className="inline-flex h-11 items-center justify-center rounded-full border border-[#111111]/70 px-7 text-sm font-bold text-[#111111] transition hover:-translate-y-0.5 hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111]"
+                  className="inline-flex h-11 items-center justify-center rounded-full border border-white/70 px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
                   Learn More
                 </a>

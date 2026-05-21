@@ -7,10 +7,13 @@ const fieldClass =
 
 const labelClass = "text-sm font-bold text-[#111111]";
 
-export function ContactForm() {
-  const [done, setDone] = useState(false);
+type FormStatus = "idle" | "submitting" | "success" | "error";
 
-  if (done) {
+export function ContactForm() {
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  if (status === "success") {
     return (
       <p className="text-center text-base leading-relaxed text-black/70">
         Thanks — we received your message and will follow up soon.
@@ -18,14 +21,52 @@ export function ContactForm() {
     );
   }
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setErrorMessage(null);
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    setStatus("submitting");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: String(data.get("email") ?? "").trim(),
+          firstName: String(data.get("firstName") ?? "").trim(),
+          lastName: String(data.get("lastName") ?? "").trim(),
+          jobTitle: String(data.get("jobTitle") ?? "").trim(),
+          phone: String(data.get("phone") ?? "").trim(),
+          company: String(data.get("company") ?? "").trim(),
+        }),
+      });
+
+      if (!res.ok) {
+        const json = (await res.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+        setStatus("error");
+        setErrorMessage(
+          json?.error ??
+            "Something went wrong sending your message. Please try again or email us directly.",
+        );
+        return;
+      }
+
+      setStatus("success");
+    } catch {
+      setStatus("error");
+      setErrorMessage(
+        "Something went wrong sending your message. Please try again or email us directly.",
+      );
+    }
+  }
+
   return (
-    <form
-      className="flex flex-col gap-5"
-      onSubmit={(e) => {
-        e.preventDefault();
-        setDone(true);
-      }}
-    >
+    <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
       <div className="flex flex-col gap-1.5">
         <label htmlFor="contact-email" className={labelClass}>
           Work email <span className="text-rose-600">*</span>
@@ -107,11 +148,17 @@ export function ContactForm() {
           className={fieldClass}
         />
       </div>
+      {errorMessage ? (
+        <p className="text-center text-sm text-rose-600" role="alert">
+          {errorMessage}
+        </p>
+      ) : null}
       <button
         type="submit"
-        className="mt-1 w-full rounded bg-black py-3 text-sm font-semibold tracking-tight text-white transition-opacity hover:opacity-90"
+        disabled={status === "submitting"}
+        className="mt-1 w-full rounded bg-black py-3 text-sm font-semibold tracking-tight text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Send message
+        {status === "submitting" ? "Sending…" : "Send message"}
       </button>
     </form>
   );

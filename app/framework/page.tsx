@@ -1,0 +1,21 @@
+import { createPageMetadata } from "@/lib/metadata";
+
+import { FrameworkCtaSection } from "./framework-cta-section";
+import { FrameworkHero } from "./framework-hero";
+import { FrameworkPersonaSection } from "./framework-persona-section";
+import { FrameworkScienceSection } from "./framework-science-section";
+import { FrameworkTestimonialCarousel } from "./framework-testimonial-carousel";
+
+export const metadata = createPageMetadata("Framework");
+
+export default function FrameworkPage() {
+  return (
+    <main className="flex-1 overflow-x-clip bg-background">
+      <FrameworkHero />
+      <FrameworkCtaSection />
+      <FrameworkPersonaSection />
+      <FrameworkScienceSection />
+      <FrameworkTestimonialCarousel />
+    </main>
+  );
+}

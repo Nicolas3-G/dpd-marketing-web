@@ -23,7 +23,10 @@ export default function ContactPage() {
   return (
     <main className="flex-1 bg-background">
       <div className="h-20 w-full bg-background" aria-hidden />
-      <section className="relative isolate min-h-[min(100vh,520px)] w-full lg:min-h-[calc(100vh-5rem)]">
+      <section
+        id="contact-hero"
+        className="relative isolate min-h-[min(100vh,520px)] w-full lg:min-h-[calc(100vh-5rem)]"
+      >
         <div className="absolute inset-0 z-0">
           <Image
             src="/contact-bg.jpg"

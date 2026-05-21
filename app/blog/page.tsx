@@ -51,7 +51,10 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <section className="relative w-full overflow-hidden bg-[#0a1628]">
+      <section
+        id="blog-featured"
+        className="relative w-full overflow-hidden bg-[#0a1628]"
+      >
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
             src={featuredPost.image}

@@ -70,7 +70,7 @@ function ArticleBody({ post }: { post: BlogPost }) {
                 href={block.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-[#FF9900] underline decoration-[#FF9900]/50 underline-offset-4 transition hover:text-[#e68a00] hover:decoration-[#e68a00] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FF9900]"
+                className="font-semibold text-brand-orange underline decoration-brand-orange/50 underline-offset-4 transition hover:text-brand-orange-hover hover:decoration-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-orange"
               >
                 {block.label}
               </a>

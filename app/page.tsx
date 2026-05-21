@@ -140,7 +140,7 @@ export default function Home() {
           </p>
           <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">
             Behavior Coordination for{" "}
-            <span className="text-[#FF9900]">
+            <span className="text-brand-orange">
               individuals, coaches, and teams.
             </span>
           </h1>
@@ -150,7 +150,7 @@ export default function Home() {
           </p>
           <a
             href="/survey"
-            className="mt-9 inline-flex h-14 items-center gap-3 rounded-full bg-[#FF9900] px-8 text-sm font-bold text-black shadow-[0_14px_30px_rgba(255,153,0,0.28)] transition hover:-translate-y-0.5 hover:bg-[#e68a00] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+            className="mt-9 inline-flex h-14 items-center gap-3 rounded-full bg-brand-orange px-8 text-sm font-bold text-black shadow-[0_14px_30px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
           >
             Take the Test
             <span aria-hidden="true" className="text-xl leading-none">
@@ -208,7 +208,7 @@ export default function Home() {
           className={`${pageInset} grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-24`}
         >
           <h2 className="max-w-2xl text-4xl font-medium leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
-            Coordinate how your team works - <span className="text-[#FF9900]">together.</span>
+            Coordinate how your team works - <span className="text-brand-orange">together.</span>
           </h2>
 
           <div className="relative space-y-14">
@@ -335,10 +335,10 @@ export default function Home() {
               <div className="flex h-full w-full flex-wrap items-center justify-center gap-x-10 gap-y-4 border-y border-white/25 bg-white/12 px-8 py-8 text-center text-2xl font-semibold leading-[1.12] tracking-tight text-white shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:gap-x-14 sm:py-10 sm:text-3xl sm:leading-[1.1] lg:gap-x-20">
                 <p className="shrink-0">
                   Science that supports{" "}
-                  <span className="text-[#FF9900]">DPD.</span>
+                  <span className="text-brand-orange">DPD.</span>
                 </p>
                 <p className="shrink-0">
-                  <span className="text-[#FF9900]">Behavior coordination</span>{" "}
+                  <span className="text-brand-orange">Behavior coordination</span>{" "}
                   that scales.
                 </p>
               </div>

@@ -13,7 +13,11 @@ import {
   type RefObject,
 } from "react";
 
-const DARK_SECTION_IDS = ["transformation"] as const;
+const DARK_SECTION_IDS = [
+  "transformation",
+  "blog-featured",
+  "contact-hero",
+] as const;
 
 /** Matches `h-20` on the nav row */
 const HEADER_HEIGHT_PX = 80;
@@ -23,72 +27,160 @@ function headerOverlapsSection(section: HTMLElement): boolean {
   return rect.top < HEADER_HEIGHT_PX && rect.bottom > 0;
 }
 
-const navItems = [
-  { label: "Take Survey", href: "/survey" },
-  { label: "Company", href: "#contact" },
+type MegaLink = {
+  label: string;
+  href: string;
+  preview: {
+    eyebrow: string;
+    title: string;
+    image: string;
+    imageAlt: string;
+  };
+};
+
+const platformMegaLinks: MegaLink[] = [
+  {
+    label: "Framework",
+    href: "/framework",
+    preview: {
+      eyebrow: "Framework",
+      title: "All about the DPD Framework",
+      image: "/science-cards/card-1.jpg",
+      imageAlt: "",
+    },
+  },
+  {
+    label: "Research",
+    href: "/research",
+    preview: {
+      eyebrow: "Research",
+      title: "The science behind it",
+      image: "/science-cards/card-2.jpg",
+      imageAlt: "",
+    },
+  },
 ];
 
-const companyMegaLinks = [
-  { label: "About", href: "/about" },
-  { label: "Team", href: "/team" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+const companyMegaLinks: MegaLink[] = [
+  {
+    label: "About",
+    href: "/about",
+    preview: {
+      eyebrow: "About DPDing",
+      title: "Who we are, what we do, and why it matters",
+      image: "/scroll-cards/card-1.jpg",
+      imageAlt: "About DPDing",
+    },
+  },
+  {
+    label: "Team",
+    href: "/team",
+    preview: {
+      eyebrow: "Team",
+      title: "The people who make it work",
+      image: "/scroll-cards/card-2.jpg",
+      imageAlt: "",
+    },
+  },
+  {
+    label: "Blog",
+    href: "/blog",
+    preview: {
+      eyebrow: "Blog",
+      title: "Latest news, articles, & events",
+      image: "/scroll-cards/card-3.jpg",
+      imageAlt: "",
+    },
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+    preview: {
+      eyebrow: "Contact",
+      title: "How to reach us",
+      image: "/contact-bg.jpg",
+      imageAlt: "",
+    },
+  },
 ];
 
 type LineState = { left: number; width: number; active: boolean };
 
+const pageInset =
+  "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
+
 const MEGA_MENU_TOP_GAP_PX = 8;
-/** Narrow the panel on the right (px shorter than Take Survey → Try the app span). */
+/** Narrow the panel on the right (px shorter than nav row start → Take Survey span). */
 const MEGA_MENU_RIGHT_TRIM_PX = 120;
 
-/** Matches `duration-300` on the company menu backdrop overlay */
-const COMPANY_BACKDROP_FADE_MS = 300;
+/** Matches `duration-300` on the mega menu backdrop overlay */
+const MEGA_MENU_BACKDROP_FADE_MS = 300;
+
+/** Nav column height for the fullest menu (Company); shorter menus stretch link rows to match. */
+const MEGA_MENU_NAV_ROWS = companyMegaLinks.length;
 
 type MegaLayout = { left: number; width: number; top: number };
 
-function CompanyNavItem({
+type OpenMegaMenu = "platform" | "company" | null;
+
+function MegaMenuNavItem({
+  triggerLabel,
+  triggerHref,
+  triggerRef,
+  links,
+  panelId,
+  ariaLabel,
   navLinkClass,
   onLinkMouseEnter,
   navRef,
-  takeSurveyRef,
+  megaLeftRef,
   ctaRef,
   open,
-  onOpenChange,
+  onActivate,
+  onDismiss,
 }: {
+  triggerLabel: string;
+  triggerHref: string;
+  triggerRef?: RefObject<HTMLAnchorElement | null>;
+  links: MegaLink[];
+  panelId: string;
+  ariaLabel: string;
   navLinkClass: string;
   onLinkMouseEnter: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   navRef: RefObject<HTMLElement | null>;
-  takeSurveyRef: RefObject<HTMLAnchorElement | null>;
+  megaLeftRef: RefObject<HTMLAnchorElement | null>;
   ctaRef: RefObject<HTMLAnchorElement | null>;
   open: boolean;
-  onOpenChange: (open: boolean) => void;
+  onActivate: () => void;
+  onDismiss: () => void;
 }) {
   const [mega, setMega] = useState<MegaLayout | null>(null);
   const [megaContentVisible, setMegaContentVisible] = useState(false);
-  const panelId = "site-header-company-menu";
+  const [activePreviewIndex, setActivePreviewIndex] = useState(0);
+  const activePreview = links[activePreviewIndex]?.preview;
 
   const measureMega = useCallback(() => {
     const nav = navRef.current;
-    const ts = takeSurveyRef.current;
+    const leftAnchor = megaLeftRef.current;
     const cta = ctaRef.current;
-    if (!nav || !ts || !cta) {
+    if (!nav || !leftAnchor || !cta) {
       setMega(null);
       return;
     }
     const navR = nav.getBoundingClientRect();
-    const tsR = ts.getBoundingClientRect();
+    const leftR = leftAnchor.getBoundingClientRect();
     const ctaR = cta.getBoundingClientRect();
-    const width = ctaR.left - tsR.left - MEGA_MENU_RIGHT_TRIM_PX;
+    const width = ctaR.left - leftR.left - MEGA_MENU_RIGHT_TRIM_PX;
     if (width < 120) {
       setMega(null);
       return;
     }
     setMega({
-      left: tsR.left,
+      left: leftR.left,
       width,
       top: navR.bottom + MEGA_MENU_TOP_GAP_PX,
     });
-  }, [navRef, takeSurveyRef, ctaRef]);
+  }, [navRef, megaLeftRef, ctaRef]);
 
   useLayoutEffect(() => {
     if (!open) {
@@ -107,15 +199,16 @@ function CompanyNavItem({
   useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") onOpenChange(false);
+      if (e.key === "Escape") onDismiss();
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, onOpenChange]);
+  }, [open, onDismiss]);
 
   useEffect(() => {
     if (!open) {
       setMegaContentVisible(false);
+      setActivePreviewIndex(0);
       return;
     }
     setMegaContentVisible(false);
@@ -129,34 +222,27 @@ function CompanyNavItem({
     };
   }, [open]);
 
-  function handleBlurCapture(e: FocusEvent<HTMLDivElement>) {
-    const next = e.relatedTarget;
-    if (!(next instanceof Node) || !e.currentTarget.contains(next)) {
-      onOpenChange(false);
-    }
-  }
-
   const megaContentFadeClass = `transition-opacity duration-300 ease-out ${
     megaContentVisible ? "opacity-100" : "opacity-0"
   }`;
+  const padNavToCompanyHeight = links.length < MEGA_MENU_NAV_ROWS;
 
   return (
     <div
       className="relative inline-flex self-stretch"
-      onMouseEnter={() => onOpenChange(true)}
-      onMouseLeave={() => onOpenChange(false)}
-      onFocusCapture={() => onOpenChange(true)}
-      onBlurCapture={handleBlurCapture}
+      onMouseEnter={onActivate}
+      onFocusCapture={onActivate}
     >
       <a
-        href="#contact"
+        ref={triggerRef}
+        href={triggerHref}
         className={navLinkClass}
         aria-expanded={open}
         aria-controls={panelId}
         aria-haspopup="true"
         onMouseEnter={onLinkMouseEnter}
       >
-        Company
+        {triggerLabel}
       </a>
       {open && mega ? (
         <>
@@ -172,53 +258,69 @@ function CompanyNavItem({
           />
           <div
             id={panelId}
-            data-company-panel
+            data-mega-panel
             className="fixed z-70"
             style={{ left: mega.left, width: mega.width, top: mega.top }}
             role="region"
-            aria-label="Company menu"
+            aria-label={ariaLabel}
           >
-            <div className="items-start overflow-hidden rounded-md bg-background shadow-[0_24px_80px_rgba(0,0,0,0.12)] md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+            <div className="items-stretch overflow-hidden rounded-md bg-background shadow-[0_24px_80px_rgba(0,0,0,0.12)] md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
               <nav
-                className={`flex flex-col divide-y divide-black/10 px-6 py-2 md:px-8 md:py-3 ${megaContentFadeClass}`}
+                className={`flex min-h-0 flex-col px-6 py-2 md:min-h-86 md:px-8 md:py-3 ${megaContentFadeClass}`}
               >
-                {companyMegaLinks.map((row) => (
-                  <a
-                    key={row.label}
-                    href={row.href}
-                    className="group flex w-full items-center justify-start gap-2 py-5 text-lg font-medium tracking-tight text-[#111111] transition-colors first:pt-6 last:pb-6 hover:text-black/70 md:py-6 md:text-xl"
-                  >
-                    <span className="min-w-0">{row.label}</span>
-                    <span
-                      aria-hidden
-                      className="inline-flex shrink-0 -translate-x-1 transform-gpu opacity-0 transition-[translate,opacity] duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
+                <div className="flex flex-col divide-y divide-black/10">
+                  {links.map((row, index) => (
+                    <a
+                      key={row.label}
+                      href={row.href}
+                      className={`group flex w-full items-center justify-start gap-2 py-5 text-lg font-medium tracking-tight transition-colors first:pt-6 last:pb-6 md:py-6 md:text-xl ${
+                        activePreviewIndex === index
+                          ? "text-[#111111]"
+                          : "text-[#111111]/55 hover:text-black/70"
+                      }`}
+                      onMouseEnter={() => setActivePreviewIndex(index)}
+                      onFocus={() => setActivePreviewIndex(index)}
                     >
-                      <FaArrowRight className="size-3.5 text-current md:size-4" />
-                    </span>
-                  </a>
-                ))}
+                      <span className="min-w-0">{row.label}</span>
+                      <span
+                        aria-hidden
+                        className="inline-flex shrink-0 -translate-x-1 transform-gpu opacity-0 transition-[translate,opacity] duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
+                      >
+                        <FaArrowRight className="size-3.5 text-current md:size-4" />
+                      </span>
+                    </a>
+                  ))}
+                </div>
+                {padNavToCompanyHeight ? (
+                  <div className="hidden min-h-0 flex-1 md:block" aria-hidden />
+                ) : null}
               </nav>
-              <div className={`p-5 md:p-6 ${megaContentFadeClass}`}>
-                <a
-                  href="/about"
-                  className="group/card block rounded-md outline-offset-2 focus-visible:outline-2 focus-visible:outline-black/80"
-                >
-                  <div className="relative h-40 w-full overflow-hidden rounded-md bg-black/5 md:h-48">
-                    <Image
-                      src="/scroll-cards/card-1.jpg"
-                      alt=""
-                      fill
-                      className="object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
-                      sizes="(max-width: 768px) 100vw, 420px"
-                    />
-                  </div>
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-black/55">
-                    About DPDing
-                  </p>
-                  <p className="mt-1.5 text-base font-semibold leading-snug tracking-tight text-[#111111] md:text-lg">
-                    Who we are, what we do, and why it matters
-                  </p>
-                </a>
+              <div
+                className={`self-start px-5 pt-5 pb-3 md:px-6 md:pt-6 md:pb-4 ${megaContentFadeClass}`}
+              >
+                {activePreview ? (
+                  <a
+                    key={links[activePreviewIndex].href}
+                    href={links[activePreviewIndex].href}
+                    className="group/card block rounded-md outline-offset-2 focus-visible:outline-2 focus-visible:outline-black/80"
+                  >
+                    <div className="relative h-40 w-full overflow-hidden rounded-md bg-black/5 md:h-48">
+                      <Image
+                        src={activePreview.image}
+                        alt={activePreview.imageAlt}
+                        fill
+                        className="object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
+                        sizes="(max-width: 768px) 100vw, 420px"
+                      />
+                    </div>
+                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-black/55 transition-opacity duration-200">
+                      {activePreview.eyebrow}
+                    </p>
+                    <p className="mt-1.5 text-base font-semibold leading-snug tracking-tight text-[#111111] transition-opacity duration-200 md:text-lg">
+                      {activePreview.title}
+                    </p>
+                  </a>
+                ) : null}
               </div>
             </div>
           </div>
@@ -231,7 +333,7 @@ function CompanyNavItem({
 export function SiteHeader() {
   const [navOnDark, setNavOnDark] = useState(false);
   const [menuHover, setMenuHover] = useState(false);
-  const [companyMenuOpen, setCompanyMenuOpen] = useState(false);
+  const [openMegaMenu, setOpenMegaMenu] = useState<OpenMegaMenu>(null);
   const [backdropMounted, setBackdropMounted] = useState(false);
   const [backdropFadeIn, setBackdropFadeIn] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -242,7 +344,7 @@ export function SiteHeader() {
   });
 
   const navRef = useRef<HTMLElement | null>(null);
-  const takeSurveyNavRef = useRef<HTMLAnchorElement | null>(null);
+  const megaMenuLeftRef = useRef<HTMLAnchorElement | null>(null);
   const ctaNavRef = useRef<HTMLAnchorElement | null>(null);
   const lineTargetRef = useRef<HTMLElement | null>(null);
 
@@ -250,8 +352,10 @@ export function SiteHeader() {
     setMounted(true);
   }, []);
 
+  const megaMenuBackdropActive = openMegaMenu !== null;
+
   useEffect(() => {
-    if (companyMenuOpen) {
+    if (megaMenuBackdropActive) {
       setBackdropMounted(true);
       setBackdropFadeIn(false);
       let raf2 = 0;
@@ -266,10 +370,26 @@ export function SiteHeader() {
     setBackdropFadeIn(false);
     const hideId = window.setTimeout(
       () => setBackdropMounted(false),
-      COMPANY_BACKDROP_FADE_MS,
+      MEGA_MENU_BACKDROP_FADE_MS,
     );
     return () => window.clearTimeout(hideId);
-  }, [companyMenuOpen]);
+  }, [megaMenuBackdropActive]);
+
+  function handleMegaNavGroupMouseLeave(e: React.MouseEvent<HTMLDivElement>) {
+    const next = e.relatedTarget;
+    if (next instanceof Node) {
+      if (e.currentTarget.contains(next)) return;
+      if (next instanceof Element && next.closest("[data-mega-panel]")) return;
+    }
+    setOpenMegaMenu(null);
+  }
+
+  function handleMegaNavGroupBlurCapture(e: FocusEvent<HTMLDivElement>) {
+    const next = e.relatedTarget;
+    if (!(next instanceof Node) || !e.currentTarget.contains(next)) {
+      setOpenMegaMenu(null);
+    }
+  }
 
   useEffect(() => {
     function update() {
@@ -368,7 +488,7 @@ export function SiteHeader() {
       clearLine();
       return;
     }
-    if (link.closest("[data-company-panel]")) {
+    if (link.closest("[data-mega-panel]")) {
       clearLine();
       return;
     }
@@ -390,7 +510,7 @@ export function SiteHeader() {
               role="presentation"
               aria-hidden
               className={`fixed inset-x-0 top-20 bottom-0 z-40 cursor-default bg-black/40 backdrop-blur-md transition-opacity duration-300 ease-out ${backdropFadeIn ? "opacity-100" : "opacity-0"}`}
-              onClick={() => setCompanyMenuOpen(false)}
+              onClick={() => setOpenMegaMenu(null)}
             />,
             document.body,
           )
@@ -398,7 +518,7 @@ export function SiteHeader() {
       <header className={`fixed inset-x-0 top-0 z-50 overflow-visible ${headerSurface}`}>
         <nav
           ref={navRef}
-          className="relative mx-auto flex h-20 w-full items-stretch gap-10 overflow-visible px-7 sm:px-10 lg:px-14"
+          className={`relative flex h-20 items-stretch gap-10 overflow-visible ${pageInset}`}
           onMouseLeave={clearLine}
           onFocusCapture={handleNavFocusIn}
           onBlurCapture={handleNavFocusOut}
@@ -432,39 +552,53 @@ export function SiteHeader() {
             }
           }}
         >
-          {navItems.map((item) =>
-            item.label === "Company" ? (
-              <CompanyNavItem
-                key={item.label}
-                navLinkClass={navLinkClass}
-                navRef={navRef}
-                takeSurveyRef={takeSurveyNavRef}
-                ctaRef={ctaNavRef}
-                open={companyMenuOpen}
-                onOpenChange={setCompanyMenuOpen}
-                onLinkMouseEnter={(e) => syncLine(e.currentTarget)}
-              />
-            ) : (
-              <a
-                key={item.label}
-                ref={takeSurveyNavRef}
-                href={item.href}
-                className={navLinkClass}
-                onMouseEnter={(e) => syncLine(e.currentTarget)}
-              >
-                {item.label}
-              </a>
-            ),
-          )}
+          <div
+            data-mega-nav-group
+            className="inline-flex items-stretch gap-9 self-stretch"
+            onMouseLeave={handleMegaNavGroupMouseLeave}
+            onBlurCapture={handleMegaNavGroupBlurCapture}
+          >
+            <MegaMenuNavItem
+              triggerLabel="Platform"
+              triggerHref="/framework"
+              triggerRef={megaMenuLeftRef}
+              links={platformMegaLinks}
+              panelId="site-header-platform-menu"
+              ariaLabel="Platform menu"
+              navLinkClass={navLinkClass}
+              navRef={navRef}
+              megaLeftRef={megaMenuLeftRef}
+              ctaRef={ctaNavRef}
+              open={openMegaMenu === "platform"}
+              onActivate={() => setOpenMegaMenu("platform")}
+              onDismiss={() => setOpenMegaMenu(null)}
+              onLinkMouseEnter={(e) => syncLine(e.currentTarget)}
+            />
+            <MegaMenuNavItem
+              triggerLabel="Company"
+              triggerHref="#contact"
+              links={companyMegaLinks}
+              panelId="site-header-company-menu"
+              ariaLabel="Company menu"
+              navLinkClass={navLinkClass}
+              navRef={navRef}
+              megaLeftRef={megaMenuLeftRef}
+              ctaRef={ctaNavRef}
+              open={openMegaMenu === "company"}
+              onActivate={() => setOpenMegaMenu("company")}
+              onDismiss={() => setOpenMegaMenu(null)}
+              onLinkMouseEnter={(e) => syncLine(e.currentTarget)}
+            />
+          </div>
         </div>
         <a
           ref={ctaNavRef}
-          href="#contact"
+          href="/survey"
           data-cta
           className={`${ctaShellClass} ${ctaShellOutline}`}
           onMouseEnter={clearLine}
         >
-          <span className={ctaPillClass}>Try the app</span>
+          <span className={ctaPillClass}>Take Survey</span>
         </a>
         </nav>
       </header>
