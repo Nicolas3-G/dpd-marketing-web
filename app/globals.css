@@ -3,11 +3,18 @@
 :root {
   --background: #f4f3e9;
   --foreground: #171717;
+  --brand-orange: #d98510;
+  --brand-orange-hover: #b8730e;
+  --brand-orange-glow: color-mix(in srgb, var(--brand-orange) 28%, transparent);
+  --section-gray: #d9d9d9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-hover: var(--brand-orange-hover);
+  --color-section-gray: var(--section-gray);
   --font-sans: Helvetica, Arial, sans-serif;
   --font-mono: Helvetica, Arial, sans-serif;
 }
