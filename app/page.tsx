@@ -140,9 +140,10 @@ export default function Home() {
           </p>
           <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">
             Behavior Coordination for{" "}
-            <span className="text-brand-orange">
-              individuals, coaches, and teams.
+            <span className="text-red-600">
+              individuals,
             </span>
+            {" coaches, and teams."}
           </h1>
           <p className="mt-6 max-w-2xl text-base font-medium leading-7 text-black/75 sm:text-lg">
             Only 10 minutes to gain practical insight into how your team
