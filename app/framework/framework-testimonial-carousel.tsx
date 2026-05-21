@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 
 import { FrameworkFlowSection } from "./framework-flow-section";
 import { FrameworkTestimonialSection } from "./framework-testimonial-section";
@@ -17,13 +17,22 @@ export function FrameworkTestimonialCarousel() {
   const testimonialRef = useRef<HTMLElement>(null);
   const slideCount = frameworkTestimonials.length;
 
-  function goTo(index: number) {
-    setActiveIndex(((index % slideCount) + slideCount) % slideCount);
-  }
+  const goTo = useCallback(
+    (index: number) => {
+      const next = ((index % slideCount) + slideCount) % slideCount;
+      if (next === activeIndex) {
+        return;
+      }
+      setActiveIndex(next);
+    },
+    [activeIndex, slideCount],
+  );
 
   useLayoutEffect(() => {
     const el = testimonialRef.current;
-    if (!el) return;
+    if (!el) {
+      return;
+    }
 
     const measure = () => {
       setTestimonialHeightPx(el.getBoundingClientRect().height);
@@ -38,19 +47,20 @@ export function FrameworkTestimonialCarousel() {
       observer.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, [activeIndex]);
+  }, []);
 
   return (
     <>
       <FrameworkTestimonialSection
         ref={testimonialRef}
-        testimonial={frameworkTestimonials[activeIndex]}
+        activeIndex={activeIndex}
+        testimonials={frameworkTestimonials}
         panelId={TESTIMONIAL_PANEL_ID}
       />
       <FrameworkFlowSection
         activeIndex={activeIndex}
         slideCount={slideCount}
-        onSelect={setActiveIndex}
+        onSelect={goTo}
         onPrev={() => goTo(activeIndex - 1)}
         onNext={() => goTo(activeIndex + 1)}
         testimonialPanelId={TESTIMONIAL_PANEL_ID}
