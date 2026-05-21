@@ -36,26 +36,26 @@ export default function AboutPage() {
         <div className={pageInset}>
           <div className="grid w-full items-center gap-12 lg:grid-cols-2 lg:gap-x-12 xl:gap-x-20">
             <h1
-              className={`${displaySerif.className} max-w-[18ch] text-[64px] leading-[1.08] tracking-[-0.02em] text-[#111111] lg:max-w-none`}
+              className={`${displaySerif.className} max-w-[18ch] text-[64px] leading-[1.08] tracking-[-0.02em] text-custom-black lg:max-w-none`}
             >
               Behavior coordination for teams in the AI era.
             </h1>
 
             <div className="flex w-full max-w-xl flex-col gap-4 lg:justify-self-end">
-              <p className="text-base font-medium leading-tight text-[#111111] sm:text-lg">
+              <p className="text-base font-medium leading-tight text-custom-black sm:text-lg">
                 DPD works with organizations that need a shared language for how
                 people dream, plan, and execute
               </p>
               <div className="flex flex-wrap gap-2">
                 <Link
                   href="/#contact"
-                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full bg-brand-orange px-4 text-xs font-semibold leading-tight text-[#111111] shadow-[0_8px_20px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111]"
+                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full bg-brand-orange px-4 text-xs font-semibold leading-tight text-custom-black shadow-[0_8px_20px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
                 >
                   Talk to our team
                 </Link>
                 <Link
                   href="/#services"
-                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full border border-[#111111] bg-transparent px-4 text-xs font-semibold leading-tight text-[#111111] transition hover:-translate-y-0.5 hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111]"
+                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full border border-custom-black bg-transparent px-4 text-xs font-semibold leading-tight text-custom-black transition hover:-translate-y-0.5 hover:bg-custom-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
                 >
                   Explore the platform
                 </Link>
@@ -69,17 +69,17 @@ export default function AboutPage() {
 
       <section className="bg-[#f9f8f3]">
         <div className={pageInset}>
-          <div className="h-px w-full bg-black/6" aria-hidden />
+          <div className="h-px w-full bg-custom-black/6" aria-hidden />
         </div>
         <div
           className={`${pageInset} pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-28 lg:pt-12`}
         >
           <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-x-16 xl:gap-x-24">
-            <h2 className="max-w-[20ch] text-[2rem] font-semibold leading-[1.12] tracking-[-0.03em] text-[#111111] sm:text-[2.5rem] lg:col-start-1 lg:row-start-1 lg:max-w-[22ch] lg:text-[2.75rem]">
+            <h2 className="max-w-[20ch] text-[2rem] font-semibold leading-[1.12] tracking-[-0.03em] text-custom-black sm:text-[2.5rem] lg:col-start-1 lg:row-start-1 lg:max-w-[22ch] lg:text-[2.75rem]">
               It all started with teams that could not stay in sync.
             </h2>
 
-            <p className="text-base font-normal leading-relaxed text-[#111111]/85 sm:text-[17px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-lg lg:pt-0.5">
+            <p className="text-base font-normal leading-relaxed text-custom-black/85 sm:text-[17px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-lg lg:pt-0.5">
               The DPD Framework was born from founder Kokoro Robinson&apos;s early
               fascination with Biological and Cognitive Psychology and a single
               question: If personality can fragment unconsciously under distress,
@@ -97,7 +97,7 @@ export default function AboutPage() {
               Dreaming, Planning, and Doing.
             </p>
 
-            <div className="relative aspect-16/10 w-full overflow-hidden rounded-2xl border border-black/6 bg-[#ebe8df] lg:col-start-1 lg:row-start-2">
+            <div className="relative aspect-16/10 w-full overflow-hidden rounded-2xl border border-custom-black/6 bg-[#ebe8df] lg:col-start-1 lg:row-start-2">
               <Image
                 src="/about-page.jpg"
                 alt="Team collaborating around a table reviewing plans and sketches"
@@ -112,13 +112,13 @@ export default function AboutPage() {
 
       <section className="bg-[#f5f5f0]">
         <div className={pageInset}>
-          <div className="h-px w-full bg-black/6" aria-hidden />
+          <div className="h-px w-full bg-custom-black/6" aria-hidden />
         </div>
         <div
           className={`${pageInset} pb-16 pt-6 sm:pb-20 sm:pt-8 lg:pb-28 lg:pt-10`}
         >
           <div className="flex max-w-4xl flex-col gap-6 sm:gap-8">
-            <div className="flex items-center gap-2.5 text-[#111111]">
+            <div className="flex items-center gap-2.5 text-custom-black">
               <span
                 className="shrink-0 text-2xl font-bold leading-none sm:text-3xl"
                 aria-hidden
@@ -129,7 +129,7 @@ export default function AboutPage() {
                 Our mission
               </h2>
             </div>
-            <p className="text-[1.375rem] font-semibold leading-tight tracking-[-0.02em] text-[#111111] sm:text-2xl sm:leading-[1.2] lg:text-[1.75rem] lg:leading-[1.22] xl:text-[2rem]">
+            <p className="text-[1.375rem] font-semibold leading-tight tracking-[-0.02em] text-custom-black sm:text-2xl sm:leading-[1.2] lg:text-[1.75rem] lg:leading-[1.22] xl:text-[2rem]">
               The DPD Framework exists to help individuals and teams build
               Perspective Dexterity, Cognitive Agility, and relational awareness
               through persona-based behavioral coordination. By improving

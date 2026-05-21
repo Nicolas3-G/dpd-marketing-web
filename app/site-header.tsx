@@ -275,8 +275,8 @@ function MegaMenuNavItem({
                       href={row.href}
                       className={`group flex w-full items-center justify-start gap-2 py-5 text-lg font-medium tracking-tight transition-colors first:pt-6 last:pb-6 md:py-6 md:text-xl ${
                         activePreviewIndex === index
-                          ? "text-[#111111]"
-                          : "text-[#111111]/55 hover:text-black/70"
+                          ? "text-custom-black"
+                          : "text-custom-black/55 hover:text-custom-black/70"
                       }`}
                       onMouseEnter={() => setActivePreviewIndex(index)}
                       onFocus={() => setActivePreviewIndex(index)}
@@ -302,9 +302,9 @@ function MegaMenuNavItem({
                   <a
                     key={links[activePreviewIndex].href}
                     href={links[activePreviewIndex].href}
-                    className="group/card block rounded-md outline-offset-2 focus-visible:outline-2 focus-visible:outline-black/80"
+                    className="group/card block rounded-md outline-offset-2 focus-visible:outline-2 focus-visible:outline-custom-black/80"
                   >
-                    <div className="relative h-40 w-full overflow-hidden rounded-md bg-black/5 md:h-48">
+                    <div className="relative h-40 w-full overflow-hidden rounded-md bg-custom-black/5 md:h-48">
                       <Image
                         src={activePreview.image}
                         alt={activePreview.imageAlt}
@@ -313,10 +313,10 @@ function MegaMenuNavItem({
                         sizes="(max-width: 768px) 100vw, 420px"
                       />
                     </div>
-                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-black/55 transition-opacity duration-200">
+                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-custom-black/55 transition-opacity duration-200">
                       {activePreview.eyebrow}
                     </p>
-                    <p className="mt-1.5 text-base font-semibold leading-snug tracking-tight text-[#111111] transition-opacity duration-200 md:text-lg">
+                    <p className="mt-1.5 text-base font-semibold leading-snug tracking-tight text-custom-black transition-opacity duration-200 md:text-lg">
                       {activePreview.title}
                     </p>
                   </a>
@@ -450,30 +450,30 @@ export function SiteHeader() {
   const barSolid = menuHover;
 
   const headerSurface = barSolid
-    ? "border-b border-black bg-background shadow-[0_18px_45px_rgba(0,0,0,0.18)] backdrop-blur-2xl transition-[border-color,box-shadow,background-color] duration-300 ease-out"
+    ? "border-b border-custom-black bg-background shadow-[0_18px_45px_rgba(0,0,0,0.18)] backdrop-blur-2xl transition-[border-color,box-shadow,background-color] duration-300 ease-out"
     : navOnDark
       ? "border-b border-gray-400/90 bg-transparent shadow-[0_18px_45px_rgba(0,0,0,0.35)] backdrop-blur-2xl transition-[border-color,box-shadow,background-color] duration-300 ease-out"
-      : "border-b border-black bg-background/45 shadow-[0_18px_45px_rgba(0,0,0,0.18)] backdrop-blur-2xl transition-[border-color,box-shadow,background-color] duration-300 ease-out";
+      : "border-b border-custom-black bg-background/45 shadow-[0_18px_45px_rgba(0,0,0,0.18)] backdrop-blur-2xl transition-[border-color,box-shadow,background-color] duration-300 ease-out";
 
   const logoClass =
     navOnDark && !barSolid
       ? "text-xl font-extrabold tracking-[-0.04em] text-white transition-colors duration-300 ease-out"
-      : "text-xl font-extrabold tracking-[-0.04em] text-black transition-colors duration-300 ease-out";
+      : "text-xl font-extrabold tracking-[-0.04em] text-custom-black transition-colors duration-300 ease-out";
 
   const navRowClass =
     navOnDark && !barSolid
       ? "hidden items-stretch gap-9 pl-20 text-[0.63rem] font-black uppercase tracking-[0.22em] text-white transition-colors duration-300 ease-out md:flex"
-      : "hidden items-stretch gap-9 pl-20 text-[0.63rem] font-black uppercase tracking-[0.22em] text-black transition-colors duration-300 ease-out md:flex";
+      : "hidden items-stretch gap-9 pl-20 text-[0.63rem] font-black uppercase tracking-[0.22em] text-custom-black transition-colors duration-300 ease-out md:flex";
 
   const navLinkClass =
     navOnDark && !barSolid
       ? "inline-flex items-center self-stretch transition-colors duration-300 ease-out hover:text-white/75"
-      : "inline-flex items-center self-stretch transition-colors duration-300 ease-out hover:text-black/65";
+      : "inline-flex items-center self-stretch transition-colors duration-300 ease-out hover:text-custom-black/65";
 
   const ctaPillClass =
     navOnDark && !barSolid
-      ? "inline-flex h-9 items-center justify-center rounded-full border border-white/70 bg-transparent px-7 text-base font-normal text-white transition-[color,border-color,background-color] duration-300 ease-out group-hover:border-white group-hover:bg-white group-hover:text-black group-focus-visible:border-white group-focus-visible:bg-white group-focus-visible:text-black"
-      : "inline-flex h-9 items-center justify-center rounded-full border border-black bg-black px-7 text-base font-normal text-white opacity-100 transition-[opacity] duration-300 ease-out group-hover:opacity-50 group-focus-visible:opacity-50";
+      ? "inline-flex h-9 items-center justify-center rounded-full border border-white/70 bg-transparent px-7 text-base font-normal text-white transition-[color,border-color,background-color] duration-300 ease-out group-hover:border-white group-hover:bg-white group-hover:text-custom-black group-focus-visible:border-white group-focus-visible:bg-white group-focus-visible:text-custom-black"
+      : "inline-flex h-9 items-center justify-center rounded-full border border-custom-black bg-custom-black px-7 text-base font-normal text-white opacity-100 transition-[opacity] duration-300 ease-out group-hover:opacity-50 group-focus-visible:opacity-50";
 
   const ctaShellClass =
     "group ml-auto flex shrink-0 items-center self-stretch focus-visible:outline-2 focus-visible:outline-offset-4";
@@ -509,7 +509,7 @@ export function SiteHeader() {
             <div
               role="presentation"
               aria-hidden
-              className={`fixed inset-x-0 top-20 bottom-0 z-40 cursor-default bg-black/40 backdrop-blur-md transition-opacity duration-300 ease-out ${backdropFadeIn ? "opacity-100" : "opacity-0"}`}
+              className={`fixed inset-x-0 top-20 bottom-0 z-40 cursor-default bg-custom-black/40 backdrop-blur-md transition-opacity duration-300 ease-out ${backdropFadeIn ? "opacity-100" : "opacity-0"}`}
               onClick={() => setOpenMegaMenu(null)}
             />,
             document.body,
@@ -525,7 +525,7 @@ export function SiteHeader() {
         >
         <span
           aria-hidden
-          className="pointer-events-none absolute bottom-[18px] z-10 h-px bg-black transition-[left,width,opacity] duration-220 ease-[cubic-bezier(0.26,0.74,0.44,1.24)]"
+          className="pointer-events-none absolute bottom-[18px] z-10 h-px bg-custom-black transition-[left,width,opacity] duration-220 ease-[cubic-bezier(0.26,0.74,0.44,1.24)]"
           style={{
             left: line.left,
             width: line.width,

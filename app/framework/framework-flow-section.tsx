@@ -12,7 +12,7 @@ type FrameworkFlowSectionProps = {
   onPrev: () => void;
   onNext: () => void;
   testimonialPanelId?: string;
-  /** Matches orange testimonial section height when set. */
+  /** Matches testimonial section height when set. */
   sectionHeightPx?: number | null;
 };
 
@@ -28,7 +28,7 @@ export function FrameworkFlowSection({
 }: FrameworkFlowSectionProps) {
   return (
     <section
-      className="bg-background text-[#111111]"
+      className="bg-background text-custom-black"
       style={
         sectionHeightPx != null ? { height: sectionHeightPx } : undefined
       }
@@ -54,7 +54,7 @@ export function FrameworkFlowSection({
                   aria-label={`Testimonial ${index + 1}`}
                   onClick={() => onSelect(index)}
                   className={`size-4 rounded-full transition-colors ${
-                    isActive ? "bg-black" : "bg-black/25 hover:bg-black/40"
+                    isActive ? "bg-custom-black" : "bg-custom-black/25 hover:bg-custom-black/40"
                   }`}
                 />
               );
@@ -66,7 +66,7 @@ export function FrameworkFlowSection({
               type="button"
               onClick={onPrev}
               aria-label="Previous testimonial"
-              className="grid size-14 place-items-center rounded-full border border-black text-black transition hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:size-16"
+              className="grid size-14 place-items-center rounded-full border border-custom-black text-custom-black transition hover:bg-custom-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black sm:size-16"
             >
               <FaArrowLeft className="size-5 sm:size-6" aria-hidden />
             </button>
@@ -74,7 +74,7 @@ export function FrameworkFlowSection({
               type="button"
               onClick={onNext}
               aria-label="Next testimonial"
-              className="grid size-14 place-items-center rounded-full border border-black text-black transition hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:size-16"
+              className="grid size-14 place-items-center rounded-full border border-custom-black text-custom-black transition hover:bg-custom-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black sm:size-16"
             >
               <FaArrowRight className="size-5 sm:size-6" aria-hidden />
             </button>

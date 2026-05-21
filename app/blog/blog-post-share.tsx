@@ -14,7 +14,7 @@ type BlogPostShareProps = {
 };
 
 const shareIconClassName =
-  "inline-flex size-9 items-center justify-center rounded-full text-[#111111]/45 transition hover:bg-black/5 hover:text-[#111111]/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111111]";
+  "inline-flex size-9 items-center justify-center rounded-full text-custom-black/45 transition hover:bg-custom-black/5 hover:text-custom-black/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-custom-black";
 
 export function BlogPostShare({ title }: BlogPostShareProps) {
   const pathname = usePathname();

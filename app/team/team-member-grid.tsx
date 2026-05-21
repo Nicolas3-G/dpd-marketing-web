@@ -46,7 +46,7 @@ export function TeamMemberGrid({
             >
             <div className="relative">
               <div
-                className="relative aspect-square w-full overflow-hidden border border-black/8 bg-[#ebe8df]"
+                className="relative aspect-square w-full overflow-hidden border border-custom-black/8 bg-[#ebe8df]"
                 onMouseEnter={() => hasBio && setActiveIndex(i)}
               >
                 {member.image ? (
@@ -75,7 +75,7 @@ export function TeamMemberGrid({
                       : "max-lg:max-h-0 max-lg:opacity-0 max-lg:mt-0 lg:pointer-events-none lg:opacity-0",
                   )}
                 >
-                  <p className="text-sm font-normal leading-relaxed text-[#111111]/65 lg:pr-1">
+                  <p className="text-sm font-normal leading-relaxed text-custom-black/65 lg:pr-1">
                     {member.hoverBio}
                   </p>
                 </div>
@@ -88,13 +88,13 @@ export function TeamMemberGrid({
             >
               <p
                 className={joinClasses(
-                  "text-[15px] font-semibold leading-snug text-[#111111] sm:text-base",
+                  "text-[15px] font-semibold leading-snug text-custom-black sm:text-base",
                   hasBio && "cursor-default",
                 )}
               >
                 {member.name}
               </p>
-              <p className="text-sm font-normal leading-snug text-[#111111]/70">
+              <p className="text-sm font-normal leading-snug text-custom-black/70">
                 {member.title}
               </p>
             </div>

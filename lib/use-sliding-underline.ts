@@ -10,7 +10,7 @@ export type SlidingUnderlineState = {
 
 /** Spring underline matching site header nav (`duration-220` + overshoot ease). */
 export const SLIDING_UNDERLINE_CLASS =
-  "pointer-events-none absolute bottom-0 z-10 h-px bg-black transition-[left,width,opacity] duration-220 ease-[cubic-bezier(0.26,0.74,0.44,1.24)]";
+  "pointer-events-none absolute bottom-0 z-10 h-px bg-custom-black transition-[left,width,opacity] duration-220 ease-[cubic-bezier(0.26,0.74,0.44,1.24)]";
 
 export function useSlidingUnderline() {
   const containerRef = useRef<HTMLDivElement>(null);

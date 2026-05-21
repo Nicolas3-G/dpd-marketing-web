@@ -35,15 +35,15 @@ export default function BlogPage() {
           className={`${pageInset} pb-20 pt-24 sm:pb-24 sm:pt-28 lg:pb-28 lg:pt-32`}
         >
           <h1
-            className={`${displaySerif.className} max-w-[20ch] text-[3rem] font-bold leading-[1.08] tracking-[-0.02em] text-[#111111] sm:max-w-none sm:text-[3.75rem] lg:text-[4.25rem] xl:text-[4.75rem]`}
+            className={`${displaySerif.className} max-w-[20ch] text-[3rem] font-bold leading-[1.08] tracking-[-0.02em] text-custom-black sm:max-w-none sm:text-[3.75rem] lg:text-[4.25rem] xl:text-[4.75rem]`}
           >
             DPD Blog
           </h1>
-          <p className="mt-5 max-w-2xl text-base font-normal leading-relaxed text-[#111111] sm:mt-6 sm:text-lg">
+          <p className="mt-5 max-w-2xl text-base font-normal leading-relaxed text-custom-black sm:mt-6 sm:text-lg">
             For media inquiries, contact{" "}
             <a
               href={`mailto:${MEDIA_EMAIL}`}
-              className="underline decoration-black/35 underline-offset-[5px] transition hover:decoration-[#111111] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111]"
+              className="underline decoration-custom-black/35 underline-offset-[5px] transition hover:decoration-custom-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
             >
               {MEDIA_EMAIL}
             </a>
@@ -95,7 +95,7 @@ export default function BlogPage() {
           </div>
 
           <div className="relative flex min-h-[260px] w-full flex-col items-center justify-center px-6 py-10 sm:px-8 sm:py-12 lg:min-h-[min(85vh,640px)] lg:px-10 lg:py-14 xl:px-14 xl:py-16">
-            <div className="relative mx-auto aspect-4/3 w-[min(100%,36rem)] overflow-hidden shadow-2xl shadow-black/50 sm:w-[min(100%,40rem)] xl:w-[min(100%,44rem)]">
+            <div className="relative mx-auto aspect-4/3 w-[min(100%,36rem)] overflow-hidden shadow-2xl shadow-custom-black/50 sm:w-[min(100%,40rem)] xl:w-[min(100%,44rem)]">
               <Image
                 src={featuredPost.image}
                 alt={
@@ -115,7 +115,7 @@ export default function BlogPage() {
 
       <section className="w-full bg-[#f7f6f0]">
         <div className={`${pageInset} py-16 sm:py-20 lg:py-24`}>
-          <h2 className="text-2xl font-bold tracking-[-0.02em] text-[#111111] sm:text-3xl">
+          <h2 className="text-2xl font-bold tracking-[-0.02em] text-custom-black sm:text-3xl">
             Latest from DPD
           </h2>
           <ul className="mt-10 max-w-4xl list-none space-y-10 sm:mt-12 sm:space-y-12">
@@ -123,10 +123,10 @@ export default function BlogPage() {
               <li key={post.slug}>
                 <Link
                   href={getPostHref(post.slug)}
-                  className="group block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111]"
+                  className="group block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
                 >
-                  <p className="text-sm font-normal text-[#111111]">{post.date}</p>
-                  <p className="mt-1.5 text-lg font-bold leading-snug text-[#111111] sm:text-xl">
+                  <p className="text-sm font-normal text-custom-black">{post.date}</p>
+                  <p className="mt-1.5 text-lg font-bold leading-snug text-custom-black sm:text-xl">
                     {post.title}
                   </p>
                 </Link>

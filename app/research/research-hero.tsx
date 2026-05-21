@@ -8,7 +8,7 @@ export function ResearchHero() {
   return (
     <section
       id="research"
-      className="relative isolate overflow-x-clip  text-[#111111] bg-white pb-24"
+      className="relative isolate overflow-x-clip  text-custom-black bg-white pb-24"
     >
       <div
         className={`${pageInset} relative flex min-h-[calc(100svh-5rem)] flex-col justify-center py-20 pt-24 sm:py-24 sm:pt-28 lg:block lg:py-28 lg:pt-32`}
@@ -17,13 +17,13 @@ export function ResearchHero() {
           <h1 className="text-4xl font-bold leading-[1.08] tracking-[-0.03em] sm:text-5xl lg:text-[3.25rem] lg:leading-[1.06]">
             The science behind persona-based behavior coordination.
           </h1>
-          <p className="mt-5 text-base font-normal text-black sm:mt-6 sm:text-lg">
+          <p className="mt-5 text-base font-normal text-custom-black sm:mt-6 sm:text-lg">
             Beyond personality tests—research that helps teams dream, plan, and
             do in sync.
           </p>
           <a
             href="/contact"
-            className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-brand-orange px-10 text-base font-bold text-[#111111] shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:mt-10 sm:h-14 sm:px-12 sm:text-lg"
+            className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-brand-orange px-10 text-base font-bold text-custom-black shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black sm:mt-10 sm:h-14 sm:px-12 sm:text-lg"
           >
             Explore the Science
           </a>

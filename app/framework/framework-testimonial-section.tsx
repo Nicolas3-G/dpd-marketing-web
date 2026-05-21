@@ -2,6 +2,7 @@
 
 import { forwardRef } from "react";
 
+import { ParallaxImage } from "../parallax-background";
 import type { FrameworkTestimonial } from "./framework-testimonials";
 import { SLIDE_MS, useSlideCarousel } from "./use-slide-carousel";
 
@@ -10,6 +11,15 @@ const pageInset =
 
 const slideGridClass =
   "grid items-center gap-10 lg:grid-cols-2 lg:gap-16 xl:gap-20";
+
+function TestimonialImageCard() {
+  return (
+    <div
+      className="aspect-4/3 w-full bg-custom-black lg:aspect-square lg:max-h-[min(28rem,80vw)]"
+      aria-hidden
+    />
+  );
+}
 
 function TestimonialSlideContent({
   testimonial,
@@ -20,10 +30,7 @@ function TestimonialSlideContent({
 }) {
   return (
     <>
-      <div
-        className="aspect-4/3 w-full bg-black lg:aspect-square lg:max-h-[min(28rem,80vw)]"
-        aria-hidden
-      />
+      <TestimonialImageCard />
 
       <blockquote id={panelId} className="max-w-2xl">
         <p className="text-4xl font-bold leading-snug tracking-[-0.02em] sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-[1.08]">
@@ -86,9 +93,21 @@ export const FrameworkTestimonialSection = forwardRef<
   return (
     <section
       ref={ref}
-      className="overflow-x-clip bg-brand-orange py-20 text-white sm:py-24 lg:py-28"
+      className="relative overflow-hidden py-20 text-white sm:py-24 lg:py-28"
     >
-      <div className={`${pageInset} relative`}>
+      <ParallaxImage
+        src="/bg-2.jpg"
+        alt=""
+        sizes="100vw"
+        speed={0.18}
+        imageWrapperClassName="-inset-y-32"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-custom-black/40"
+        aria-hidden
+      />
+
+      <div className={`${pageInset} relative z-10`}>
         <TestimonialHeightSizer testimonials={testimonials} />
 
         <div className="absolute inset-0 overflow-hidden">

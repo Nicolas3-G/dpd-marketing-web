@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f3e9;
-  --foreground: #171717;
+  --background: #f4f0ea;
+  --custom-black: #1f3221;
+  --text-light: #6F758A;
+  --foreground: var(--custom-black);
   --brand-orange: #d98510;
   --brand-orange-hover: #b8730e;
   --brand-orange-glow: color-mix(in srgb, var(--brand-orange) 28%, transparent);
@@ -11,6 +13,8 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-custom-black: var(--custom-black);
+  --color-text-light: var(--text-light);
   --color-foreground: var(--foreground);
   --color-brand-orange: var(--brand-orange);
   --color-brand-orange-hover: var(--brand-orange-hover);
@@ -21,8 +25,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #f4f3e9;
-    --foreground: #ededed;
+    --background: #f4f0ea;
+    --foreground: var(--custom-black);
   }
 }
 
