@@ -18,8 +18,11 @@ export function ResearchHero() {
             The science behind persona-based behavior coordination.
           </h1>
           <p className="mt-5 text-base font-normal text-custom-black sm:mt-6 sm:text-lg">
-            Beyond personality tests—research that helps teams dream, plan, and
-            do in sync.
+            Personality assessments help teams understand tendencies. Process
+            tools help teams organize work. DPD accelerates the human ROI of
+            both by adding the missing behavioral operating layer that reduces
+            cognitive load, improves relational awareness, and coordinates
+            behavior in real time.
           </p>
           <a
             href="/contact"
