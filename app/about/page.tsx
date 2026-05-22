@@ -49,7 +49,7 @@ export default function AboutPage() {
               <div className="flex flex-wrap gap-2">
                 <Link
                   href="/#contact"
-                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full bg-brand-orange px-4 text-xs font-semibold leading-tight text-custom-black shadow-[0_8px_20px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
+                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full bg-brand-orange px-4 text-xs font-semibold leading-tight text-white shadow-[0_8px_20px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
                 >
                   Talk to our team
                 </Link>

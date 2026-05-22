@@ -57,12 +57,10 @@ export function ResearchSplitSection({
 
   const imageColumn = (
     <div
-      className={`flex justify-center ${reversed ? "lg:justify-start" : "lg:justify-end"}`}
+      className="min-h-[min(28rem,50vw)] w-full lg:min-h-0 lg:h-full"
+      aria-hidden
     >
-      <div
-        className="h-[min(28rem,50vw)] w-auto max-w-full aspect-3/4 rounded-2xl bg-black"
-        aria-hidden
-      />
+      <div className="h-full min-h-[min(28rem,50vw)] w-full rounded-2xl bg-black lg:min-h-0" />
     </div>
   );
 
@@ -71,7 +69,7 @@ export function ResearchSplitSection({
       className={`bg-background text-custom-black ${stackPadding[stackPosition]}`}
     >
       <div
-        className={`${pageInset} grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20`}
+        className={`${pageInset} grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20`}
       >
         {reversed ? (
           <>
