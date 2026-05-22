@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 
 import {
   researchFeatureTabs,
@@ -13,6 +19,11 @@ const pageInset =
 
 const ITEM_STAGGER_MS = 100;
 const ITEM_FADE_MS = 500;
+
+const listGridClass =
+  "grid w-full min-w-0 gap-10 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-12 lg:gap-x-16 lg:gap-y-14";
+
+const featureTabKeys = Object.keys(researchFeatureTabs) as ResearchFeatureTab[];
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -73,6 +84,40 @@ function useStaggeredReveal(activeKey: string) {
   return { listRef, revealed };
 }
 
+function usePanelMinHeight() {
+  const measureRef = useRef<HTMLDivElement>(null);
+  const [minHeight, setMinHeight] = useState(0);
+
+  const updateMinHeight = useCallback(() => {
+    const container = measureRef.current;
+    if (!container) return;
+
+    const heights = Array.from(container.children).map(
+      (child) => (child as HTMLElement).offsetHeight,
+    );
+    const max = Math.max(0, ...heights);
+    if (max > 0) setMinHeight(max);
+  }, []);
+
+  useLayoutEffect(() => {
+    updateMinHeight();
+
+    const container = measureRef.current;
+    if (!container) return;
+
+    const observer = new ResizeObserver(updateMinHeight);
+    observer.observe(container);
+    window.addEventListener("resize", updateMinHeight);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateMinHeight);
+    };
+  }, [updateMinHeight]);
+
+  return { measureRef, minHeight };
+}
+
 type FeatureItemsListProps = {
   items: ResearchFeatureItem[];
   activeKey: string;
@@ -82,10 +127,7 @@ function FeatureItemsList({ items, activeKey }: FeatureItemsListProps) {
   const { listRef, revealed } = useStaggeredReveal(activeKey);
 
   return (
-    <ul
-      ref={listRef}
-      className="grid min-w-0 gap-10 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-12 lg:gap-x-16 lg:gap-y-14"
-    >
+    <ul ref={listRef} className={listGridClass}>
       {items.map(({ label, Icon }, index) => (
         <li
           key={label}
@@ -104,6 +146,51 @@ function FeatureItemsList({ items, activeKey }: FeatureItemsListProps) {
         </li>
       ))}
     </ul>
+  );
+}
+
+/** Off-screen copies used only to reserve the taller tab panel height. */
+function FeatureItemsListMeasure({ items }: { items: ResearchFeatureItem[] }) {
+  return (
+    <ul className={listGridClass}>
+      {items.map(({ label, Icon }) => (
+        <li key={label} className="flex flex-col gap-4">
+          <Icon className="size-7 shrink-0 text-white" aria-hidden />
+          <p className="max-w-md text-base font-medium leading-snug text-white sm:text-lg sm:leading-7">
+            {label}
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+type FeatureItemsPanelProps = {
+  activeTab: ResearchFeatureTab;
+};
+
+function FeatureItemsPanel({ activeTab }: FeatureItemsPanelProps) {
+  const { measureRef, minHeight } = usePanelMinHeight();
+  const tabContent = researchFeatureTabs[activeTab];
+
+  return (
+    <div className="relative min-w-0">
+      <div
+        ref={measureRef}
+        className="pointer-events-none invisible absolute inset-x-0 top-0 -z-10 w-full"
+        aria-hidden
+      >
+        {featureTabKeys.map((tab) => (
+          <div key={tab}>
+            <FeatureItemsListMeasure items={researchFeatureTabs[tab].items} />
+          </div>
+        ))}
+      </div>
+
+      <div style={minHeight > 0 ? { minHeight } : undefined}>
+        <FeatureItemsList items={tabContent.items} activeKey={activeTab} />
+      </div>
+    </div>
   );
 }
 
@@ -151,20 +238,18 @@ export function ResearchFeaturesSection() {
             role="tablist"
             aria-label="Feature categories"
           >
-            {(Object.keys(researchFeatureTabs) as ResearchFeatureTab[]).map(
-              (tab) => (
-                <TabPill
-                  key={tab}
-                  label={researchFeatureTabs[tab].label}
-                  isActive={activeTab === tab}
-                  onClick={() => setActiveTab(tab)}
-                />
-              ),
-            )}
+            {featureTabKeys.map((tab) => (
+              <TabPill
+                key={tab}
+                label={researchFeatureTabs[tab].label}
+                isActive={activeTab === tab}
+                onClick={() => setActiveTab(tab)}
+              />
+            ))}
           </div>
         </div>
 
-        <FeatureItemsList items={tabContent.items} activeKey={activeTab} />
+        <FeatureItemsPanel activeTab={activeTab} />
       </div>
     </section>
   );
