@@ -42,7 +42,7 @@ export function SiteFooter() {
   return (
     <>
       <div className="bg-background" aria-hidden="true">
-        <div className={`${pageInset} h-px bg-black/10`} />
+        <div className={`${pageInset} h-px bg-custom-black/10`} />
       </div>
 
       <section
@@ -74,7 +74,7 @@ export function SiteFooter() {
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
                   href="mailto:hello@example.com"
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-brand-orange px-7 text-sm font-bold text-black transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                  className="inline-flex h-11 items-center justify-center rounded-full bg-brand-orange px-7 text-sm font-bold text-custom-black transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
                   Request a Demo
                 </a>
@@ -88,7 +88,7 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <footer className="mt-20 rounded-t-xl bg-background p-7 text-[#111111] shadow-[0_30px_90px_rgba(0,0,0,0.28)] sm:p-9 lg:p-10">
+          <footer className="mt-20 rounded-t-xl bg-background p-7 text-custom-black shadow-[0_30px_90px_rgba(0,0,0,0.28)] sm:p-9 lg:p-10">
             <a
               href="#home"
               className="inline-flex text-3xl font-bold tracking-tighter"
@@ -99,7 +99,7 @@ export function SiteFooter() {
             <div className="mt-10 grid gap-9 sm:grid-cols-2 lg:grid-cols-5">
               {footerColumns.map((column) => (
                 <div key={column.title}>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-black/60">
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-text-light/60">
                     {column.title}
                   </h3>
                   <ul className="mt-4 space-y-3">
@@ -107,7 +107,7 @@ export function SiteFooter() {
                       <li key={link}>
                         <a
                           href="#home"
-                          className="text-sm font-medium text-black/85 transition hover:text-black"
+                          className="text-sm font-medium text-custom-black/85 transition hover:text-custom-black"
                         >
                           {link}
                         </a>
@@ -124,15 +124,15 @@ export function SiteFooter() {
                   key={social}
                   href="#home"
                   aria-label={`${social} social link`}
-                  className="grid size-8 place-items-center rounded-full border border-black/70 text-[0.65rem] font-bold uppercase transition hover:bg-black hover:text-background"
+                  className="grid size-8 place-items-center rounded-full border border-custom-black/70 text-[0.65rem] font-bold uppercase transition hover:bg-custom-black hover:text-background"
                 >
                   {social}
                 </a>
               ))}
             </div>
 
-            <div className="mt-6 border-t border-black/20 pt-7">
-              <div className="flex flex-col gap-4 text-xs font-bold leading-5 text-black/90 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-6 border-t border-custom-black/20 pt-7">
+              <div className="flex flex-col gap-4 text-xs font-bold leading-5 text-custom-black/90 sm:flex-row sm:items-center sm:justify-between">
                 <p>3100 E 5th Street, Suite 350, Austin, TX 78702</p>
                 <p>215 Spadina Avenue, Suite 400, Toronto, Ontario M5T 2C7</p>
               </div>

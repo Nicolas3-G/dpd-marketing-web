@@ -43,7 +43,7 @@ export function ResearchHeroCardStack() {
             return (
               <div
                 key={cardIndex}
-                className="absolute inset-0 origin-left overflow-hidden rounded-2xl bg-white shadow-[0_12px_40px_rgba(0,0,0,0.12)] ring-1 ring-black/6 transition-[transform,z-index] duration-300 ease-out motion-reduce:transition-none"
+                className="absolute inset-0 origin-left overflow-hidden rounded-2xl bg-white shadow-[0_12px_40px_rgba(0,0,0,0.12)] ring-1 ring-custom-black/6 transition-[transform,z-index] duration-300 ease-out motion-reduce:transition-none"
                 style={{
                   zIndex: CARD_COUNT - order,
                   transform: `translateX(calc(${order} * ${STACK_OFFSET_PERCENT}%)) scale(${scale})`,
@@ -89,7 +89,7 @@ export function ResearchHeroCardStack() {
                 className={`size-2.5 rounded-full transition-colors ${
                   isActive
                     ? "bg-brand-orange"
-                    : "bg-black/20 hover:bg-black/35"
+                    : "bg-custom-black/20 hover:bg-custom-black/35"
                 }`}
               />
             );

@@ -137,7 +137,7 @@ export function ResearchFeaturesSection() {
   const tabContent = researchFeatureTabs[activeTab];
 
   return (
-    <section className="bg-black py-16 text-white sm:py-20 lg:py-24">
+    <section className="bg-custom-black py-16 text-white sm:py-20 lg:py-24">
       <div
         className={`${pageInset} grid gap-12 lg:grid-cols-[minmax(0,16rem)_1fr] lg:items-start lg:gap-16 xl:grid-cols-[minmax(0,18rem)_1fr] xl:gap-20`}
       >

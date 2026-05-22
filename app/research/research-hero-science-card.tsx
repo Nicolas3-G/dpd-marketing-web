@@ -152,10 +152,10 @@ export function ResearchHeroScienceCard({
       <span className="inline-flex w-fit rounded-full border border-brand-orange px-3 py-1 text-[0.65rem] font-bold tracking-[0.22em] text-brand-orange">
         {tag}
       </span>
-      <h3 className="mt-4 font-[family-name:Georgia,'Times_New_Roman',Times,serif] text-[1.65rem] font-normal leading-tight tracking-tight text-[#111111] sm:mt-5 sm:text-[1.85rem]">
+      <h3 className="mt-4 font-[family-name:Georgia,'Times_New_Roman',Times,serif] text-[1.65rem] font-normal leading-tight tracking-tight text-custom-black sm:mt-5 sm:text-[1.85rem]">
         {title}
       </h3>
-      <p className="mt-4 text-sm leading-6 text-black/80 sm:mt-5 sm:text-[0.95rem] sm:leading-[1.65]">
+      <p className="mt-4 text-sm leading-6 text-custom-black/80 sm:mt-5 sm:text-[0.95rem] sm:leading-[1.65]">
         <span className="font-bold text-brand-orange">Activated by: </span>
         {activatedBy}
       </p>

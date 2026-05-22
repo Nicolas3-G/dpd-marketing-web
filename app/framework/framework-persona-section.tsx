@@ -48,13 +48,13 @@ function PersonaSlideContent({ persona }: { persona: Persona }) {
         <h2 className="text-4xl font-bold leading-tight tracking-[-0.03em] sm:text-5xl lg:text-6xl">
           {persona.title}
         </h2>
-        <p className="mt-8 max-w-2xl text-xl font-normal leading-8 text-black sm:mt-10 sm:text-2xl sm:leading-10 lg:text-3xl lg:leading-[1.35]">
+        <p className="mt-8 max-w-2xl text-xl font-normal leading-8 text-custom-black sm:mt-10 sm:text-2xl sm:leading-10 lg:text-3xl lg:leading-[1.35]">
           {persona.description}
         </p>
       </div>
 
       <div
-        className="aspect-4/3 w-full bg-black lg:aspect-auto lg:min-h-[min(28rem,50vw)]"
+        className="aspect-4/3 w-full bg-custom-black lg:aspect-auto lg:min-h-[min(28rem,50vw)]"
         aria-hidden
       />
     </>
@@ -206,7 +206,7 @@ function PersonaTabList({ activeIndex, onSelect }: PersonaTabListProps) {
             onClick={() => onSelect(index)}
             onMouseEnter={(e) => syncLine(e.currentTarget)}
             className={`pb-3 text-lg font-bold transition-colors sm:text-xl lg:text-2xl ${
-              isActive ? "text-black" : "text-black/55 hover:text-black/80"
+              isActive ? "text-custom-black" : "text-custom-black/55 hover:text-custom-black/80"
             }`}
           >
             {persona.tab}
@@ -231,7 +231,7 @@ export function FrameworkPersonaSection() {
   }, [activeIndex]);
 
   return (
-    <section className="bg-section-gray pt-20 text-[#111111] sm:pt-24 lg:pt-28">
+    <section className="bg-section-gray pt-20 text-custom-black sm:pt-24 lg:pt-28">
       <div className={`${pageInset} relative pb-24 sm:pb-28`}>
         <PersonaTabList activeIndex={activeIndex} onSelect={goTo} />
 
@@ -246,7 +246,7 @@ export function FrameworkPersonaSection() {
             type="button"
             onClick={() => goTo(activeIndex - 1)}
             aria-label="Previous persona"
-            className="grid size-12 place-items-center rounded-full border border-black text-black transition hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+            className="grid size-12 place-items-center rounded-full border border-custom-black text-custom-black transition hover:bg-custom-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
           >
             <FaArrowLeft className="size-4" aria-hidden />
           </button>
@@ -254,7 +254,7 @@ export function FrameworkPersonaSection() {
             type="button"
             onClick={() => goTo(activeIndex + 1)}
             aria-label="Next persona"
-            className="grid size-12 place-items-center rounded-full border border-black text-black transition hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+            className="grid size-12 place-items-center rounded-full border border-custom-black text-custom-black transition hover:bg-custom-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
           >
             <FaArrowRight className="size-4" aria-hidden />
           </button>

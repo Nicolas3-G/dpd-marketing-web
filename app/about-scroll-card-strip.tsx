@@ -178,7 +178,7 @@ export function AboutScrollCardStrip({ cards }: AboutScrollCardStripProps) {
           cards.map((card, i) => (
             <div
               key={`${copy}-${card.src}-${i}`}
-              className="about-card-strip__card relative aspect-8/5 overflow-hidden rounded-2xl bg-black/5 shadow-[0_18px_45px_rgba(39,39,31,0.08)]"
+              className="about-card-strip__card relative aspect-8/5 overflow-hidden rounded-2xl bg-custom-black/5 shadow-[0_18px_45px_rgba(39,39,31,0.08)]"
             >
               <Image
                 src={card.src}

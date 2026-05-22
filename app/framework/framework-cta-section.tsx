@@ -4,20 +4,20 @@ const pageInset =
 /** Framework page CTA — edit here without affecting other pages. */
 export function FrameworkCtaSection() {
   return (
-    <section className="bg-background py-20 text-[#111111] sm:py-24 lg:py-28">
+    <section className="bg-background py-20 text-custom-black sm:py-24 lg:py-28">
       <div
         className={`${pageInset} flex flex-col items-center text-center`}
       >
         <h2 className="max-w-4xl text-4xl font-bold leading-tight tracking-[-0.03em] sm:text-5xl lg:text-6xl">
           Get the most out of your team
         </h2>
-        <p className="mt-6 max-w-3xl text-base font-normal leading-7 text-black sm:mt-8 sm:text-lg sm:leading-8">
+        <p className="mt-6 max-w-3xl text-base font-normal leading-7 text-custom-black sm:mt-8 sm:text-lg sm:leading-8">
           DPD helps align diverse working styles, improve communication, and speed
           up execution by matching tasks to the appropriate persona.
         </p>
         <a
           href="/survey"
-          className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-brand-orange px-10 text-base font-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:mt-10 sm:h-14 sm:px-12 sm:text-lg"
+          className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-brand-orange px-10 text-base font-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black sm:mt-10 sm:h-14 sm:px-12 sm:text-lg"
         >
           Try it out
         </a>

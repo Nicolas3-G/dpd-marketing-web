@@ -130,12 +130,12 @@ export default function Home() {
     <main className="flex-1 overflow-x-clip bg-background">
       <section
         id="home"
-        className="relative isolate flex min-h-[calc(100svh-4rem)] overflow-hidden bg-white text-[#111111]"
+        className="relative isolate flex min-h-[calc(100svh-4rem)] overflow-hidden bg-white text-custom-black"
       >
         <div
           className={`relative z-10 ${pageInset} flex flex-col items-center justify-center py-20 text-center sm:py-24 lg:py-28`}
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-black/55">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-custom-black/55">
             Discover your persona
           </p>
           <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">
@@ -144,13 +144,13 @@ export default function Home() {
               individuals, coaches, and teams.
             </span>
           </h1>
-          <p className="mt-6 max-w-2xl text-base font-medium leading-7 text-black/75 sm:text-lg">
+          <p className="mt-6 max-w-2xl text-base font-medium leading-7 text-custom-black/75 sm:text-lg">
             Only 10 minutes to gain practical insight into how your team
             collaborates, communicates, and works best together.
           </p>
           <a
             href="/survey"
-            className="mt-9 inline-flex h-14 items-center gap-3 rounded-full bg-brand-orange px-8 text-sm font-bold text-black shadow-[0_14px_30px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+            className="mt-9 inline-flex h-14 items-center gap-3 rounded-full bg-brand-orange px-8 text-sm font-bold text-custom-black shadow-[0_14px_30px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
           >
             Take the Test
             <span aria-hidden="true" className="text-xl leading-none">
@@ -164,7 +164,7 @@ export default function Home() {
 
       <section
         id="services"
-        className="overflow-x-clip bg-background py-20 text-[#111111]"
+        className="overflow-x-clip bg-background py-20 text-custom-black"
       >
         <div className={pageInset}>
           <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-24">
@@ -172,11 +172,11 @@ export default function Home() {
               Dream. Plan. Do. Together in Flow.
             </h2>
             <div className="grid gap-5">
-              <p className="max-w-xl text-base font-medium leading-6 text-black/85 sm:text-lg sm:leading-7">
+              <p className="max-w-xl text-base font-medium leading-6 text-custom-black/85 sm:text-lg sm:leading-7">
                 DPD is not a personality test. It is a persona based behavior
                 coordination system that helps people move in sync.
               </p>
-              <p className="max-w-xl text-base font-medium leading-6 text-black/85 sm:text-lg sm:leading-7">
+              <p className="max-w-xl text-base font-medium leading-6 text-custom-black/85 sm:text-lg sm:leading-7">
                 Personality describes tendencies. DPD coordinates behavior.
               </p>
             </div>
@@ -190,7 +190,7 @@ export default function Home() {
               <h3 className="text-base font-bold">
                 DPD offers a more precise path:
               </h3>
-              <p className="mt-5 text-base font-medium leading-6 text-black/85 sm:text-lg sm:leading-7">
+              <p className="mt-5 text-base font-medium leading-6 text-custom-black/85 sm:text-lg sm:leading-7">
                 Like an orchestra, everyone brings a different instrument. DPD
                 gives the team the same sheet music. That is the power of
                 DPDing. A word. A sound. A signal. A call to action for
@@ -203,7 +203,7 @@ export default function Home() {
 
       <SectionDivider />
 
-      <section id="about" className="bg-background py-20 text-[#111111]">
+      <section id="about" className="bg-background py-20 text-custom-black">
         <div
           className={`${pageInset} grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-24`}
         >
@@ -219,17 +219,17 @@ export default function Home() {
               >
                 {index < strategySteps.length - 1 ? (
                   <div
-                    className="absolute left-7 top-14 hidden h-[calc(100%+3.5rem)] w-px bg-black/15 sm:block"
+                    className="absolute left-7 top-14 hidden h-[calc(100%+3.5rem)] w-px bg-custom-black/15 sm:block"
                     aria-hidden
                   />
                 ) : null}
-                <div className="relative z-10 flex size-14 items-center justify-center self-start rounded-full bg-black text-[0.68rem] font-bold tracking-widest text-white">
+                <div className="relative z-10 flex size-14 items-center justify-center self-start rounded-full bg-custom-black text-[0.68rem] font-bold tracking-widest text-white">
                   <step.Icon className="size-5" aria-hidden="true" />
                 </div>
                 <h3 className="max-w-xs self-start text-lg font-bold leading-6">
                   {step.title}
                 </h3>
-                <p className="max-w-sm self-start text-sm font-medium leading-5 text-black/80 sm:text-base sm:leading-6">
+                <p className="max-w-sm self-start text-sm font-medium leading-5 text-custom-black/80 sm:text-base sm:leading-6">
                   {step.description}
                 </p>
               </div>
@@ -242,7 +242,7 @@ export default function Home() {
 
       <section
         id="transformation"
-        className="relative overflow-hidden bg-black text-white"
+        className="relative overflow-hidden bg-custom-black text-white"
       >
         <ParallaxBackground />
         <div className={`relative z-10 ${pageInset} py-18 sm:py-20`}>
@@ -289,7 +289,7 @@ export default function Home() {
 
       <SectionDivider />
 
-      <section className="bg-background py-20 text-[#111111]">
+      <section className="bg-background py-20 text-custom-black">
         <div className={pageInset}>
           <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-24">
             <div className="max-w-xl space-y-8">
@@ -305,25 +305,25 @@ export default function Home() {
             </div>
 
             <div className="grid max-w-xl gap-5 pt-[50px]">
-              <p className="text-lg font-normal leading-7 text-black/85 sm:text-xl sm:leading-8">
+              <p className="text-lg font-normal leading-7 text-custom-black/85 sm:text-xl sm:leading-8">
                 Personality assessments help people understand tendencies.
                 Process frameworks help teams organize work. DPD fills the
                 missing layer: behavior coordination.
               </p>
-              <p className="text-lg font-normal leading-7 text-black/85 sm:text-xl sm:leading-8">
+              <p className="text-lg font-normal leading-7 text-custom-black/85 sm:text-xl sm:leading-8">
                 As a Persona Based Behavioral Operating System and GPS, DPD
                 helps individuals, coaches, teams, and organizations know when
                 to Dream, when to Plan, when to Do, and how to move together in
                 flow.
               </p>
-              <p className="text-lg font-normal leading-7 text-black/85 sm:text-xl sm:leading-8">
+              <p className="text-lg font-normal leading-7 text-custom-black/85 sm:text-xl sm:leading-8">
                 That is how DPD increases the ROI of the systems you already
                 use.
               </p>
             </div>
           </div>
 
-          <div className="relative mt-16 min-h-88 overflow-hidden bg-black shadow-[0_24px_70px_rgba(17,17,17,0.18)] sm:min-h-112">
+          <div className="relative mt-16 min-h-88 overflow-hidden bg-custom-black shadow-[0_24px_70px_rgba(0,0,0,0.18)] sm:min-h-112">
             <ParallaxImage
               src="/bg-2.jpg"
               alt="Abstract orange motion background representing the DPD platform"
@@ -348,7 +348,7 @@ export default function Home() {
           <div className="mt-7 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {platformOptions.map((option) => (
               <article key={option.title}>
-                <div className="relative aspect-[1.06] overflow-hidden bg-black">
+                <div className="relative aspect-[1.06] overflow-hidden bg-custom-black">
                   <Image
                     src={option.image}
                     alt={option.imageAlt}
@@ -356,14 +356,14 @@ export default function Home() {
                     className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
-                  <span className="absolute left-4 top-4 z-10 rounded-sm bg-black/50 px-3 py-1 text-xs font-bold tracking-widest text-white backdrop-blur-sm">
+                  <span className="absolute left-4 top-4 z-10 rounded-sm bg-custom-black/50 px-3 py-1 text-xs font-bold tracking-widest text-white backdrop-blur-sm">
                     {option.tag}
                   </span>
                 </div>
                 <h3 className="mt-5 text-2xl font-medium leading-7 tracking-tight">
                   {option.title}
                 </h3>
-                <p className="mt-4 text-sm font-medium leading-5 text-black/85 sm:text-base sm:leading-6">
+                <p className="mt-4 text-sm font-medium leading-5 text-custom-black/85 sm:text-base sm:leading-6">
                   {option.description}
                 </p>
               </article>
@@ -378,7 +378,7 @@ export default function Home() {
 function SectionDivider() {
   return (
     <div className="bg-background" aria-hidden="true">
-      <div className={`${pageInset} h-px bg-black/10`} />
+      <div className={`${pageInset} h-px bg-custom-black/10`} />
     </div>
   );
 }

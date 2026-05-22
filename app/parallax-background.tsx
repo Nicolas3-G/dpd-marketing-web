@@ -94,8 +94,8 @@ export function ParallaxImage({
       <div
         ref={imageRef}
         className={classNames(
-          "absolute -inset-y-16 inset-x-0 will-change-transform",
-          imageWrapperClassName,
+          "absolute inset-x-0 will-change-transform",
+          imageWrapperClassName ?? "-inset-y-16",
         )}
       >
         <Image
@@ -123,7 +123,7 @@ export function ParallaxBackground() {
         imageWrapperClassName="-inset-y-24"
         imageClassName="scale-110 blur-sm brightness-125 saturate-150"
       />
-      <div className="absolute inset-0 bg-black/25" />
+      <div className="absolute inset-0 bg-custom-black/25" />
     </div>
   );
 }
