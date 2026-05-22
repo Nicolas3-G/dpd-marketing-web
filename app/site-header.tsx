@@ -61,6 +61,39 @@ const platformMegaLinks: MegaLink[] = [
   },
 ];
 
+const productsMegaLinks: MegaLink[] = [
+  {
+    label: "Reports",
+    href: "/reports",
+    preview: {
+      eyebrow: "Reports",
+      title: "Research reports and insights",
+      image: "/scroll-cards/card-4.jpg",
+      imageAlt: "",
+    },
+  },
+  {
+    label: "Webinars",
+    href: "/webinars",
+    preview: {
+      eyebrow: "Webinars",
+      title: "Live sessions and recorded talks",
+      image: "/scroll-cards/card-5.jpg",
+      imageAlt: "",
+    },
+  },
+  {
+    label: "Books",
+    href: "/books",
+    preview: {
+      eyebrow: "Books",
+      title: "Publications from the DPD team",
+      image: "/scroll-cards/card-6.jpg",
+      imageAlt: "",
+    },
+  },
+];
+
 const companyMegaLinks: MegaLink[] = [
   {
     label: "About",
@@ -121,7 +154,7 @@ const MEGA_MENU_NAV_ROWS = companyMegaLinks.length;
 
 type MegaLayout = { left: number; width: number; top: number };
 
-type OpenMegaMenu = "platform" | "company" | null;
+type OpenMegaMenu = "platform" | "products" | "company" | null;
 
 function MegaMenuNavItem({
   triggerLabel,
@@ -571,6 +604,21 @@ export function SiteHeader() {
               ctaRef={ctaNavRef}
               open={openMegaMenu === "platform"}
               onActivate={() => setOpenMegaMenu("platform")}
+              onDismiss={() => setOpenMegaMenu(null)}
+              onLinkMouseEnter={(e) => syncLine(e.currentTarget)}
+            />
+            <MegaMenuNavItem
+              triggerLabel="Products"
+              triggerHref="/reports"
+              links={productsMegaLinks}
+              panelId="site-header-products-menu"
+              ariaLabel="Products menu"
+              navLinkClass={navLinkClass}
+              navRef={navRef}
+              megaLeftRef={megaMenuLeftRef}
+              ctaRef={ctaNavRef}
+              open={openMegaMenu === "products"}
+              onActivate={() => setOpenMegaMenu("products")}
               onDismiss={() => setOpenMegaMenu(null)}
               onLinkMouseEnter={(e) => syncLine(e.currentTarget)}
             />
