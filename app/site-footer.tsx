@@ -1,7 +1,26 @@
-import { ParallaxImage } from "./parallax-background";
+import { FaLinkedinIn, FaSpotify } from "react-icons/fa6";
 
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
+
+const footerSocialLinks = [
+  {
+    label: "DPD on Spotify",
+    href: "https://open.spotify.com/show/2DWXn7bgkJ0yEkS7FCBaTf",
+    Icon: FaSpotify,
+  },
+  {
+    label: "DPD on LinkedIn",
+    href: "https://www.linkedin.com/company/dpding",
+    Icon: FaLinkedinIn,
+  },
+] as const;
+
+const footerSocialIconClassName =
+  "inline-flex items-center justify-center text-white transition hover:text-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+
+const footerLegalLinkClassName =
+  "underline underline-offset-2 transition hover:text-white";
 
 const footerColumns = [
   {
@@ -36,8 +55,6 @@ const footerColumns = [
   },
 ];
 
-const socialLinks = ["in", "X", "yt", "ig"];
-
 export function SiteFooter() {
   return (
     <>
@@ -47,18 +64,9 @@ export function SiteFooter() {
 
       <section
         id="contact"
-        className="relative overflow-hidden pt-16 text-white sm:pt-20"
+        className="bg-custom-black pt-16 text-white sm:pt-20"
       >
-        <ParallaxImage
-          src="/footer-bg.jpg"
-          alt=""
-          sizes="100vw"
-          speed={0.14}
-          imageWrapperClassName="-inset-y-24"
-          imageClassName="object-center"
-        />
-
-        <div className={`relative z-10 ${pageInset}`}>
+        <div className={pageInset}>
           <div id="see-better" className="pb-20">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="text-4xl font-medium leading-none tracking-tighter sm:text-5xl lg:text-6xl">
@@ -66,40 +74,22 @@ export function SiteFooter() {
                 <span className="font-bold text-brand-orange">DPD</span>
                 ing in action.
               </h2>
-              <p className="mt-7 text-base font-medium leading-6 text-white/85 sm:text-lg">
-                Experience the DPD Persona Based Behavioral Operating System
-                and GPS for teams, personalized to your goals, metrics, and
-                team.
-              </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <div className="mt-8 flex justify-center">
                 <a
                   href="mailto:hello@example.com"
                   className="inline-flex h-11 items-center justify-center rounded-full bg-brand-orange px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
-                  Request a Demo
-                </a>
-                <a
-                  href="#home"
-                  className="inline-flex h-11 items-center justify-center rounded-full border border-white/70 px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-                >
-                  Learn More
+                  Take DPD Survey
                 </a>
               </div>
             </div>
           </div>
 
-          <footer className="mt-20 rounded-t-xl bg-background p-7 text-custom-black shadow-[0_30px_90px_rgba(0,0,0,0.28)] sm:p-9 lg:p-10">
-            <a
-              href="#home"
-              className="inline-flex text-3xl font-bold tracking-tighter"
-            >
-              DPD
-            </a>
-
-            <div className="mt-10 grid gap-9 sm:grid-cols-2 lg:grid-cols-5">
+          <footer className="mt-20 pb-10 sm:pb-12 lg:pb-14">
+            <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-5">
               {footerColumns.map((column) => (
                 <div key={column.title}>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-text-light/60">
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-white/50">
                     {column.title}
                   </h3>
                   <ul className="mt-4 space-y-3">
@@ -107,7 +97,7 @@ export function SiteFooter() {
                       <li key={link}>
                         <a
                           href="#home"
-                          className="text-sm font-medium text-custom-black/85 transition hover:text-custom-black"
+                          className="text-sm font-medium text-white/85 transition hover:text-white"
                         >
                           {link}
                         </a>
@@ -118,24 +108,42 @@ export function SiteFooter() {
               ))}
             </div>
 
-            <div className="mt-20 flex gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social}
-                  href="#home"
-                  aria-label={`${social} social link`}
-                  className="grid size-8 place-items-center rounded-full border border-custom-black/70 text-[0.65rem] font-bold uppercase transition hover:bg-custom-black hover:text-background"
-                >
-                  {social}
-                </a>
-              ))}
-            </div>
+            <p className="mt-20 text-3xl font-bold tracking-tighter text-white">
+              DPDing
+            </p>
 
-            <div className="mt-6 border-t border-custom-black/20 pt-7">
-              <div className="flex flex-col gap-4 text-xs font-bold leading-5 text-custom-black/90 sm:flex-row sm:items-center sm:justify-between">
-                <p>3100 E 5th Street, Suite 350, Austin, TX 78702</p>
-                <p>215 Spadina Avenue, Suite 400, Toronto, Ontario M5T 2C7</p>
-              </div>
+            <div className="mt-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
+              <ul className="flex list-none gap-5">
+                {footerSocialLinks.map(({ label, href, Icon }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className={footerSocialIconClassName}
+                    >
+                      <Icon className="size-6" aria-hidden />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="ml-auto text-right text-xs leading-5 text-white/90">
+                <span>© {new Date().getFullYear()} DPD</span>
+                {", "}
+                <a href="/terms" className={footerLegalLinkClassName}>
+                  Terms
+                </a>
+                {", "}
+                <a href="/privacy" className={footerLegalLinkClassName}>
+                  Privacy
+                </a>
+                {", "}
+                <a href="/privacy-choices" className={footerLegalLinkClassName}>
+                  Your Privacy Choices
+                </a>
+              </p>
             </div>
           </footer>
         </div>

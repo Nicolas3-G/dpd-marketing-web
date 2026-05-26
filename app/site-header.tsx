@@ -50,12 +50,22 @@ const platformMegaLinks: MegaLink[] = [
     },
   },
   {
-    label: "Research",
-    href: "/research",
+    label: "Science",
+    href: "/science",
     preview: {
-      eyebrow: "Research",
-      title: "The science behind it",
+      eyebrow: "Science",
+      title: "The research behind it",
       image: "/science-cards/card-2.jpg",
+      imageAlt: "",
+    },
+  },
+  {
+    label: "Test",
+    href: "/test",
+    preview: {
+      eyebrow: "Test",
+      title: "Test",
+      image: "/science-cards/card-3.jpg",
       imageAlt: "",
     },
   },
@@ -646,7 +656,7 @@ export function SiteHeader() {
           className={`${ctaShellClass} ${ctaShellOutline}`}
           onMouseEnter={clearLine}
         >
-          <span className={ctaPillClass}>Take Survey</span>
+          <span className={ctaPillClass}>Take DPD Survey</span>
         </a>
         </nav>
       </header>

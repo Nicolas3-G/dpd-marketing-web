@@ -12,8 +12,9 @@ export function FrameworkCtaSection() {
           Get the most out of your team
         </h2>
         <p className="mt-6 max-w-3xl text-base font-normal leading-7 text-custom-black sm:mt-8 sm:text-lg sm:leading-8">
-          DPD helps align diverse working styles, improve communication, and speed
-          up execution by matching tasks to the appropriate persona.
+          DPD helps teams activate the right Persona Behavioral Posture for the
+          moment, so communication improves, friction decreases, and execution
+          moves faster.
         </p>
         <a
           href="/survey"
