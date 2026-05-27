@@ -66,8 +66,8 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function useStaggeredReveal(activeKey: string) {
-  const listRef = useRef<HTMLElement>(null);
+function useStaggeredReveal<T extends HTMLElement>(activeKey: string) {
+  const listRef = useRef<T>(null);
   const [inView, setInView] = useState(false);
   const [revealed, setRevealed] = useState(false);
 
@@ -272,7 +272,7 @@ function WorkshopListPanelContent({
   items: readonly ResearchWorkshopPanelItem[];
   activeKey: string;
 }) {
-  const { listRef, revealed } = useStaggeredReveal(activeKey);
+  const { listRef, revealed } = useStaggeredReveal<HTMLUListElement>(activeKey);
 
   return (
     <ul ref={listRef} className={panelListClass}>
@@ -304,7 +304,7 @@ function WorkshopProsePanelContent({
   content: ResearchWorkshopProsePanel;
   activeKey: string;
 }) {
-  const { listRef, revealed } = useStaggeredReveal(activeKey);
+  const { listRef, revealed } = useStaggeredReveal<HTMLDivElement>(activeKey);
 
   return (
     <div
