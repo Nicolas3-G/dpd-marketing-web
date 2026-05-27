@@ -12,16 +12,28 @@ export function FrameworkScienceSection() {
 
         <div className="mt-10 w-full max-w-4xl space-y-6 text-left sm:mt-12 sm:space-y-8">
           <p className="text-xl font-normal leading-8 text-custom-black sm:text-2xl sm:leading-10 lg:text-3xl lg:leading-[1.35]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat.
+            DPD is backed by research showing that teams perform better when they
+            share a clear behavioral language for the moment they are in.
+            Cognitive behavioral science, game theory, embodied cognition, and
+            habit formation all point to the same practical insight: people
+            collaborate more effectively when expectations, roles, and repeated
+            practice are aligned.
           </p>
           <p className="text-xl font-normal leading-8 text-custom-black sm:text-2xl sm:leading-10 lg:text-3xl lg:leading-[1.35]">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            DPD turns that science into a simple operating system for meetings
+            and teamwork, helping teams reduce misinterpretation, switch cleanly
+            between Dreaming, Planning, and Doing personas, and build stronger
+            habits for coordinated action.
           </p>
+        </div>
+
+        <div className="mt-10 sm:mt-12">
+          <a
+            href="/survey"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-brand-orange px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
+          >
+            Take DPD Survey
+          </a>
         </div>
       </div>
     </section>

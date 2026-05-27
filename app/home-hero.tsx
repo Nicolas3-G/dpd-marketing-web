@@ -132,12 +132,14 @@ function TaglineRow({
   suffix,
   prefixVisible,
   suffixVisible,
+  suffixLine2Visible = suffixVisible,
   rowWidth,
   wordmarkWidth,
 }: {
   suffix: string;
   prefixVisible: boolean;
   suffixVisible: boolean;
+  suffixLine2Visible?: boolean;
   rowWidth?: number;
   wordmarkWidth?: number;
 }) {
@@ -163,19 +165,22 @@ function TaglineRow({
       >
         <DpdWordmark suffix={suffix} />
       </span>
-      <span
-        className={`${taglinePartClass} relative shrink-0 whitespace-nowrap leading-none pb-[1em] sm:pb-0 sm:leading-normal ${taglinePartVisibilityClass(suffixVisible)}`}
-        style={{ transitionDuration: `${TAGLINE_FADE_MS}ms` }}
-        aria-hidden={!suffixVisible}
-      >
-        {TAGLINE_SUFFIX_LINE_1}
-        <span className="hidden sm:inline">
-          {"\u00a0"}
-          {TAGLINE_SUFFIX_LINE_2}
+      <span className="relative shrink-0 whitespace-nowrap leading-none pb-[1em] sm:pb-0 sm:leading-normal">
+        <span
+          className={`${taglinePartClass} ${taglinePartVisibilityClass(suffixVisible)}`}
+          style={{ transitionDuration: `${TAGLINE_FADE_MS}ms` }}
+          aria-hidden={!suffixVisible}
+        >
+          {TAGLINE_SUFFIX_LINE_1}
+          <span className="hidden sm:inline">
+            {"\u00a0"}
+            {TAGLINE_SUFFIX_LINE_2}
+          </span>
         </span>
         <span
-          className="absolute top-[1em] left-0 whitespace-nowrap sm:hidden"
-          aria-hidden={!suffixVisible}
+          className={`${taglinePartClass} absolute top-[1em] left-0 whitespace-nowrap sm:hidden ${taglinePartVisibilityClass(suffixLine2Visible)}`}
+          style={{ transitionDuration: `${TAGLINE_FADE_MS}ms` }}
+          aria-hidden={!suffixLine2Visible}
         >
           {TAGLINE_SUFFIX_LINE_2}
         </span>
@@ -189,6 +194,8 @@ export function HomeHero() {
   const [typedLength, setTypedLength] = useState(0);
   const [taglinePrefixVisible, setTaglinePrefixVisible] = useState(false);
   const [taglineSuffixVisible, setTaglineSuffixVisible] = useState(false);
+  const [taglineSuffixLine2Visible, setTaglineSuffixLine2Visible] =
+    useState(false);
   const [taglineLayout, setTaglineLayout] = useState<{
     rowWidth: number;
     wordmarkWidth: number;
@@ -345,16 +352,19 @@ export function HomeHero() {
       ) {
         setTaglinePrefixVisible(false);
         setTaglineSuffixVisible(false);
+        setTaglineSuffixLine2Visible(false);
       }
       return;
     }
 
     setTaglinePrefixVisible(false);
     setTaglineSuffixVisible(false);
+    setTaglineSuffixLine2Visible(false);
 
     if (prefersReducedMotion()) {
       setTaglinePrefixVisible(true);
       setTaglineSuffixVisible(true);
+      setTaglineSuffixLine2Visible(true);
       const revealTimer = window.setTimeout(
         () => setPhase("reveal"),
         TAGLINE_HOLD_MS,
@@ -362,19 +372,30 @@ export function HomeHero() {
       return () => window.clearTimeout(revealTimer);
     }
 
+    const isMobile = window.matchMedia("(max-width: 639px)").matches;
     const fadeFrame = requestAnimationFrame(() => setTaglinePrefixVisible(true));
     const suffixTimer = window.setTimeout(
       () => setTaglineSuffixVisible(true),
       TAGLINE_PART_STAGGER_MS,
     );
+    const suffixLine2Timer = isMobile
+      ? window.setTimeout(
+          () => setTaglineSuffixLine2Visible(true),
+          TAGLINE_PART_STAGGER_MS * 2,
+        )
+      : undefined;
+    const revealDelayMs = isMobile
+      ? TAGLINE_PART_STAGGER_MS * 2 + TAGLINE_FADE_MS + TAGLINE_HOLD_MS
+      : TAGLINE_PART_STAGGER_MS + TAGLINE_FADE_MS + TAGLINE_HOLD_MS;
     const revealTimer = window.setTimeout(
       () => setPhase("reveal"),
-      TAGLINE_PART_STAGGER_MS + TAGLINE_FADE_MS + TAGLINE_HOLD_MS,
+      revealDelayMs,
     );
 
     return () => {
       cancelAnimationFrame(fadeFrame);
       window.clearTimeout(suffixTimer);
+      if (suffixLine2Timer) window.clearTimeout(suffixLine2Timer);
       window.clearTimeout(revealTimer);
     };
   }, [phase]);
@@ -392,6 +413,9 @@ export function HomeHero() {
     (phase === "show-tagline" || phase === "reveal") && taglinePrefixVisible;
   const taglineSuffixShown =
     (phase === "show-tagline" || phase === "reveal") && taglineSuffixVisible;
+  const taglineSuffixLine2Shown =
+    (phase === "show-tagline" || phase === "reveal") &&
+    taglineSuffixLine2Visible;
   const contentVisible = phase === "reveal" || phase === "done";
 
   return (
@@ -427,6 +451,7 @@ export function HomeHero() {
               suffix={blackSuffix}
               prefixVisible={taglinePrefixShown}
               suffixVisible={taglineSuffixShown}
+              suffixLine2Visible={taglineSuffixLine2Shown}
               rowWidth={taglineLayout?.rowWidth}
               wordmarkWidth={taglineLayout?.wordmarkWidth}
             />

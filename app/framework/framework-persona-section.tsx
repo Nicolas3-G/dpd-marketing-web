@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   useCallback,
   useLayoutEffect,
@@ -22,41 +23,73 @@ const pageInset =
 const personas = [
   {
     tab: "Dreamers",
-    title: "The Dreamer",
-    description: "Focuses on vision, innovation, and \"what's next\".",
+    title: "The Dreamer Persona",
+    description:
+      "The Dreamer Persona helps teams expand beyond current constraints and imagine new possibilities. They open the field so teams can see what could exist before deciding what should be built.\n\nBest for when the team needs to explore, ideate, reframe, or see what could be.",
   },
   {
     tab: "Planners",
-    title: "The Planner",
+    title: "The Planner Persona",
     description:
-      "Focuses on structure, sequencing, and turning ideas into actionable plans.",
+      "The Planner Persona helps teams turn ideas into clear structure before action begins. They build the path so teams know how to move from possibility into coordinated action.\n\nBest used when the team needs to prioritize, design the path, assign ownership, or build the plan.",
+    imageSrc: "/Planners/planner-2.jpg",
+    imageAlt:
+      "A presenter explaining a chart on a whiteboard to a small group.",
   },
   {
     tab: "Doers",
-    title: "The Doer",
+    title: "The Doer Persona",
     description:
-      "Focuses on execution, momentum, and delivering results on the ground.",
+      "The Doer Persona helps teams move from discussion into focused action. They turn coordinated plans into visible progress and real results.\n\nBest used when the team needs to act, implement, follow through, and produce outcomes.",
+    imageSrc: "/Doers/doer-2.jpg",
+    imageAlt:
+      "Two professionals standing in a hallway reviewing work together on a laptop.",
   },
 ] as const;
 
-type Persona = (typeof personas)[number];
+type Persona = (typeof personas)[number] & {
+  imageSrc?: string;
+  imageAlt?: string;
+};
 
 function PersonaSlideContent({ persona }: { persona: Persona }) {
+  const descriptionParagraphs = persona.description
+    .split(/\n{2,}/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
   return (
     <>
       <div>
         <h2 className="text-4xl font-bold leading-tight tracking-[-0.03em] sm:text-5xl lg:text-6xl">
           {persona.title}
         </h2>
-        <p className="mt-8 max-w-2xl text-xl font-normal leading-8 text-custom-black sm:mt-10 sm:text-2xl sm:leading-10 lg:text-3xl lg:leading-[1.35]">
-          {persona.description}
-        </p>
+        <div className="mt-8 max-w-2xl text-xl font-normal leading-8 text-custom-black sm:mt-10 sm:text-2xl sm:leading-10 lg:text-3xl lg:leading-[1.35]">
+          {descriptionParagraphs.map((para, idx) => (
+            <p key={idx} className={idx === 0 ? undefined : "mt-6"}>
+              {para}
+            </p>
+          ))}
+        </div>
       </div>
 
-      <div
-        className="aspect-4/3 w-full bg-custom-black lg:aspect-auto lg:min-h-[min(28rem,50vw)]"
-        aria-hidden
-      />
+      {persona.imageSrc ? (
+        <div className="relative aspect-4/3 w-full overflow-hidden lg:aspect-auto lg:min-h-[min(28rem,50vw)]">
+          <Image
+            src={persona.imageSrc}
+            alt={persona.imageAlt ?? persona.title}
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+            priority={persona.tab === "Doers"}
+          />
+        </div>
+      ) : (
+        <div
+          className="aspect-4/3 w-full bg-custom-black lg:aspect-auto lg:min-h-[min(28rem,50vw)]"
+          aria-hidden
+        />
+      )}
     </>
   );
 }

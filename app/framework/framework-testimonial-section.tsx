@@ -1,25 +1,21 @@
 "use client";
 
-import { forwardRef } from "react";
-
-import { ParallaxImage } from "../parallax-background";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { forwardRef, useEffect, useRef, type MutableRefObject } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import type { FrameworkTestimonial } from "./framework-testimonials";
 import { SLIDE_MS, useSlideCarousel } from "./use-slide-carousel";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
 const slideGridClass =
-  "grid items-center gap-10 lg:grid-cols-2 lg:gap-16 xl:gap-20";
+  "grid items-center justify-center lg:gap-16 xl:gap-20 lg:pl-52 xl:pl-72";
 
-function TestimonialImageCard() {
-  return (
-    <div
-      className="aspect-4/3 w-full bg-custom-black lg:aspect-square lg:max-h-[min(28rem,80vw)]"
-      aria-hidden
-    />
-  );
-}
+const VIDEO_SRC = "/videos/video-1.mp4";
 
 function TestimonialSlideContent({
   testimonial,
@@ -29,23 +25,19 @@ function TestimonialSlideContent({
   panelId?: string;
 }) {
   return (
-    <>
-      <TestimonialImageCard />
-
-      <blockquote id={panelId} className="max-w-2xl">
-        <p className="text-4xl font-bold leading-snug tracking-[-0.02em] sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-[1.08]">
-          &ldquo;{testimonial.quote}&rdquo;
+    <blockquote id={panelId} className="max-w-2xl">
+      <p className="text-4xl font-bold leading-snug tracking-[-0.02em] sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-[1.08]">
+        &ldquo;{testimonial.quote}&rdquo;
+      </p>
+      <footer className="mt-8 sm:mt-10">
+        <p className="text-xl font-semibold sm:text-2xl lg:text-3xl">
+          {testimonial.name}
         </p>
-        <footer className="mt-8 sm:mt-10">
-          <p className="text-xl font-semibold sm:text-2xl lg:text-3xl">
-            {testimonial.name}
-          </p>
-          <p className="mt-1 text-lg font-normal text-white/90 sm:text-xl lg:text-2xl">
-            {testimonial.role}
-          </p>
-        </footer>
-      </blockquote>
-    </>
+        <p className="mt-1 text-lg font-normal text-white/90 sm:text-xl lg:text-2xl">
+          {testimonial.role}
+        </p>
+      </footer>
+    </blockquote>
   );
 }
 
@@ -53,6 +45,9 @@ type FrameworkTestimonialSectionProps = {
   activeIndex: number;
   testimonials: FrameworkTestimonial[];
   panelId?: string;
+  onSelect: (index: number) => void;
+  onPrev: () => void;
+  onNext: () => void;
 };
 
 /** In-flow sizer: all slides share one grid cell so row height = tallest slide. */
@@ -79,28 +74,104 @@ function TestimonialHeightSizer({
   );
 }
 
-/** Framework testimonial — content driven by flow-section controls. */
+/** Framework testimonial carousel with in-section controls. */
 export const FrameworkTestimonialSection = forwardRef<
   HTMLElement,
   FrameworkTestimonialSectionProps
 >(function FrameworkTestimonialSection(
-  { activeIndex, testimonials, panelId = "framework-testimonial-panel" },
+  {
+    activeIndex,
+    testimonials,
+    panelId = "framework-testimonial-panel",
+    onSelect,
+    onPrev,
+    onNext,
+  },
   ref,
 ) {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
   const { displayIndex, isSliding, transition, enterX, exitX, animate } =
     useSlideCarousel(activeIndex, testimonials.length);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    const video = videoRef.current;
+
+    if (!section || !video) {
+      return;
+    }
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const ctx = gsap.context(() => {
+      const setupScrub = () => {
+        if (!Number.isFinite(video.duration) || video.duration <= 0) {
+          return;
+        }
+
+        video.pause();
+        video.currentTime = 0;
+
+        if (reducedMotion.matches) {
+          return;
+        }
+
+        const playback = { time: 0 };
+
+        gsap.to(playback, {
+          time: video.duration,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+          onUpdate: () => {
+            video.currentTime = playback.time;
+          },
+        });
+      };
+
+      if (video.readyState >= 1) {
+        setupScrub();
+      } else {
+        video.addEventListener("loadedmetadata", setupScrub, { once: true });
+      }
+    }, section);
+
+    const onResize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      ctx.revert();
+    };
+  }, []);
+
   return (
     <section
-      ref={ref}
+      ref={(node) => {
+        sectionRef.current = node;
+        if (typeof ref === "function") {
+          ref(node);
+        } else if (ref) {
+          (ref as MutableRefObject<HTMLElement | null>).current = node;
+        }
+      }}
       className="relative overflow-hidden py-20 text-white sm:py-24 lg:py-28"
     >
-      <ParallaxImage
-        src="/bg-2.jpg"
-        alt=""
-        sizes="100vw"
-        speed={0.18}
-        imageWrapperClassName="-inset-y-32"
+      <video
+        ref={videoRef}
+        src={VIDEO_SRC}
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
       />
       <div
         className="pointer-events-none absolute inset-0 bg-custom-black/40"
@@ -108,45 +179,88 @@ export const FrameworkTestimonialSection = forwardRef<
       />
 
       <div className={`${pageInset} relative z-10`}>
-        <TestimonialHeightSizer testimonials={testimonials} />
+        <div className="relative">
+          <TestimonialHeightSizer testimonials={testimonials} />
 
-        <div className="absolute inset-0 overflow-hidden">
-          {isSliding && transition ? (
-            <>
-              <div
-                className={`absolute inset-0 ${slideGridClass} transition-transform ease-in-out motion-reduce:transition-none`}
-                style={{
-                  transform: `translateX(${exitX}%)`,
-                  transitionDuration: animate ? `${SLIDE_MS}ms` : "0ms",
-                }}
-                aria-hidden
-              >
-                <TestimonialSlideContent
-                  testimonial={testimonials[transition.from]}
-                />
-              </div>
+          <div className="absolute inset-0 overflow-hidden">
+            {isSliding && transition ? (
+              <>
+                <div
+                  className={`absolute inset-0 ${slideGridClass} transition-transform ease-in-out motion-reduce:transition-none`}
+                  style={{
+                    transform: `translateX(${exitX}%)`,
+                    transitionDuration: animate ? `${SLIDE_MS}ms` : "0ms",
+                  }}
+                  aria-hidden
+                >
+                  <TestimonialSlideContent
+                    testimonial={testimonials[transition.from]}
+                  />
+                </div>
 
-              <div
-                className={`absolute inset-0 ${slideGridClass} transition-transform ease-in-out motion-reduce:transition-none`}
-                style={{
-                  transform: `translateX(${enterX}%)`,
-                  transitionDuration: animate ? `${SLIDE_MS}ms` : "0ms",
-                }}
-              >
+                <div
+                  className={`absolute inset-0 ${slideGridClass} transition-transform ease-in-out motion-reduce:transition-none`}
+                  style={{
+                    transform: `translateX(${enterX}%)`,
+                    transitionDuration: animate ? `${SLIDE_MS}ms` : "0ms",
+                  }}
+                >
+                  <TestimonialSlideContent
+                    testimonial={testimonials[displayIndex]}
+                    panelId={panelId}
+                  />
+                </div>
+              </>
+            ) : (
+              <div className={`h-full ${slideGridClass}`}>
                 <TestimonialSlideContent
                   testimonial={testimonials[displayIndex]}
                   panelId={panelId}
                 />
               </div>
-            </>
-          ) : (
-            <div className={`h-full ${slideGridClass}`}>
-              <TestimonialSlideContent
-                testimonial={testimonials[displayIndex]}
-                panelId={panelId}
-              />
-            </div>
-          )}
+            )}
+          </div>
+        </div>
+
+        <div className="relative z-10 mt-10 flex items-center justify-between gap-6 sm:mt-12">
+          <div className="flex gap-5" role="tablist" aria-label="Testimonials">
+            {Array.from({ length: testimonials.length }, (_, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={panelId}
+                  aria-label={`Testimonial ${index + 1}`}
+                  onClick={() => onSelect(index)}
+                  className={`size-4 rounded-full transition-colors ${
+                    isActive ? "bg-white" : "bg-white/30 hover:bg-white/50"
+                  }`}
+                />
+              );
+            })}
+          </div>
+
+          <div className="flex justify-end gap-4">
+            <button
+              type="button"
+              onClick={onPrev}
+              aria-label="Previous testimonial"
+              className="grid size-14 place-items-center rounded-full border border-white text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:size-16"
+            >
+              <FaArrowLeft className="size-5 sm:size-6" aria-hidden />
+            </button>
+            <button
+              type="button"
+              onClick={onNext}
+              aria-label="Next testimonial"
+              className="grid size-14 place-items-center rounded-full border border-white text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:size-16"
+            >
+              <FaArrowRight className="size-5 sm:size-6" aria-hidden />
+            </button>
+          </div>
         </div>
       </div>
     </section>

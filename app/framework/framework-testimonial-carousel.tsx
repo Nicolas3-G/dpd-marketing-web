@@ -56,14 +56,11 @@ export function FrameworkTestimonialCarousel() {
         activeIndex={activeIndex}
         testimonials={frameworkTestimonials}
         panelId={TESTIMONIAL_PANEL_ID}
-      />
-      <FrameworkFlowSection
-        activeIndex={activeIndex}
-        slideCount={slideCount}
         onSelect={goTo}
         onPrev={() => goTo(activeIndex - 1)}
         onNext={() => goTo(activeIndex + 1)}
-        testimonialPanelId={TESTIMONIAL_PANEL_ID}
+      />
+      <FrameworkFlowSection
         sectionHeightPx={testimonialHeightPx}
       />
     </>

@@ -13,10 +13,10 @@ export const researchConfidenceContent: ResearchSplitContent = {
   lead: "Turn persona science into team behavior—not assumptions.",
   body: "DPD helps organizations validate how teams dream, plan, and do together using real coordination signals before rolling out programs at scale.",
   bullets: [
-    "Shorten adoption cycles by testing personas before full rollout",
-    "Replace internal guesswork with observable team coordination patterns",
-    "Prevent misalignment from unclear meeting modes or role cues",
-    "Reduce friction by validating behavior design before enterprise deployment",
+    "Shorten adoption cycles by validating team behavior before full rollout",
+    "Replace internal guesswork with observable coordination signals",
+    "Prevent misalignment caused by unclear meeting modes or role cues",
+    "Reduce friction by validating behavioral design before enterprise deployment",
   ],
 };
 

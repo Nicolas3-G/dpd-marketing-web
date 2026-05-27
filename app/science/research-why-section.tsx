@@ -15,7 +15,9 @@ import {
 import {
   researchWhyContent,
   researchWorkshopPanels,
+  type ResearchWorkshopPanelContent,
   type ResearchWorkshopPanelItem,
+  type ResearchWorkshopProsePanel,
 } from "./research-why-data";
 
 const ITEM_STAGGER_MS = 100;
@@ -27,7 +29,7 @@ const panelShellClass =
   "flex w-full flex-col bg-custom-black px-8 py-10 sm:px-10 sm:py-12 lg:justify-center lg:px-12 lg:py-14 xl:px-14";
 
 type ResearchWhySectionContent = {
-  heading: string;
+  heading?: string;
   workshops: readonly string[];
 };
 
@@ -35,12 +37,29 @@ type ResearchWhySectionLayoutProps = {
   sectionId: string;
   idPrefix: string;
   content: ResearchWhySectionContent;
-  panels: Record<string, readonly ResearchWorkshopPanelItem[]>;
+  panels: Record<string, ResearchWorkshopPanelContent>;
   reversed?: boolean;
 };
 
+const panelParagraphClass =
+  "text-base font-medium leading-relaxed text-white/90 sm:text-lg sm:leading-7";
+
+const panelSubheadingClass =
+  "text-base font-bold text-white sm:text-lg";
+
+const panelLinkClass =
+  "text-base font-medium text-brand-orange transition-colors hover:text-brand-orange-hover sm:text-lg";
+
 function workshopTabSlug(workshopId: string) {
   return workshopId.replace(/\s+/g, "-").toLowerCase();
+}
+
+function resolveWorkshopPanel(
+  panels: Record<string, ResearchWorkshopPanelContent>,
+  workshopId: string,
+  fallbackWorkshopId: string,
+) {
+  return panels[workshopId] ?? panels[fallbackWorkshopId];
 }
 
 function prefersReducedMotion() {
@@ -48,7 +67,7 @@ function prefersReducedMotion() {
 }
 
 function useStaggeredReveal(activeKey: string) {
-  const listRef = useRef<HTMLUListElement>(null);
+  const listRef = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
   const [revealed, setRevealed] = useState(false);
 
@@ -136,20 +155,27 @@ function usePanelMinHeight() {
   return { measureRef, minHeight };
 }
 
+const workshopTabListClass =
+  "flex w-full max-w-md flex-col gap-3 sm:gap-4";
+
 function WorkshopOptions({
   workshops,
   active,
   onSelect,
   idPrefix,
+  compactTop = false,
 }: {
   workshops: readonly string[];
   active: string;
   onSelect: (workshop: string) => void;
   idPrefix: string;
+  compactTop?: boolean;
 }) {
   return (
     <div
-      className="mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:gap-4"
+      className={`${workshopTabListClass} ${
+        compactTop ? "mt-0 sm:mt-0" : "mt-8 sm:mt-10"
+      }`}
       role="tablist"
       aria-label="Workshops"
     >
@@ -165,9 +191,9 @@ function WorkshopOptions({
             aria-selected={isActive}
             aria-controls={`${idPrefix}-workshop-panel-${slug}`}
             onClick={() => onSelect(label)}
-            className={`w-fit border-b-2 py-3 text-left text-lg font-bold transition-colors sm:py-4 sm:text-xl ${
+            className={`w-fit border-b-2 pt-3 pb-1 text-left text-lg font-bold transition-colors sm:pt-4 sm:pb-1.5 sm:text-xl ${
               isActive
-                ? "border-brand-orange text-custom-black"
+                ? "border-brand-orange text-brand-orange"
                 : "border-transparent text-custom-black hover:text-custom-black/80"
             }`}
           >
@@ -179,7 +205,48 @@ function WorkshopOptions({
   );
 }
 
-function WorkshopPanelContentMeasure({
+function WorkshopProsePanelBody({ content }: { content: ResearchWorkshopProsePanel }) {
+  return (
+    <div className="flex max-w-2xl flex-col gap-6 sm:gap-7">
+      {content.intro.map((paragraph) => (
+        <p key={paragraph} className={panelParagraphClass}>
+          {paragraph}
+        </p>
+      ))}
+
+      <div className="flex flex-col gap-6 sm:gap-7">
+        <h3 className={panelSubheadingClass}>{content.whyItMatters.heading}</h3>
+        {content.whyItMatters.paragraphs.map((paragraph) => (
+          <p key={paragraph} className={panelParagraphClass}>
+            {paragraph}
+          </p>
+        ))}
+      </div>
+
+      {content.research && content.research.links.length > 0 ? (
+        <div className="flex flex-col gap-4 sm:gap-5">
+          <h3 className={panelSubheadingClass}>{content.research.heading}</h3>
+          <ul className="flex flex-col gap-3 sm:gap-4">
+            {content.research.links.map(({ label, href }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={panelLinkClass}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function WorkshopListPanelBody({
   items,
 }: {
   items: readonly ResearchWorkshopPanelItem[];
@@ -198,7 +265,7 @@ function WorkshopPanelContentMeasure({
   );
 }
 
-function WorkshopPanelContent({
+function WorkshopListPanelContent({
   items,
   activeKey,
 }: {
@@ -230,25 +297,75 @@ function WorkshopPanelContent({
   );
 }
 
-function WorkshopPanelMeasure({
-  items,
+function WorkshopProsePanelContent({
+  content,
+  activeKey,
 }: {
-  items: readonly ResearchWorkshopPanelItem[];
+  content: ResearchWorkshopProsePanel;
+  activeKey: string;
 }) {
+  const { listRef, revealed } = useStaggeredReveal(activeKey);
+
+  return (
+    <div
+      ref={listRef}
+      className={`transition-[opacity,transform] ease-out motion-reduce:transition-none ${
+        revealed ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+      }`}
+      style={{ transitionDuration: `${ITEM_FADE_MS}ms` }}
+    >
+      <WorkshopProsePanelBody content={content} />
+    </div>
+  );
+}
+
+function WorkshopPanelBody({ panel }: { panel: ResearchWorkshopPanelContent | undefined }) {
+  if (!panel) return null;
+
+  if (panel.kind === "prose") {
+    return <WorkshopProsePanelBody content={panel} />;
+  }
+
+  return <WorkshopListPanelBody items={panel.items} />;
+}
+
+function WorkshopPanelContent({
+  panel,
+  activeKey,
+}: {
+  panel: ResearchWorkshopPanelContent | undefined;
+  activeKey: string;
+}) {
+  if (!panel) return null;
+
+  if (panel.kind === "prose") {
+    return <WorkshopProsePanelContent content={panel} activeKey={activeKey} />;
+  }
+
+  return <WorkshopListPanelContent items={panel.items} activeKey={activeKey} />;
+}
+
+function WorkshopPanelMeasure({
+  panel,
+}: {
+  panel: ResearchWorkshopPanelContent | undefined;
+}) {
+  if (!panel) return null;
+
   return (
     <div className={panelShellClass} aria-hidden>
-      <WorkshopPanelContentMeasure items={items} />
+      <WorkshopPanelBody panel={panel} />
     </div>
   );
 }
 
 function WorkshopPanel({
   workshopId,
-  items,
+  panel,
   idPrefix,
 }: {
   workshopId: string;
-  items: readonly ResearchWorkshopPanelItem[];
+  panel: ResearchWorkshopPanelContent | undefined;
   idPrefix: string;
 }) {
   const slug = workshopTabSlug(workshopId);
@@ -259,7 +376,7 @@ function WorkshopPanel({
       aria-labelledby={`${idPrefix}-workshop-tab-${slug}`}
       className={`${panelShellClass} h-full min-h-56 sm:min-h-64 lg:min-h-0`}
     >
-      <WorkshopPanelContent items={items} activeKey={workshopId} />
+      <WorkshopPanelContent panel={panel} activeKey={workshopId} />
     </div>
   );
 }
@@ -272,10 +389,16 @@ function WorkshopPanelsColumn({
 }: {
   activeWorkshop: string;
   workshops: readonly string[];
-  panels: Record<string, readonly ResearchWorkshopPanelItem[]>;
+  panels: Record<string, ResearchWorkshopPanelContent>;
   idPrefix: string;
 }) {
   const { measureRef, minHeight } = usePanelMinHeight();
+  const fallbackWorkshop = workshops[0];
+  const activePanel = resolveWorkshopPanel(
+    panels,
+    activeWorkshop,
+    fallbackWorkshop,
+  );
 
   return (
     <div className="relative min-h-56 w-full min-w-0 sm:min-h-64 lg:min-h-0 lg:h-full">
@@ -287,7 +410,7 @@ function WorkshopPanelsColumn({
         {workshops.map((workshopId) => (
           <WorkshopPanelMeasure
             key={workshopId}
-            items={panels[workshopId]}
+            panel={resolveWorkshopPanel(panels, workshopId, fallbackWorkshop)}
           />
         ))}
       </div>
@@ -298,7 +421,7 @@ function WorkshopPanelsColumn({
       >
         <WorkshopPanel
           workshopId={activeWorkshop}
-          items={panels[activeWorkshop]}
+          panel={activePanel}
           idPrefix={idPrefix}
         />
       </div>
@@ -314,7 +437,7 @@ function CopyColumn({
   idPrefix,
   reversed,
 }: {
-  heading: string;
+  heading?: string;
   workshops: readonly string[];
   activeWorkshop: string;
   onSelectWorkshop: (workshop: string) => void;
@@ -329,15 +452,18 @@ function CopyColumn({
           : "lg:pr-12 xl:pr-16"
       }`}
     >
-      <h2 className="max-w-2xl text-2xl font-bold leading-[1.12] tracking-[-0.03em] sm:text-3xl lg:text-4xl lg:leading-[1.1]">
-        {heading}
-      </h2>
+      {heading ? (
+        <h2 className="max-w-2xl text-2xl font-bold leading-[1.12] tracking-[-0.03em] sm:text-3xl lg:text-4xl lg:leading-[1.1]">
+          {heading}
+        </h2>
+      ) : null}
 
       <WorkshopOptions
         workshops={workshops}
         active={activeWorkshop}
         onSelect={onSelectWorkshop}
         idPrefix={idPrefix}
+        compactTop={!heading}
       />
     </div>
   );
@@ -353,6 +479,12 @@ export function ResearchWhySectionLayout({
 }: ResearchWhySectionLayoutProps) {
   const { heading, workshops } = content;
   const [activeWorkshop, setActiveWorkshop] = useState(workshops[0]);
+
+  useEffect(() => {
+    if (!panels[activeWorkshop]) {
+      setActiveWorkshop(workshops[0]);
+    }
+  }, [activeWorkshop, panels, workshops]);
 
   const copyColumn = (
     <CopyColumn
@@ -414,7 +546,7 @@ export function ResearchWhySection() {
   );
 }
 
-/** Black panel left; heading + workshop picker right (research page). */
+/** Black panel left; workshop picker right — no section title (research page). */
 export function ResearchWhyReversedSection() {
   return (
     <ResearchWhySectionLayout

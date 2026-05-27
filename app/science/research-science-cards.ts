@@ -11,30 +11,23 @@ export type ResearchScienceCard = {
 export const researchScienceCards: ResearchScienceCard[] = [
   {
     tag: "SCIENCE",
-    title: "Priming Theory",
+    title: "Neuroplasticity",
     activatedBy:
-      "Dreaming, Planning, Doing cues, meeting mode priming, and persona prompts.",
+      "Repeated persona switching, meeting mode practice, DPD cues, and behavioral reinforcement.",
     graphic: "priming",
   },
   {
     tag: "SCIENCE",
-    title: "Game Theory",
+    title: "Flow Theory",
     activatedBy:
-      "shared team cues, coordinated behavior, role clarity, and aligned action.",
+      "Clear meeting modes, persona alignment, shared purpose, and synchronized action.",
     graphic: "game-theory",
   },
   {
     tag: "SCIENCE",
-    title: "Neuroplasticity",
+    title: "Cognitive Behavioral Science",
     activatedBy:
-      "repeated persona switching, deliberate practice, and behavioral reinforcement over time.",
-    graphic: "priming",
-  },
-  {
-    tag: "SCIENCE",
-    title: "Embodied Cognition",
-    activatedBy:
-      "physical cues, posture, coins, and behavior-linked action.",
+      "Clear meeting modes, shared language, persona cues, and simple behavioral rules.",
     graphic: "priming",
   },
   {

@@ -13,14 +13,14 @@ export const frameworkTestimonials: FrameworkTestimonial[] = [
   },
   {
     quote:
-      "DPD gave our team a shared language for when to dream, when to plan, and when to execute. Coordination finally feels intentional.",
-    name: "Testimonial Name",
-    role: "Role at Company",
+      "I took the DPD persona survey I was blown away by the accuracy of the results. Wow! What great way to start the weekend remembering who I am. I look forward to doing this with my team.",
+    name: "Vishwaa, Viadya",
+    role: "VP Engineering, Visa",
   },
   {
     quote:
-      "The framework helped us match work to the right persona strengths instead of forcing everyone into the same workflow.",
-    name: "Testimonial Name",
-    role: "Role at Company",
+      "It's not just another personality test — it actually gives you insight you can use in your life, business, or relationships.",
+    name: "Leena",
+    role: "App Store Review",
   },
 ];
