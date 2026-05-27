@@ -29,10 +29,10 @@ export function FrameworkScienceSection() {
 
         <div className="mt-10 sm:mt-12">
           <a
-            href="/survey"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-brand-orange px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
+            href="/science"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-custom-black px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
           >
-            Take DPD Survey
+            Learn more
           </a>
         </div>
       </div>
