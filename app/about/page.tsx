@@ -129,7 +129,7 @@ export default function AboutPage() {
                 Our mission
               </h2>
             </div>
-            <p className="text-[1.375rem] font-semibold leading-tight tracking-[-0.02em] text-custom-black sm:text-2xl sm:leading-[1.2] lg:text-[1.75rem] lg:leading-[1.22] xl:text-[2rem]">
+            <p className="text-[20px] font-semibold leading-normal tracking-[-0.02em] text-custom-black">
               The DPD Framework exists to help individuals and teams build
               Perspective Dexterity, Cognitive Agility, and relational awareness
               through persona-based behavioral coordination. By improving
