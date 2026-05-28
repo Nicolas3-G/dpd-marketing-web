@@ -121,7 +121,7 @@ export const FrameworkTestimonialSection = forwardRef<
         const playback = { time: 0 };
 
         gsap.to(playback, {
-          time: video.duration,
+          time: video.duration * 0.5,
           ease: "none",
           scrollTrigger: {
             trigger: section,

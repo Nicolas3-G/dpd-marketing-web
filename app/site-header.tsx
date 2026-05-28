@@ -59,16 +59,6 @@ const platformMegaLinks: MegaLink[] = [
       imageAlt: "",
     },
   },
-  {
-    label: "Test",
-    href: "/test",
-    preview: {
-      eyebrow: "Test",
-      title: "Test",
-      image: "/science-cards/card-3.jpg",
-      imageAlt: "",
-    },
-  },
 ];
 
 const productsMegaLinks: MegaLink[] = [

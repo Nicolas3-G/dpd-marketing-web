@@ -11,7 +11,7 @@ const footerSocialLinks = [
   },
   {
     label: "DPD on LinkedIn",
-    href: "https://www.linkedin.com/company/dpding",
+    href: "https://www.linkedin.com/company/the-dpd-framework/posts/?feedView=all",
     Icon: FaLinkedinIn,
   },
 ] as const;
@@ -22,35 +22,43 @@ const footerSocialIconClassName =
 const footerLegalLinkClassName =
   "underline underline-offset-2 transition hover:text-white";
 
-const footerColumns = [
-  {
-    title: "Platform",
-    links: ["Overview", "Assessments", "Coaching", "Insights"],
-  },
-  {
-    title: "Solutions",
-    links: [
-      "Leadership development",
-      "Manager effectiveness",
-      "Personal growth",
-      "Team performance",
-    ],
-  },
-  {
-    title: "Insights",
-    links: ["Library", "Guides", "Events", "Case studies"],
-  },
+type FooterLink = {
+  label: string;
+  href: string;
+};
+
+const footerColumns: { title: string; links: FooterLink[] }[] = [
   {
     title: "Company",
-    links: ["About us", "Approach", "Careers", "Contact"],
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Team", href: "/team" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contact", href: "/contact" },
+    ],
   },
   {
     title: "Popular links",
     links: [
-      "Contact sales",
-      "Help center",
-      "Privacy notice",
-      "Cookie notice",
+      { label: "Home", href: "/" },
+      { label: "Take the Survey", href: "/survey" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "App Support", href: "/support" },
+    ],
+  },
+  {
+    title: "Products",
+    links: [
+      { label: "Reports", href: "/reports" },
+      { label: "Webinars", href: "/webinars" },
+      { label: "Books", href: "/books" },
+    ],
+  },
+  {
+    title: "Platform",
+    links: [
+      { label: "Framework", href: "/framework" },
+      { label: "Science", href: "/science" },
     ],
   },
 ];
@@ -70,10 +78,13 @@ export function SiteFooter() {
           <div id="see-better" className="pb-20">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="text-4xl font-medium leading-none tracking-tighter sm:text-5xl lg:text-6xl">
-                See the{" "}
-                <span className="font-bold text-brand-orange">DPD</span>
-                ing in action.
+                See it in action.
               </h2>
+              <p className="mx-auto mt-6 max-w-3xl text-base font-medium leading-relaxed text-white/85 sm:mt-8 sm:text-lg sm:leading-8">
+                Experience the DPD Persona Based Behavioral Operating System
+                and GPS for teams, personalized to your goals, metrics, and
+                team.
+              </p>
               <div className="mt-8 flex justify-center">
                 <a
                   href="mailto:hello@example.com"
@@ -86,7 +97,7 @@ export function SiteFooter() {
           </div>
 
           <footer className="mt-20 pb-10 sm:pb-12 lg:pb-14">
-            <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
               {footerColumns.map((column) => (
                 <div key={column.title}>
                   <h3 className="text-xs font-bold uppercase tracking-widest text-white/50">
@@ -94,12 +105,12 @@ export function SiteFooter() {
                   </h3>
                   <ul className="mt-4 space-y-3">
                     {column.links.map((link) => (
-                      <li key={link}>
+                      <li key={link.href}>
                         <a
-                          href="#home"
+                          href={link.href}
                           className="text-sm font-medium text-white/85 transition hover:text-white"
                         >
-                          {link}
+                          {link.label}
                         </a>
                       </li>
                     ))}
@@ -130,19 +141,7 @@ export function SiteFooter() {
               </ul>
 
               <p className="ml-auto text-right text-xs leading-5 text-white/90">
-                <span>© {new Date().getFullYear()} DPD</span>
-                {", "}
-                <a href="/terms" className={footerLegalLinkClassName}>
-                  Terms
-                </a>
-                {", "}
-                <a href="/privacy" className={footerLegalLinkClassName}>
-                  Privacy
-                </a>
-                {", "}
-                <a href="/privacy-choices" className={footerLegalLinkClassName}>
-                  Your Privacy Choices
-                </a>
+                Copyright © 2025 DPD Framework - All Rights Reserved.
               </p>
             </div>
           </footer>
