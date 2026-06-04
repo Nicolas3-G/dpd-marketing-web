@@ -32,7 +32,7 @@ export function ResearchSplitSection({
       <p className="text-xs font-bold tracking-[0.2em] text-brand-orange sm:text-[0.7rem]">
         {overline}
       </p>
-      <h2 className="mt-3 text-4xl font-bold leading-[1.08] tracking-[-0.03em] sm:text-5xl lg:text-[3.25rem] lg:leading-[1.06]">
+      <h2 className="mt-3 custom-md-title-bold leading-[1.08] lg:leading-[1.06]">
         {heading}
       </h2>
       <p className="mt-4 text-lg font-medium leading-snug sm:text-xl">{lead}</p>

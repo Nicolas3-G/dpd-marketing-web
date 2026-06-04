@@ -6,7 +6,7 @@ export function FrameworkScienceSection() {
   return (
     <section className="bg-background py-20 text-custom-black sm:py-24 lg:py-28">
       <div className={`${pageInset} flex flex-col items-center`}>
-        <h2 className="max-w-5xl text-center text-4xl font-bold leading-tight tracking-[-0.03em] sm:text-5xl lg:text-6xl">
+        <h2 className="max-w-4xl text-center custom-lg-title-bold leading-tight">
           Backed by science, backed by research
         </h2>
 

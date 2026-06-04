@@ -46,7 +46,7 @@ export function SurveyStepsBand() {
                 <p className="text-[16px] font-medium tracking-[-0.01em] text-white/75">
                   Step {step}
                 </p>
-                <h2 className="mt-2 max-w-[18ch] text-[26px] font-semibold leading-snug tracking-[-0.02em] text-white md:text-[28px] lg:text-[30px]">
+                <h2 className="mt-2 max-w-[18ch] custom-sm-title-semibold text-white">
                   {title}
                 </h2>
                 <p className="mt-5 max-w-[32ch] text-[15px] font-normal leading-relaxed tracking-[-0.01em] text-white/90 md:text-[15.5px] lg:text-[16px]">

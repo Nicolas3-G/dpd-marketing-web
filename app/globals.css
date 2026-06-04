@@ -36,6 +36,38 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+@utility custom-lg-title-bold {
+  @apply text-4xl tracking-tighter font-bold sm:text-5xl lg:text-6xl;
+}
+
+@utility custom-lg-title {
+  @apply text-4xl tracking-tighter font-medium sm:text-5xl lg:text-6xl;
+}
+
+@utility custom-md-title-bold {
+  @apply text-3xl tracking-tighter font-bold sm:text-4xl lg:text-5xl;
+}
+
+@utility custom-md-title {
+  @apply text-3xl tracking-tighter font-medium sm:text-4xl lg:text-5xl;
+}
+
+@utility custom-sm-title-extrabold {
+  @apply text-2xl tracking-tighter font-extrabold sm:text-3xl lg:text-4xl;
+}
+
+@utility custom-sm-title-bold {
+  @apply text-2xl tracking-tighter font-bold sm:text-3xl lg:text-4xl;
+}
+
+@utility custom-sm-title-semibold {
+  @apply text-2xl tracking-tighter font-semibold sm:text-3xl lg:text-4xl;
+}
+
+@utility custom-xs-title-medium {
+  @apply text-lg tracking-tighter font-medium sm:text-2xl lg:text-3xl;
+} 
+
 .card-strip {
   --card-gap: 1.5rem;
   --card-width: calc((100vw - var(--card-gap)) / 2);

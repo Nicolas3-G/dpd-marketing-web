@@ -66,7 +66,7 @@ export default function TeamPage() {
       >
         <header className="mb-10 max-w-4xl sm:mb-12 lg:mb-14">
           <h1
-            className={`${displaySerif.className} text-[2.5rem] leading-[1.08] tracking-[-0.02em] text-custom-black sm:text-[3rem] lg:text-[3.25rem] xl:text-[3.5rem]`}
+            className={`${displaySerif.className} custom-lg-title-bold`}
           >
             The people behind the platform
           </h1>

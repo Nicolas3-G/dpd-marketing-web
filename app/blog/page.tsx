@@ -35,7 +35,7 @@ export default function BlogPage() {
           className={`${pageInset} pb-20 pt-24 sm:pb-24 sm:pt-28 lg:pb-28 lg:pt-32`}
         >
           <h1
-            className={`${displaySerif.className} max-w-[20ch] text-[3rem] font-bold leading-[1.08] tracking-[-0.02em] text-custom-black sm:max-w-none sm:text-[3.75rem] lg:text-[4.25rem] xl:text-[4.75rem]`}
+            className={`${displaySerif.className} max-w-[20ch] custom-lg-title-bold sm:max-w-none`}
           >
             DPD Blog
           </h1>

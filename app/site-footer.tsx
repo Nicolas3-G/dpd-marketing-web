@@ -77,7 +77,7 @@ export function SiteFooter() {
         <div className={pageInset}>
           <div id="see-better" className="pb-20">
             <div className="mx-auto max-w-4xl text-center">
-              <h2 className="text-4xl font-medium leading-none tracking-tighter sm:text-5xl lg:text-6xl">
+              <h2 className="custom-lg-title">
                 See it in action.
               </h2>
               <p className="mx-auto mt-6 max-w-3xl text-base font-medium leading-relaxed text-white/85 sm:mt-8 sm:text-lg sm:leading-8">

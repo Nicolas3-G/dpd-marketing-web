@@ -469,7 +469,7 @@ export function HomeHero() {
         <p className="text-sm font-semibold uppercase tracking-[0.28em] text-custom-black/55">
           Discover your persona
         </p>
-        <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+        <h1 className="mt-6 max-w-4xl custom-lg-title-bold leading-tight">
           Behavior Coordination for{" "}
           <span className="text-brand-orange">
             individuals, coaches, and teams.
