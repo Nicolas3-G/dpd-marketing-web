@@ -26,14 +26,14 @@ function TestimonialSlideContent({
 }) {
   return (
     <blockquote id={panelId} className="max-w-2xl">
-      <p className="text-4xl font-bold leading-snug tracking-[-0.02em] sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-[1.08]">
+      <p className="text-2xl tracking-tighter font-bold sm:text-3xl lg:text-4xl">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
-      <footer className="mt-8 sm:mt-10">
-        <p className="text-xl font-semibold sm:text-2xl lg:text-3xl">
+      <footer className="mt-4 sm:mt-5">
+        <p className="text-sm font-semibold sm:text-lg lg:text-xl">
           {testimonial.name}
         </p>
-        <p className="mt-1 text-lg font-normal text-white/90 sm:text-xl lg:text-2xl">
+        <p className="mt-1 text-xs font-normal text-white/90 sm:text-sm lg:text-base">
           {testimonial.role}
         </p>
       </footer>
@@ -121,7 +121,7 @@ export const FrameworkTestimonialSection = forwardRef<
         const playback = { time: 0 };
 
         gsap.to(playback, {
-          time: video.duration * 0.5,
+          time: video.duration,
           ease: "none",
           scrollTrigger: {
             trigger: section,
@@ -162,7 +162,7 @@ export const FrameworkTestimonialSection = forwardRef<
           (ref as MutableRefObject<HTMLElement | null>).current = node;
         }
       }}
-      className="relative overflow-hidden py-20 text-white sm:py-24 lg:py-28"
+      className="relative overflow-hidden py-10 text-white sm:py-12 lg:py-14"
     >
       <video
         ref={videoRef}
@@ -222,7 +222,7 @@ export const FrameworkTestimonialSection = forwardRef<
           </div>
         </div>
 
-        <div className="relative z-10 mt-10 flex items-center justify-between gap-6 sm:mt-12">
+        <div className="relative z-10 mt-5 flex items-center justify-between gap-6 sm:mt-6">
           <div className="flex gap-5" role="tablist" aria-label="Testimonials">
             {Array.from({ length: testimonials.length }, (_, index) => {
               const isActive = index === activeIndex;

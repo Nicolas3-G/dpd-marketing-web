@@ -275,10 +275,7 @@ function SurveyPageIntro() {
   return (
     <div className="mb-8 sm:mb-10">
       <p className="text-[1.75rem] font-normal leading-tight text-brand-orange sm:text-4xl sm:leading-[1.1]">
-        How does each of the following
-      </p>
-      <p className="text-[1.75rem] font-normal leading-tight text-brand-orange sm:text-4xl sm:leading-[1.1]">
-        statements describe you?
+        How does each of the following statements describe your current persona?
       </p>
     </div>
   );

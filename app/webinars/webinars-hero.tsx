@@ -19,10 +19,7 @@ export function WebinarsHero() {
         <p className="text-sm font-semibold uppercase tracking-[0.28em] text-custom-black/55">
           {eyebrow}
         </p>
-        <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-          {heading}{" "}
-          <span className="text-brand-orange">{headingHighlight}</span>
-        </h1>
+     
         <p className="mt-6 max-w-2xl text-base font-medium leading-7 text-custom-black/75 sm:text-lg">
           {description}
         </p>

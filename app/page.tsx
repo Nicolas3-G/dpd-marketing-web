@@ -139,7 +139,7 @@ export default function Home() {
       >
         <div className={pageInset}>
           <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-24">
-            <h2 className="max-w-xl text-4xl font-medium leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+            <h2 className="max-w-xl custom-lg-title">
               Dream. Plan. Do. Together in Flow.
             </h2>
             <div className="grid gap-5">
@@ -178,7 +178,7 @@ export default function Home() {
         <div
           className={`${pageInset} grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-24`}
         >
-          <h2 className="max-w-2xl text-4xl font-medium leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+          <h2 className="max-w-2xl custom-lg-title">
             Coordinate how your team works - <span className="text-brand-orange">together.</span>
           </h2>
 
@@ -217,7 +217,7 @@ export default function Home() {
       >
         <ParallaxBackground />
         <div className={`relative z-10 ${pageInset} py-18 sm:py-20`}>
-          <h2 className="text-xl font-medium tracking-tight text-white/95 sm:text-2xl">
+          <h2 className="custom-xs-title-medium text-white/95">
             What transformation looks like
           </h2>
 
@@ -264,13 +264,13 @@ export default function Home() {
         <div className={pageInset}>
           <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-24">
             <div className="max-w-xl space-y-8">
-              <p className="text-4xl font-bold leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+              <p className="custom-lg-title-bold">
                 Some tools describe people and never coordinate behavior.
               </p>
-              <p className="text-4xl font-bold leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+              <p className="custom-lg-title-bold">
                 Others structure work and never align behavior.
               </p>
-              <p className="text-4xl font-bold leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+              <p className="custom-lg-title-bold">
                 We do both.
               </p>
             </div>
@@ -303,12 +303,12 @@ export default function Home() {
               speed={0.12}
             />
             <div className="absolute inset-x-0 inset-y-5 flex items-center justify-center">
-              <div className="flex h-full w-full flex-wrap items-center justify-center gap-x-10 gap-y-4 border-y border-white/25 bg-white/12 px-8 py-8 text-center text-2xl font-semibold leading-[1.12] tracking-tight text-white shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:gap-x-14 sm:py-10 sm:text-3xl sm:leading-[1.1] lg:gap-x-20">
-                <p className="shrink-0">
+              <div className="flex h-full w-full flex-wrap items-center justify-center gap-x-10 gap-y-4 border-y border-white/25 bg-white/12 px-8 py-8 text-center shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:gap-x-14 sm:py-10 lg:gap-x-20">
+                <p className="shrink-0 leading-[1.12] custom-sm-title-semibold text-white">
                   Science that supports{" "}
                   <span className="text-brand-orange">DPD.</span>
                 </p>
-                <p className="shrink-0">
+                <p className="shrink-0 custom-sm-title-semibold text-white">
                   <span className="text-brand-orange">Behavior coordination</span>{" "}
                   that scales.
                 </p>

@@ -36,7 +36,7 @@ export default function AboutPage() {
         <div className={pageInset}>
           <div className="grid w-full items-center gap-12 lg:grid-cols-2 lg:gap-x-12 xl:gap-x-20">
             <h1
-              className={`${displaySerif.className} max-w-[18ch] text-[64px] leading-[1.08] tracking-[-0.02em] text-custom-black lg:max-w-none`}
+              className={`${displaySerif.className} max-w-[18ch] custom-lg-title-bold lg:max-w-none`}
             >
               Behavior coordination for teams in the AI era.
             </h1>
@@ -75,7 +75,7 @@ export default function AboutPage() {
           className={`${pageInset} pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-28 lg:pt-12`}
         >
           <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-x-16 xl:gap-x-24">
-            <h2 className="max-w-[20ch] text-[2rem] font-semibold leading-[1.12] tracking-[-0.03em] text-custom-black sm:text-[2.5rem] lg:col-start-1 lg:row-start-1 lg:max-w-[22ch] lg:text-[2.75rem]">
+            <h2 className="max-w-[20ch] custom-md-title-bold lg:col-start-1 lg:row-start-1 lg:max-w-[22ch]">
               It all started with teams that could not stay in sync.
             </h2>
 

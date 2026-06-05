@@ -42,7 +42,7 @@ export default function ContactPage() {
           <div className="flex min-h-[min(100vh,520px)] flex-col justify-end px-6 pb-12 pt-28 sm:px-10 sm:pb-14 sm:pt-32 lg:min-h-[calc(100vh-5rem)] lg:justify-center lg:px-12 lg:pb-20 lg:pt-24 xl:px-16">
             <div className="relative mx-auto w-full max-w-xl lg:mx-0">
               <h1
-                className={`${displaySerif.className} text-4xl leading-[1.08] tracking-[-0.02em] text-white sm:text-5xl lg:text-[56px]`}
+                className={`${displaySerif.className} custom-lg-title-bold text-white`}
               >
                 Contact us
               </h1>

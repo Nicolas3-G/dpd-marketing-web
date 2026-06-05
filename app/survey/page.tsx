@@ -17,15 +17,15 @@ export default function SurveyPage() {
     <main className="relative flex-1 overflow-x-clip bg-background text-[#333a48]">
       <section className="relative pb-20 pt-28 sm:pb-28 sm:pt-32 lg:pt-36">
         <div className={`${pageInset} relative`}>
-          <header className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <header className="mx-auto flex max-w-1xl flex-col items-center text-center">
             <p
-              className="text-[30px] font-extrabold tracking-[-0.03em] text-brand-orange sm:text-[34px]"
+              className="custom-sm-title-extrabold text-brand-orange"
               aria-label="DPD Framework"
             >
               DPD Framework
             </p>
-            <h1 className="mt-4 text-[2.25rem] font-bold leading-tight tracking-[-0.02em] text-[#1f2433] sm:text-[3rem]">
-              Free Persona Assessment
+            <h1 className="mt-4 custom-lg-title-bold">
+              Free Persona Survey
             </h1>
             <p className="mt-3 text-sm font-medium uppercase tracking-[0.08em] text-[#8f9199] sm:text-base">
               DPD Persona Explorer®
@@ -40,7 +40,7 @@ export default function SurveyPage() {
               Get Started
             </Link>
             <p className="text-center text-sm text-[#989cab] sm:text-base">
-              About 10 minutes · No account required to start
+              About 5 minutes · No account required to start
             </p>
           </div>
 

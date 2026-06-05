@@ -23,7 +23,7 @@ export function FrameworkFlowSection({
         className={`${pageInset} relative flex h-full min-h-full flex-col pt-10 pb-16 sm:pb-20 lg:pb-24`}
       >
         <div className="flex flex-1 flex-col items-center justify-center px-4 text-center">
-          <h2 className="max-w-5xl text-4xl font-bold leading-[0.98] tracking-tighter sm:text-5xl lg:text-6xl">
+          <h2 className="max-w-5xl custom-lg-title-bold">
             Dream. Plan. Do. Together in Flow.
           </h2>
         </div>

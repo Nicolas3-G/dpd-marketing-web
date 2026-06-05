@@ -5,9 +5,9 @@ import { ParallaxImage } from "../parallax-background";
 const featureSteps = [
   {
     step: 1,
-    title: "Complete the Assessment",
+    title: "Complete the Survey",
     description:
-      "Be yourself and answer honestly to discover how you naturally dream, plan, and do.",
+      "Be yourself and answer honestly to discover your current behavioral posture.",
   },
   {
     step: 2,
@@ -17,7 +17,7 @@ const featureSteps = [
   },
   {
     step: 3,
-    title: "Unlock Your Potential",
+    title: "Unlock Team Alignment",
     description:
       "Get practical guidance for teams, coaches, and leaders—aligned to how you actually show up.",
   },
@@ -46,7 +46,7 @@ export function SurveyStepsBand() {
                 <p className="text-[16px] font-medium tracking-[-0.01em] text-white/75">
                   Step {step}
                 </p>
-                <h2 className="mt-2 max-w-[18ch] text-[26px] font-semibold leading-snug tracking-[-0.02em] text-white md:text-[28px] lg:text-[30px]">
+                <h2 className="mt-2 max-w-[18ch] custom-sm-title-semibold text-white">
                   {title}
                 </h2>
                 <p className="mt-5 max-w-[32ch] text-[15px] font-normal leading-relaxed tracking-[-0.01em] text-white/90 md:text-[15.5px] lg:text-[16px]">
