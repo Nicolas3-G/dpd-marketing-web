@@ -566,7 +566,7 @@ export function HomeHero() {
         style={{ transitionDuration: `${FADE_MS}ms` }}
         aria-hidden={!contentVisible}
       >
-        <p className="text-sm font-semibold uppercase tracking-[0.28em] text-custom-black/55">
+        <p className="custom-caption-2-bold uppercase text-light">
           Discover your persona
         </p>
         <h1 className="mt-6 max-w-4xl custom-lg-title-bold leading-tight">
@@ -575,13 +575,13 @@ export function HomeHero() {
             individuals, coaches, and teams.
           </span>
         </h1>
-        <p className="mt-6 max-w-2xl text-base font-medium leading-7 text-custom-black/75 sm:text-lg">
+        <p className="mt-6 max-w-2xl custom-body text-custom-black">
           Only 10 minutes to gain practical insight into how your team
           collaborates, communicates, and works best together.
         </p>
         <a
           href="/survey"
-          className="mt-9 inline-flex h-14 items-center gap-3 rounded-full bg-brand-orange px-8 text-sm font-bold text-white shadow-[0_14px_30px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
+          className="mt-9 inline-flex h-14 items-center gap-3 rounded-full bg-brand-orange px-8 custom-label-bold text-white shadow-[0_14px_30px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
           tabIndex={contentVisible ? undefined : -1}
         >
           Take DPD Survey

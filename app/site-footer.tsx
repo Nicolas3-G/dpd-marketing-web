@@ -80,7 +80,7 @@ export function SiteFooter() {
               <h2 className="custom-lg-title">
                 See it in action.
               </h2>
-              <p className="mx-auto mt-6 max-w-3xl text-base font-medium leading-relaxed text-white/85 sm:mt-8 sm:text-lg sm:leading-8">
+              <p className="mx-auto mt-6 max-w-3xl custom-body text-white-light sm:mt-8">
                 Experience the DPD Persona Based Behavioral Operating System
                 and GPS for teams, personalized to your goals, metrics, and
                 team.
@@ -88,7 +88,7 @@ export function SiteFooter() {
               <div className="mt-8 flex justify-center">
                 <a
                   href="mailto:hello@example.com"
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-brand-orange px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                  className="inline-flex h-11 items-center justify-center rounded-full bg-brand-orange px-7 custom-label-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
                   Take DPD Survey
                 </a>
@@ -100,7 +100,7 @@ export function SiteFooter() {
             <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
               {footerColumns.map((column) => (
                 <div key={column.title}>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-white/50">
+                  <h3 className="custom-label-bold uppercase text-gray-light tracking-widest">
                     {column.title}
                   </h3>
                   <ul className="mt-4 space-y-3">
@@ -108,7 +108,7 @@ export function SiteFooter() {
                       <li key={link.href}>
                         <a
                           href={link.href}
-                          className="text-sm font-medium text-white/85 transition hover:text-white"
+                          className="custom-label text-white-light transition hover:text-white"
                         >
                           {link.label}
                         </a>
@@ -140,7 +140,7 @@ export function SiteFooter() {
                 ))}
               </ul>
 
-              <p className="ml-auto text-right text-xs leading-5 text-white/90">
+              <p className="ml-auto text-right custom-caption text-white-light">
                 Copyright © 2025 DPD Framework - All Rights Reserved.
               </p>
             </div>
