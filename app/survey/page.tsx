@@ -19,7 +19,7 @@ export default function SurveyPage() {
         <div className={`${pageInset} relative`}>
           <header className="mx-auto flex max-w-1xl flex-col items-center text-center">
             <p
-              className="custom-sm-title-extrabold text-brand-orange"
+              className="custom-sm-title-bold text-brand-orange"
               aria-label="DPD Framework"
             >
               DPD Framework

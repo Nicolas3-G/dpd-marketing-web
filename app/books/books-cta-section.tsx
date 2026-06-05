@@ -28,7 +28,7 @@ export function BooksCtaSection() {
       />
 
       <div className={`relative z-10 ${pageInset}`}>
-        <h2 className="max-w-3xl text-2xl font-bold leading-[1.1] tracking-[-0.03em] sm:text-3xl lg:text-4xl lg:leading-[1.08]">
+        <h2 className="custom-sm-title-bold max-w-3xl">
           {headingLines.map((line) => (
             <span key={line} className="block">
               {line}

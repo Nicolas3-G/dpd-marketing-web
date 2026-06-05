@@ -1,6 +1,7 @@
 import { createPageMetadata } from "@/lib/metadata";
 
 import { FrameworkCtaSection } from "./framework-cta-section";
+import { FrameworkFlowSection } from "./framework-flow-section";
 import { FrameworkHero } from "./framework-hero";
 import { FrameworkPersonaSection } from "./framework-persona-section";
 import { FrameworkScienceSection } from "./framework-science-section";
@@ -16,6 +17,7 @@ export default function FrameworkPage() {
       <FrameworkPersonaSection />
       <FrameworkScienceSection />
       <FrameworkTestimonialCarousel />
+      <FrameworkFlowSection />
     </main>
   );
 }

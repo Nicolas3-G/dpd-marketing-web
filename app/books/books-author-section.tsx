@@ -27,7 +27,7 @@ export function BooksAuthorSection() {
           <p className="text-xs font-bold tracking-[0.2em] text-brand-orange">
             ABOUT THE AUTHOR
           </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-[-0.03em] sm:text-4xl lg:text-[2.75rem] lg:leading-[1.08]">
+          <h2 className="mt-3 custom-md-title-bold">
             Kokoro V. Robinson
           </h2>
           <p className="mt-5 text-base leading-relaxed text-custom-black/85 sm:text-[17px] sm:leading-8">

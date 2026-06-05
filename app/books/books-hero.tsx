@@ -19,7 +19,7 @@ export function BooksHero() {
         <p className="text-sm font-semibold uppercase tracking-[0.28em] text-custom-black/55">
           {eyebrow}
         </p>
-        <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+        <h1 className="mt-6 custom-lg-title-bold max-w-4xl">
           {heading}{" "}
           <span className="text-brand-orange">{headingHighlight}</span>
         </h1>

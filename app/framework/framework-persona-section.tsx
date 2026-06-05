@@ -61,7 +61,7 @@ function PersonaSlideContent({ persona }: { persona: Persona }) {
   return (
     <>
       <div>
-        <h2 className="custom-lg-title-bold leading-tight">
+        <h2 className="custom-md-title-bold leading-tight">
           {persona.title}
         </h2>
         <div className="mt-8 max-w-2xl text-xl font-normal leading-8 text-custom-black sm:mt-10 sm:text-2xl sm:leading-10 lg:text-3xl lg:leading-[1.35]">

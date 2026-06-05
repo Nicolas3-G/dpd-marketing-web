@@ -51,7 +51,7 @@ export function WebinarsProcessSection() {
             </p>
           </div>
 
-          <h2 className="mt-4 max-w-2xl text-2xl font-bold leading-[1.12] tracking-[-0.03em] sm:text-3xl lg:max-w-none lg:text-4xl lg:leading-[1.1]">
+          <h2 className="mt-4 custom-sm-title-bold">
             {heading}
           </h2>
 
