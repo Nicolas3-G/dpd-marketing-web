@@ -25,7 +25,7 @@ export default function SurveyPage() {
               DPD Framework
             </p>
             <h1 className="mt-4 custom-lg-title-bold">
-              Free Persona Assessment
+              Free Persona Survey
             </h1>
             <p className="mt-3 text-sm font-medium uppercase tracking-[0.08em] text-[#8f9199] sm:text-base">
               DPD Persona Explorer®
@@ -40,7 +40,7 @@ export default function SurveyPage() {
               Get Started
             </Link>
             <p className="text-center text-sm text-[#989cab] sm:text-base">
-              About 10 minutes · No account required to start
+              About 5 minutes · No account required to start
             </p>
           </div>
 

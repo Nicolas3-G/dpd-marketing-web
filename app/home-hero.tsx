@@ -7,11 +7,14 @@ const pageInset =
 
 const DPD_HOLD_MS = 1200;
 const REAMING_SUFFIX = "reaming";
-const ECIDING_SUFFIX = "eciding";
+const LANNING_SUFFIX = "lanning";
 const DOING_SUFFIX = "oing";
 const ING_SUFFIX = "ing";
 const CHAR_DELAY_MS = 90;
 const WORD_HOLD_MS = 1200;
+const LETTER_APPEAR_DELAY_MS = 500;
+const LETTER_FADE_MS = 400;
+const LETTER_PAUSE_MS = 1200;
 const TAGLINE_FADE_MS = 800;
 const TAGLINE_PART_STAGGER_MS = 420;
 const TAGLINE_HOLD_MS = 2400;
@@ -24,13 +27,15 @@ function prefersReducedMotion() {
 type HeroPhase =
   | "splash"
   | "typing-reaming"
-  | "holding-reaming"
+  | "holding-dreaming"
   | "untyping-reaming"
-  | "typing-eciding"
-  | "holding-eciding"
-  | "untyping-eciding"
+  | "adding-p"
+  | "typing-lanning"
+  | "holding-planning"
+  | "untyping-lanning"
+  | "adding-d"
   | "typing-oing"
-  | "holding-oing"
+  | "holding-doing"
   | "untyping-oing"
   | "typing-ing"
   | "show-tagline"
@@ -50,9 +55,7 @@ const taglinePartClass =
   "shrink-0 text-custom-black transition-[opacity,transform] ease-out motion-reduce:transition-none";
 
 function taglinePartVisibilityClass(visible: boolean) {
-  return visible
-    ? "translate-x-0 opacity-100"
-    : "-translate-x-3 opacity-0";
+  return visible ? "translate-x-0 opacity-100" : "-translate-x-3 opacity-0";
 }
 
 function animateChars(options: {
@@ -92,22 +95,44 @@ function animateChars(options: {
   return () => clearTimeout(timer);
 }
 
+function getPrefixLength(phase: HeroPhase): 1 | 2 | 3 {
+  switch (phase) {
+    case "splash":
+    case "typing-reaming":
+    case "holding-dreaming":
+    case "untyping-reaming":
+      return 1;
+    case "adding-p":
+    case "typing-lanning":
+    case "holding-planning":
+    case "untyping-lanning":
+      return 2;
+    default:
+      return 3;
+  }
+}
+
 function getBlackSuffix(phase: HeroPhase, typedLength: number) {
   switch (phase) {
     case "splash":
+    case "adding-p":
+    case "adding-d":
       return "";
     case "typing-reaming":
-    case "holding-reaming":
     case "untyping-reaming":
       return REAMING_SUFFIX.slice(0, typedLength);
-    case "typing-eciding":
-    case "holding-eciding":
-    case "untyping-eciding":
-      return ECIDING_SUFFIX.slice(0, typedLength);
+    case "holding-dreaming":
+      return REAMING_SUFFIX;
+    case "typing-lanning":
+    case "untyping-lanning":
+      return LANNING_SUFFIX.slice(0, typedLength);
+    case "holding-planning":
+      return LANNING_SUFFIX;
     case "typing-oing":
-    case "holding-oing":
     case "untyping-oing":
       return DOING_SUFFIX.slice(0, typedLength);
+    case "holding-doing":
+      return DOING_SUFFIX;
     case "typing-ing":
       return ING_SUFFIX.slice(0, typedLength);
     case "show-tagline":
@@ -118,11 +143,55 @@ function getBlackSuffix(phase: HeroPhase, typedLength: number) {
   }
 }
 
-/** Suffix types to the right of DPD inside a fixed-width slot. */
-function DpdWordmark({ suffix }: { suffix: string }) {
+/**
+ * The newest letter of the prefix fades in via direct DOM manipulation when
+ * animatingIn=true, avoiding CSS transition race conditions from React state.
+ */
+function DpdWordmark({
+  suffix,
+  prefixLength,
+  animatingIn = false,
+  animKey = "",
+}: {
+  suffix: string;
+  prefixLength: number;
+  animatingIn?: boolean;
+  animKey?: string;
+}) {
+  const letterRef = useRef<HTMLSpanElement>(null);
+  const establishedPrefix = "DPD".slice(0, prefixLength - 1);
+  const newLetter = prefixLength > 0 ? "DPD"[prefixLength - 1] : "";
+
+  useLayoutEffect(() => {
+    const el = letterRef.current;
+    if (!el) return;
+
+    if (!animatingIn) {
+      el.style.transition = "none";
+      el.style.opacity = "1";
+      return;
+    }
+
+    // Set invisible before browser paints so there is no flash
+    el.style.transition = "none";
+    el.style.opacity = "0";
+
+    const timer = setTimeout(() => {
+      if (!letterRef.current) return;
+      letterRef.current.style.transition = `opacity ${LETTER_FADE_MS}ms ease-out`;
+      letterRef.current.style.opacity = "1";
+    }, LETTER_APPEAR_DELAY_MS);
+
+    return () => clearTimeout(timer);
+  // animKey ensures effect re-runs when switching adding-p → adding-d
+  }, [animatingIn, animKey]);
+
   return (
     <span className="inline-flex items-baseline whitespace-nowrap">
-      <span className="shrink-0 text-brand-orange">DPD</span>
+      <span className="shrink-0 text-brand-orange">
+        {establishedPrefix}
+        <span ref={letterRef}>{newLetter}</span>
+      </span>
       <span className="text-left text-custom-black">{suffix}</span>
     </span>
   );
@@ -130,6 +199,9 @@ function DpdWordmark({ suffix }: { suffix: string }) {
 
 function TaglineRow({
   suffix,
+  prefixLength,
+  animatingIn = false,
+  animKey = "",
   prefixVisible,
   suffixVisible,
   suffixLine2Visible = suffixVisible,
@@ -137,6 +209,9 @@ function TaglineRow({
   wordmarkWidth,
 }: {
   suffix: string;
+  prefixLength: number;
+  animatingIn?: boolean;
+  animKey?: string;
   prefixVisible: boolean;
   suffixVisible: boolean;
   suffixLine2Visible?: boolean;
@@ -163,7 +238,12 @@ function TaglineRow({
           wordmarkWidth !== undefined ? { width: wordmarkWidth } : undefined
         }
       >
-        <DpdWordmark suffix={suffix} />
+        <DpdWordmark
+          suffix={suffix}
+          prefixLength={prefixLength}
+          animatingIn={animatingIn}
+          animKey={animKey}
+        />
       </span>
       <span className="relative shrink-0 whitespace-nowrap leading-none pb-[1em] sm:pb-0 sm:leading-normal">
         <span
@@ -173,7 +253,7 @@ function TaglineRow({
         >
           {TAGLINE_SUFFIX_LINE_1}
           <span className="hidden sm:inline">
-            {"\u00a0"}
+            {" "}
             {TAGLINE_SUFFIX_LINE_2}
           </span>
         </span>
@@ -252,11 +332,14 @@ export function HomeHero() {
           startLength: 0,
           delayMs: CHAR_DELAY_MS,
           onTick: setTypedLength,
-          onComplete: () => setPhase("holding-reaming"),
+          onComplete: () => setPhase("holding-dreaming"),
         });
         break;
-      case "holding-reaming":
-        holdTimer = setTimeout(() => setPhase("untyping-reaming"), WORD_HOLD_MS);
+      case "holding-dreaming":
+        holdTimer = setTimeout(
+          () => setPhase("untyping-reaming"),
+          WORD_HOLD_MS,
+        );
         break;
       case "untyping-reaming":
         cleanup = animateChars({
@@ -267,35 +350,50 @@ export function HomeHero() {
           onTick: setTypedLength,
           onComplete: () => {
             setTypedLength(0);
-            setPhase("typing-eciding");
+            setPhase("adding-p");
           },
         });
         break;
-      case "typing-eciding":
+      case "adding-p":
+        holdTimer = setTimeout(
+          () => setPhase("typing-lanning"),
+          LETTER_PAUSE_MS,
+        );
+        break;
+      case "typing-lanning":
         cleanup = animateChars({
-          text: ECIDING_SUFFIX,
+          text: LANNING_SUFFIX,
           direction: "forward",
           startLength: 0,
           delayMs: CHAR_DELAY_MS,
           onTick: setTypedLength,
-          onComplete: () => setPhase("holding-eciding"),
+          onComplete: () => setPhase("holding-planning"),
         });
         break;
-      case "holding-eciding":
-        holdTimer = setTimeout(() => setPhase("untyping-eciding"), WORD_HOLD_MS);
+      case "holding-planning":
+        holdTimer = setTimeout(
+          () => setPhase("untyping-lanning"),
+          WORD_HOLD_MS,
+        );
         break;
-      case "untyping-eciding":
+      case "untyping-lanning":
         cleanup = animateChars({
-          text: ECIDING_SUFFIX,
+          text: LANNING_SUFFIX,
           direction: "backward",
-          startLength: ECIDING_SUFFIX.length,
+          startLength: LANNING_SUFFIX.length,
           delayMs: CHAR_DELAY_MS,
           onTick: setTypedLength,
           onComplete: () => {
             setTypedLength(0);
-            setPhase("typing-oing");
+            setPhase("adding-d");
           },
         });
+        break;
+      case "adding-d":
+        holdTimer = setTimeout(
+          () => setPhase("typing-oing"),
+          LETTER_PAUSE_MS,
+        );
         break;
       case "typing-oing":
         cleanup = animateChars({
@@ -304,10 +402,10 @@ export function HomeHero() {
           startLength: 0,
           delayMs: CHAR_DELAY_MS,
           onTick: setTypedLength,
-          onComplete: () => setPhase("holding-oing"),
+          onComplete: () => setPhase("holding-doing"),
         });
         break;
-      case "holding-oing":
+      case "holding-doing":
         holdTimer = setTimeout(() => setPhase("untyping-oing"), WORD_HOLD_MS);
         break;
       case "untyping-oing":
@@ -345,11 +443,7 @@ export function HomeHero() {
 
   useEffect(() => {
     if (phase !== "show-tagline") {
-      if (
-        phase === "splash" ||
-        phase.startsWith("typing") ||
-        phase.startsWith("untyping")
-      ) {
+      if (phase !== "reveal" && phase !== "done") {
         setTaglinePrefixVisible(false);
         setTaglineSuffixVisible(false);
         setTaglineSuffixLine2Visible(false);
@@ -408,7 +502,9 @@ export function HomeHero() {
   }, [phase]);
 
   const splashVisible = phase !== "done";
+  const prefixLength = getPrefixLength(phase);
   const blackSuffix = getBlackSuffix(phase, typedLength);
+  const isAddingLetter = phase === "adding-p" || phase === "adding-d";
   const taglinePrefixShown =
     (phase === "show-tagline" || phase === "reveal") && taglinePrefixVisible;
   const taglineSuffixShown =
@@ -438,6 +534,7 @@ export function HomeHero() {
           >
             <TaglineRow
               suffix={ING_SUFFIX}
+              prefixLength={3}
               prefixVisible
               suffixVisible
             />
@@ -449,6 +546,9 @@ export function HomeHero() {
           >
             <TaglineRow
               suffix={blackSuffix}
+              prefixLength={prefixLength}
+              animatingIn={isAddingLetter}
+              animKey={phase}
               prefixVisible={taglinePrefixShown}
               suffixVisible={taglineSuffixShown}
               suffixLine2Visible={taglineSuffixLine2Shown}
