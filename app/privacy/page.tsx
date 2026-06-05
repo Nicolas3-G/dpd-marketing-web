@@ -12,14 +12,14 @@ export default function PrivacyPage() {
     <main className="flex-1 bg-background pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28 lg:pt-36">
       <section className={pageInset}>
         <div className="mx-auto max-w-4xl">
-          <h1 className="text-4xl font-semibold leading-tight tracking-[-0.02em] text-custom-black sm:text-5xl">
+          <h1 className="custom-lg-title text-custom-black">
             Privacy Policy for the DPD Framework Mobile App
           </h1>
-          <p className="mt-4 text-sm font-semibold uppercase tracking-[0.08em] text-custom-black/60">
+          <p className="mt-4 custom-label-bold uppercase tracking-[0.08em] text-light">
             Effective Date: 01-January-2025
           </p>
 
-          <div className="mt-10 space-y-8 text-base leading-relaxed text-custom-black/90 sm:text-lg">
+          <div className="mt-10 space-y-8 custom-body leading-relaxed text-custom-black">
             <p>
               Kemit Group, LLC (doing business as &ldquo;DPD Framework&rdquo;)
               values your privacy. This Privacy Policy explains how the DPD
@@ -29,8 +29,8 @@ export default function PrivacyPage() {
             </p>
 
             <section>
-              <h2 className="text-2xl font-semibold leading-tight text-custom-black">
-                1. REQUEST FOR INFORMATION AND DATA REMOVAL
+              <h2 className="custom-xs-title-bold text-custom-black">
+                1. Request for Information and Data Removal
               </h2>
               <p className="mt-3">
                 You may request deletion of your data at any time by contacting{" "}
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+              <h2 className="custom-xs-title-bold text-custom-black">
                 2. Age Restrictions
               </h2>
               <p className="mt-3">
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+              <h2 className="custom-xs-title-bold text-custom-black">
                 3. Information We Collect
               </h2>
               <p className="mt-3">
@@ -89,7 +89,7 @@ export default function PrivacyPage() {
                   during use.
                 </li>
               </ul>
-              <p className="mt-4 font-semibold text-custom-black/95">
+              <p className="mt-4 custom-body-bold text-custom-black">
                 How We Use Your Information
               </p>
               <p className="mt-2">The data you provide is used only to:</p>
@@ -105,7 +105,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+              <h2 className="custom-xs-title-bold text-custom-black">
                 4. Data Storage and Retention
               </h2>
               <p className="mt-3">
@@ -121,7 +121,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+              <h2 className="custom-xs-title-bold text-custom-black">
                 5. No Tracking or Advertising
               </h2>
               <p className="mt-3">The DPD Framework app:</p>
@@ -133,7 +133,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+              <h2 className="custom-xs-title-bold text-custom-black">
                 6. User Control and Data Deletion
               </h2>
               <p className="mt-3">You have full control over your data:</p>
@@ -160,7 +160,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+              <h2 className="custom-xs-title-bold text-custom-black">
                 7. Children&apos;s Privacy
               </h2>
               <p className="mt-3">
@@ -179,7 +179,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+              <h2 className="custom-xs-title-bold text-custom-black">
                 8. Changes to This Policy
               </h2>
               <p className="mt-3">
@@ -193,7 +193,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+              <h2 className="custom-xs-title-bold text-custom-black">
                 9. Contact Us
               </h2>
               <p className="mt-3">
@@ -201,7 +201,7 @@ export default function PrivacyPage() {
                 or your data, please contact us at:
               </p>
               <div className="mt-3 space-y-1">
-                <p className="font-semibold text-custom-black">DPD Framework</p>
+                <p className="custom-body-bold text-custom-black">DPD Framework</p>
                 <p>
                   <a
                     href="mailto:Privacy@DPDFramework.com"
@@ -221,7 +221,7 @@ export default function PrivacyPage() {
               </div>
             </section>
 
-            <p className="pt-2 text-sm text-custom-black/70">
+            <p className="pt-2 custom-label text-custom-black">
               Looking for support resources? Visit{" "}
               <Link href="/support" className="underline underline-offset-2">
                 App Support

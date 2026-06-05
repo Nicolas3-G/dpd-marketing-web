@@ -16,7 +16,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-custom-black: var(--custom-black);
-  --color-text-light: var(--text-light);
+  --color-light: var(--light);
   --color-gray-light: var(--gray-light);
   --color-foreground: var(--foreground);
   --color-brand-orange: var(--brand-orange);
@@ -99,6 +99,9 @@ body {
 @utility custom-caption-2-bold {
   @apply text-sm font-semibold tracking-[0.28em];
 }
+
+
+
 
 /* BODY STYLES */
 

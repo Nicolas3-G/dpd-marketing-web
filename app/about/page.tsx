@@ -42,20 +42,20 @@ export default function AboutPage() {
             </h1>
 
             <div className="flex w-full max-w-xl flex-col gap-4 lg:justify-self-end">
-              <p className="text-base font-medium leading-tight text-custom-black sm:text-lg">
+              <p className="custom-body text-custom-black">
                 DPD works with organizations that need a shared language for how
                 people dream, plan, and execute
               </p>
               <div className="flex flex-wrap gap-2">
                 <Link
                   href="/#contact"
-                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full bg-brand-orange px-4 text-xs font-semibold leading-tight text-white shadow-[0_8px_20px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
+                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full bg-brand-orange px-4 custom-label-bold text-white shadow-[0_8px_20px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
                 >
                   Talk to our team
                 </Link>
                 <Link
                   href="/#services"
-                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full border border-custom-black bg-transparent px-4 text-xs font-semibold leading-tight text-custom-black transition hover:-translate-y-0.5 hover:bg-custom-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
+                  className="inline-flex h-9 min-h-9 items-center justify-center rounded-full border border-custom-black bg-transparent px-4 custom-label-bold text-custom-black transition hover:-translate-y-0.5 hover:bg-custom-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
                 >
                   Explore the platform
                 </Link>
@@ -79,7 +79,7 @@ export default function AboutPage() {
               It all started with teams that could not stay in sync.
             </h2>
 
-            <p className="text-base font-normal leading-relaxed text-custom-black/85 sm:text-[17px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-lg lg:pt-0.5">
+            <p className="custom-body leading-relaxed text-custom-black lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-lg lg:pt-0.5">
               The DPD Framework was born from founder Kokoro Robinson&apos;s early
               fascination with Biological and Cognitive Psychology and a single
               question: If personality can fragment unconsciously under distress,
@@ -125,11 +125,11 @@ export default function AboutPage() {
               >
                 •
               </span>
-              <h2 className="text-xl font-normal leading-none tracking-normal sm:text-2xl">
+              <h2 className="custom-sm-title font-normal leading-none tracking-normal sm:text-2xl">
                 Our mission
               </h2>
             </div>
-            <p className="text-[1.375rem] font-semibold leading-tight tracking-[-0.02em] text-custom-black sm:text-2xl sm:leading-[1.2] lg:text-[1.75rem] lg:leading-[1.22] xl:text-[2rem]">
+            <p className="custom-body-bold leading-relaxed text-custom-black">
               The DPD Framework exists to help individuals and teams build
               Perspective Dexterity, Cognitive Agility, and relational awareness
               through persona-based behavioral coordination. By improving

@@ -50,13 +50,13 @@ export async function generateMetadata({
 
 function ArticleBody({ post }: { post: BlogPost }) {
   return (
-    <div className="flex flex-col gap-6 text-base leading-relaxed text-custom-black/90 sm:text-lg sm:leading-8">
+    <div className="flex flex-col gap-6 custom-body text-custom-black leading-relaxed sm:leading-8">
       {post.body.map((block, index) => {
         if (block.type === "heading") {
           return (
             <h2
               key={index}
-              className="mt-4 text-left text-xl font-semibold leading-snug tracking-[-0.02em] text-custom-black first:mt-0 sm:mt-6 sm:text-2xl"
+              className="mt-4 text-left custom-sm-title-bold text-custom-black first:mt-0 sm:mt-6 sm:text-2xl"
             >
               {block.text}
             </h2>
@@ -70,7 +70,7 @@ function ArticleBody({ post }: { post: BlogPost }) {
                 href={block.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-brand-orange underline decoration-brand-orange/50 underline-offset-4 transition hover:text-brand-orange-hover hover:decoration-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-orange"
+                className="custom-body-bold text-brand-orange underline decoration-brand-orange/50 underline-offset-4 transition hover:text-brand-orange-hover hover:decoration-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-orange"
               >
                 {block.label}
               </a>
@@ -108,20 +108,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className={postColumn}>
               <Link
                 href="/blog"
-                className="inline-block text-sm font-medium text-custom-black/55 underline-offset-4 transition hover:text-custom-black hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
+                className="inline-block custom-label text-custom-black underline-offset-4 transition hover:text-custom-black hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
               >
                 Back to blog
               </Link>
 
               <h1
-                className={`${displaySerif.className} mt-10 text-left text-[2.5rem] font-bold leading-[1.1] tracking-[-0.02em] text-custom-black sm:text-[3rem] lg:text-[3.5rem]`}
+                className={`${displaySerif.className} mt-10 text-left custom-md-title-bold text-custom-black`}
               >
                 {post.title}
               </h1>
 
               <div className="mt-8 sm:mt-10">
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-                  <p className="text-left text-sm text-custom-black/55 sm:text-base">
+                  <p className="text-left custom-body-sm text-light">
                     <span>{post.date}</span>
                     <span className="mx-2" aria-hidden>
                       -
@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </span>
                   </p>
 
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-custom-black/50 sm:text-right">
+                  <p className="custom-caption uppercase tracking-[0.14em] text-light sm:text-right">
                     Share this article
                   </p>
                 </div>

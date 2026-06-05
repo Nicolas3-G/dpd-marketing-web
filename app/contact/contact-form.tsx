@@ -5,7 +5,7 @@ import { useState } from "react";
 const fieldClass =
   "w-full rounded border border-custom-black/15 bg-white px-3 py-2.5 text-sm text-custom-black outline-none transition-shadow placeholder:text-custom-black/35 focus:border-custom-black/40 focus:ring-2 focus:ring-custom-black/10";
 
-const labelClass = "text-sm font-bold text-custom-black";
+const labelClass = "custom-label-bold text-custom-black";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -15,7 +15,7 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <p className="text-center text-base leading-relaxed text-custom-black/70">
+      <p className="text-center custom-body text-custom-black">
         Thanks — we received your message and will follow up soon.
       </p>
     );
@@ -156,7 +156,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-1 w-full rounded bg-custom-black py-3 text-sm font-semibold tracking-tight text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-1 w-full rounded bg-custom-black py-3 custom-label-bold tracking-tight text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "submitting" ? "Sending…" : "Send message"}
       </button>

@@ -179,7 +179,8 @@ export default function Home() {
           className={`${pageInset} grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-24`}
         >
           <h2 className="max-w-2xl custom-lg-title">
-            Coordinate how your team works - <span className="text-brand-orange">together.</span>
+            Coordinate how your team works -{" "}
+            <span className="text-brand-orange">together.</span>
           </h2>
 
           <div className="relative space-y-14">
@@ -270,9 +271,7 @@ export default function Home() {
               <p className="custom-lg-title-bold">
                 Others structure work and never align behavior.
               </p>
-              <p className="custom-lg-title-bold">
-                We do both.
-              </p>
+              <p className="custom-lg-title-bold">We do both.</p>
             </div>
 
             <div className="grid max-w-xl gap-5 pt-[50px]">
@@ -309,7 +308,9 @@ export default function Home() {
                   <span className="text-brand-orange">DPD.</span>
                 </p>
                 <p className="shrink-0 custom-sm-title text-white">
-                  <span className="text-brand-orange">Behavior coordination</span>{" "}
+                  <span className="text-brand-orange">
+                    Behavior coordination
+                  </span>{" "}
                   that scales.
                 </p>
               </div>

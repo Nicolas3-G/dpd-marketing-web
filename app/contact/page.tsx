@@ -46,14 +46,14 @@ export default function ContactPage() {
               >
                 Contact us
               </h1>
-              <p className="mt-5 max-w-prose text-base leading-relaxed text-white/90 sm:text-lg">
+              <p className="mt-5 max-w-prose custom-body text-white sm:text-lg">
                 Ready to get started? We&apos;re excited to learn more about your
                 team and show how DPDing helps people coordinate behavior in the AI
                 era. Fill out the form and our team will be in touch soon.
               </p>
               <ul className="mt-8 flex max-w-prose flex-col gap-4">
                 {bullets.map((text) => (
-                  <li key={text} className="flex gap-3 text-sm leading-snug text-white/95 sm:text-base">
+                  <li key={text} className="flex gap-3 custom-body-sm-bold leading-snug text-white">
                     <span
                       className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"
                       aria-hidden
@@ -64,7 +64,7 @@ export default function ContactPage() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-10 text-sm leading-relaxed text-white/75">
+              <p className="mt-10 custom-label leading-relaxed text-white">
                 For customer support, please email{" "}
                 <a
                   href="mailto:hello@dpding.com"
