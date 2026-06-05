@@ -3,7 +3,9 @@
 :root {
   --background: #f4f0ea;
   --custom-black: #1F2532;
-  --text-light: #6F758A;
+  --light: #6F758A;
+  --gray-light: #818387;
+  --white-light: #a9acb1;
   --foreground: var(--custom-black);
   --brand-orange: #d98510;
   --brand-orange-hover: #b8730e;
@@ -15,6 +17,7 @@
   --color-background: var(--background);
   --color-custom-black: var(--custom-black);
   --color-text-light: var(--text-light);
+  --color-gray-light: var(--gray-light);
   --color-foreground: var(--foreground);
   --color-brand-orange: var(--brand-orange);
   --color-brand-orange-hover: var(--brand-orange-hover);
@@ -38,29 +41,30 @@ body {
 
 /* TITLES STYLES */
 
-@utility custom-lg-title-bold {
-  @apply text-4xl tracking-tighter font-bold sm:text-5xl lg:text-6xl;
-}
-
 @utility custom-lg-title {
   @apply text-4xl tracking-tighter font-medium sm:text-5xl lg:text-6xl;
 }
 
-@utility custom-md-title-bold {
-  @apply text-3xl tracking-tighter font-bold sm:text-4xl lg:text-5xl;
+@utility custom-lg-title-bold {
+  @apply text-4xl tracking-tighter font-bold sm:text-5xl lg:text-6xl;
 }
 
 @utility custom-md-title {
   @apply text-3xl tracking-tighter font-medium sm:text-4xl lg:text-5xl;
 }
 
-@utility custom-sm-title-bold {
-  @apply text-2xl tracking-tighter font-bold sm:text-3xl lg:text-4xl;
+@utility custom-md-title-bold {
+  @apply text-3xl tracking-tighter font-bold sm:text-4xl lg:text-5xl;
 }
 
 @utility custom-sm-title {
   @apply text-2xl tracking-tighter font-semibold sm:text-3xl lg:text-4xl;
 }
+
+@utility custom-sm-title-bold {
+  @apply text-2xl tracking-tighter font-bold sm:text-3xl lg:text-4xl;
+}
+
 
 @utility custom-xs-title {
   @apply text-lg tracking-tighter font-medium sm:text-2xl lg:text-3xl;
@@ -70,8 +74,49 @@ body {
   @apply text-lg tracking-tighter font-bold sm:text-2xl lg:text-3xl;
 }
 
-/* SUBTITLE STYLES */
+/* CAPTION / LABEL STYLES */
 
+@utility custom-label {
+  @apply text-sm;
+}
+
+@utility custom-label-bold {
+  @apply text-sm font-bold;
+}
+
+@utility custom-caption {
+  @apply text-xs font-medium;
+}
+
+@utility custom-caption-bold {
+  @apply text-xs font-bold;
+}
+
+@utility custom-caption-2 {
+  @apply text-sm font-medium tracking-[0.28em];
+}
+
+@utility custom-caption-2-bold {
+  @apply text-sm font-semibold tracking-[0.28em];
+}
+
+/* BODY STYLES */
+
+@utility custom-body {
+  @apply text-base font-medium leading-6 sm:text-lg sm:leading-7;
+}
+
+@utility custom-body-bold {
+  @apply text-base font-bold leading-6 sm:text-lg sm:leading-7;
+}
+
+@utility custom-body-sm {
+  @apply text-sm font-medium leading-5 sm:text-base sm:leading-6;
+}
+
+@utility custom-body-sm-bold {
+  @apply text-sm font-bold leading-5 sm:text-base sm:leading-6;
+}
 
 .card-strip {
   --card-gap: 1.5rem;

@@ -143,11 +143,11 @@ export default function Home() {
               Dream. Plan. Do. Together in Flow.
             </h2>
             <div className="grid gap-5">
-              <p className="max-w-xl text-base font-medium leading-6 text-custom-black/85 sm:text-lg sm:leading-7">
+              <p className="max-w-xl custom-body text-custom-black">
                 DPD is not a personality test. It is a persona based behavior
                 coordination system that helps people move in sync.
               </p>
-              <p className="max-w-xl text-base font-medium leading-6 text-custom-black/85 sm:text-lg sm:leading-7">
+              <p className="max-w-xl custom-body text-custom-black">
                 Personality describes tendencies. DPD coordinates behavior.
               </p>
             </div>
@@ -158,10 +158,10 @@ export default function Home() {
           <div className="mt-14 grid gap-5 lg:grid-cols-[1fr_0.95fr] lg:gap-24">
             <div />
             <div className="max-w-xl">
-              <h3 className="text-base font-bold">
+              <h3 className="custom-body-bold">
                 DPD offers a more precise path:
               </h3>
-              <p className="mt-5 text-base font-medium leading-6 text-custom-black/85 sm:text-lg sm:leading-7">
+              <p className="mt-5 custom-body text-custom-black">
                 Like an orchestra, everyone brings a different instrument. DPD
                 gives the team the same sheet music. That is the power of
                 DPDing. A word. A sound. A signal. A call to action for
@@ -197,10 +197,10 @@ export default function Home() {
                 <div className="relative z-10 flex size-14 items-center justify-center self-start rounded-full bg-custom-black text-[0.68rem] font-bold tracking-widest text-white">
                   <step.Icon className="size-5" aria-hidden="true" />
                 </div>
-                <h3 className="max-w-xs self-start text-lg font-bold leading-6">
+                <h3 className="max-w-xs self-start custom-body-bold">
                   {step.title}
                 </h3>
-                <p className="max-w-sm self-start text-sm font-medium leading-5 text-custom-black/80 sm:text-base sm:leading-6">
+                <p className="max-w-sm self-start custom-body text-custom-black">
                   {step.description}
                 </p>
               </div>
@@ -244,14 +244,14 @@ export default function Home() {
                     ) : null}
                   </p>
                 </div>
-                <p className="max-w-sm text-sm font-bold leading-5 text-white/90 sm:pt-5 sm:text-base">
+                <p className="max-w-sm custom-body-sm-bold text-white-light sm:pt-5">
                   {metric.label}
                 </p>
               </div>
             ))}
           </div>
 
-          <p className="mt-5 text-xs font-normal italic leading-5 text-white/70 sm:text-sm">
+          <p className="mt-5 custom-caption italic text-white-light">
             *Illustrative model of possibility. Results depend on adoption,
             leadership participation, and consistent DPDing.
           </p>
@@ -276,18 +276,18 @@ export default function Home() {
             </div>
 
             <div className="grid max-w-xl gap-5 pt-[50px]">
-              <p className="text-lg font-normal leading-7 text-custom-black/85 sm:text-xl sm:leading-8">
+              <p className="custom-body text-custom-black">
                 Personality assessments help people understand tendencies.
                 Process frameworks help teams organize work. DPD fills the
                 missing layer: behavior coordination.
               </p>
-              <p className="text-lg font-normal leading-7 text-custom-black/85 sm:text-xl sm:leading-8">
+              <p className="custom-body text-custom-black">
                 As a Persona Based Behavioral Operating System and GPS, DPD
                 helps individuals, coaches, teams, and organizations know when
                 to Dream, when to Plan, when to Do, and how to move together in
                 flow.
               </p>
-              <p className="text-lg font-normal leading-7 text-custom-black/85 sm:text-xl sm:leading-8">
+              <p className="custom-body text-custom-black">
                 That is how DPD increases the ROI of the systems you already
                 use.
               </p>
@@ -327,14 +327,14 @@ export default function Home() {
                     className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
-                  <span className="absolute left-4 top-4 z-10 rounded-sm bg-custom-black/50 px-3 py-1 text-xs font-bold tracking-widest text-white backdrop-blur-sm">
+                  <span className="absolute left-4 top-4 z-10 rounded-sm bg-custom-black/50 px-3 py-1 custom-caption-bold text-white backdrop-blur-sm tracking-widest">
                     {option.tag}
                   </span>
                 </div>
                 <h3 className="mt-5 text-2xl font-medium leading-7 tracking-tight">
                   {option.title}
                 </h3>
-                <p className="mt-4 text-sm font-medium leading-5 text-custom-black/85 sm:text-base sm:leading-6">
+                <p className="mt-4 custom-body-sm text-custom-black">
                   {option.description}
                 </p>
               </article>
