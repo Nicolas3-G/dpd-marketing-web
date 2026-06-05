@@ -36,7 +36,7 @@ export function FrameworkHero() {
                 className="aspect-square w-full max-w-44 bg-custom-black sm:max-w-48 lg:max-w-52"
                 aria-hidden
               />
-              <figcaption className="mt-3 text-xl font-bold text-custom-black sm:mt-4 sm:text-2xl lg:text-3xl">
+              <figcaption className="mt-3 custom-xs-title-bold text-custom-black">
                 {label}
               </figcaption>
             </figure>

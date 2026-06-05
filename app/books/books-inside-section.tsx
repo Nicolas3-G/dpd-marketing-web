@@ -11,7 +11,7 @@ export function BooksInsideSection() {
     <section className="bg-custom-black py-16 text-white sm:py-20 lg:py-24">
       <div className={pageInset}>
         <div className="max-w-3xl">
-          <h2 className="text-4xl font-bold tracking-[-0.03em] sm:text-5xl lg:text-[3.25rem] lg:leading-[1.06]">
+          <h2 className="custom-md-title-bold">
             {heading}
           </h2>
           <p className="mt-5 text-lg font-medium leading-relaxed text-white/90 sm:text-xl sm:leading-8">
@@ -25,7 +25,7 @@ export function BooksInsideSection() {
               key={title}
               className="flex flex-col border-t border-white/15 pt-8 sm:pt-9"
             >
-              <h3 className="text-xl font-bold leading-snug sm:text-2xl">
+              <h3 className="custom-xs-title-bold">
                 {title}
               </h3>
               <p className="mt-4 text-base font-normal leading-7 text-white/85 sm:leading-8">

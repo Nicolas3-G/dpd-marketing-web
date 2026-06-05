@@ -290,7 +290,7 @@ export function WebinarsWhySection() {
     <section id="webinars-why" className="overflow-hidden bg-white text-custom-black">
       <div className="grid w-full items-stretch gap-10 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-12 xl:gap-16">
         <div className="flex min-h-0 flex-col px-5 py-12 sm:px-[45px] sm:py-14 lg:py-16 lg:pr-12 xl:pr-16">
-          <h2 className="max-w-2xl text-2xl font-bold leading-[1.12] tracking-[-0.03em] sm:text-3xl lg:text-4xl lg:leading-[1.1]">
+          <h2 className="custom-sm-title-bold">
             {heading}
           </h2>
 

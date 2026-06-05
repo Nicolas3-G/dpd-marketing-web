@@ -36,6 +36,8 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+/* TITLES STYLES */
+
 @utility custom-lg-title-bold {
   @apply text-4xl tracking-tighter font-bold sm:text-5xl lg:text-6xl;
 }
@@ -52,21 +54,24 @@ body {
   @apply text-3xl tracking-tighter font-medium sm:text-4xl lg:text-5xl;
 }
 
-@utility custom-sm-title-extrabold {
-  @apply text-2xl tracking-tighter font-extrabold sm:text-3xl lg:text-4xl;
-}
-
 @utility custom-sm-title-bold {
   @apply text-2xl tracking-tighter font-bold sm:text-3xl lg:text-4xl;
 }
 
-@utility custom-sm-title-semibold {
+@utility custom-sm-title {
   @apply text-2xl tracking-tighter font-semibold sm:text-3xl lg:text-4xl;
 }
 
-@utility custom-xs-title-medium {
+@utility custom-xs-title {
   @apply text-lg tracking-tighter font-medium sm:text-2xl lg:text-3xl;
 } 
+
+@utility custom-xs-title-bold {
+  @apply text-lg tracking-tighter font-bold sm:text-2xl lg:text-3xl;
+}
+
+/* SUBTITLE STYLES */
+
 
 .card-strip {
   --card-gap: 1.5rem;

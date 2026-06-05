@@ -26,7 +26,7 @@ function TestimonialSlideContent({
 }) {
   return (
     <blockquote id={panelId} className="max-w-2xl">
-      <p className="text-2xl tracking-tighter font-bold sm:text-3xl lg:text-4xl">
+      <p className="custom-sm-title-bold max-w-lg">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
       <footer className="mt-4 sm:mt-5">

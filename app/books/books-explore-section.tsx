@@ -19,7 +19,7 @@ export function BooksExploreSection() {
     <section className="bg-white pb-16 pt-14 text-custom-black sm:pb-20 sm:pt-16 lg:pb-24">
       <div className={pageInset}>
         <div className="flex flex-col items-center text-center">
-          <h2 className={`${sectionHeading} max-w-3xl`}>{heading}</h2>
+          <h2 className="custom-sm-title-bold max-w-3xl">{heading}</h2>
           <p className="mt-5 max-w-2xl text-base font-normal leading-7 text-custom-black/90 sm:mt-6 sm:text-lg sm:leading-8">
             {description}
           </p>

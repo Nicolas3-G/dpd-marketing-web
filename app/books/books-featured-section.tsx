@@ -45,7 +45,7 @@ export function BooksFeaturedSection() {
           <p className="text-xs font-bold tracking-[0.2em] text-brand-orange sm:text-[0.7rem]">
             {overline}
           </p>
-          <h2 className="mt-2 text-3xl font-bold leading-[1.08] tracking-[-0.03em] sm:text-4xl lg:text-[2.5rem] lg:leading-[1.06]">
+          <h2 className="mt-2 custom-sm-title-bold">
             {title}
           </h2>
           <p className="mt-1.5 text-lg font-medium leading-snug text-custom-black/90 sm:text-xl">

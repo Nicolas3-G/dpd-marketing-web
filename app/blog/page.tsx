@@ -69,7 +69,7 @@ export default function BlogPage() {
           <div className="relative flex min-h-[380px] flex-col justify-center px-6 py-14 sm:px-10 lg:min-h-[min(85vh,640px)] lg:px-12 xl:px-16">
             <div className="relative z-10 flex max-w-xl flex-col gap-8">
               <div className="flex flex-col gap-3">
-                <h2 className="text-[1.65rem] font-bold leading-[1.15] tracking-[-0.02em] text-white sm:text-3xl lg:text-[2rem] xl:text-[2.25rem]">
+                <h2 className="custom-sm-title-bold text-white">
                   {featuredPost.title}
                 </h2>
                 {featuredPost.subtext ? (
@@ -115,7 +115,7 @@ export default function BlogPage() {
 
       <section className="w-full bg-[#f7f6f0]">
         <div className={`${pageInset} py-16 sm:py-20 lg:py-24`}>
-          <h2 className="text-2xl font-bold tracking-[-0.02em] text-custom-black sm:text-3xl">
+          <h2 className="custom-xs-title-bold text-custom-black">
             Latest from DPD
           </h2>
           <ul className="mt-10 max-w-4xl list-none space-y-10 sm:mt-12 sm:space-y-12">

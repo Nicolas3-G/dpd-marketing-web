@@ -126,7 +126,7 @@ export function WebinarsClosingSection() {
     >
       <div className={pageInset}>
         <div className="flex flex-col items-center text-center">
-          <h2 className={`${sectionHeading} max-w-4xl`}>{heading}</h2>
+          <h2 className="custom-sm-title-bold max-w-4xl">{heading}</h2>
           <p className="mt-5 max-w-2xl text-base font-normal leading-7 text-custom-black/90 sm:mt-6 sm:text-lg sm:leading-8">
             {description}
           </p>

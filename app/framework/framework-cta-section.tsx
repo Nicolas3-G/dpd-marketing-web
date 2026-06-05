@@ -8,7 +8,7 @@ export function FrameworkCtaSection() {
       <div
         className={`${pageInset} flex flex-col items-center text-center`}
       >
-        <h2 className="max-w-4xl custom-lg-title-bold leading-tight">
+        <h2 className="custom-lg-title-bold max-w-4xl">
           Get the most out of your team
         </h2>
         <p className="mt-6 max-w-3xl text-base font-normal leading-7 text-custom-black sm:mt-8 sm:text-lg sm:leading-8">

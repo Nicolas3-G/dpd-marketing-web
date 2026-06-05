@@ -1,32 +1,16 @@
-"use client";
-
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
-type FrameworkFlowSectionProps = {
-  /** Matches testimonial section height when set. */
-  sectionHeightPx?: number | null;
-};
-
 /** Flow headline section displayed below testimonial. */
-export function FrameworkFlowSection({
-  sectionHeightPx = null,
-}: FrameworkFlowSectionProps) {
+export function FrameworkFlowSection() {
   return (
-    <section
-      className="bg-background text-custom-black"
-      style={
-        sectionHeightPx != null ? { height: sectionHeightPx } : undefined
-      }
-    >
+    <section className="bg-background text-custom-black">
       <div
-        className={`${pageInset} relative flex h-full min-h-full flex-col pt-10 pb-16 sm:pb-20 lg:pb-24`}
+        className={`${pageInset} flex min-h-[85svh] flex-col items-center justify-center px-4 text-center`}
       >
-        <div className="flex flex-1 flex-col items-center justify-center px-4 text-center">
-          <h2 className="max-w-5xl custom-lg-title-bold">
-            Dream. Plan. Do. Together in Flow.
-          </h2>
-        </div>
+        <h2 className="max-w-5xl custom-lg-title-bold">
+          Dream. Plan. Do. Together in Flow.
+        </h2>
       </div>
     </section>
   );

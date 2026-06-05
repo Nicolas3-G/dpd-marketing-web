@@ -151,7 +151,7 @@ export function WebinarsOfferingSection() {
       />
 
       <div className={`relative z-10 ${pageInset}`}>
-        <h2 className="max-w-3xl text-2xl font-medium leading-snug tracking-tight text-white sm:text-3xl lg:text-[2rem] lg:leading-[1.2]">
+        <h2 className="custom-xs-title text-white">
           {heading}
         </h2>
 
