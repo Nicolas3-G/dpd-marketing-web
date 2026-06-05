@@ -75,7 +75,7 @@ export function TeamMemberGrid({
                       : "max-lg:max-h-0 max-lg:opacity-0 max-lg:mt-0 lg:pointer-events-none lg:opacity-0",
                   )}
                 >
-                  <p className="text-sm font-normal leading-relaxed text-custom-black/65 lg:pr-1">
+                  <p className="custom-label leading-relaxed text-custom-black lg:pr-1">
                     {member.hoverBio}
                   </p>
                 </div>
@@ -88,13 +88,13 @@ export function TeamMemberGrid({
             >
               <p
                 className={joinClasses(
-                  "text-[15px] font-semibold leading-snug text-custom-black sm:text-base",
+                  "custom-body-sm-bold leading-snug text-custom-black",
                   hasBio && "cursor-default",
                 )}
               >
                 {member.name}
               </p>
-              <p className="text-sm font-normal leading-snug text-custom-black/70">
+              <p className="custom-label leading-snug text-custom-black">
                 {member.title}
               </p>
             </div>

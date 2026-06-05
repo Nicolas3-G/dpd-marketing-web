@@ -73,20 +73,20 @@ export default function BlogPage() {
                   {featuredPost.title}
                 </h2>
                 {featuredPost.subtext ? (
-                  <p className="text-lg font-normal leading-snug text-white/90 sm:text-xl">
+                  <p className="custom-body text-white">
                     {featuredPost.subtext}
                   </p>
                 ) : null}
               </div>
               <Link
                 href={getPostHref(featuredPost.slug)}
-                className="group relative inline-flex w-fit items-center gap-2.5 overflow-hidden rounded-full bg-[#b9075c] px-5 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                className="group relative inline-flex w-fit items-center gap-2.5 overflow-hidden rounded-full bg-brand-orange px-5 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 <span
                   className="pointer-events-none absolute inset-0 translate-x-full rounded-full bg-[linear-gradient(to_left,rgba(0,0,0,0.34)_0%,rgba(0,0,0,0.34)_25%,rgba(0,0,0,0.1)_55%,transparent_100%)] transition-transform duration-1000 ease-out will-change-transform group-hover:translate-x-0"
                   aria-hidden
                 />
-                <span className="relative z-10 inline-flex items-center gap-2.5">
+                <span className="relative custom-label-bold z-10 inline-flex items-center gap-2.5">
                   Read the article
                   <FaArrowRight className="size-4 shrink-0 opacity-95" aria-hidden />
                 </span>
@@ -125,8 +125,8 @@ export default function BlogPage() {
                   href={getPostHref(post.slug)}
                   className="group block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
                 >
-                  <p className="text-sm font-normal text-custom-black">{post.date}</p>
-                  <p className="mt-1.5 text-lg font-bold leading-snug text-custom-black sm:text-xl">
+                  <p className="custom-label text-custom-black">{post.date}</p>
+                  <p className="mt-1.5 custom-body-bold leading-snug text-custom-black sm:text-xl">
                     {post.title}
                   </p>
                 </Link>

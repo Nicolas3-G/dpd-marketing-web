@@ -74,10 +74,10 @@ export default function TeamPage() {
 
         <div className="grid w-full min-w-0 gap-12 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,1fr)] lg:items-start lg:gap-x-14 xl:gap-x-20">
           <div className="flex max-w-xl flex-col gap-4 lg:max-w-none lg:pr-4">
-            <h2 className="text-base font-semibold leading-tight text-custom-black sm:text-lg">
+            <h2 className="custom-body-bold text-custom-black">
               Executive team
             </h2>
-            <p className="max-w-md text-base font-normal leading-relaxed text-custom-black/85 sm:text-[17px]">
+            <p className="max-w-md custom-body text-custom-black">
               DPD&apos;s executive team formed around one conviction: teams need a
               shared way to dream, plan, and execute—not another personality test.
               Kokoro, Prabitha, and Alonzo lead strategy and product, turning the
@@ -92,10 +92,10 @@ export default function TeamPage() {
 
         <div className="mt-16 grid w-full min-w-0 gap-12 sm:mt-20 lg:mt-24 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,1fr)] lg:items-start lg:gap-x-14 xl:gap-x-20">
           <div className="flex max-w-xl flex-col gap-4 lg:max-w-none lg:pr-4">
-            <h2 className="text-base font-semibold leading-tight text-custom-black sm:text-lg">
+            <h2 className="custom-body-bold text-custom-black">
               The rest of the team
             </h2>
-            <p className="max-w-md text-base font-normal leading-relaxed text-custom-black/85 sm:text-[17px]">
+            <p className="max-w-md custom-body text-custom-black">
               Behind the executives are founding members who build and refine what
               teams experience every day. Nicolas shapes the platform; Nicole designs
               the learning journeys that make the framework clear, practical, and

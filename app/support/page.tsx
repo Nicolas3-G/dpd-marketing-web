@@ -12,22 +12,22 @@ export default function SupportPage() {
     <main className="flex-1 bg-background pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28 lg:pt-36">
       <section className={pageInset}>
         <div className="mx-auto max-w-4xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-custom-black/60">
+          <p className="custom-label-bold uppercase tracking-[0.08em] text-light">
             What is The DPD Framework?
           </p>
-          <h1 className="mt-3 text-4xl font-semibold leading-tight tracking-[-0.02em] text-custom-black sm:text-5xl">
+          <h1 className="mt-3 custom-lg-title text-custom-black">
             DPD Framework App Support
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-custom-black/90 sm:text-lg">
+          <p className="mt-4 custom-body text-custom-black">
             Welcome to the official support page for the DPD Framework Mobile
             App.
           </p>
 
           <section className="mt-10 border border-custom-black/10 bg-white p-6 sm:p-8">
-            <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+            <h2 className="custom-xs-title-bold text-custom-black">
               Need Help?
             </h2>
-            <p className="mt-3 text-base leading-relaxed text-custom-black/90 sm:text-lg">
+            <p className="mt-3 custom-body text-custom-black">
               Email us anytime:{" "}
               <a
                 href="mailto:support@dpdframework.com"
@@ -39,13 +39,13 @@ export default function SupportPage() {
           </section>
 
           <section className="mt-10">
-            <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+            <h2 className="custom-xs-title-bold text-custom-black">
               Frequently Asked Questions
             </h2>
 
-            <div className="mt-6 space-y-8 text-base leading-relaxed text-custom-black/90 sm:text-lg">
+            <div className="mt-6 space-y-8 custom-body text-custom-black">
               <article>
-                <h3 className="text-lg font-semibold text-custom-black sm:text-xl">
+                <h3 className="custom-body-bold text-custom-black">
                   Q: What is the DPD Framework App?
                 </h3>
                 <p className="mt-2">
@@ -56,7 +56,7 @@ export default function SupportPage() {
               </article>
 
               <article>
-                <h3 className="text-lg font-semibold text-custom-black sm:text-xl">
+                <h3 className="custom-body-bold text-custom-black">
                   Q: Do I need to create an account to use the app?
                 </h3>
                 <p className="mt-2">
@@ -71,7 +71,7 @@ export default function SupportPage() {
               </article>
 
               <article>
-                <h3 className="text-lg font-semibold text-custom-black sm:text-xl">
+                <h3 className="custom-body-bold text-custom-black">
                   Q: Can I delete my data?
                 </h3>
                 <p className="mt-2">
@@ -91,10 +91,10 @@ export default function SupportPage() {
           </section>
 
           <section className="mt-10 border border-custom-black/10 bg-white p-6 sm:p-8">
-            <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+            <h2 className="custom-xs-title-bold text-custom-black">
               Privacy &amp; Security
             </h2>
-            <p className="mt-3 text-base leading-relaxed text-custom-black/90 sm:text-lg">
+            <p className="mt-3 custom-body text-custom-black">
               We do not sell or share your data. For full details, please
               review our{" "}
               <Link href="/privacy" className="underline underline-offset-2">
@@ -105,10 +105,10 @@ export default function SupportPage() {
           </section>
 
           <section className="mt-10 border border-custom-black/10 bg-white p-6 sm:p-8">
-            <h2 className="text-2xl font-semibold leading-tight text-custom-black">
+            <h2 className="custom-xs-title-bold text-custom-black">
               Latest Version
             </h2>
-            <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed text-custom-black/90 sm:text-lg">
+            <ul className="mt-3 list-disc space-y-2 pl-6 custom-body text-custom-black">
               <li>Current App Version: 1.0.61</li>
               <li>Last Updated: March 27, 2026</li>
               <li>Compatible with iOS 15 and above</li>
