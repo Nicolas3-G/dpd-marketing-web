@@ -83,7 +83,7 @@ function OfferingCard({
         className="mx-auto aspect-4/3 w-[82%] max-w-full shrink-0 bg-custom-black sm:w-[78%]"
         aria-hidden
       />
-      <h3 className="mt-5 text-lg font-bold leading-snug text-white sm:mt-6 sm:text-xl">
+      <h3 className="mt-5 custom-body-bold text-white sm:mt-6">
         {title}
       </h3>
       <ul className="mt-4 flex flex-1 flex-col gap-3 sm:mt-5 sm:gap-3.5">
@@ -92,7 +92,7 @@ function OfferingCard({
           return (
             <li
               key={bullet}
-              className={`flex gap-2.5 text-sm leading-relaxed text-white/90 transition-[opacity,transform] ease-out motion-reduce:transition-none sm:text-[15px] sm:leading-7 ${
+              className={`flex gap-2.5 custom-body-sm leading-relaxed text-white transition-[opacity,transform] ease-out motion-reduce:transition-none ${
                 revealed
                   ? "translate-y-0 opacity-100"
                   : "translate-y-4 opacity-0"

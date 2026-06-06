@@ -8,16 +8,16 @@ function ProcessStep({
   return (
     <li className="flex gap-5 sm:gap-7">
       <span
-        className="shrink-0 text-3xl font-bold leading-none tabular-nums text-brand-orange sm:text-4xl"
+        className="shrink-0 custom-sm-title-bold tabular-nums text-brand-orange"
         aria-hidden
       >
         {number}.
       </span>
       <div className="min-w-0 pt-0.5">
-        <h3 className="text-lg font-bold leading-snug text-custom-black sm:text-xl">
+        <h3 className="custom-body-bold text-custom-black">
           {title}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-text-light sm:text-base sm:leading-7">
+        <p className="mt-2 custom-body-sm text-text-light">
           {description}
         </p>
       </div>
@@ -46,7 +46,7 @@ export function WebinarsProcessSection() {
               className="h-0.5 w-6 shrink-0 bg-brand-orange sm:w-7"
               aria-hidden
             />
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-orange">
+            <p className="custom-caption-2-bold uppercase text-brand-orange">
               {overline}
             </p>
           </div>

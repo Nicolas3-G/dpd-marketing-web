@@ -1,19 +1,6 @@
-import type { IconType } from "react-icons";
-import { FaBrain, FaLightbulb, FaRepeat } from "react-icons/fa6";
-
-export type ResearchWorkshopPanelItem = {
-  label: string;
-  Icon: IconType;
-};
-
 export type ResearchWorkshopPanelLink = {
   label: string;
   href: string;
-};
-
-export type ResearchWorkshopListPanel = {
-  kind: "list";
-  items: readonly ResearchWorkshopPanelItem[];
 };
 
 export type ResearchWorkshopProsePanel = {
@@ -29,9 +16,7 @@ export type ResearchWorkshopProsePanel = {
   };
 };
 
-export type ResearchWorkshopPanelContent =
-  | ResearchWorkshopListPanel
-  | ResearchWorkshopProsePanel;
+export type ResearchWorkshopPanelContent = ResearchWorkshopProsePanel;
 
 /** “Why teams choose us” split section — edit copy here (research page). */
 export const researchWhyContent = {

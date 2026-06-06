@@ -160,7 +160,7 @@ function SurveyProgressBar({
           );
         })}
       </div>
-      <span className="shrink-0 text-base font-normal tabular-nums text-custom-black sm:text-lg">
+      <span className="shrink-0 custom-body-sm-bold tabular-nums text-custom-black">
         {percent}%
       </span>
     </div>
@@ -186,7 +186,7 @@ function SurveyQuestion({
     <fieldset className="border-0 p-0" disabled={isUpcoming}>
       <legend
         id={`question-${questionId}`}
-        className={`mb-6 w-full text-left text-xl font-normal leading-snug sm:text-[1.65rem] sm:leading-tight ${
+        className={`mb-6 w-full text-left custom-body ${
           isUpcoming ? "text-custom-black/30" : "text-custom-black"
         }`}
       >
@@ -201,7 +201,7 @@ function SurveyQuestion({
         }`}
       >
         <p
-          className={`mb-5 text-sm ${
+          className={`mb-5 custom-label ${
             isUpcoming ? "text-[#b8b8b8]" : "text-text-light"
           }`}
         >
@@ -248,7 +248,7 @@ function SurveyQuestion({
                   ) : null}
                 </span>
                 <span
-                  className={`text-center text-xs leading-tight transition-colors sm:text-sm ${
+                  className={`text-center custom-label leading-tight transition-colors ${
                     isUpcoming
                       ? "text-[#b0b0b0]"
                       : selected
@@ -274,7 +274,7 @@ function SurveyQuestion({
 function SurveyPageIntro() {
   return (
     <div className="mb-8 sm:mb-10">
-      <p className="text-[1.75rem] font-normal leading-tight text-brand-orange sm:text-4xl sm:leading-[1.1]">
+      <p className="custom-xs-title text-brand-orange">
         How does each of the following statements describe your current persona?
       </p>
     </div>
@@ -475,7 +475,7 @@ export function SurveyAssessment() {
             type="button"
             onClick={handlePrevious}
             disabled={isSliding}
-            className="inline-flex h-11 items-center justify-center rounded-full border border-custom-black/20 px-6 text-sm font-semibold text-custom-black transition hover:border-custom-black/40 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-11 items-center justify-center rounded-full border border-custom-black/20 px-6 custom-label-bold text-custom-black transition hover:border-custom-black/40 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50"
           >
             Previous
           </button>
@@ -534,7 +534,7 @@ export function SurveyAssessment() {
               type="button"
               onClick={handleFinish}
               disabled={!isCurrentPageComplete || isSliding}
-              className="inline-flex h-14 min-w-[200px] items-center justify-center rounded-full bg-brand-orange px-10 text-base font-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
+              className="inline-flex h-14 min-w-[200px] items-center justify-center rounded-full bg-brand-orange px-10 custom-label-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
             >
               Finish
             </button>
@@ -543,7 +543,7 @@ export function SurveyAssessment() {
               type="button"
               onClick={handleNext}
               disabled={!isCurrentPageComplete || isSliding}
-              className="inline-flex h-14 min-w-[200px] items-center justify-center rounded-full bg-brand-orange px-10 text-base font-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
+              className="inline-flex h-14 min-w-[200px] items-center justify-center rounded-full bg-brand-orange px-10 custom-label-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
             >
               Next
             </button>

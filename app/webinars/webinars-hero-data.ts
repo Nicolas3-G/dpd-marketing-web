@@ -6,7 +6,7 @@ export const webinarsHeroContent = {
   description:
     "Only 10 minutes to gain practical insight into how your team collaborates, communicates, and works best together.",
   cta: {
-    label: "Take the Test",
+    label: "Take DPD Survey",
     href: "/survey",
   },
 } as const;

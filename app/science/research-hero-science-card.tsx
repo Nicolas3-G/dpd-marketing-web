@@ -1,9 +1,17 @@
 import type { ComponentType } from "react";
 
+import { Instrument_Serif } from "next/font/google";
+
 import type {
   ResearchScienceCard,
   ResearchScienceGraphic,
 } from "./research-science-cards";
+
+const displaySerif = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const WAVE_PATH = "M4 54 C 44 20, 84 76, 124 42 S 204 58, 264 36";
 
@@ -149,31 +157,17 @@ export function ResearchHeroScienceCard({
   const Graphic = CARD_GRAPHICS[graphic];
   return (
     <div className="flex h-full flex-col overflow-hidden p-6 sm:p-7">
-      <span className="inline-flex w-fit rounded-full border border-brand-orange px-3 py-1 text-[0.65rem] font-bold tracking-[0.22em] text-brand-orange">
+      <span className="inline-flex w-fit rounded-full border border-brand-orange px-3 py-1 custom-caption-2 text-brand-orange">
         {tag}
       </span>
-      <h3 className="mt-4 font-[family-name:Georgia,'Times_New_Roman',Times,serif] text-[1.65rem] font-normal leading-tight tracking-tight text-custom-black sm:mt-5 sm:text-[1.85rem]">
+      <h3 className={`${displaySerif.className} mt-4 custom-sm-title text-custom-black sm:mt-5`}>
         {title}
       </h3>
-      <p className="mt-4 text-sm leading-6 text-custom-black/80 sm:mt-5 sm:text-[0.95rem] sm:leading-[1.65]">
-        <span className="font-bold text-brand-orange">Activated by: </span>
+      <p className="mt-4 custom-label text-custom-black leading-relaxed sm:mt-5">
+        <span className="custom-label-bold text-brand-orange">Activated by: </span>
         {activatedBy}
       </p>
-      <div
-        className={
-          TALL_SCIENCE_GRAPHICS.has(graphic)
-            ? "mt-4 flex min-h-0 flex-1 flex-col sm:mt-5"
-            : "mt-auto pt-6 sm:pt-8"
-        }
-      >
-        <Graphic
-          className={
-            TALL_SCIENCE_GRAPHICS.has(graphic)
-              ? "h-full min-h-[13rem] w-full flex-1 sm:min-h-[14rem]"
-              : "h-auto w-full max-w-none"
-          }
-        />
-      </div>
+     
     </div>
   );
 }

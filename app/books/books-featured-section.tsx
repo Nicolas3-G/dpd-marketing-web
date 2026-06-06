@@ -42,33 +42,33 @@ export function BooksFeaturedSection() {
         </div>
 
         <div className="flex max-w-xl flex-col lg:max-w-none">
-          <p className="text-xs font-bold tracking-[0.2em] text-brand-orange sm:text-[0.7rem]">
+          <p className="custom-caption-2 uppercase text-brand-orange">
             {overline}
           </p>
           <h2 className="mt-2 custom-sm-title-bold">
             {title}
           </h2>
-          <p className="mt-1.5 text-lg font-medium leading-snug text-custom-black/90 sm:text-xl">
+          <p className="mt-1.5 custom-body-bold text-custom-black">
             {subtitle}
           </p>
-          <p className="mt-4 text-base leading-relaxed text-custom-black/85">
+          <p className="mt-4 custom-body text-custom-black">
             {description}
           </p>
           <dl className="mt-5 flex flex-col gap-2 border-t border-custom-black/10 pt-5 text-sm sm:text-base">
             <div className="flex flex-wrap gap-x-2 gap-y-1">
-              <dt className="font-bold text-custom-black">Author</dt>
+              <dt className="custom-body-sm-bold text-custom-black">Author</dt>
               <dd>
                 <Link
                   href={authorHref}
-                  className="font-medium text-custom-black underline decoration-custom-black/30 underline-offset-[3px] transition hover:text-brand-orange hover:decoration-brand-orange/50"
+                  className="custom-body-sm text-custom-black underline decoration-custom-black/30 underline-offset-[3px] transition hover:text-brand-orange hover:decoration-brand-orange/50"
                 >
                   {author}
                 </Link>
               </dd>
             </div>
             <div className="flex flex-wrap gap-x-2 gap-y-1">
-              <dt className="font-bold text-custom-black">Format</dt>
-              <dd className="font-medium text-custom-black/85">{format}</dd>
+              <dt className="custom-body-sm-bold text-custom-black">Format</dt>
+              <dd className="custom-body-sm text-custom-black">{format}</dd>
             </div>
           </dl>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
@@ -76,13 +76,13 @@ export function BooksFeaturedSection() {
               href={primaryCta.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-brand-orange px-7 text-sm font-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black sm:px-8 sm:text-base"
+              className="inline-flex h-11 items-center justify-center rounded-full bg-brand-orange px-7 custom-label-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black sm:px-8"
             >
               {primaryCta.label}
             </a>
             <Link
               href={secondaryCta.href}
-              className="inline-flex h-11 items-center justify-center rounded-full border-2 border-custom-black/15 px-7 text-sm font-bold text-custom-black transition hover:border-custom-black/30 hover:bg-custom-black/[0.03] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black sm:px-8 sm:text-base"
+              className="inline-flex h-11 items-center justify-center rounded-full border-2 border-custom-black/15 px-7 custom-label-bold text-custom-black transition hover:border-custom-black/30 hover:bg-custom-black/[0.03] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black sm:px-8"
             >
               {secondaryCta.label}
             </Link>

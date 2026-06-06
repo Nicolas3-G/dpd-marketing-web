@@ -26,14 +26,14 @@ function TestimonialSlideContent({
 }) {
   return (
     <blockquote id={panelId} className="max-w-2xl">
-      <p className="custom-sm-title-bold max-w-lg">
+      <p className="custom-md-title max-w-lg">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
       <footer className="mt-4 sm:mt-5">
-        <p className="text-sm font-semibold sm:text-lg lg:text-xl">
+        <p className="custom-body-bold">
           {testimonial.name}
         </p>
-        <p className="mt-1 text-xs font-normal text-white/90 sm:text-sm lg:text-base">
+        <p className="mt-1 custom-body text-white">
           {testimonial.role}
         </p>
       </footer>

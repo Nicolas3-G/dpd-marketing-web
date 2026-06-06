@@ -68,16 +68,24 @@ body {
 
 @utility custom-xs-title {
   @apply text-lg tracking-tighter font-medium sm:text-2xl lg:text-3xl;
-} 
+}
 
 @utility custom-xs-title-bold {
   @apply text-lg tracking-tighter font-bold sm:text-2xl lg:text-3xl;
 }
 
+@utility custom-xxs-title {
+  @apply text-base tracking-tight font-medium sm:text-lg lg:text-2xl;
+}
+
+@utility custom-xxs-title-bold {
+  @apply text-base tracking-tight font-bold sm:text-lg lg:text-2xl;
+}
+
 /* CAPTION / LABEL STYLES */
 
 @utility custom-label {
-  @apply text-sm;
+  @apply text-sm font-normal;
 }
 
 @utility custom-label-bold {
@@ -104,6 +112,14 @@ body {
 
 
 /* BODY STYLES */
+
+@utility custom-body-lg {
+  @apply text-lg font-normal leading-7 sm:text-xl sm:leading-8;
+}
+
+@utility custom-body-lg-bold {
+  @apply text-lg font-bold leading-7 sm:text-xl sm:leading-8;
+}
 
 @utility custom-body {
   @apply text-base font-medium leading-6 sm:text-lg sm:leading-7;
