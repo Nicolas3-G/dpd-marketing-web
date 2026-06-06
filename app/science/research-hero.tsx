@@ -17,12 +17,12 @@ export function ResearchHero() {
           <h1 className="custom-md-title-bold">
             The science behind persona-based behavior coordination.
           </h1>
-          <p className="mt-5 text-base font-normal text-custom-black sm:mt-6 sm:text-lg">
+          <p className="mt-5 custom-body text-custom-black">
           Personality assessments help teams understand tendencies. Process tools help teams organize work. DPD accelerates the human ROI of both by adding the missing behavioral operating layer that reduces cognitive load, improves relational awareness, and coordinates behavior in real time. 
           </p>
           <a
             href="/contact"
-            className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-brand-orange px-10 text-base font-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black sm:mt-10 sm:h-14 sm:px-12 sm:text-lg"
+            className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-brand-orange px-10 custom-label-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black sm:mt-10 sm:h-14 sm:px-12"
           >
             Explore the Science
           </a>

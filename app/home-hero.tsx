@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { HiArrowRight } from "react-icons/hi";
 
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
@@ -585,9 +586,7 @@ export function HomeHero() {
           tabIndex={contentVisible ? undefined : -1}
         >
           Take DPD Survey
-          <span aria-hidden="true" className="text-xl leading-none">
-            &#8594;
-          </span>
+          <HiArrowRight aria-hidden="true" className="text-xl leading-none" />
         </a>
       </div>
     </section>

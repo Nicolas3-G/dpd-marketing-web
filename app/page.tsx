@@ -332,7 +332,7 @@ export default function Home() {
                     {option.tag}
                   </span>
                 </div>
-                <h3 className="mt-5 text-2xl font-medium leading-7 tracking-tight">
+                <h3 className="mt-5 custom-xxs-title leading-7">
                   {option.title}
                 </h3>
                 <p className="mt-4 custom-body-sm text-custom-black">

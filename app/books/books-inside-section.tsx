@@ -14,7 +14,7 @@ export function BooksInsideSection() {
           <h2 className="custom-md-title-bold">
             {heading}
           </h2>
-          <p className="mt-5 text-lg font-medium leading-relaxed text-white/90 sm:text-xl sm:leading-8">
+          <p className="mt-5 custom-body text-white">
             {lead}
           </p>
         </div>
@@ -28,7 +28,7 @@ export function BooksInsideSection() {
               <h3 className="custom-xs-title-bold">
                 {title}
               </h3>
-              <p className="mt-4 text-base font-normal leading-7 text-white/85 sm:leading-8">
+              <p className="mt-4 custom-body text-white">
                 {description}
               </p>
             </li>

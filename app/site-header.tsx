@@ -306,7 +306,7 @@ function MegaMenuNavItem({
                     <a
                       key={row.label}
                       href={row.href}
-                      className={`group flex w-full items-center justify-start gap-2 py-5 text-lg font-medium tracking-tight transition-colors first:pt-6 last:pb-6 md:py-6 md:text-xl ${
+                      className={`group flex w-full items-center justify-start gap-2 py-5 custom-body transition-colors first:pt-6 last:pb-6 md:py-6 ${
                         activePreviewIndex === index
                           ? "text-custom-black"
                           : "text-custom-black/55 hover:text-custom-black/70"
@@ -346,10 +346,10 @@ function MegaMenuNavItem({
                         sizes="(max-width: 768px) 100vw, 420px"
                       />
                     </div>
-                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-custom-black/55 transition-opacity duration-200">
+                    <p className="mt-4 custom-label uppercase tracking-[0.18em] text-light transition-opacity duration-200">
                       {activePreview.eyebrow}
                     </p>
-                    <p className="mt-1.5 text-base font-semibold leading-snug tracking-tight text-custom-black transition-opacity duration-200 md:text-lg">
+                    <p className="mt-1.5 custom-body-bold tracking-tight text-custom-black transition-opacity duration-200">
                       {activePreview.title}
                     </p>
                   </a>
@@ -500,8 +500,8 @@ export function SiteHeader() {
 
   const navLinkClass =
     navOnDark && !barSolid
-      ? "inline-flex items-center self-stretch transition-colors duration-300 ease-out hover:text-white/75"
-      : "inline-flex items-center self-stretch transition-colors duration-300 ease-out hover:text-custom-black/65";
+      ? "inline-flex items-center custom-caption-2 self-stretch transition-colors duration-300 ease-out hover:text-white/75"
+      : "inline-flex items-center custom-caption-2 self-stretch transition-colors duration-300 ease-out hover:text-custom-black/65";
 
   const ctaPillClass =
     navOnDark && !barSolid

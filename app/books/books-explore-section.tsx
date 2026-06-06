@@ -20,7 +20,7 @@ export function BooksExploreSection() {
       <div className={pageInset}>
         <div className="flex flex-col items-center text-center">
           <h2 className="custom-sm-title-bold max-w-3xl">{heading}</h2>
-          <p className="mt-5 max-w-2xl text-base font-normal leading-7 text-custom-black/90 sm:mt-6 sm:text-lg sm:leading-8">
+          <p className="mt-5 max-w-2xl custom-body text-custom-black">
             {description}
           </p>
         </div>
@@ -29,13 +29,13 @@ export function BooksExploreSection() {
           {links.map(({ title, description, linkLabel, href }) => (
             <li key={title}>
               <article className="flex min-h-64 flex-col border border-custom-black/12 bg-background p-7 sm:min-h-72 sm:p-8">
-                <h3 className={serifCardTitle}>{title}</h3>
-                <p className="mt-4 flex-1 text-base font-normal leading-7 text-custom-black sm:leading-8">
+                <h3 className="custom-xs-title-bold">{title}</h3>
+                <p className="mt-4 flex-1 custom-body-sm text-custom-black">
                   {description}
                 </p>
                 <Link
                   href={href}
-                  className="mt-auto pt-8 text-base font-normal text-custom-black underline decoration-custom-black/80 underline-offset-[3px] transition hover:text-custom-black/70"
+                  className="mt-auto pt-8 custom-body-sm text-custom-black underline decoration-custom-black/80 underline-offset-[3px] transition hover:text-custom-black/70"
                 >
                   {linkLabel}
                 </Link>
@@ -43,10 +43,6 @@ export function BooksExploreSection() {
             </li>
           ))}
         </ul>
-
-        <p className="mt-10 text-center text-sm font-medium text-custom-black/55 sm:mt-12">
-          More publications from the DPD team are on the way.
-        </p>
       </div>
     </section>
   );

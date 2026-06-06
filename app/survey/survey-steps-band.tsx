@@ -41,15 +41,15 @@ export function SurveyStepsBand() {
             {featureSteps.map(({ step, title, description }) => (
               <article
                 key={step}
-                className="bg-white/5 px-12 py-12 text-white/95 backdrop-blur-xl md:min-h-[280px] md:border-l md:border-white/25 md:px-20 md:py-16 first:md:border-l-0"
+                className="bg-white/5 px-12 py-12 text-white backdrop-blur-xl md:min-h-[280px] md:border-l md:border-white/25 md:px-20 md:py-16 first:md:border-l-0"
               >
-                <p className="text-[16px] font-medium tracking-[-0.01em] text-white/75">
+                <p className="custom-body-sm tracking-[-0.01em] text-white">
                   Step {step}
                 </p>
                 <h2 className="mt-2 max-w-[18ch] custom-sm-title text-white">
                   {title}
                 </h2>
-                <p className="mt-5 max-w-[32ch] text-[15px] font-normal leading-relaxed tracking-[-0.01em] text-white/90 md:text-[15.5px] lg:text-[16px]">
+                <p className="mt-5 max-w-[32ch] custom-body tracking-[-0.01em] text-white">
                   {description}
                 </p>
               </article>

@@ -18,12 +18,6 @@ const REVEAL_START_DELAY_MS = 200;
 const REVEAL_ROOT_MARGIN = "0px 0px -22% 0px";
 const REVEAL_THRESHOLD = 0.2;
 
-const sectionHeading =
-  "text-2xl font-bold leading-[1.12] tracking-[-0.03em] sm:text-3xl lg:text-4xl lg:leading-[1.1]";
-
-const serifCardTitle =
-  "font-[family-name:Georgia,'Times_New_Roman',Times,serif] text-2xl font-bold leading-tight tracking-tight sm:text-[1.65rem]";
-
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
@@ -100,13 +94,13 @@ function ClosingCard({
         transitionDelay: revealed ? `${index * ITEM_STAGGER_MS}ms` : "0ms",
       }}
     >
-      <h3 className={serifCardTitle}>{title}</h3>
-      <p className="mt-4 text-base font-normal leading-7 text-custom-black sm:leading-8">
+      <h3 className="custom-xs-title-bold">{title}</h3>
+      <p className="mt-4 custom-body-sm text-custom-black">
         {description}
       </p>
       <a
         href={href}
-        className="mt-auto pt-10 text-base font-normal text-custom-black underline decoration-custom-black/80 underline-offset-[3px] transition hover:text-custom-black/70"
+        className="mt-auto pt-10 custom-body-sm text-custom-black underline decoration-custom-black/80 underline-offset-[3px] transition hover:text-custom-black/70"
       >
         {linkLabel}
       </a>
@@ -127,7 +121,7 @@ export function WebinarsClosingSection() {
       <div className={pageInset}>
         <div className="flex flex-col items-center text-center">
           <h2 className="custom-sm-title-bold max-w-4xl">{heading}</h2>
-          <p className="mt-5 max-w-2xl text-base font-normal leading-7 text-custom-black/90 sm:mt-6 sm:text-lg sm:leading-8">
+          <p className="mt-5 max-w-2xl custom-body text-custom-black">
             {description}
           </p>
         </div>

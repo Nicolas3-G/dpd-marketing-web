@@ -64,7 +64,7 @@ function PersonaSlideContent({ persona }: { persona: Persona }) {
         <h2 className="custom-md-title-bold leading-tight">
           {persona.title}
         </h2>
-        <div className="mt-8 max-w-2xl text-xl font-normal leading-8 text-custom-black sm:mt-10 sm:text-2xl sm:leading-10 lg:text-3xl lg:leading-[1.35]">
+        <div className="mt-8 max-w-2xl custom-body text-custom-black sm:mt-10 sm:leading-10 lg:leading-[1.35]">
           {descriptionParagraphs.map((para, idx) => (
             <p key={idx} className={idx === 0 ? undefined : "mt-6"}>
               {para}
@@ -238,7 +238,7 @@ function PersonaTabList({ activeIndex, onSelect }: PersonaTabListProps) {
             id={`framework-persona-tab-${index}`}
             onClick={() => onSelect(index)}
             onMouseEnter={(e) => syncLine(e.currentTarget)}
-            className={`pb-3 text-lg font-bold transition-colors sm:text-xl lg:text-2xl ${
+            className={`pb-3 custom-body-bold transition-colors ${
               isActive ? "text-custom-black" : "text-custom-black/55 hover:text-custom-black/80"
             }`}
           >

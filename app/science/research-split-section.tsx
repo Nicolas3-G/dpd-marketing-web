@@ -29,26 +29,26 @@ export function ResearchSplitSection({
 
   const textColumn = (
     <div className="flex max-w-xl flex-col lg:max-w-none">
-      <p className="text-xs font-bold tracking-[0.2em] text-brand-orange sm:text-[0.7rem]">
+      <p className="custom-caption-2-bold text-brand-orange">
         {overline}
       </p>
       <h2 className="mt-3 custom-md-title-bold leading-[1.08] lg:leading-[1.06]">
         {heading}
       </h2>
-      <p className="mt-4 text-lg font-medium leading-snug sm:text-xl">{lead}</p>
-      <p className="mt-5 text-base leading-relaxed text-custom-black/85 sm:text-[17px]">
+      <p className="mt-4 custom-body-bold">{lead}</p>
+      <p className="mt-5 custom-body text-custom-black">
         {body}
       </p>
       <ul className="mt-8 flex flex-col gap-4 sm:mt-10">
         {bullets.map((text) => (
-          <li key={text} className="flex gap-3 text-sm leading-snug sm:text-base">
+          <li key={text} className="flex gap-3 custom-body-bold">
             <span
               className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-orange/50 text-custom-black"
               aria-hidden
             >
               <FaCheck className="size-2.5" />
             </span>
-            <span className="font-medium">{text}</span>
+            <span className="custom-body">{text}</span>
           </li>
         ))}
       </ul>

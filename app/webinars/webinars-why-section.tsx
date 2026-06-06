@@ -148,7 +148,7 @@ function WorkshopOptions({
             aria-selected={isActive}
             aria-controls={`webinars-workshop-panel-${workshopTabSlug(label)}`}
             onClick={() => onSelect(label)}
-            className={`w-fit border-b-2 py-3 text-left text-lg font-bold transition-colors sm:py-4 sm:text-xl ${
+            className={`w-fit border-b-2 py-3 text-left custom-body-lg-bold transition-colors sm:py-4 ${
               isActive
                 ? "border-brand-orange text-custom-black"
                 : "border-transparent text-custom-black hover:text-custom-black/80"
@@ -204,7 +204,7 @@ function WorkshopPanelContent({
           }}
         >
           <Icon className="size-7 shrink-0 text-white" aria-hidden />
-          <p className="max-w-md text-base font-medium leading-snug text-white sm:text-lg sm:leading-7">
+          <p className="max-w-md custom-body text-white">
             {label}
           </p>
         </li>

@@ -37,7 +37,7 @@ export function WebinarsCtaSection() {
         </h2>
         <a
           href={cta.href}
-          className="mt-5 inline-flex h-10 items-center gap-2.5 rounded-full bg-gradient-to-r from-[#c73b2e] via-brand-orange to-[#f0a020] px-7 text-sm font-bold text-white shadow-[0_12px_28px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:mt-5 sm:h-11 sm:px-8"
+          className="mt-5 inline-flex h-10 items-center gap-2.5 rounded-full bg-gradient-to-r from-[#c73b2e] via-brand-orange to-[#f0a020] px-7 custom-label-bold text-white shadow-[0_12px_28px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:mt-5 sm:h-11 sm:px-8"
         >
           {cta.label}
           <span aria-hidden="true" className="text-lg leading-none">

@@ -16,14 +16,10 @@ import {
   researchWhyContent,
   researchWorkshopPanels,
   type ResearchWorkshopPanelContent,
-  type ResearchWorkshopPanelItem,
   type ResearchWorkshopProsePanel,
 } from "./research-why-data";
 
-const ITEM_STAGGER_MS = 100;
 const ITEM_FADE_MS = 500;
-
-const panelListClass = "flex flex-col gap-10 sm:gap-12 lg:gap-14";
 
 const panelShellClass =
   "flex w-full flex-col bg-custom-black px-8 py-10 sm:px-10 sm:py-12 lg:justify-center lg:px-12 lg:py-14 xl:px-14";
@@ -191,7 +187,7 @@ function WorkshopOptions({
             aria-selected={isActive}
             aria-controls={`${idPrefix}-workshop-panel-${slug}`}
             onClick={() => onSelect(label)}
-            className={`w-fit border-b-2 pt-3 pb-1 text-left text-lg font-bold transition-colors sm:pt-4 sm:pb-1.5 sm:text-xl ${
+            className={`w-fit border-b-2 pt-3 pb-1 text-left custom-xxs-title-bold transition-colors sm:pt-4 sm:pb-1.5 ${
               isActive
                 ? "border-brand-orange text-brand-orange"
                 : "border-transparent text-custom-black hover:text-custom-black/80"
@@ -209,15 +205,15 @@ function WorkshopProsePanelBody({ content }: { content: ResearchWorkshopProsePan
   return (
     <div className="flex max-w-2xl flex-col gap-6 sm:gap-7">
       {content.intro.map((paragraph) => (
-        <p key={paragraph} className={panelParagraphClass}>
+        <p key={paragraph} className="custom-body text-white">
           {paragraph}
         </p>
       ))}
 
       <div className="flex flex-col gap-6 sm:gap-7">
-        <h3 className={panelSubheadingClass}>{content.whyItMatters.heading}</h3>
+        <h3 className="custom-body-bold text-white">{content.whyItMatters.heading}</h3>
         {content.whyItMatters.paragraphs.map((paragraph) => (
-          <p key={paragraph} className={panelParagraphClass}>
+          <p key={paragraph} className="custom-body text-white">
             {paragraph}
           </p>
         ))}
@@ -225,7 +221,7 @@ function WorkshopProsePanelBody({ content }: { content: ResearchWorkshopProsePan
 
       {content.research && content.research.links.length > 0 ? (
         <div className="flex flex-col gap-4 sm:gap-5">
-          <h3 className={panelSubheadingClass}>{content.research.heading}</h3>
+          <h3 className="custom-body-bold text-white">{content.research.heading}</h3>
           <ul className="flex flex-col gap-3 sm:gap-4">
             {content.research.links.map(({ label, href }) => (
               <li key={label}>
@@ -233,7 +229,7 @@ function WorkshopProsePanelBody({ content }: { content: ResearchWorkshopProsePan
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={panelLinkClass}
+                  className="custom-body text-brand-orange hover:text-brand-orange-hover"
                 >
                   {label}
                 </a>
@@ -246,56 +242,6 @@ function WorkshopProsePanelBody({ content }: { content: ResearchWorkshopProsePan
   );
 }
 
-function WorkshopListPanelBody({
-  items,
-}: {
-  items: readonly ResearchWorkshopPanelItem[];
-}) {
-  return (
-    <ul className={panelListClass}>
-      {items.map(({ label, Icon }) => (
-        <li key={label} className="flex flex-col gap-4">
-          <Icon className="size-7 shrink-0 text-white" aria-hidden />
-          <p className="max-w-md text-base font-medium leading-snug text-white sm:text-lg sm:leading-7">
-            {label}
-          </p>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function WorkshopListPanelContent({
-  items,
-  activeKey,
-}: {
-  items: readonly ResearchWorkshopPanelItem[];
-  activeKey: string;
-}) {
-  const { listRef, revealed } = useStaggeredReveal<HTMLUListElement>(activeKey);
-
-  return (
-    <ul ref={listRef} className={panelListClass}>
-      {items.map(({ label, Icon }, index) => (
-        <li
-          key={label}
-          className={`flex flex-col gap-4 transition-[opacity,transform] ease-out motion-reduce:transition-none ${
-            revealed ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-          }`}
-          style={{
-            transitionDuration: `${ITEM_FADE_MS}ms`,
-            transitionDelay: revealed ? `${index * ITEM_STAGGER_MS}ms` : "0ms",
-          }}
-        >
-          <Icon className="size-7 shrink-0 text-white" aria-hidden />
-          <p className="max-w-md text-base font-medium leading-snug text-white sm:text-lg sm:leading-7">
-            {label}
-          </p>
-        </li>
-      ))}
-    </ul>
-  );
-}
 
 function WorkshopProsePanelContent({
   content,
@@ -321,12 +267,7 @@ function WorkshopProsePanelContent({
 
 function WorkshopPanelBody({ panel }: { panel: ResearchWorkshopPanelContent | undefined }) {
   if (!panel) return null;
-
-  if (panel.kind === "prose") {
-    return <WorkshopProsePanelBody content={panel} />;
-  }
-
-  return <WorkshopListPanelBody items={panel.items} />;
+  return <WorkshopProsePanelBody content={panel} />;
 }
 
 function WorkshopPanelContent({
@@ -337,12 +278,7 @@ function WorkshopPanelContent({
   activeKey: string;
 }) {
   if (!panel) return null;
-
-  if (panel.kind === "prose") {
-    return <WorkshopProsePanelContent content={panel} activeKey={activeKey} />;
-  }
-
-  return <WorkshopListPanelContent items={panel.items} activeKey={activeKey} />;
+  return <WorkshopProsePanelContent content={panel} activeKey={activeKey} />;
 }
 
 function WorkshopPanelMeasure({

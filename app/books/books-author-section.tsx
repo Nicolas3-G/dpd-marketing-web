@@ -24,13 +24,13 @@ export function BooksAuthorSection() {
         </div>
 
         <div className="max-w-2xl">
-          <p className="text-xs font-bold tracking-[0.2em] text-brand-orange">
+          <p className="custom-caption-2 uppercase text-brand-orange">
             ABOUT THE AUTHOR
           </p>
           <h2 className="mt-3 custom-md-title-bold">
             Kokoro V. Robinson
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-custom-black/85 sm:text-[17px] sm:leading-8">
+          <p className="mt-5 custom-body text-custom-black">
             Kokoro is the author of the DPD Framework book, a behavioral
             architect, and the creator of the Dreamer–Planner–Doer behavioral
             operating system. Over more than three decades in global talent
@@ -41,7 +41,7 @@ export function BooksAuthorSection() {
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/team"
-              className="text-base font-bold text-custom-black underline decoration-custom-black/80 underline-offset-[3px] transition hover:text-custom-black/70"
+              className="custom-body-sm-bold text-custom-black underline decoration-custom-black/80 underline-offset-[3px] transition hover:text-custom-black/70"
             >
               Meet the team
             </Link>
@@ -49,7 +49,7 @@ export function BooksAuthorSection() {
               href={BOOK_AMAZON_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-base font-bold text-brand-orange underline decoration-brand-orange/50 underline-offset-[3px] transition hover:text-brand-orange-hover"
+              className="custom-body-sm-bold text-brand-orange underline decoration-brand-orange/50 underline-offset-[3px] transition hover:text-brand-orange-hover"
             >
               Order on Amazon
             </a>
