@@ -26,31 +26,28 @@ const personas = [
     title: "The Dreamer Persona",
     description:
       "The Dreamer Persona helps teams expand beyond current constraints and imagine new possibilities. They open the field so teams can see what could exist before deciding what should be built.\n\nBest for when the team needs to explore, ideate, reframe, or see what could be.",
+    imageSrc: "/Dreamers/dreamer-wide.jpg",
+    imageAlt: "A dreamer persona.",
   },
   {
     tab: "Planners",
     title: "The Planner Persona",
     description:
       "The Planner Persona helps teams turn ideas into clear structure before action begins. They build the path so teams know how to move from possibility into coordinated action.\n\nBest used when the team needs to prioritize, design the path, assign ownership, or build the plan.",
-    imageSrc: "/Planners/planner-2.jpg",
-    imageAlt:
-      "A presenter explaining a chart on a whiteboard to a small group.",
+    imageSrc: "/Planners/planner-wide.jpg",
+    imageAlt: "A planner persona.",
   },
   {
     tab: "Doers",
     title: "The Doer Persona",
     description:
       "The Doer Persona helps teams move from discussion into focused action. They turn coordinated plans into visible progress and real results.\n\nBest used when the team needs to act, implement, follow through, and produce outcomes.",
-    imageSrc: "/Doers/doer-2.jpg",
-    imageAlt:
-      "Two professionals standing in a hallway reviewing work together on a laptop.",
+    imageSrc: "/Doers/doer-wide.jpg",
+    imageAlt: "A doer persona.",
   },
 ] as const;
 
-type Persona = (typeof personas)[number] & {
-  imageSrc?: string;
-  imageAlt?: string;
-};
+type Persona = (typeof personas)[number];
 
 function PersonaSlideContent({ persona }: { persona: Persona }) {
   const descriptionParagraphs = persona.description
@@ -77,7 +74,7 @@ function PersonaSlideContent({ persona }: { persona: Persona }) {
         <div className="relative aspect-4/3 w-full overflow-hidden lg:aspect-auto lg:min-h-[min(28rem,50vw)]">
           <Image
             src={persona.imageSrc}
-            alt={persona.imageAlt ?? persona.title}
+            alt={persona.imageAlt}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"

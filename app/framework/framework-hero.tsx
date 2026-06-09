@@ -1,10 +1,12 @@
+import Image from "next/image";
+
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
 const personaCards = [
-  { label: "Dreamers" },
-  { label: "Planners" },
-  { label: "Doers" },
+  { label: "Dreamer Persona", imageSrc: "/Dreamers/dreamer-vert.jpg" },
+  { label: "Planner Persona", imageSrc: "/Planners/planner-vert.jpg" },
+  { label: "Doer Persona", imageSrc: "/Doers/doer-vert.jpg" },
 ] as const;
 
 /** Framework page hero — edit here without affecting the homepage. */
@@ -32,12 +34,17 @@ export function FrameworkHero() {
         <hr className="mt-16 w-full border-t border-custom-black/20 sm:mt-20 lg:mt-24" />
 
         <div className="mt-16 grid w-full max-w-5xl grid-cols-1 gap-12 self-center sm:mt-20 sm:grid-cols-3 sm:gap-10 lg:mt-24 lg:gap-12">
-          {personaCards.map(({ label }) => (
+          {personaCards.map(({ label, imageSrc }) => (
             <figure key={label} className="flex flex-col items-center">
-              <div
-                className="aspect-square w-full max-w-44 bg-custom-black sm:max-w-48 lg:max-w-52"
-                aria-hidden
-              />
+              <div className="relative aspect-[3/4] w-full overflow-hidden">
+                <Image
+                  src={imageSrc}
+                  alt={label}
+                  fill
+                  sizes="(min-width: 640px) 15vw, 44vw"
+                  className="object-cover"
+                />
+              </div>
               <figcaption className="mt-3 custom-xs-title-bold text-custom-black">
                 {label}
               </figcaption>
