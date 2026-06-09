@@ -17,7 +17,7 @@ export function FrameworkHero() {
       <div
         className={`relative z-10 ${pageInset} flex flex-col pt-24 sm:pt-28 lg:pt-32`}
       >
-        <p className="custom-caption-2-bold text-custom-black">
+        <p className="custom-caption-bold text-custom-black">
           A Breakthrough in Cultural Science
         </p>
         <h1 className="mt-6 max-w-4xl custom-lg-title-bold leading-tight sm:mt-7">

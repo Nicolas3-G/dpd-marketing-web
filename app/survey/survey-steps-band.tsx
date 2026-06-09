@@ -43,7 +43,7 @@ export function SurveyStepsBand() {
                 key={step}
                 className="bg-white/5 px-12 py-12 text-white backdrop-blur-xl md:min-h-[280px] md:border-l md:border-white/25 md:px-20 md:py-16 first:md:border-l-0"
               >
-                <p className="custom-body-sm tracking-[-0.01em] text-white">
+                <p className="custom-body tracking-[-0.01em] text-white">
                   Step {step}
                 </p>
                 <h2 className="mt-2 max-w-[18ch] custom-sm-title text-white">

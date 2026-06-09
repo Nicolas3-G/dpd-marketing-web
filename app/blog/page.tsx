@@ -69,7 +69,7 @@ export default function BlogPage() {
           <div className="relative flex min-h-[380px] flex-col justify-center px-6 py-14 sm:px-10 lg:min-h-[min(85vh,640px)] lg:px-12 xl:px-16">
             <div className="relative z-10 flex max-w-xl flex-col gap-8">
               <div className="flex flex-col gap-3">
-                <h2 className="custom-sm-title-bold text-white">
+                <h2 className="custom-sm-title text-white">
                   {featuredPost.title}
                 </h2>
                 {featuredPost.subtext ? (

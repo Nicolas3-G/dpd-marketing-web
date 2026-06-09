@@ -160,7 +160,7 @@ function SurveyProgressBar({
           );
         })}
       </div>
-      <span className="shrink-0 custom-body-sm-bold tabular-nums text-custom-black">
+      <span className="shrink-0 custom-body-bold tabular-nums text-custom-black">
         {percent}%
       </span>
     </div>

@@ -42,10 +42,10 @@ export function BooksFeaturedSection() {
         </div>
 
         <div className="flex max-w-xl flex-col lg:max-w-none">
-          <p className="custom-caption-2 uppercase text-brand-orange">
+          <p className="custom-caption uppercase text-brand-orange">
             {overline}
           </p>
-          <h2 className="mt-2 custom-sm-title-bold">
+          <h2 className="mt-2 custom-sm-title">
             {title}
           </h2>
           <p className="mt-1.5 custom-body-bold text-custom-black">
@@ -56,19 +56,19 @@ export function BooksFeaturedSection() {
           </p>
           <dl className="mt-5 flex flex-col gap-2 border-t border-custom-black/10 pt-5 text-sm sm:text-base">
             <div className="flex flex-wrap gap-x-2 gap-y-1">
-              <dt className="custom-body-sm-bold text-custom-black">Author</dt>
+              <dt className="custom-body-bold text-custom-black">Author</dt>
               <dd>
                 <Link
                   href={authorHref}
-                  className="custom-body-sm text-custom-black underline decoration-custom-black/30 underline-offset-[3px] transition hover:text-brand-orange hover:decoration-brand-orange/50"
+                  className="custom-body text-custom-black underline decoration-custom-black/30 underline-offset-[3px] transition hover:text-brand-orange hover:decoration-brand-orange/50"
                 >
                   {author}
                 </Link>
               </dd>
             </div>
             <div className="flex flex-wrap gap-x-2 gap-y-1">
-              <dt className="custom-body-sm-bold text-custom-black">Format</dt>
-              <dd className="custom-body-sm text-custom-black">{format}</dd>
+              <dt className="custom-body-bold text-custom-black">Format</dt>
+              <dd className="custom-body text-custom-black">{format}</dd>
             </div>
           </dl>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">

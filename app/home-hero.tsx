@@ -567,7 +567,7 @@ export function HomeHero() {
         style={{ transitionDuration: `${FADE_MS}ms` }}
         aria-hidden={!contentVisible}
       >
-        <p className="custom-caption-2-bold uppercase text-light">
+        <p className="custom-caption-bold uppercase text-light">
           Discover your persona
         </p>
         <h1 className="mt-6 max-w-4xl custom-lg-title-bold leading-tight">
