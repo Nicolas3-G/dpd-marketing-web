@@ -74,7 +74,7 @@ function PersonaSlideContent({ persona }: { persona: Persona }) {
         <div className="relative aspect-4/3 w-full overflow-hidden lg:aspect-auto lg:min-h-[min(28rem,50vw)]">
           <Image
             src={persona.imageSrc}
-            alt={persona.imageAlt ?? persona.title}
+            alt={persona.imageAlt}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"
