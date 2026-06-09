@@ -95,12 +95,12 @@ function ClosingCard({
       }}
     >
       <h3 className="custom-xs-title-bold">{title}</h3>
-      <p className="mt-4 custom-body-sm text-custom-black">
+      <p className="mt-4 custom-body text-custom-black">
         {description}
       </p>
       <a
         href={href}
-        className="mt-auto pt-10 custom-body-sm text-custom-black underline decoration-custom-black/80 underline-offset-[3px] transition hover:text-custom-black/70"
+        className="mt-auto pt-10 custom-body text-custom-black underline decoration-custom-black/80 underline-offset-[3px] transition hover:text-custom-black/70"
       >
         {linkLabel}
       </a>
@@ -120,7 +120,7 @@ export function WebinarsClosingSection() {
     >
       <div className={pageInset}>
         <div className="flex flex-col items-center text-center">
-          <h2 className="custom-sm-title-bold max-w-4xl">{heading}</h2>
+          <h2 className="custom-sm-title max-w-4xl">{heading}</h2>
           <p className="mt-5 max-w-2xl custom-body text-custom-black">
             {description}
           </p>

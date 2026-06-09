@@ -24,7 +24,7 @@ export function BooksAuthorSection() {
         </div>
 
         <div className="max-w-2xl">
-          <p className="custom-caption-2 uppercase text-brand-orange">
+          <p className="custom-caption uppercase text-brand-orange">
             ABOUT THE AUTHOR
           </p>
           <h2 className="mt-3 custom-md-title-bold">
@@ -41,7 +41,7 @@ export function BooksAuthorSection() {
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/team"
-              className="custom-body-sm-bold text-custom-black underline decoration-custom-black/80 underline-offset-[3px] transition hover:text-custom-black/70"
+              className="custom-body-bold text-custom-black underline decoration-custom-black/80 underline-offset-[3px] transition hover:text-custom-black/70"
             >
               Meet the team
             </Link>
@@ -49,7 +49,7 @@ export function BooksAuthorSection() {
               href={BOOK_AMAZON_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="custom-body-sm-bold text-brand-orange underline decoration-brand-orange/50 underline-offset-[3px] transition hover:text-brand-orange-hover"
+              className="custom-body-bold text-brand-orange underline decoration-brand-orange/50 underline-offset-[3px] transition hover:text-brand-orange-hover"
             >
               Order on Amazon
             </a>

@@ -157,7 +157,7 @@ export function ResearchHeroScienceCard({
   const Graphic = CARD_GRAPHICS[graphic];
   return (
     <div className="flex h-full flex-col overflow-hidden p-6 sm:p-7">
-      <span className="inline-flex w-fit rounded-full border border-brand-orange px-3 py-1 custom-caption-2 text-brand-orange">
+      <span className="inline-flex w-fit rounded-full border border-brand-orange px-3 py-1 custom-caption text-brand-orange">
         {tag}
       </span>
       <h3 className={`${displaySerif.className} mt-4 custom-sm-title text-custom-black sm:mt-5`}>

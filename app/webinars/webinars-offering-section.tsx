@@ -92,7 +92,7 @@ function OfferingCard({
           return (
             <li
               key={bullet}
-              className={`flex gap-2.5 custom-body-sm leading-relaxed text-white transition-[opacity,transform] ease-out motion-reduce:transition-none ${
+              className={`flex gap-2.5 custom-body leading-relaxed text-white transition-[opacity,transform] ease-out motion-reduce:transition-none ${
                 revealed
                   ? "translate-y-0 opacity-100"
                   : "translate-y-4 opacity-0"

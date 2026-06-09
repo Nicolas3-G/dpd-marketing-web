@@ -88,7 +88,7 @@ export function TeamMemberGrid({
             >
               <p
                 className={joinClasses(
-                  "custom-body-sm-bold leading-snug text-custom-black",
+                  "custom-body-bold  leading-snug text-red",
                   hasBio && "cursor-default",
                 )}
               >

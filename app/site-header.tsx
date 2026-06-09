@@ -500,8 +500,8 @@ export function SiteHeader() {
 
   const navLinkClass =
     navOnDark && !barSolid
-      ? "inline-flex items-center custom-caption-2 self-stretch transition-colors duration-300 ease-out hover:text-white/75"
-      : "inline-flex items-center custom-caption-2 self-stretch transition-colors duration-300 ease-out hover:text-custom-black/65";
+      ? "inline-flex items-center custom-caption self-stretch transition-colors duration-300 ease-out hover:text-white/75"
+      : "inline-flex items-center custom-caption self-stretch transition-colors duration-300 ease-out hover:text-custom-black/65";
 
   const ctaPillClass =
     navOnDark && !barSolid

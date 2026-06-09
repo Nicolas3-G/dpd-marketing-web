@@ -58,13 +58,8 @@ body {
 }
 
 @utility custom-sm-title {
-  @apply text-2xl tracking-tighter font-semibold sm:text-3xl lg:text-4xl;
-}
-
-@utility custom-sm-title-bold {
   @apply text-2xl tracking-tighter font-bold sm:text-3xl lg:text-4xl;
 }
-
 
 @utility custom-xs-title {
   @apply text-lg tracking-tighter font-medium sm:text-2xl lg:text-3xl;
@@ -93,18 +88,10 @@ body {
 }
 
 @utility custom-caption {
-  @apply text-xs font-medium;
-}
-
-@utility custom-caption-bold {
-  @apply text-xs font-bold;
-}
-
-@utility custom-caption-2 {
   @apply text-sm font-medium tracking-[0.28em];
 }
 
-@utility custom-caption-2-bold {
+@utility custom-caption-bold {
   @apply text-sm font-semibold tracking-[0.28em];
 }
 
@@ -129,13 +116,6 @@ body {
   @apply text-base font-bold leading-6 sm:text-lg sm:leading-7;
 }
 
-@utility custom-body-sm {
-  @apply text-sm font-medium leading-5 sm:text-base sm:leading-6;
-}
-
-@utility custom-body-sm-bold {
-  @apply text-sm font-bold leading-5 sm:text-base sm:leading-6;
-}
 
 .card-strip {
   --card-gap: 1.5rem;

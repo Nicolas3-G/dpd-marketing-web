@@ -17,7 +17,7 @@ export function BooksHero() {
       <div
         className={`relative z-10 ${pageInset} flex flex-col items-center justify-center py-20 pt-24 text-center sm:py-24 sm:pt-28 lg:py-28 lg:pt-32`}
       >
-        <p className="custom-caption-2-bold uppercase text-light">
+        <p className="custom-caption-bold uppercase text-light">
           {eyebrow}
         </p>
         <h1 className="mt-6 max-w-4xl custom-lg-title-bold leading-tight">

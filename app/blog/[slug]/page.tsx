@@ -56,7 +56,7 @@ function ArticleBody({ post }: { post: BlogPost }) {
           return (
             <h2
               key={index}
-              className="mt-4 text-left custom-sm-title-bold text-custom-black first:mt-0 sm:mt-6 sm:text-2xl"
+              className="mt-4 text-left custom-sm-title text-custom-black first:mt-0 sm:mt-6 sm:text-2xl"
             >
               {block.text}
             </h2>
@@ -121,7 +121,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
               <div className="mt-8 sm:mt-10">
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-                  <p className="text-left custom-body-sm text-light">
+                  <p className="text-left custom-body text-light">
                     <span>{post.date}</span>
                     <span className="mx-2" aria-hidden>
                       -
@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </span>
                   </p>
 
-                  <p className="custom-caption uppercase tracking-[0.14em] text-light sm:text-right">
+                  <p className="custom-label uppercase tracking-[0.14em] text-light sm:text-right">
                     Share this article
                   </p>
                 </div>

@@ -28,7 +28,7 @@ export function WebinarsCtaSection() {
       />
 
       <div className={`relative z-10 ${pageInset}`}>
-        <h2 className="custom-sm-title-bold">
+        <h2 className="custom-sm-title">
           {headingLines.map((line) => (
             <span key={line} className="block">
               {line}

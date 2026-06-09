@@ -245,14 +245,14 @@ export default function Home() {
                     ) : null}
                   </p>
                 </div>
-                <p className="max-w-sm custom-body-sm-bold text-white-light sm:pt-5">
+                <p className="max-w-sm custom-body-bold text-white-light sm:pt-5">
                   {metric.label}
                 </p>
               </div>
             ))}
           </div>
 
-          <p className="mt-5 custom-caption italic text-white-light">
+          <p className="mt-5 custom-label italic text-white-light">
             *Illustrative model of possibility. Results depend on adoption,
             leadership participation, and consistent DPDing.
           </p>
@@ -328,14 +328,14 @@ export default function Home() {
                     className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
-                  <span className="absolute left-4 top-4 z-10 rounded-sm bg-custom-black/50 px-3 py-1 custom-caption-bold text-white backdrop-blur-sm tracking-widest">
+                  <span className="absolute left-4 top-4 z-10 rounded-sm bg-custom-black/50 px-3 py-1 custom-label-bold text-white backdrop-blur-sm tracking-widest">
                     {option.tag}
                   </span>
                 </div>
                 <h3 className="mt-5 custom-xxs-title leading-7">
                   {option.title}
                 </h3>
-                <p className="mt-4 custom-body-sm text-custom-black">
+                <p className="mt-4 custom-body text-custom-black">
                   {option.description}
                 </p>
               </article>

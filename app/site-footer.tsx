@@ -140,7 +140,7 @@ export function SiteFooter() {
                 ))}
               </ul>
 
-              <p className="ml-auto text-right custom-caption text-white-light">
+              <p className="ml-auto text-right custom-label text-white-light">
                 Copyright © 2025 DPD Framework - All Rights Reserved.
               </p>
             </div>

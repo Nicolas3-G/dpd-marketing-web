@@ -8,7 +8,7 @@ function ProcessStep({
   return (
     <li className="flex gap-5 sm:gap-7">
       <span
-        className="shrink-0 custom-sm-title-bold tabular-nums text-brand-orange"
+        className="shrink-0 custom-sm-title tabular-nums text-brand-orange"
         aria-hidden
       >
         {number}.
@@ -17,7 +17,7 @@ function ProcessStep({
         <h3 className="custom-body-bold text-custom-black">
           {title}
         </h3>
-        <p className="mt-2 custom-body-sm text-text-light">
+        <p className="mt-2 custom-body text-text-light">
           {description}
         </p>
       </div>
@@ -46,12 +46,12 @@ export function WebinarsProcessSection() {
               className="h-0.5 w-6 shrink-0 bg-brand-orange sm:w-7"
               aria-hidden
             />
-            <p className="custom-caption-2-bold uppercase text-brand-orange">
+            <p className="custom-caption-bold uppercase text-brand-orange">
               {overline}
             </p>
           </div>
 
-          <h2 className="mt-4 custom-sm-title-bold">
+          <h2 className="mt-4 custom-sm-title">
             {heading}
           </h2>
 

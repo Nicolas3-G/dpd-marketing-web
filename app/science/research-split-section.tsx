@@ -29,7 +29,7 @@ export function ResearchSplitSection({
 
   const textColumn = (
     <div className="flex max-w-xl flex-col lg:max-w-none">
-      <p className="custom-caption-2-bold text-brand-orange">
+      <p className="custom-caption-bold text-brand-orange">
         {overline}
       </p>
       <h2 className="mt-3 custom-md-title-bold leading-[1.08] lg:leading-[1.06]">

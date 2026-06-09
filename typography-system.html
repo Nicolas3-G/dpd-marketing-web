@@ -238,8 +238,7 @@
     .specimen-lg-bold { font-size: 28px; font-weight: 700; letter-spacing: -.04em; line-height: 1; color: var(--custom-black); }
     .specimen-md      { font-size: 22px; font-weight: 500; letter-spacing: -.04em; line-height: 1; color: var(--custom-black); }
     .specimen-md-bold { font-size: 22px; font-weight: 700; letter-spacing: -.04em; line-height: 1; color: var(--custom-black); }
-    .specimen-sm      { font-size: 17px; font-weight: 600; letter-spacing: -.03em; line-height: 1; color: var(--custom-black); }
-    .specimen-sm-bold { font-size: 17px; font-weight: 700; letter-spacing: -.03em; line-height: 1; color: var(--custom-black); }
+    .specimen-sm      { font-size: 17px; font-weight: 700; letter-spacing: -.03em; line-height: 1; color: var(--custom-black); }
     .specimen-xs       { font-size: 14px; font-weight: 500; letter-spacing: -.03em; line-height: 1; color: var(--custom-black); }
     .specimen-xs-bold  { font-size: 14px; font-weight: 700; letter-spacing: -.03em; line-height: 1; color: var(--custom-black); }
     .specimen-xxs      { font-size: 13px; font-weight: 500; letter-spacing: -.02em; line-height: 1; color: var(--custom-black); }
@@ -252,12 +251,10 @@
     .specimen-body-sm { font-size: 12px; font-weight: 500; line-height: 1.5; color: var(--custom-black); }
     .specimen-body-sm-bold { font-size: 12px; font-weight: 700; line-height: 1.5; color: var(--custom-black); }
 
-    .specimen-label    { font-size: 12px; font-weight: 400; color: var(--custom-black); }
-    .specimen-label-bold { font-size: 12px; font-weight: 700; color: var(--custom-black); }
-    .specimen-caption  { font-size: 10px; font-weight: 500; color: var(--custom-black); }
-    .specimen-caption-bold { font-size: 10px; font-weight: 700; color: var(--custom-black); }
-    .specimen-caption-2 { font-size: 12px; font-weight: 500; letter-spacing: .28em; color: var(--custom-black); text-transform: uppercase; }
-    .specimen-caption-2-bold { font-size: 12px; font-weight: 600; letter-spacing: .28em; color: var(--custom-black); text-transform: uppercase; }
+    .specimen-label       { font-size: 12px; font-weight: 400; color: var(--custom-black); }
+    .specimen-label-bold  { font-size: 12px; font-weight: 700; color: var(--custom-black); }
+    .specimen-caption     { font-size: 12px; font-weight: 500; letter-spacing: .28em; color: var(--custom-black); text-transform: uppercase; }
+    .specimen-caption-bold { font-size: 12px; font-weight: 600; letter-spacing: .28em; color: var(--custom-black); text-transform: uppercase; }
 
     /* ── Responsive note ── */
     .responsive-note {
@@ -425,13 +422,6 @@
         <div class="scale-row">
           <span class="token">custom-sm-title</span>
           <span class="specimen-sm">Card Heading</span>
-          <span class="weight-pill"><span class="weight-dot semi"></span>Semibold 600</span>
-          <span class="size-pill"><span class="base">text-2xl</span>1.5rem · 24px</span>
-          <span class="size-pill"><span class="base">text-4xl</span>2.25rem · 36px</span>
-        </div>
-        <div class="scale-row">
-          <span class="token">custom-sm-title-bold</span>
-          <span class="specimen-sm-bold">Card Heading</span>
           <span class="weight-pill"><span class="weight-dot bold"></span>Bold 700</span>
           <span class="size-pill"><span class="base">text-2xl</span>1.5rem · 24px</span>
           <span class="size-pill"><span class="base">text-4xl</span>2.25rem · 36px</span>
@@ -509,23 +499,6 @@
         </div>
       </div>
 
-      <div class="scale-pair">
-        <div class="scale-row">
-          <span class="token">custom-body-sm</span>
-          <span class="specimen-body-sm">The quick brown fox jumps over the lazy dog.</span>
-          <span class="weight-pill"><span class="weight-dot medium"></span>Medium 500</span>
-          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
-          <span class="size-pill"><span class="base">text-base</span>1rem · 16px</span>
-        </div>
-        <div class="scale-row">
-          <span class="token">custom-body-sm-bold</span>
-          <span class="specimen-body-sm-bold">The quick brown fox jumps over the lazy dog.</span>
-          <span class="weight-pill"><span class="weight-dot bold"></span>Bold 700</span>
-          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
-          <span class="size-pill"><span class="base">text-base</span>1rem · 16px</span>
-        </div>
-      </div>
-
       <!-- Labels & Captions -->
       <div class="scale-row-divider">Labels &amp; Captions</div>
 
@@ -533,7 +506,7 @@
         <div class="scale-row">
           <span class="token">custom-label</span>
           <span class="specimen-label">UI Label</span>
-          <span class="weight-pill"><span class="weight-dot medium"></span>Regular 400</span>
+          <span class="weight-pill"><span class="weight-dot"></span>Normal 400</span>
           <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
           <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
         </div>
@@ -549,31 +522,14 @@
       <div class="scale-pair">
         <div class="scale-row">
           <span class="token">custom-caption</span>
-          <span class="specimen-caption">Caption text</span>
+          <span class="specimen-caption">Eyebrow Label</span>
           <span class="weight-pill"><span class="weight-dot medium"></span>Medium 500</span>
-          <span class="size-pill"><span class="base">text-xs</span>0.75rem · 12px</span>
-          <span class="size-pill"><span class="base">text-xs</span>0.75rem · 12px</span>
+          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
+          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
         </div>
         <div class="scale-row">
           <span class="token">custom-caption-bold</span>
-          <span class="specimen-caption-bold">Caption text</span>
-          <span class="weight-pill"><span class="weight-dot bold"></span>Bold 700</span>
-          <span class="size-pill"><span class="base">text-xs</span>0.75rem · 12px</span>
-          <span class="size-pill"><span class="base">text-xs</span>0.75rem · 12px</span>
-        </div>
-      </div>
-
-      <div class="scale-pair">
-        <div class="scale-row">
-          <span class="token">custom-caption-2</span>
-          <span class="specimen-caption-2">Eyebrow Label</span>
-          <span class="weight-pill"><span class="weight-dot medium"></span>Medium 500</span>
-          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
-          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
-        </div>
-        <div class="scale-row">
-          <span class="token">custom-caption-2-bold</span>
-          <span class="specimen-caption-2-bold">Eyebrow Label</span>
+          <span class="specimen-caption-bold">Eyebrow Label</span>
           <span class="weight-pill"><span class="weight-dot semi"></span>Semibold 600</span>
           <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
           <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>

@@ -19,7 +19,7 @@ export default function SurveyPage() {
         <div className={`${pageInset} relative`}>
           <header className="mx-auto flex max-w-1xl flex-col items-center text-center">
             <p
-              className="custom-sm-title-bold text-brand-orange"
+              className="custom-sm-title text-brand-orange"
               aria-label="DPD Framework"
             >
               DPD Framework
@@ -27,7 +27,7 @@ export default function SurveyPage() {
             <h1 className="mt-4 custom-lg-title-bold">
               Free Persona Survey
             </h1>
-            <p className="mt-3 custom-body-sm-bold uppercase tracking-[0.08em] text-light">
+            <p className="mt-3 custom-body-bold uppercase tracking-[0.08em] text-light">
               DPD Persona Explorer®
             </p>
           </header>
