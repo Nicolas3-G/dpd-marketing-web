@@ -2,9 +2,9 @@ const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
 const personaCards = [
-  { label: "Dreamers" },
-  { label: "Planners" },
-  { label: "Doers" },
+  { label: "Dreamer Persona" },
+  { label: "Planner Persona" },
+  { label: "Doer Persona" },
 ] as const;
 
 /** Framework page hero — edit here without affecting the homepage. */

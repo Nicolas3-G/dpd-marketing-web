@@ -68,21 +68,28 @@ function useSectionStaggeredReveal() {
 
 function OfferingCard({
   title,
+  imageSrc,
   bullets,
   revealed,
   staggerOffset,
 }: {
   title: string;
+  imageSrc: string;
   bullets: readonly string[];
   revealed: boolean;
   staggerOffset: number;
 }) {
   return (
     <article className="flex h-full flex-col rounded-xl border border-white/12 bg-white/5 p-5 sm:p-6 lg:rounded-2xl lg:p-7">
-      <div
-        className="mx-auto aspect-4/3 w-[82%] max-w-full shrink-0 bg-custom-black sm:w-[78%]"
-        aria-hidden
-      />
+      <div className="relative mx-auto aspect-4/3 w-[82%] max-w-full shrink-0 overflow-hidden sm:w-[78%]">
+        <Image
+          src={imageSrc}
+          alt=""
+          fill
+          sizes="(min-width: 768px) 25vw, 70vw"
+          className="object-cover"
+        />
+      </div>
       <h3 className="mt-5 custom-body-bold text-white sm:mt-6">
         {title}
       </h3>
@@ -163,6 +170,7 @@ export function WebinarsOfferingSection() {
             <OfferingCard
               key={card.title}
               title={card.title}
+              imageSrc={card.imageSrc}
               bullets={card.bullets}
               revealed={revealed}
               staggerOffset={offset}
