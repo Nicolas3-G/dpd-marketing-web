@@ -4,6 +4,7 @@ import { ResearchConfidenceSection } from "./research-confidence-section";
 import { ResearchHero } from "./research-hero";
 import { ResearchEmbedSection } from "./research-embed-section";
 import { ResearchScaleSection } from "./research-scale-section";
+import { ResearchTabActivator } from "./research-tab-activator";
 import {
   ResearchWhyReversedSection,
   ResearchWhySection,
@@ -11,7 +12,13 @@ import {
 
 export const metadata = createPageMetadata("Science");
 
-export default function SciencePage() {
+export default async function SciencePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tab?: string; section?: string }>;
+}) {
+  const { tab, section } = await searchParams;
+
   return (
     <main className="flex-1 overflow-x-clip bg-background">
       <ResearchHero />
@@ -20,6 +27,9 @@ export default function SciencePage() {
       <ResearchEmbedSection />
       <ResearchWhySection />
       <ResearchWhyReversedSection />
+      {tab && section ? (
+        <ResearchTabActivator tab={tab} section={section} />
+      ) : null}
     </main>
   );
 }

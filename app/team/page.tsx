@@ -85,7 +85,7 @@ export default function TeamPage() {
             </p>
           </div>
 
-          <div className="min-w-0 overflow-x-clip">
+          <div className="min-w-0">
             <TeamMemberGrid members={executiveTeam} />
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function TeamPage() {
             </p>
           </div>
 
-          <div className="min-w-0 overflow-x-clip">
+          <div className="min-w-0">
             <TeamMemberGrid members={restOfTeam} />
           </div>
         </div>

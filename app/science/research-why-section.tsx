@@ -13,6 +13,10 @@ import {
   researchWhyReversedWorkshopPanels,
 } from "./research-why-reversed-data";
 import {
+  SELECT_RESEARCH_TAB_EVENT,
+  type SelectResearchTabDetail,
+} from "./research-hero-science-card";
+import {
   researchWhyContent,
   researchWorkshopPanels,
   type ResearchWorkshopPanelContent,
@@ -37,14 +41,6 @@ type ResearchWhySectionLayoutProps = {
   reversed?: boolean;
 };
 
-const panelParagraphClass =
-  "text-base font-medium leading-relaxed text-white/90 sm:text-lg sm:leading-7";
-
-const panelSubheadingClass =
-  "text-base font-bold text-white sm:text-lg";
-
-const panelLinkClass =
-  "text-base font-medium text-brand-orange transition-colors hover:text-brand-orange-hover sm:text-lg";
 
 function workshopTabSlug(workshopId: string) {
   return workshopId.replace(/\s+/g, "-").toLowerCase();
@@ -415,6 +411,20 @@ export function ResearchWhySectionLayout({
 }: ResearchWhySectionLayoutProps) {
   const { heading, workshops } = content;
   const [activeWorkshop, setActiveWorkshop] = useState(workshops[0]);
+
+  useEffect(() => {
+    function handleSelectTab(e: Event) {
+      const { sectionId: targetSection, workshopLabel } = (
+        e as CustomEvent<SelectResearchTabDetail>
+      ).detail;
+      if (targetSection !== sectionId) return;
+      const match = workshops.find((w) => w === workshopLabel);
+      if (match) setActiveWorkshop(match);
+    }
+
+    window.addEventListener(SELECT_RESEARCH_TAB_EVENT, handleSelectTab);
+    return () => window.removeEventListener(SELECT_RESEARCH_TAB_EVENT, handleSelectTab);
+  }, [sectionId, workshops]);
 
   useEffect(() => {
     if (!panels[activeWorkshop]) {

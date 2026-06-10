@@ -48,13 +48,13 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-wrap gap-2">
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className="inline-flex h-9 min-h-9 items-center justify-center rounded-full bg-brand-orange px-4 custom-label-bold text-white shadow-[0_8px_20px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
                 >
                   Talk to our team
                 </Link>
                 <Link
-                  href="/#services"
+                  href="/framework"
                   className="inline-flex h-9 min-h-9 items-center justify-center rounded-full border border-custom-black bg-transparent px-4 custom-label-bold text-custom-black transition hover:-translate-y-0.5 hover:bg-custom-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
                 >
                   Explore the platform
@@ -118,14 +118,8 @@ export default function AboutPage() {
           className={`${pageInset} pb-16 pt-6 sm:pb-20 sm:pt-8 lg:pb-28 lg:pt-10`}
         >
           <div className="flex max-w-4xl flex-col gap-6 sm:gap-8">
-            <div className="flex items-center gap-2.5 text-custom-black">
-              <span
-                className="shrink-0 text-2xl font-bold leading-none sm:text-3xl"
-                aria-hidden
-              >
-                •
-              </span>
-              <h2 className="custom-sm-title font-normal leading-none tracking-normal sm:text-2xl">
+            <div className="flex items-center gap-2.5">
+              <h2 className="custom-sm-title font-normal leading-none tracking-normal text-brand-orange sm:text-2xl">
                 Our mission
               </h2>
             </div>

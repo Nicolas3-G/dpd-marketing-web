@@ -62,16 +62,16 @@ const platformMegaLinks: MegaLink[] = [
 ];
 
 const productsMegaLinks: MegaLink[] = [
-  {
-    label: "Reports",
-    href: "/reports",
-    preview: {
-      eyebrow: "Reports",
-      title: "Research reports and insights",
-      image: "/scroll-cards/card-4.jpg",
-      imageAlt: "",
-    },
-  },
+  // {
+  //   label: "Reports",
+  //   href: "/reports",
+  //   preview: {
+  //     eyebrow: "Reports",
+  //     title: "Research reports and insights",
+  //     image: "/scroll-cards/card-4.jpg",
+  //     imageAlt: "",
+  //   },
+  // },
   {
     label: "Webinars",
     href: "/webinars",
@@ -88,7 +88,7 @@ const productsMegaLinks: MegaLink[] = [
     preview: {
       eyebrow: "Books",
       title: "Publications from the DPD team",
-      image: "/scroll-cards/card-6.jpg",
+      image: "/products/DPD Book Mockup.png",
       imageAlt: "",
     },
   },
@@ -483,10 +483,10 @@ export function SiteHeader() {
   const barSolid = menuHover;
 
   const headerSurface = barSolid
-    ? "border-b border-custom-black bg-background shadow-[0_18px_45px_rgba(0,0,0,0.18)] backdrop-blur-2xl transition-[border-color,box-shadow,background-color] duration-300 ease-out"
+    ? "border-b border-custom-black bg-background shadow-[0_9px_22px_rgba(0,0,0,0.18)] backdrop-blur-2xl transition-[border-color,box-shadow,background-color] duration-300 ease-out"
     : navOnDark
-      ? "border-b border-gray-400/90 bg-transparent shadow-[0_18px_45px_rgba(0,0,0,0.35)] backdrop-blur-2xl transition-[border-color,box-shadow,background-color] duration-300 ease-out"
-      : "border-b border-custom-black bg-background/45 shadow-[0_18px_45px_rgba(0,0,0,0.18)] backdrop-blur-2xl transition-[border-color,box-shadow,background-color] duration-300 ease-out";
+      ? "border-b border-gray-400/90 bg-transparent shadow-[0_9px_22px_rgba(0,0,0,0.35)] backdrop-blur-2xl transition-[border-color,box-shadow,background-color] duration-300 ease-out"
+      : "border-b border-custom-black bg-background/45 shadow-[0_9px_22px_rgba(0,0,0,0.18)] backdrop-blur-2xl transition-[border-color,box-shadow,background-color] duration-300 ease-out";
 
   const logoClass =
     navOnDark && !barSolid
@@ -609,7 +609,7 @@ export function SiteHeader() {
             />
             <MegaMenuNavItem
               triggerLabel="Products"
-              triggerHref="/reports"
+              triggerHref="/webinars"
               links={productsMegaLinks}
               panelId="site-header-products-menu"
               ariaLabel="Products menu"
