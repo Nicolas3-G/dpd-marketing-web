@@ -1,6 +1,7 @@
 import { FaCheck } from "react-icons/fa6";
 
 import type { ResearchSplitContent } from "./research-confidence-data";
+import { LoopingVideo } from "./looping-video";
 
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
@@ -17,6 +18,7 @@ type ResearchSplitSectionProps = {
   content: ResearchSplitContent;
   reversed?: boolean;
   stackPosition?: ResearchSplitStackPosition;
+  videoSrc?: string;
 };
 
 /** Two-column section: copy + black placeholder card (optional reversed layout). */
@@ -24,6 +26,7 @@ export function ResearchSplitSection({
   content,
   reversed = false,
   stackPosition = "middle",
+  videoSrc,
 }: ResearchSplitSectionProps) {
   const { overline, heading, lead, body, bullets } = content;
 
@@ -60,7 +63,14 @@ export function ResearchSplitSection({
       className="min-h-[min(28rem,50vw)] w-full lg:min-h-0 lg:h-full"
       aria-hidden
     >
-      <div className="h-full min-h-[min(28rem,50vw)] w-full rounded-2xl bg-black lg:min-h-0" />
+      {videoSrc ? (
+        <LoopingVideo
+          src={videoSrc}
+          className="h-full min-h-[min(28rem,50vw)] w-full rounded-2xl object-cover lg:min-h-0"
+        />
+      ) : (
+        <div className="h-full min-h-[min(28rem,50vw)] w-full rounded-2xl bg-black lg:min-h-0" />
+      )}
     </div>
   );
 

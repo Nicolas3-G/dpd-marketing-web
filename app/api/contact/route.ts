@@ -1,12 +1,10 @@
 import { NextResponse } from "next/server";
 
-import { getEmailjsErrorMessage } from "@/lib/emailjs-errors";
 import {
-  getEmailjsConfigStatus,
-  isEmailjsConfigured,
+  isResendConfigured,
   sendContactEmail,
   type ContactPayload,
-} from "@/lib/emailjs";
+} from "@/lib/resend";
 
 function parsePayload(body: unknown): ContactPayload | null {
   if (!body || typeof body !== "object") return null;
@@ -19,50 +17,18 @@ function parsePayload(body: unknown): ContactPayload | null {
   const phone = String(raw.phone ?? "").trim();
   const company = String(raw.company ?? "").trim();
 
-  if (
-    !email ||
-    !firstName ||
-    !lastName ||
-    !jobTitle ||
-    !phone ||
-    !company ||
-    !email.includes("@")
-  ) {
+  if (!email || !firstName || !lastName || !jobTitle || !phone || !company || !email.includes("@")) {
     return null;
   }
 
   return { email, firstName, lastName, jobTitle, phone, company };
 }
 
-function serverErrorResponse(error: unknown) {
-  const detail = getEmailjsErrorMessage(error);
-  console.error("[api/contact] EmailJS send failed:", error);
-
-  const isDev = process.env.NODE_ENV === "development";
-
-  return NextResponse.json(
-    {
-      error: isDev
-        ? detail
-        : "Failed to send message. Please try again later.",
-      ...(isDev && { detail }),
-    },
-    { status: 500 },
-  );
-}
-
 export async function POST(request: Request) {
-  if (!isEmailjsConfigured()) {
-    const { missing } = getEmailjsConfigStatus();
+  if (!isResendConfigured()) {
     const isDev = process.env.NODE_ENV === "development";
-
     return NextResponse.json(
-      {
-        error: isDev
-          ? `Contact form is not configured. Missing: ${missing.join(", ")}`
-          : "Contact form is not configured.",
-        ...(isDev && { missing }),
-      },
+      { error: isDev ? "Contact form is not configured. Missing: RESEND_API_KEY" : "Contact form is not configured." },
       { status: 503 },
     );
   }
@@ -76,16 +42,19 @@ export async function POST(request: Request) {
 
   const payload = parsePayload(body);
   if (!payload) {
-    return NextResponse.json(
-      { error: "Please fill in all required fields." },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "Please fill in all required fields." }, { status: 400 });
   }
 
   try {
     await sendContactEmail(payload);
     return NextResponse.json({ ok: true });
   } catch (error) {
-    return serverErrorResponse(error);
+    const isDev = process.env.NODE_ENV === "development";
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("[api/contact] Resend send failed:", error);
+    return NextResponse.json(
+      { error: isDev ? message : "Failed to send message. Please try again later." },
+      { status: 500 },
+    );
   }
 }

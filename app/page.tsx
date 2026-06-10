@@ -1,10 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaChartLine, FaFingerprint, FaUsers } from "react-icons/fa";
 
 import { createPageMetadata } from "@/lib/metadata";
 import { HomeHero } from "./home-hero";
-import { ParallaxBackground, ParallaxImage } from "./parallax-background";
+import { ParallaxImage } from "./parallax-background";
+import { ScienceBanner } from "./science-banner";
 import { ScrollCardStrip } from "./scroll-card-strip";
+import { TransformationSection } from "./transformation-section";
 
 export const metadata = createPageMetadata("Home");
 
@@ -66,40 +69,15 @@ export default function Home() {
       Icon: FaChartLine,
     },
   ];
-  const transformationMetrics = [
-    {
-      direction: "up",
-      value: "75",
-      suffix: "%",
-      label: "Improvement in team behavior coordination",
-    },
-    {
-      direction: "up",
-      value: "50",
-      suffix: "%",
-      label: "Reduction in decision latency",
-    },
-    {
-      direction: "down",
-      value: "60",
-      suffix: "%",
-      label: "Improvement in communication efficiency",
-    },
-    {
-      direction: "up",
-      value: "70",
-      suffix: "%",
-      label: "Improvement in team alignment",
-    },
-  ];
   const platformOptions = [
     {
       tag: "SCIENCE",
-      title: "Priming Theory",
+      title: "Flow Theory",
       image: "/science-cards/card-1.jpg",
-      imageAlt: "Priming Theory",
+      imageAlt: "Flow Theory",
       description:
-        "Activated by: Dreaming, Planning, Doing cues, meeting mode priming, and persona prompts.",
+        "Activated by DPD: clear meeting modes, persona alignment, shared purpose, and synchronized action.",
+      href: "/science?tab=Flow+Theory&section=research-why#research-why",
     },
     {
       tag: "SCIENCE",
@@ -107,7 +85,8 @@ export default function Home() {
       image: "/science-cards/card-2.jpg",
       imageAlt: "Game Theory",
       description:
-        "Activated by: shared team cues, coordinated behavior, role clarity, and aligned action.",
+        "Activated by DPD: shared team cues, coordinated behavior, role clarity, and aligned action.",
+      href: "/science?tab=Game+Theory&section=research-why-reversed#research-why-reversed",
     },
     {
       tag: "SCIENCE",
@@ -115,7 +94,8 @@ export default function Home() {
       image: "/science-cards/card-3.jpg",
       imageAlt: "Neuroplasticity",
       description:
-        "Activated by: repeated persona switching, deliberate practice, and behavioral reinforcement over time.",
+        "Activated by DPD: repeated persona switching, deliberate practice, and behavioral reinforcement over time.",
+      href: "/science?tab=Neuroplasticity&section=research-why#research-why",
     },
     {
       tag: "SCIENCE",
@@ -123,7 +103,8 @@ export default function Home() {
       image: "/science-cards/card-4.jpg",
       imageAlt: "Embodied Cognition",
       description:
-        "Activated by: physical cues, posture, coins, and behavior-linked action.",
+        "Activated by DPD: physical cues, posture, coins, and behavior-linked action.",
+      href: "/science?tab=Embodied+Cognition&section=research-why-reversed#research-why-reversed",
     },
   ];
 
@@ -212,52 +193,7 @@ export default function Home() {
 
       <SectionDivider />
 
-      <section
-        id="transformation"
-        className="relative overflow-hidden bg-custom-black text-white"
-      >
-        <ParallaxBackground />
-        <div className={`relative z-10 ${pageInset} py-18 sm:py-20`}>
-          <h2 className="custom-xs-title text-white">
-            What transformation looks like
-          </h2>
-
-          <div className="mt-6 grid border border-white/20 md:grid-cols-2">
-            {transformationMetrics.map((metric, index) => (
-              <div
-                key={metric.label}
-                className={`grid min-h-44 gap-6 border-white/20 p-6 sm:grid-cols-[10rem_1fr] sm:items-start sm:p-8 lg:min-h-52 lg:grid-cols-[14rem_1fr] ${
-                  index > 0 ? "border-t md:border-t-0" : ""
-                } ${index > 1 ? "md:border-t" : ""} ${
-                  index % 2 === 1 ? "md:border-l" : ""
-                }`}
-              >
-                <div className="flex items-start gap-3">
-                  <span className="mt-3 text-3xl font-light text-[#d7ff44]">
-                    {metric.direction === "up" ? "\u2191" : "\u2193"}
-                  </span>
-                  <p className="flex items-start text-[clamp(4.5rem,10vw,7rem)] font-medium leading-none tracking-tighter">
-                    {metric.value}
-                    {metric.suffix ? (
-                      <span className="ml-1 mt-3 text-3xl tracking-tight sm:text-4xl">
-                        {metric.suffix}
-                      </span>
-                    ) : null}
-                  </p>
-                </div>
-                <p className="max-w-sm custom-body-bold text-white-light sm:pt-5">
-                  {metric.label}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-5 custom-label italic text-white-light">
-            *Illustrative model of possibility. Results depend on adoption,
-            leadership participation, and consistent DPDing.
-          </p>
-        </div>
-      </section>
+      <TransformationSection />
 
       <SectionDivider />
 
@@ -293,52 +229,37 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mt-16 min-h-88 overflow-hidden bg-custom-black shadow-[0_24px_70px_rgba(0,0,0,0.18)] sm:min-h-112">
-            <ParallaxImage
-              src="/bg-2.jpg"
-              alt="Abstract orange motion background representing the DPD platform"
-              sizes="(min-width: 640px) calc(100vw - 90px), calc(100vw - 40px)"
-              imageWrapperClassName="-inset-y-20"
-              speed={0.12}
-            />
-            <div className="absolute inset-x-0 inset-y-5 flex items-center justify-center">
-              <div className="flex h-full w-full flex-wrap items-center justify-center gap-x-10 gap-y-4 border-y border-white/25 bg-white/12 px-8 py-8 text-center shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:gap-x-14 sm:py-10 lg:gap-x-20">
-                <p className="shrink-0 leading-[1.12] custom-sm-title text-white">
-                  Science that supports{" "}
-                  <span className="text-brand-orange">DPD.</span>
-                </p>
-                <p className="shrink-0 custom-sm-title text-white">
-                  <span className="text-brand-orange">
-                    Behavior coordination
-                  </span>{" "}
-                  that scales.
-                </p>
-              </div>
-            </div>
-          </div>
+          <ScienceBanner />
 
           <div className="mt-7 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {platformOptions.map((option) => (
-              <article key={option.title}>
-                <div className="relative aspect-[1.06] overflow-hidden bg-custom-black">
-                  <Image
-                    src={option.image}
-                    alt={option.imageAlt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
-                  <span className="absolute left-4 top-4 z-10 rounded-sm bg-custom-black/50 px-3 py-1 custom-label-bold text-white backdrop-blur-sm tracking-widest">
-                    {option.tag}
-                  </span>
-                </div>
-                <h3 className="mt-5 custom-xxs-title leading-7">
-                  {option.title}
-                </h3>
-                <p className="mt-4 custom-body text-custom-black">
-                  {option.description}
-                </p>
-              </article>
+              <Link key={option.title} href={option.href} className="group">
+                <article>
+                  <div className="relative aspect-[1.06] overflow-hidden bg-custom-black">
+                    <Image
+                      src={option.image}
+                      alt={option.imageAlt}
+                      fill
+                      className="object-cover transition duration-300 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                    <span className="absolute left-4 top-4 z-10 rounded-sm bg-custom-black/50 px-3 py-1 custom-label-bold text-white backdrop-blur-sm tracking-widest">
+                      {option.tag}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 custom-xxs-title leading-7 transition group-hover:text-brand-orange">
+                    {option.title}
+                  </h3>
+                  <p className="mt-4 custom-body text-custom-black">
+                    {option.description.startsWith("Activated by DPD:") ? (
+                      <>
+                        <span className="custom-body-bold text-brand-orange">Activated by DPD:</span>
+                        {option.description.slice("Activated by DPD:".length)}
+                      </>
+                    ) : option.description}
+                  </p>
+                </article>
+              </Link>
             ))}
           </div>
         </div>

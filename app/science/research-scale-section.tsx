@@ -7,6 +7,7 @@ export function ResearchScaleSection() {
       content={researchScaleContent}
       reversed
       stackPosition="middle"
+      videoSrc="/videos/science-2.mp4"
     />
   );
 }

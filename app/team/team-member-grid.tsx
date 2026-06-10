@@ -17,8 +17,8 @@ function joinClasses(...classes: (string | false | undefined)[]) {
 const gridClass =
   "grid list-none grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 lg:grid-cols-4 lg:gap-x-6 xl:gap-x-8";
 
-const bioPanelWidth = "lg:w-52 xl:w-60";
-const siblingShift = "lg:translate-x-[calc(13rem+1.25rem)] xl:translate-x-[calc(15rem+1.5rem)]";
+const bioPanelWidth = "xl:w-56";
+const siblingShift = "xl:translate-x-[calc(14rem+1.25rem)]";
 
 export function TeamMemberGrid({
   members,
@@ -28,7 +28,7 @@ export function TeamMemberGrid({
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <div className="min-w-0 max-w-full overflow-x-clip">
+    <div className="min-w-0 max-w-full">
       <ul className={gridClass}>
         {members.map((member, i) => {
           const hasBio = Boolean(member.hoverBio);
@@ -66,13 +66,13 @@ export function TeamMemberGrid({
                 <div
                   aria-hidden={!open}
                   className={joinClasses(
-                    "overflow-hidden transition-opacity duration-500 ease-out",
-                    "max-lg:w-full max-lg:transition-[margin,opacity]",
+                    "max-xl:overflow-hidden transition-opacity duration-500 ease-out",
+                    "max-xl:w-full max-xl:transition-[margin,opacity]",
                     bioPanelWidth,
-                    "lg:absolute lg:left-[calc(100%+1.25rem)] lg:top-0 lg:z-10",
+                    "xl:absolute xl:left-[calc(100%+1.25rem)] xl:top-0 xl:z-10",
                     open
-                      ? "max-lg:mt-4 max-lg:opacity-100 lg:opacity-100"
-                      : "max-lg:max-h-0 max-lg:opacity-0 max-lg:mt-0 lg:pointer-events-none lg:opacity-0",
+                      ? "max-xl:mt-4 max-xl:opacity-100 xl:opacity-100"
+                      : "max-xl:max-h-0 max-xl:opacity-0 max-xl:mt-0 xl:pointer-events-none xl:opacity-0",
                   )}
                 >
                   <p className="custom-label leading-relaxed text-custom-black lg:pr-1">

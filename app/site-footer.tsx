@@ -1,4 +1,11 @@
+"use client";
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 import { FaLinkedinIn, FaSpotify } from "react-icons/fa6";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
@@ -64,6 +71,60 @@ const footerColumns: { title: string; links: FooterLink[] }[] = [
 ];
 
 export function SiteFooter() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const video = videoRef.current;
+
+    if (!section || !video) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const ctx = gsap.context(() => {
+      const setupScrub = () => {
+        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+
+        video.pause();
+        video.currentTime = 0;
+
+        if (reducedMotion.matches) return;
+
+        const playback = { time: 0 };
+
+        gsap.to(playback, {
+          time: video.duration,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+          onUpdate: () => {
+            video.currentTime = playback.time;
+          },
+        });
+      };
+
+      if (video.readyState >= 1) {
+        setupScrub();
+      } else {
+        video.addEventListener("loadedmetadata", setupScrub, { once: true });
+      }
+    }, section);
+
+    const onResize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      ctx.revert();
+    };
+  }, []);
+
   return (
     <>
       <div className="bg-background" aria-hidden="true">
@@ -71,10 +132,20 @@ export function SiteFooter() {
       </div>
 
       <section
+        ref={sectionRef}
         id="contact"
-        className="bg-custom-black pt-16 text-white sm:pt-20"
+        className="relative overflow-hidden bg-custom-black pt-16 text-white sm:pt-20"
       >
-        <div className={pageInset}>
+        <video
+          ref={videoRef}
+          src="/videos/footer.mp4"
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        />
+        <div className={`${pageInset} relative z-10`}>
           <div id="see-better" className="pb-20">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="custom-lg-title">
@@ -87,10 +158,36 @@ export function SiteFooter() {
               </p>
               <div className="mt-8 flex justify-center">
                 <a
-                  href="mailto:hello@example.com"
+                  href="/survey"
                   className="inline-flex h-11 items-center justify-center rounded-full bg-brand-orange px-7 custom-label-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
                   Take DPD Survey
+                </a>
+              </div>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                <a
+                  href="https://apps.apple.com/us/app/dpding-dreamer-planner-doer/id6746777165"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download on the App Store"
+                >
+                  <img
+                    src="/store-badges/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
+                    alt="Download on the App Store"
+                    className="h-14"
+                  />
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.dpding.app&pcampaignid=web_share"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Get it on Google Play"
+                >
+                  <img
+                    src="/store-badges/GetItOnGooglePlay_Badge_Web_color_English.svg"
+                    alt="Get it on Google Play"
+                    className="h-14"
+                  />
                 </a>
               </div>
             </div>

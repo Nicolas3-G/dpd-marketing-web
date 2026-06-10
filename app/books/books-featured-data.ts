@@ -9,7 +9,7 @@ export const booksFeaturedContent = {
   author: "Kokoro V. Robinson",
   authorHref: "/team",
   format: "Paperback & Kindle",
-  coverImage: "/scroll-cards/card-6.jpg",
+  coverImage: "/products/DPD Book Mockup.png",
   coverAlt: "The DPD Framework book cover",
   description:
     "The definitive guide to the Dreamer–Planner–Doer Framework—a science-forward behavioral operating system that goes beyond personality assessments. Learn how teams name their modes, switch personas on purpose, and coordinate behavior in real time.",

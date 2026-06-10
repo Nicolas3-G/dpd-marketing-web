@@ -1,12 +1,14 @@
-/** Webinars page hero — edit copy here without affecting the homepage. */
 export const webinarsHeroContent = {
-  eyebrow: "Discover your persona",
-  heading: "Behavior Coordination for",
-  headingHighlight: "individuals, coaches, and teams.",
+  badge: "Live Sessions",
+  heading: "Learn from the people who built the framework.",
   description:
-    "Only 10 minutes to gain practical insight into how your team collaborates, communicates, and works best together.",
-  cta: {
-    label: "Take DPD Survey",
-    href: "/survey",
-  },
+    "DPD webinars bring behavioral science to life. Join coaches, leaders, and team builders for live sessions that go beyond theory — with real examples, open Q&A, and a community that gets it.",
+  cta: { label: "Reserve Your Spot", href: "/contact" },
+  secondaryCta: { label: "Browse past sessions", href: "#recordings" },
+  sessionDetails: [
+    "60-minute live sessions",
+    "Open Q&A with DPD experts",
+    "Access to session recordings",
+    "Free for all attendees",
+  ],
 } as const;

@@ -1,40 +1,35 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { SLIDE_MS, useSlideCarousel } from "../framework/use-slide-carousel";
 
 const surveyQuestions = [
-  "I often find myself imagining new possibilities and creative ideas.",
-  "I prefer to map out details and timelines before taking action.",
-  "I feel most energized when I am actively executing and finishing tasks.",
-  "I enjoy exploring many options before committing to a single direction.",
-  "I naturally help others align on clear next steps and ownership.",
-  "I tend to pause and reflect before committing to a major decision.",
-  "I like breaking complex goals into clear milestones and checkpoints.",
-  "I stay focused on outcomes even when the work becomes repetitive.",
-  "I adapt quickly when priorities shift on a team or project.",
-  "I communicate expectations clearly so others know what success looks like.",
-  "I draw energy from brainstorming sessions and open-ended exploration.",
-  "I value structure and predictability when coordinating with others.",
-  "I prefer to test ideas in the real world rather than over-planning.",
-  "I notice patterns and connections that others sometimes overlook.",
-  "I take ownership when something needs to get done, even without being asked.",
+  "I often find myself brainstorming creative ideas and imagining what could be.",
+  "I enjoy exploring possibilities and thinking about the future.",
+  "I am inspired by big-picture goals and long term visions.",
+  "I prefer structure and clear goals to guide my actions.",
+  "I enjoy creating detailed plans and organizing tasks into manageable steps.",
+  "I excel at identifying potential challenges and crafting strategies to overcome them.",
+  "I am action-oriented and prefer to dive into tasks rather than overthinking them.",
+  "I am results-driven and enjoy achieving measurable outcomes.",
+  "I make quick decisions to maintain momentum and minimize delays.",
 ] as const;
 
 const SCALE_OPTIONS = [
   { value: 0, lines: ["Strongly", "Disagree"] },
   { value: 1, lines: ["Disagree"] },
-  { value: 2, lines: ["Neutral"] },
-  { value: 3, lines: ["Agree"] },
-  { value: 4, lines: ["Strongly", "Agree"] },
+  { value: 2, lines: ["Slightly", "Disagree"] },
+  { value: 3, lines: ["Slightly", "Agree"] },
+  { value: 4, lines: ["Agree"] },
+  { value: 5, lines: ["Strongly", "Agree"] },
 ] as const;
 
 const PROGRESS_BAR_COUNT = 3;
-const QUESTIONS_PER_SEGMENT = 5;
+const QUESTIONS_PER_SEGMENT = 3;
 const TOTAL_SURVEY_QUESTIONS = PROGRESS_BAR_COUNT * QUESTIONS_PER_SEGMENT;
-const RESULTS_PAGE_INDEX = PROGRESS_BAR_COUNT;
-const SLIDE_COUNT = PROGRESS_BAR_COUNT + 1;
+const SLIDE_COUNT = PROGRESS_BAR_COUNT;
 
 const questionPages = Array.from({ length: PROGRESS_BAR_COUNT }, (_, pageIndex) =>
   surveyQuestions.slice(
@@ -135,7 +130,7 @@ function SurveyProgressBar({
   const percent = Math.round((answeredCount / TOTAL_SURVEY_QUESTIONS) * 100);
 
   return (
-    <div className="mb-10 flex items-center gap-4 sm:mb-12 sm:gap-5">
+    <div className="flex items-center gap-4 pt-3 sm:gap-5 sm:pt-4">
       <div
         className="flex flex-1 items-center gap-2 sm:gap-2.5"
         role="progressbar"
@@ -212,7 +207,7 @@ function SurveyQuestion({
           role="radiogroup"
           aria-labelledby={`question-${questionId}`}
           aria-disabled={isUpcoming}
-          className="grid grid-cols-5 gap-2 sm:gap-4"
+          className="grid grid-cols-6 gap-2 sm:gap-4"
         >
           {SCALE_OPTIONS.map(({ value: optionValue, lines }) => {
             const selected = value === optionValue;
@@ -330,41 +325,6 @@ function SurveyQuestionPage({
   );
 }
 
-function SurveyResultsPage() {
-  return (
-    <div className="flex min-h-[200px] items-center justify-center py-16 sm:min-h-[240px] sm:py-20">
-      <h2 className="text-4xl font-bold tracking-tight text-custom-black sm:text-5xl">
-        Results
-      </h2>
-    </div>
-  );
-}
-
-function SurveySlideContent({
-  pageIndex,
-  answers,
-  onAnswer,
-  registerAnchors = true,
-}: {
-  pageIndex: number;
-  answers: Record<number, number | null>;
-  onAnswer: (questionIndex: number, option: number) => void;
-  registerAnchors?: boolean;
-}) {
-  if (pageIndex === RESULTS_PAGE_INDEX) {
-    return <SurveyResultsPage />;
-  }
-
-  return (
-    <SurveyQuestionPage
-      pageIndex={pageIndex}
-      answers={answers}
-      onAnswer={onAnswer}
-      registerAnchors={registerAnchors}
-    />
-  );
-}
-
 function SurveyPageHeightSizer() {
   return (
     <div
@@ -374,7 +334,7 @@ function SurveyPageHeightSizer() {
     >
       {Array.from({ length: SLIDE_COUNT }, (_, pageIndex) => (
         <div key={`sizer-${pageIndex}`} className="col-start-1 row-start-1">
-          <SurveySlideContent
+          <SurveyQuestionPage
             pageIndex={pageIndex}
             answers={{}}
             onAnswer={() => {}}
@@ -387,6 +347,7 @@ function SurveyPageHeightSizer() {
 }
 
 export function SurveyAssessment() {
+  const router = useRouter();
   const [answers, setAnswers] = useState<Record<number, number | null>>(() =>
     Object.fromEntries(
       Array.from({ length: TOTAL_SURVEY_QUESTIONS }, (_, i) => [i, null]),
@@ -397,7 +358,6 @@ export function SurveyAssessment() {
   const { displayIndex, isSliding, transition, enterX, exitX, animate } =
     useSlideCarousel(activePage, SLIDE_COUNT);
 
-  const isResultsPage = activePage === RESULTS_PAGE_INDEX;
   const isQuestionPage = activePage < PROGRESS_BAR_COUNT;
   const pageOffset = activePage * QUESTIONS_PER_SEGMENT;
   const isCurrentPageComplete =
@@ -458,8 +418,12 @@ export function SurveyAssessment() {
       return;
     }
 
-    setActivePage(RESULTS_PAGE_INDEX);
-    scrollToAssessment();
+    const answerValues = Array.from(
+      { length: TOTAL_SURVEY_QUESTIONS },
+      (_, i) => answers[i] ?? 0,
+    );
+    const encoded = btoa(answerValues.join(","));
+    router.push(`/survey/results?a=${encoded}`);
   };
 
   return (
@@ -467,7 +431,12 @@ export function SurveyAssessment() {
       id="assessment"
       className="mx-auto mt-16 max-w-4xl scroll-mt-28 sm:mt-20"
     >
-      <SurveyProgressBar answers={answers} />
+      <div className="sticky top-20 z-30">
+        <div className="bg-background">
+          <SurveyProgressBar answers={answers} />
+        </div>
+        <div className="pointer-events-none h-10 sm:h-12 bg-linear-to-b from-background to-transparent" />
+      </div>
 
       {!isFirstPage ? (
         <div className="mb-6 mt-4 sm:mb-8 sm:mt-5">
@@ -496,7 +465,7 @@ export function SurveyAssessment() {
                 }}
                 aria-hidden
               >
-                <SurveySlideContent
+                <SurveyQuestionPage
                   pageIndex={transition.from}
                   answers={answers}
                   onAnswer={setAnswer}
@@ -510,7 +479,7 @@ export function SurveyAssessment() {
                   transitionDuration: animate ? `${SLIDE_MS}ms` : "0ms",
                 }}
               >
-                <SurveySlideContent
+                <SurveyQuestionPage
                   pageIndex={displayIndex}
                   answers={answers}
                   onAnswer={setAnswer}
@@ -518,7 +487,7 @@ export function SurveyAssessment() {
               </div>
             </>
           ) : (
-            <SurveySlideContent
+            <SurveyQuestionPage
               pageIndex={displayIndex}
               answers={answers}
               onAnswer={setAnswer}
@@ -527,29 +496,27 @@ export function SurveyAssessment() {
         </div>
       </div>
 
-      {isQuestionPage ? (
-        <div className="mt-4 flex justify-center sm:mt-6">
-          {isLastQuestionPage ? (
-            <button
-              type="button"
-              onClick={handleFinish}
-              disabled={!isCurrentPageComplete || isSliding}
-              className="inline-flex h-14 min-w-[200px] items-center justify-center rounded-full bg-brand-orange px-10 custom-label-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
-            >
-              Finish
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={handleNext}
-              disabled={!isCurrentPageComplete || isSliding}
-              className="inline-flex h-14 min-w-[200px] items-center justify-center rounded-full bg-brand-orange px-10 custom-label-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
-            >
-              Next
-            </button>
-          )}
-        </div>
-      ) : null}
+      <div className="mt-4 flex justify-center sm:mt-6">
+        {isLastQuestionPage ? (
+          <button
+            type="button"
+            onClick={handleFinish}
+            disabled={!isCurrentPageComplete || isSliding}
+            className="inline-flex h-14 min-w-[200px] items-center justify-center rounded-full bg-brand-orange px-10 custom-label-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
+          >
+            Finish
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={handleNext}
+            disabled={!isCurrentPageComplete || isSliding}
+            className="inline-flex h-14 min-w-[200px] items-center justify-center rounded-full bg-brand-orange px-10 custom-label-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
+          >
+            Next
+          </button>
+        )}
+      </div>
     </section>
   );
 }

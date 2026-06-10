@@ -1,7 +1,11 @@
 "use client";
 
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 import { webinarsOfferingContent } from "./webinars-offering-data";
 
@@ -130,6 +134,64 @@ function OfferingCard({
 export function WebinarsOfferingSection() {
   const { heading, cards } = webinarsOfferingContent;
   const { gridRef, revealed } = useSectionStaggeredReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const video = videoRef.current;
+
+    if (!section || !video) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const ctx = gsap.context(() => {
+      const setupScrub = () => {
+        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+
+        video.pause();
+
+        const rect = section.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (section.offsetHeight + vh)));
+        video.currentTime = progress * video.duration;
+        video.style.opacity = "1";
+
+        if (reducedMotion.matches) return;
+
+        const playback = { time: video.currentTime };
+
+        gsap.to(playback, {
+          time: video.duration,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+          onUpdate: () => {
+            video.currentTime = playback.time;
+          },
+        });
+      };
+
+      if (video.readyState >= 1) {
+        setupScrub();
+      } else {
+        video.addEventListener("loadedmetadata", setupScrub, { once: true });
+      }
+    }, section);
+
+    const onResize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      ctx.revert();
+    };
+  }, []);
 
   let bulletOffset = 0;
   const cardsWithOffset = cards.map((card) => {
@@ -140,18 +202,20 @@ export function WebinarsOfferingSection() {
 
   return (
     <section
+      ref={sectionRef}
       id="webinars-offering"
       className="relative isolate overflow-hidden py-14 text-white sm:py-16 lg:py-20"
     >
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <Image
-          src="/contact-bg.jpg"
-          alt=""
-          fill
-          className="scale-105 object-cover blur-md"
-          sizes="100vw"
-        />
-      </div>
+      <video
+        ref={videoRef}
+        src="/videos/black-orange.mp4"
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full scale-105 object-cover blur-md"
+        style={{ opacity: 0 }}
+      />
       <div
         className="absolute inset-0 z-[1] bg-custom-black/50"
         aria-hidden

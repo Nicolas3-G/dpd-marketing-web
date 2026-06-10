@@ -28,15 +28,15 @@ export function BooksFeaturedSection() {
       className="border-t border-custom-black/10 bg-background py-10 text-custom-black sm:py-12 lg:py-14"
     >
       <div
-        className={`${pageInset} grid items-center gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-10 xl:gap-12`}
+        className={`${pageInset} grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-10 xl:gap-12`}
       >
-        <div className="relative mx-auto aspect-[3/4] w-full max-w-[13rem] overflow-hidden bg-custom-black sm:max-w-[15rem] lg:mx-0 lg:max-w-[17rem]">
+        <div className="relative aspect-[3/4] w-full overflow-hidden lg:aspect-auto">
           <Image
             src={coverImage}
             alt={coverAlt}
             fill
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 42vw"
+            className="object-contain"
+            sizes="(max-width: 1024px) 100vw, 50vw"
             priority
           />
         </div>
