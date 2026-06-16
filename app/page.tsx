@@ -56,7 +56,7 @@ export default function Home() {
     {
       title: "Discover every team member's persona profile",
       description:
-        "Members complete the DPD assessment to uncover their tendencies, building self-awareness and a understanding of how they naturally contribute.",
+        "Members complete the DPD Persona Survey to uncover their tendencies, building self-awareness and a understanding of how they naturally contribute.",
       Icon: FaFingerprint,
     },
     {
