@@ -56,7 +56,10 @@ const restOfTeam = [
   },
 ] as const;
 
-export const metadata = createPageMetadata("Team");
+export const metadata = createPageMetadata("Team", {
+  description:
+    "Meet the people behind the DPD Framework — the executives and founding members building behavior coordination for the AI era.",
+});
 
 export default function TeamPage() {
   return (

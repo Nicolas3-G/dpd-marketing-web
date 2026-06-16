@@ -172,7 +172,7 @@ function DpdWordmark({
     const outerId = requestAnimationFrame(() => {
       innerId = requestAnimationFrame(() => {
         if (!suffixRevealRef.current) return;
-        suffixRevealRef.current.style.transition = `clip-path ${duration}ms cubic-bezier(0.95, 0, 1, 1)`;
+        suffixRevealRef.current.style.transition = `clip-path ${duration}ms ease-in-out`;
         suffixRevealRef.current.style.clipPath = "inset(0 0% 0 0)";
       });
     });
@@ -295,6 +295,7 @@ function TaglineRow({
 export function HomeHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [scrubActive, setScrubActive] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -304,23 +305,27 @@ export function HomeHero() {
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+    video.style.opacity = "1";
+
+    if (!scrubActive) {
+      if (!reducedMotion.matches) {
+        video.play().catch(() => {});
+      }
+      return;
+    }
+
     const ctx = gsap.context(() => {
       const setupScrub = () => {
         if (!Number.isFinite(video.duration) || video.duration <= 0) return;
 
         video.pause();
 
-        const rect = section.getBoundingClientRect();
-        const progress = Math.max(0, Math.min(1, -rect.top / section.offsetHeight));
-        video.currentTime = progress * video.duration;
-        video.style.opacity = "1";
-
         if (reducedMotion.matches) return;
 
         const playback = { time: video.currentTime };
 
         gsap.to(playback, {
-          time: video.duration,
+          time: video.duration / 2,
           ease: "none",
           scrollTrigger: {
             trigger: section,
@@ -349,7 +354,7 @@ export function HomeHero() {
       window.removeEventListener("resize", onResize);
       ctx.revert();
     };
-  }, []);
+  }, [scrubActive]);
 
   const [phase, setPhase] = useState<HeroPhase>("splash");
   const [suffixFading, setSuffixFading] = useState(false);
@@ -547,6 +552,41 @@ export function HomeHero() {
 
     const doneTimer = window.setTimeout(() => setPhase("done"), FADE_MS);
     return () => window.clearTimeout(doneTimer);
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== "done") return;
+
+    let rafId = 0;
+
+    const timer = window.setTimeout(() => {
+      const video = videoRef.current;
+      if (!video) { setScrubActive(true); return; }
+
+      const DECEL_MS = 700;
+      const start = performance.now();
+
+      const decelerate = (now: number) => {
+        const t = Math.min((now - start) / DECEL_MS, 1);
+        video.playbackRate = Math.max(0.0625, 1 - t * t);
+        if (t < 1) {
+          rafId = requestAnimationFrame(decelerate);
+        } else {
+          video.pause();
+          video.playbackRate = 1;
+          setScrubActive(true);
+        }
+      };
+
+      rafId = requestAnimationFrame(decelerate);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+      cancelAnimationFrame(rafId);
+      const video = videoRef.current;
+      if (video) video.playbackRate = 1;
+    };
   }, [phase]);
 
   const splashVisible = phase !== "done";

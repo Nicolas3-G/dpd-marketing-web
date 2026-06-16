@@ -27,7 +27,7 @@ export function ScienceBanner() {
         const rect = container.getBoundingClientRect();
         const vh = window.innerHeight;
         const progress = Math.max(0, Math.min(1, (vh - rect.top) / (container.offsetHeight + vh)));
-        video.currentTime = progress * video.duration;
+        video.currentTime = progress * (video.duration / 2);
         video.style.opacity = "1";
 
         if (reducedMotion.matches) return;
@@ -35,7 +35,7 @@ export function ScienceBanner() {
         const playback = { time: video.currentTime };
 
         gsap.to(playback, {
-          time: video.duration,
+          time: video.duration / 2,
           ease: "none",
           scrollTrigger: {
             trigger: container,
@@ -81,8 +81,9 @@ export function ScienceBanner() {
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
         style={{ opacity: 0 }}
       />
+      <div className="pointer-events-none absolute inset-0 bg-black/20" aria-hidden />
       <div className="absolute inset-x-0 inset-y-5 flex items-center justify-center">
-        <div className="flex h-full w-full flex-wrap items-center justify-center gap-x-10 gap-y-4 border-y border-white/25 bg-white/12 px-8 py-8 text-center shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:gap-x-14 sm:py-10 lg:gap-x-20">
+        <div className="flex h-full w-full flex-wrap items-center justify-center gap-x-10 gap-y-4 border-y border-white/25 bg-black/20 px-8 py-8 text-center shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:gap-x-14 sm:py-10 lg:gap-x-20">
           <p className="shrink-0 leading-[1.12] custom-sm-title text-white">
             Science that supports{" "}
             <span className="text-brand-orange">DPD.</span>

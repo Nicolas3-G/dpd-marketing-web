@@ -34,7 +34,7 @@ export function BooksCtaSection() {
         const rect = section.getBoundingClientRect();
         const vh = window.innerHeight;
         const progress = Math.max(0, Math.min(1, (vh - rect.top) / (section.offsetHeight + vh)));
-        video.currentTime = progress * video.duration;
+        video.currentTime = progress * (video.duration / 2);
         video.style.opacity = "1";
 
         if (reducedMotion.matches) return;
@@ -42,7 +42,7 @@ export function BooksCtaSection() {
         const playback = { time: video.currentTime };
 
         gsap.to(playback, {
-          time: video.duration,
+          time: video.duration / 2,
           ease: "none",
           scrollTrigger: {
             trigger: section,
@@ -106,7 +106,7 @@ export function BooksCtaSection() {
           href={cta.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-flex h-11 items-center gap-2.5 rounded-full bg-gradient-to-r from-[#c73b2e] via-brand-orange to-[#f0a020] px-8 custom-label-bold text-white shadow-[0_12px_28px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:mt-7 sm:h-12 sm:px-9"
+          className="mt-6 inline-flex h-11 items-center gap-2.5 rounded-full bg-brand-orange px-8 custom-label-bold text-white shadow-[0_12px_28px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:mt-7 sm:h-12 sm:px-9"
         >
           {cta.label}
           <span aria-hidden="true" className="custom-label-bold leading-none">

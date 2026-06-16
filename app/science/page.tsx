@@ -10,7 +10,10 @@ import {
   ResearchWhySection,
 } from "./research-why-section";
 
-export const metadata = createPageMetadata("Science");
+export const metadata = createPageMetadata("Science", {
+  description:
+    "Explore the science behind the DPD Framework — rooted in flow theory, game theory, neuroplasticity, and embodied cognition.",
+});
 
 export default async function SciencePage({
   searchParams,

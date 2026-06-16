@@ -154,7 +154,7 @@ export function WebinarsOfferingSection() {
         const rect = section.getBoundingClientRect();
         const vh = window.innerHeight;
         const progress = Math.max(0, Math.min(1, (vh - rect.top) / (section.offsetHeight + vh)));
-        video.currentTime = progress * video.duration;
+        video.currentTime = progress * (video.duration / 2);
         video.style.opacity = "1";
 
         if (reducedMotion.matches) return;
@@ -162,7 +162,7 @@ export function WebinarsOfferingSection() {
         const playback = { time: video.currentTime };
 
         gsap.to(playback, {
-          time: video.duration,
+          time: video.duration / 2,
           ease: "none",
           scrollTrigger: {
             trigger: section,

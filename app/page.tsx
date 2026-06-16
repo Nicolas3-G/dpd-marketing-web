@@ -9,7 +9,10 @@ import { ScienceBanner } from "./science-banner";
 import { ScrollCardStrip } from "./scroll-card-strip";
 import { TransformationSection } from "./transformation-section";
 
-export const metadata = createPageMetadata("Home");
+export const metadata = createPageMetadata("Home", {
+  description:
+    "DPD Framework helps teams coordinate behavior, build alignment, and perform with clarity and purpose in the AI era.",
+});
 
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
@@ -53,7 +56,7 @@ export default function Home() {
     {
       title: "Discover every team member's persona profile",
       description:
-        "Members complete the DPD assessment to uncover their tendencies, building self-awareness and a understanding of how they naturally contribute.",
+        "Members complete the DPD Persona Survey to uncover their tendencies, building self-awareness and a understanding of how they naturally contribute.",
       Icon: FaFingerprint,
     },
     {

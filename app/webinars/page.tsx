@@ -7,7 +7,10 @@ import { WebinarsProcessSection } from "./webinars-process-section";
 import { WebinarsOfferingSection } from "./webinars-offering-section";
 import { WebinarsWhySection } from "./webinars-why-section";
 
-export const metadata = createPageMetadata("Webinars");
+export const metadata = createPageMetadata("Webinars", {
+  description:
+    "Join DPD Framework webinars to learn behavior coordination strategies and techniques for high-performing teams.",
+});
 
 export default function WebinarsPage() {
   return (

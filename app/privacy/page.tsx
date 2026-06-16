@@ -5,7 +5,10 @@ import { createPageMetadata } from "@/lib/metadata";
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
-export const metadata = createPageMetadata("Privacy Policy");
+export const metadata = createPageMetadata("Privacy Policy", {
+  description:
+    "Read the DPD Framework privacy policy — how we collect, use, and protect your data in our mobile app.",
+});
 
 export default function PrivacyPage() {
   return (
