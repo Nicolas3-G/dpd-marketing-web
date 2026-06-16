@@ -27,7 +27,10 @@ const displaySerif = Instrument_Serif({
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
-export const metadata = createPageMetadata("About");
+export const metadata = createPageMetadata("About", {
+  description:
+    "Learn who we are, what we do, and why behavior coordination for teams matters in the AI era.",
+});
 
 export default function AboutPage() {
   return (

@@ -9,7 +9,10 @@ import { ScienceBanner } from "./science-banner";
 import { ScrollCardStrip } from "./scroll-card-strip";
 import { TransformationSection } from "./transformation-section";
 
-export const metadata = createPageMetadata("Home");
+export const metadata = createPageMetadata("Home", {
+  description:
+    "DPD Framework helps teams coordinate behavior, build alignment, and perform with clarity and purpose in the AI era.",
+});
 
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";

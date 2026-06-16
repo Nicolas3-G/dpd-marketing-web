@@ -7,7 +7,10 @@ import { BooksFeaturedSection } from "./books-featured-section";
 import { BooksHero } from "./books-hero";
 import { BooksInsideSection } from "./books-inside-section";
 
-export const metadata = createPageMetadata("Books");
+export const metadata = createPageMetadata("Books", {
+  description:
+    "Explore books on the DPD Framework — practical guides to behavior coordination, team alignment, and performance.",
+});
 
 export default function BooksPage() {
   return (

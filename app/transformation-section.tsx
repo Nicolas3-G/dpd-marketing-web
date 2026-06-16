@@ -57,7 +57,7 @@ export function TransformationSection() {
         const rect = section.getBoundingClientRect();
         const vh = window.innerHeight;
         const progress = Math.max(0, Math.min(1, (vh - rect.top) / (section.offsetHeight + vh)));
-        video.currentTime = progress * video.duration;
+        video.currentTime = progress * (video.duration / 2);
         video.style.opacity = "1";
 
         if (reducedMotion.matches) return;
@@ -65,7 +65,7 @@ export function TransformationSection() {
         const playback = { time: video.currentTime };
 
         gsap.to(playback, {
-          time: video.duration,
+          time: video.duration / 2,
           ease: "none",
           scrollTrigger: {
             trigger: section,
@@ -117,7 +117,7 @@ export function TransformationSection() {
           What we deliver
         </h2>
 
-        <div className="mt-6 grid border border-white/20 md:grid-cols-2">
+        <div className="mt-6 grid border border-white/20 bg-black/20 md:grid-cols-2">
           {transformationMetrics.map((metric, index) => (
             <div
               key={metric.label}

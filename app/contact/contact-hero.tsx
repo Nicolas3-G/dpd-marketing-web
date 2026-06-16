@@ -46,7 +46,7 @@ export function ContactHero() {
         const playback = { time: 0 };
 
         gsap.to(playback, {
-          time: video.duration,
+          time: video.duration / 2,
           ease: "none",
           scrollTrigger: {
             trigger: section,
@@ -92,6 +92,7 @@ export function ContactHero() {
         aria-hidden
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
       />
+      <div className="pointer-events-none absolute inset-0 bg-black/20" aria-hidden />
 
       <div className="relative z-10 grid min-h-[min(100vh,520px)] w-full grid-cols-1 lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[minmax(0,1.9fr)_minmax(280px,1fr)]">
         <div className="flex min-h-[min(100vh,520px)] flex-col justify-end px-6 pb-12 pt-28 sm:px-10 sm:pb-14 sm:pt-32 lg:min-h-[calc(100vh-5rem)] lg:justify-center lg:px-12 lg:pb-20 lg:pt-24 xl:px-16">

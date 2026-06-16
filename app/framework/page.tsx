@@ -7,7 +7,10 @@ import { FrameworkPersonaSection } from "./framework-persona-section";
 import { FrameworkScienceSection } from "./framework-science-section";
 import { FrameworkTestimonialCarousel } from "./framework-testimonial-carousel";
 
-export const metadata = createPageMetadata("Framework");
+export const metadata = createPageMetadata("Framework", {
+  description:
+    "The DPD Framework platform — tools and insights for behavior coordination that help teams align, adapt, and perform at their best.",
+});
 
 export default function FrameworkPage() {
   return (

@@ -94,7 +94,7 @@ export function SiteFooter() {
         const playback = { time: 0 };
 
         gsap.to(playback, {
-          time: video.duration,
+          time: video.duration / 2,
           ease: "none",
           scrollTrigger: {
             trigger: section,
@@ -145,6 +145,7 @@ export function SiteFooter() {
           aria-hidden
           className="pointer-events-none absolute inset-0 h-full w-full object-cover"
         />
+        <div className="pointer-events-none absolute inset-0 bg-black/20" aria-hidden />
         <div className={`${pageInset} relative z-10`}>
           <div id="see-better" className="pb-20">
             <div className="mx-auto max-w-4xl text-center">
@@ -217,7 +218,7 @@ export function SiteFooter() {
             </div>
 
             <p className="mt-20 text-3xl font-bold tracking-tighter text-white">
-              DPDing
+              DPD Framework
             </p>
 
             <div className="mt-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-4">

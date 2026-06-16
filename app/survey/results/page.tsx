@@ -1,6 +1,7 @@
 import { HiLockClosed } from "react-icons/hi";
 import { redirect } from "next/navigation";
 
+import { createPageMetadata } from "@/lib/metadata";
 import {
   computeScores,
   ContentBlock,
@@ -16,6 +17,11 @@ import {
   PERSONAS,
   QUESTIONS_PER_SEGMENT,
 } from "../survey-data";
+
+export const metadata = createPageMetadata("Your DPD Persona", {
+  description:
+    "Discover your DPD persona and learn how your natural strengths align with the DPD Framework.",
+});
 
 export default async function SurveyResultsPage({
   searchParams,

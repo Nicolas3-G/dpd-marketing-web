@@ -5,7 +5,10 @@ import { createPageMetadata } from "@/lib/metadata";
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
-export const metadata = createPageMetadata("App Support");
+export const metadata = createPageMetadata("App Support", {
+  description:
+    "Get support for the DPD Framework app — FAQs, version information, and contact details for iOS users.",
+});
 
 export default function SupportPage() {
   return (

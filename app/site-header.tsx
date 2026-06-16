@@ -99,10 +99,10 @@ const companyMegaLinks: MegaLink[] = [
     label: "About",
     href: "/about",
     preview: {
-      eyebrow: "About DPDing",
+      eyebrow: "About DPD Framework",
       title: "Who we are, what we do, and why it matters",
       image: "/scroll-cards/card-1.jpg",
-      imageAlt: "About DPDing",
+      imageAlt: "About DPD Framework",
     },
   },
   {
@@ -571,7 +571,7 @@ export function SiteHeader() {
           data-brand-logo
           onMouseEnter={clearLine}
         >
-          DPDing
+          DPD Framework
         </a>
         <div
           className={navRowClass}
