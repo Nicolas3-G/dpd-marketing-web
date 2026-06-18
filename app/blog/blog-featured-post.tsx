@@ -12,12 +12,14 @@ export function BlogFeaturedPost({ post }: { post: BlogPost }) {
       id="blog-featured"
       className="relative w-full overflow-hidden bg-[#0a1628]"
     >
-      <ParallaxImage
-        src={post.image}
-        alt=""
-        sizes="100vw"
-        imageClassName="opacity-70 blur-sm"
-      />
+      {post.image && (
+        <ParallaxImage
+          src={post.image}
+          alt=""
+          sizes="100vw"
+          imageClassName="opacity-70 blur-sm"
+        />
+      )}
 
       <div className="relative z-10 grid lg:grid-cols-2 lg:items-stretch">
         <div className="relative flex min-h-[380px] flex-col justify-center px-6 py-14 sm:px-10 lg:min-h-[min(85vh,640px)] lg:px-12 xl:px-16">
