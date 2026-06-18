@@ -94,7 +94,7 @@ export function SiteFooter() {
         const playback = { time: 0 };
 
         gsap.to(playback, {
-          time: video.duration / 2,
+          time: video.duration * 2,
           ease: "none",
           scrollTrigger: {
             trigger: section,
@@ -138,7 +138,7 @@ export function SiteFooter() {
       >
         <video
           ref={videoRef}
-          src="/videos/footer.mp4"
+          src="/videos/footer-test.mp4"
           muted
           playsInline
           preload="auto"
