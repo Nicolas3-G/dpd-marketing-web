@@ -19,7 +19,7 @@ export const webinarsOfferingContent = {
       bullets: [
         "Dream, Plan, Do framework introduced with shared persona language",
         "Priming cues that help teams enter the right behavioral posture faster",
-        "Foundation for assessments, rituals, and ongoing DPDing",
+        "Foundation for assessments, practices, and ongoing DPD work",
       ],
     },
     {

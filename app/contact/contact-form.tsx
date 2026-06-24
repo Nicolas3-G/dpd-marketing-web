@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 const fieldClass =
-  "w-full rounded border border-custom-black/15 bg-white px-3 py-2.5 text-sm text-custom-black outline-none transition-shadow placeholder:text-custom-black/35 focus:border-custom-black/40 focus:ring-2 focus:ring-custom-black/10";
+  "w-full rounded-lg border-[1.5px] border-gray-card-border bg-form-input-background px-3 py-2.5 text-sm text-custom-black outline-none transition-shadow placeholder:text-gray-card-text/50 focus:border-gray-card-border focus:ring-2 focus:ring-gray-card-border/20";
 
-const labelClass = "custom-label-bold text-custom-black";
+const labelClass = "custom-label capitalize text-gray-card-text";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -15,7 +15,7 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <p className="text-center custom-body text-custom-black">
+      <p className="text-center custom-body text-gray-card-text">
         Thanks — we received your message and will follow up soon.
       </p>
     );
@@ -38,9 +38,7 @@ export function ContactForm() {
           email: String(data.get("email") ?? "").trim(),
           firstName: String(data.get("firstName") ?? "").trim(),
           lastName: String(data.get("lastName") ?? "").trim(),
-          jobTitle: String(data.get("jobTitle") ?? "").trim(),
           phone: String(data.get("phone") ?? "").trim(),
-          company: String(data.get("company") ?? "").trim(),
         }),
       });
 
@@ -69,8 +67,7 @@ export function ContactForm() {
     <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
       <div className="flex flex-col gap-1.5">
         <label htmlFor="contact-email" className={labelClass}>
-          Work email <span className="text-rose-600">*</span>
-        </label>
+          Work email        </label>
         <input
           id="contact-email"
           name="email"
@@ -78,14 +75,13 @@ export function ContactForm() {
           required
           autoComplete="email"
           className={fieldClass}
-          placeholder="you@company.com"
+          placeholder="you@companyname.com"
         />
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <label htmlFor="contact-first" className={labelClass}>
-            First name <span className="text-rose-600">*</span>
-          </label>
+            First name          </label>
           <input
             id="contact-first"
             name="firstName"
@@ -97,8 +93,7 @@ export function ContactForm() {
         </div>
         <div className="flex flex-col gap-1.5">
           <label htmlFor="contact-last" className={labelClass}>
-            Last name <span className="text-rose-600">*</span>
-          </label>
+            Last name          </label>
           <input
             id="contact-last"
             name="lastName"
@@ -110,41 +105,14 @@ export function ContactForm() {
         </div>
       </div>
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="contact-title" className={labelClass}>
-          Job title <span className="text-rose-600">*</span>
-        </label>
-        <input
-          id="contact-title"
-          name="jobTitle"
-          type="text"
-          required
-          autoComplete="organization-title"
-          className={fieldClass}
-        />
-      </div>
-      <div className="flex flex-col gap-1.5">
         <label htmlFor="contact-phone" className={labelClass}>
-          Phone number <span className="text-rose-600">*</span>
+          Phone number <span className="text-gray-card-text/60 custom-label font-normal">(optional)</span>
         </label>
         <input
           id="contact-phone"
           name="phone"
           type="tel"
-          required
           autoComplete="tel"
-          className={fieldClass}
-        />
-      </div>
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="contact-company" className={labelClass}>
-          Company <span className="text-rose-600">*</span>
-        </label>
-        <input
-          id="contact-company"
-          name="company"
-          type="text"
-          required
-          autoComplete="organization"
           className={fieldClass}
         />
       </div>
@@ -156,9 +124,9 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-1 w-full rounded bg-custom-black py-3 custom-label-bold tracking-tight text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-1 w-full rounded-full bg-custom-black py-3 custom-label-bold tracking-tight text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "submitting" ? "Sending…" : "Send message"}
+        {status === "submitting" ? "Sending…" : "Send Message"}
       </button>
     </form>
   );

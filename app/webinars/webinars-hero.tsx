@@ -9,8 +9,19 @@ export function WebinarsHero() {
     webinarsHeroContent;
 
   return (
-    <section className="relative isolate flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-white text-custom-black">
-      <div className={`${pageInset} py-24 lg:py-32`}>
+    <section className="relative isolate flex min-h-[calc(100svh-4rem)] items-center overflow-hidden text-custom-black">
+      <video
+        src="/videos/webinar-hero.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-black/20" aria-hidden />
+      <div className={`relative z-10 ${pageInset} py-24 lg:py-32`}>
         <div className="grid w-full gap-14 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-20">
 
           <div className="max-w-2xl">
@@ -30,7 +41,7 @@ export function WebinarsHero() {
             <div className="mt-9 flex flex-wrap items-center gap-5">
               <a
                 href={cta.href}
-                className="inline-flex h-14 items-center gap-3 rounded-full bg-brand-orange px-8 custom-label-bold text-white shadow-[0_14px_30px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                className="inline-flex h-14 items-center gap-3 rounded-full bg-white px-8 custom-label-bold text-brand-orange transition hover:-translate-y-0.5 hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 {cta.label}
                 <HiArrowRight aria-hidden="true" className="text-xl leading-none" />

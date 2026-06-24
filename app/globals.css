@@ -11,6 +11,10 @@
   --brand-orange-hover: #b8730e;
   --brand-orange-glow: color-mix(in srgb, var(--brand-orange) 28%, transparent);
   --section-gray: #d9d9d9;
+  --gray-card: #EDEDED;
+  --gray-card-border: #DEE0E5;
+  --gray-card-text: #ACAEB2;
+  --form-input-background: #F8F8F8;
 }
 
 @theme inline {
@@ -22,6 +26,10 @@
   --color-brand-orange: var(--brand-orange);
   --color-brand-orange-hover: var(--brand-orange-hover);
   --color-section-gray: var(--section-gray);
+  --color-gray-card: var(--gray-card);
+  --color-gray-card-border: var(--gray-card-border);
+  --color-gray-card-text: var(--gray-card-text);
+  --color-form-input-background: var(--form-input-background);
   --font-sans: Helvetica, Arial, sans-serif;
   --font-mono: Helvetica, Arial, sans-serif;
 }

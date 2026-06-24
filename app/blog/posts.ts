@@ -8,7 +8,7 @@ export type BlogPost = {
   date: string;
   title: string;
   subtext?: string;
-  image: string;
+  image?: string;
   /** Shown in the blog index hero when true. Falls back to the first post. */
   featured?: boolean;
   body: readonly BlogPostBlock[];
@@ -650,7 +650,6 @@ const roleplayGamesDpding: BlogPost = {
   slug: "roleplay-games-dpding",
   date: "5/28/19",
   title: "Roleplay Games & DPDing!",
-  image: "/scroll-cards-about/card-3.jpg",
   body: [
     {
       type: "heading",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Instrument_Serif } from "next/font/google";
@@ -146,14 +147,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         <div className={`${pageInset} bg-white pb-16 pt-4 sm:pb-20 sm:pt-5 lg:pb-24`}>
           <div className={postColumn}>
-            <div
-              className="flex aspect-video w-full items-center justify-center border border-custom-black/10 bg-[#f0efea] text-sm font-medium tracking-wide text-custom-black/45"
-              aria-hidden
-            >
-              Image placeholder
-            </div>
+            {post.image && (
+              <div className="relative aspect-video w-full overflow-hidden border border-custom-black/10 bg-[#f0efea]">
+                <Image
+                  src={post.image}
+                  alt=""
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            )}
 
-            <div className="mt-12 sm:mt-14">
+            <div className={post.image ? "mt-12 sm:mt-14" : ""}>
               <ArticleBody post={post} />
             </div>
           </div>

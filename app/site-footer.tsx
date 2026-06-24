@@ -26,8 +26,6 @@ const footerSocialLinks = [
 const footerSocialIconClassName =
   "inline-flex items-center justify-center text-white transition hover:text-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
 
-const footerLegalLinkClassName =
-  "underline underline-offset-2 transition hover:text-white";
 
 type FooterLink = {
   label: string;
@@ -160,7 +158,7 @@ export function SiteFooter() {
               <div className="mt-8 flex justify-center">
                 <a
                   href="/survey"
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-brand-orange px-7 custom-label-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                  className="inline-flex h-11 items-center justify-center rounded-full bg-white px-7 custom-label-bold text-brand-orange transition hover:-translate-y-0.5 hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
                   Take DPD Survey
                 </a>
@@ -194,53 +192,52 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <footer className="mt-20 pb-10 sm:pb-12 lg:pb-14">
-            <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
-              {footerColumns.map((column) => (
-                <div key={column.title}>
-                  <h3 className="custom-label-bold uppercase text-gray-light tracking-widest">
-                    {column.title}
-                  </h3>
-                  <ul className="mt-4 space-y-3">
-                    {column.links.map((link) => (
-                      <li key={link.href}>
-                        <a
-                          href={link.href}
-                          className="custom-label text-white-light transition hover:text-white"
-                        >
-                          {link.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-20 text-3xl font-bold tracking-tighter text-white">
-              DPD Framework
-            </p>
-
-            <div className="mt-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
-              <ul className="flex list-none gap-5">
-                {footerSocialLinks.map(({ label, href, Icon }) => (
-                  <li key={label}>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                      className={footerSocialIconClassName}
-                    >
-                      <Icon className="size-6" aria-hidden />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              <p className="ml-auto text-right custom-label text-white-light">
-                Copyright © 2025 DPD Framework - All Rights Reserved.
+          <footer className="mt-10 pb-10 sm:pb-12 lg:pb-14">
+            <div className="mx-auto max-w-4xl rounded-[3rem] border border-white/15 bg-black/20 px-14 py-8 backdrop-blur-sm">
+              <p className="mb-12 text-3xl font-bold tracking-tighter text-white">
+                DPD Framework
               </p>
+              <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+                {footerColumns.map((column) => (
+                  <div key={column.title}>
+                    <h3 className="custom-label-bold uppercase text-gray-light tracking-widest">
+                      {column.title}
+                    </h3>
+                    <ul className="mt-4 space-y-3">
+                      {column.links.map((link) => (
+                        <li key={link.href}>
+                          <a
+                            href={link.href}
+                            className="custom-label text-gray-light transition hover:text-white"
+                          >
+                            {link.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-20 flex items-center justify-between">
+                <ul className="flex list-none gap-5">
+                  {footerSocialLinks.map(({ label, href, Icon }) => (
+                    <li key={label}>
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                        className={footerSocialIconClassName}
+                      >
+                        <Icon className="size-6" aria-hidden />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-right custom-label text-white-light">
+                  Copyright © 2025 DPD Framework - All Rights Reserved.
+                </p>
+              </div>
             </div>
           </footer>
         </div>
