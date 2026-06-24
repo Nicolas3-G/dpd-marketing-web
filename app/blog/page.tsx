@@ -15,7 +15,7 @@ const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
 /** Swap for your real press or media inbox. */
-const MEDIA_EMAIL = "Info@DPDing.com";
+const MEDIA_EMAIL = "Info@DPDFramework.com";
 
 export const metadata = createPageMetadata("Blog", {
   description:

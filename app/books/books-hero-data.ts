@@ -2,7 +2,7 @@
 export const booksHeroContent = {
   eyebrow: "Publications",
   heading: "Read the framework",
-  headingHighlight: "behind DPDing.",
+  headingHighlight: "behind the DPD Framework.",
   description:
     "Our books translate persona-based behavior coordination into language leaders, coaches, and teams can use every day—not just in workshops.",
   cta: {
