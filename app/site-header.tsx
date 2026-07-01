@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowRight, FaBars, FaXmark } from "react-icons/fa6";
 import { createPortal } from "react-dom";
 import {
   useCallback,
@@ -16,7 +16,6 @@ import {
 const DARK_SECTION_IDS = [
   "transformation",
   "blog-featured",
-  "contact-hero",
 ] as const;
 
 /** Matches `h-20` on the nav row */
@@ -78,7 +77,7 @@ const productsMegaLinks: MegaLink[] = [
     preview: {
       eyebrow: "Webinars",
       title: "Live sessions and recorded talks",
-      image: "/scroll-cards/card-5.jpg",
+      image: "/workshop/core-workshop.jpg",
       imageAlt: "",
     },
   },
@@ -121,7 +120,7 @@ const companyMegaLinks: MegaLink[] = [
     preview: {
       eyebrow: "Blog",
       title: "Latest news, articles, & events",
-      image: "/scroll-cards/card-3.jpg",
+      image: "/mega-menu/blog.jpg",
       imageAlt: "",
     },
   },
@@ -131,7 +130,7 @@ const companyMegaLinks: MegaLink[] = [
     preview: {
       eyebrow: "Contact",
       title: "How to reach us",
-      image: "/contact-bg.jpg",
+      image: "/mega-menu/contact.jpg",
       imageAlt: "",
     },
   },
@@ -154,7 +153,7 @@ const MEGA_MENU_NAV_ROWS = companyMegaLinks.length;
 
 type MegaLayout = { left: number; width: number; top: number };
 
-type OpenMegaMenu = "platform" | "products" | "company" | null;
+type OpenMegaMenu = "products" | "company" | null;
 
 function MegaMenuNavItem({
   triggerLabel,
@@ -370,6 +369,10 @@ export function SiteHeader() {
   const [backdropMounted, setBackdropMounted] = useState(false);
   const [backdropFadeIn, setBackdropFadeIn] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuMounted, setMobileMenuMounted] = useState(false);
+  const [mobileMenuSlideIn, setMobileMenuSlideIn] = useState(false);
+  const mobileMenuTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [line, setLine] = useState<LineState>({
     left: 0,
     width: 0,
@@ -384,6 +387,38 @@ export function SiteHeader() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    if (mobileMenuTimerRef.current) clearTimeout(mobileMenuTimerRef.current);
+    if (mobileMenuOpen) {
+      setMobileMenuMounted(true);
+      setMobileMenuSlideIn(false);
+      const r1 = requestAnimationFrame(() => {
+        requestAnimationFrame(() => setMobileMenuSlideIn(true));
+      });
+      return () => cancelAnimationFrame(r1);
+    } else {
+      setMobileMenuSlideIn(false);
+      mobileMenuTimerRef.current = setTimeout(() => setMobileMenuMounted(false), 300);
+    }
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMobileMenuOpen(false); };
+    const onResize = () => { if (window.innerWidth >= 768) setMobileMenuOpen(false); };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [mobileMenuOpen]);
 
   const megaMenuBackdropActive = openMegaMenu !== null;
 
@@ -548,6 +583,71 @@ export function SiteHeader() {
             document.body,
           )
         : null}
+      {mounted && mobileMenuMounted
+        ? createPortal(
+            <div
+              id="mobile-nav-menu"
+              className={`fixed inset-x-0 top-20 bottom-0 z-50 overflow-y-auto bg-background transition-transform duration-300 ease-out md:hidden ${mobileMenuSlideIn ? "translate-x-0" : "translate-x-full"}`}
+            >
+              <nav className="flex flex-col px-5 pb-10 pt-6 sm:px-[45px]">
+                <div className="flex flex-col">
+                  {[
+                    { label: "Framework", href: "/framework" },
+                    { label: "Science", href: "/science" },
+                  ].map(({ label, href }) => (
+                    <a
+                      key={href}
+                      href={href}
+                      className="border-b border-custom-black/10 py-4 custom-body-bold text-custom-black hover:text-custom-black/65"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex flex-col">
+                  <p className="mb-2 custom-caption uppercase text-custom-black/40">Products</p>
+                  {productsMegaLinks.map(({ label, href }) => (
+                    <a
+                      key={href}
+                      href={href}
+                      className="border-b border-custom-black/10 py-4 custom-body-bold text-custom-black hover:text-custom-black/65"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex flex-col">
+                  <p className="mb-2 custom-caption uppercase text-custom-black/40">Company</p>
+                  {companyMegaLinks.map(({ label, href }) => (
+                    <a
+                      key={href}
+                      href={href}
+                      className="border-b border-custom-black/10 py-4 custom-body-bold text-custom-black hover:text-custom-black/65"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </div>
+
+                <div className="mt-10">
+                  <a
+                    href="/survey"
+                    className="inline-flex h-14 w-full items-center justify-center rounded-full bg-brand-orange custom-label-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:bg-brand-orange-hover"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Take DPD Survey
+                  </a>
+                </div>
+              </nav>
+            </div>,
+            document.body,
+          )
+        : null}
       <header className={`fixed inset-x-0 top-0 z-50 overflow-visible ${headerSurface}`}>
         <nav
           ref={navRef}
@@ -591,22 +691,21 @@ export function SiteHeader() {
             onMouseLeave={handleMegaNavGroupMouseLeave}
             onBlurCapture={handleMegaNavGroupBlurCapture}
           >
-            <MegaMenuNavItem
-              triggerLabel="Platform"
-              triggerHref="/framework"
-              triggerRef={megaMenuLeftRef}
-              links={platformMegaLinks}
-              panelId="site-header-platform-menu"
-              ariaLabel="Platform menu"
-              navLinkClass={navLinkClass}
-              navRef={navRef}
-              megaLeftRef={megaMenuLeftRef}
-              ctaRef={ctaNavRef}
-              open={openMegaMenu === "platform"}
-              onActivate={() => setOpenMegaMenu("platform")}
-              onDismiss={() => setOpenMegaMenu(null)}
-              onLinkMouseEnter={(e) => syncLine(e.currentTarget)}
-            />
+            <a
+              ref={megaMenuLeftRef}
+              href="/framework"
+              className={navLinkClass}
+              onMouseEnter={(e) => { setOpenMegaMenu(null); syncLine(e.currentTarget); }}
+            >
+              Framework
+            </a>
+            <a
+              href="/science"
+              className={navLinkClass}
+              onMouseEnter={(e) => { setOpenMegaMenu(null); syncLine(e.currentTarget); }}
+            >
+              Science
+            </a>
             <MegaMenuNavItem
               triggerLabel="Products"
               triggerHref="/webinars"
@@ -639,15 +738,29 @@ export function SiteHeader() {
             />
           </div>
         </div>
-        <a
-          ref={ctaNavRef}
-          href="/survey"
-          data-cta
-          className={`${ctaShellClass} ${ctaShellOutline}`}
-          onMouseEnter={clearLine}
-        >
-          <span className={ctaPillClass}>Take DPD Survey</span>
-        </a>
+        <div className="ml-auto flex items-center self-stretch">
+          <a
+            ref={ctaNavRef}
+            href="/survey"
+            data-cta
+            className={`group hidden shrink-0 items-center self-stretch focus-visible:outline-2 focus-visible:outline-offset-4 ${ctaShellOutline} md:flex`}
+            onMouseEnter={clearLine}
+          >
+            <span className={ctaPillClass}>Take DPD Survey</span>
+          </a>
+          <button
+            type="button"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-menu"
+            className={`flex size-10 items-center justify-center rounded-full transition-colors md:hidden ${navOnDark && !barSolid ? "text-white hover:bg-white/10" : "text-custom-black hover:bg-custom-black/5"}`}
+            onClick={() => setMobileMenuOpen((o) => !o)}
+          >
+            {mobileMenuOpen
+              ? <FaXmark className="size-5" aria-hidden />
+              : <FaBars className="size-5" aria-hidden />}
+          </button>
+        </div>
         </nav>
       </header>
     </>

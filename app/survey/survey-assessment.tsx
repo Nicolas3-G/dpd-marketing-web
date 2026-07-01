@@ -226,7 +226,7 @@ function SurveyQuestion({
               >
                 <span
                   aria-hidden
-                  className={`flex size-5 shrink-0 items-center justify-center rounded-full border-[3px] transition-colors sm:size-6 ${
+                  className={`relative size-5 shrink-0 rounded-full border-[3px] transition-colors sm:size-6 ${
                     isUpcoming
                       ? "border-[#c8c8c8]"
                       : selected
@@ -236,7 +236,7 @@ function SurveyQuestion({
                 >
                   {selected ? (
                     <span
-                      className={`size-3.5 rounded-full sm:size-4 ${
+                      className={`absolute top-1/2 left-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full sm:size-3.5 ${
                         isUpcoming ? "bg-[#c8c8c8]" : "bg-brand-orange"
                       }`}
                     />
@@ -429,7 +429,7 @@ export function SurveyAssessment() {
   return (
     <section
       id="assessment"
-      className="mx-auto mt-16 max-w-4xl scroll-mt-28 sm:mt-20"
+      className="mx-auto mt-16 max-w-4xl scroll-mt-28 pb-20 sm:mt-20 sm:pb-28"
     >
       <div className="sticky top-20 z-30">
         <div className="bg-background">

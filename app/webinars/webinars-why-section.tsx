@@ -133,7 +133,7 @@ function WorkshopOptions({
 }) {
   return (
     <div
-      className="mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:gap-4"
+      className="mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:gap-4" 
       role="tablist"
       aria-label="Workshops"
     >

@@ -12,17 +12,26 @@ export function BooksHero() {
   return (
     <section
       id="books"
-      className="relative isolate flex min-h-[calc(100svh-4rem)] overflow-hidden bg-white text-custom-black"
+      className="relative isolate flex min-h-[calc(100svh-4rem)] overflow-hidden bg-black text-custom-black"
     >
-      <div
-        className={`relative z-10 ${pageInset} flex flex-col items-center justify-center py-20 pt-24 text-center sm:py-24 sm:pt-28 lg:py-28 lg:pt-32`}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+        src="/videos/book-hero-video.mp4"
+      />
+<div
+        className={`relative z-10 ${pageInset} flex flex-col items-start justify-center py-20 pt-24 text-left sm:py-24 sm:pt-28 lg:py-28 lg:pt-32`}
       >
-        <p className="custom-caption-bold uppercase text-light">
+        <p className="custom-body-bold uppercase text-brand-orange">
           {eyebrow}
         </p>
         <h1 className="mt-6 max-w-4xl custom-lg-title-bold leading-tight">
           {heading}{" "}
-          <span className="text-brand-orange">{headingHighlight}</span>
+          <span className="text-custom-black">{headingHighlight}</span>
         </h1>
         <p className="mt-6 max-w-2xl custom-body text-custom-black">
           {description}

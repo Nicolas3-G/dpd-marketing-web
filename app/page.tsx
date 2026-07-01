@@ -205,10 +205,10 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-24">
             <div className="max-w-xl space-y-8">
               <p className="custom-lg-title-bold">
-                Some tools describe people and never coordinate behavior.
+                Most tools describe people. DPD helps people align in real time.
               </p>
               <p className="custom-lg-title-bold">
-                Others structure work and never align behavior.
+                Other tools structure the work. DPD aligns the people doing it.
               </p>
               <p className="custom-lg-title-bold">We do both.</p>
             </div>
@@ -217,13 +217,14 @@ export default function Home() {
               <p className="custom-body text-custom-black">
                 Personality assessments help people understand tendencies.
                 Process frameworks help teams organize work. DPD fills the
-                missing layer: behavior coordination.
+                missing layer between the two: cognitive alignment in real
+                time.
               </p>
               <p className="custom-body text-custom-black">
-                As a Persona Based Behavioral Operating System and GPS, DPD
-                helps individuals, coaches, teams, and organizations know when
-                to Dream, when to Plan, when to Do, and how to move together in
-                flow.
+                DPD is a Persona-Based Cognitive Alignment practice that helps
+                individuals, coaches, teams, and organizations recognize when
+                to dream, when to plan, when to do, and how to move together
+                in flow.
               </p>
               <p className="custom-body text-custom-black">
                 That is how DPD increases the ROI of the systems you already

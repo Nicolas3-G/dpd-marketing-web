@@ -3,6 +3,7 @@
 import Image from "next/image";
 import {
   useCallback,
+  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -25,7 +26,7 @@ const personas = [
     tab: "Dreamers",
     title: "The Dreamer Persona",
     description:
-      "The Dreamer Persona helps teams expand beyond current constraints and imagine new possibilities. They open the field so teams can see what could exist before deciding what should be built.\n\nBest for when the team needs to explore, ideate, reframe, or see what could be.",
+      "The Dreamer Persona helps individuals and teams move beyond current constraints and imagine new possibilities. It opens the field of thinking so people can see what could exist before deciding what should be done or built.\n\nBest for moments that require exploration, ideation, reframing, or possibility thinking.",
     imageSrc: "/Dreamers/dreamer-wide.jpg",
     imageAlt: "A dreamer persona.",
   },
@@ -33,7 +34,7 @@ const personas = [
     tab: "Planners",
     title: "The Planner Persona",
     description:
-      "The Planner Persona helps teams turn ideas into clear structure before action begins. They build the path so teams know how to move from possibility into coordinated action.\n\nBest used when the team needs to prioritize, design the path, assign ownership, or build the plan.",
+      "The Planner Persona helps individuals and teams turn ideas into structure before action begins. It creates the path from possibility to coordinated action.\n\nBest for moments that require prioritizing, sequencing, assigning ownership, or building the plan.",
     imageSrc: "/Planners/planner-wide.jpg",
     imageAlt: "A planner persona.",
   },
@@ -41,7 +42,7 @@ const personas = [
     tab: "Doers",
     title: "The Doer Persona",
     description:
-      "The Doer Persona helps teams move from discussion into focused action. They turn coordinated plans into visible progress and real results.\n\nBest used when the team needs to act, implement, follow through, and produce outcomes.",
+      "The Doer Persona helps individuals and teams move from discussion into focused action. It converts plans into visible progress, follow-through, and real results.\n\nBest for moments that require action, implementation, accountability, and outcome delivery.",
     imageSrc: "/Doers/doer-wide.jpg",
     imageAlt: "A doer persona.",
   },
@@ -49,26 +50,32 @@ const personas = [
 
 type Persona = (typeof personas)[number];
 
-function PersonaSlideContent({ persona }: { persona: Persona }) {
+function PersonaTextContent({ persona, minHeight }: { persona: Persona; minHeight?: number }) {
   const descriptionParagraphs = persona.description
     .split(/\n{2,}/)
     .map((p) => p.trim())
     .filter(Boolean);
 
   return (
-    <>
-      <div>
-        <h2 className="custom-md-title-bold leading-tight">
-          {persona.title}
-        </h2>
-        <div className="mt-8 max-w-2xl custom-body text-custom-black sm:mt-10 sm:leading-10 lg:leading-[1.35]">
-          {descriptionParagraphs.map((para, idx) => (
-            <p key={idx} className={idx === 0 ? undefined : "mt-6"}>
-              {para}
-            </p>
-          ))}
-        </div>
+    <div style={minHeight ? { minHeight } : undefined}>
+      <h2 className="custom-md-title-bold leading-tight">
+        {persona.title}
+      </h2>
+      <div className="mt-8 max-w-2xl custom-body text-white sm:mt-10 sm:leading-10 lg:leading-[1.35]">
+        {descriptionParagraphs.map((para, idx) => (
+          <p key={idx} className={idx === 0 ? undefined : "mt-6"}>
+            {para}
+          </p>
+        ))}
       </div>
+    </div>
+  );
+}
+
+function PersonaSlideContent({ persona, textMinHeight }: { persona: Persona; textMinHeight?: number }) {
+  return (
+    <>
+      <PersonaTextContent persona={persona} minHeight={textMinHeight} />
 
       {persona.imageSrc ? (
         <div className="relative aspect-4/3 w-full overflow-hidden lg:aspect-auto lg:min-h-[min(28rem,50vw)]">
@@ -108,6 +115,32 @@ function PersonaSlidePanel({
   const { displayIndex, isSliding, transition, enterX, exitX, animate } =
     useSlideCarousel(activeIndex, personas.length);
 
+  const measureRef = useRef<HTMLDivElement>(null);
+  const [minHeight, setMinHeight] = useState(0);
+
+  const updateMinHeight = useCallback(() => {
+    const container = measureRef.current;
+    if (!container) return;
+    const heights = Array.from(container.children).map(
+      (child) => (child as HTMLElement).offsetHeight,
+    );
+    const max = Math.max(0, ...heights);
+    if (max > 0) setMinHeight(max);
+  }, []);
+
+  useLayoutEffect(() => {
+    updateMinHeight();
+    const container = measureRef.current;
+    if (!container) return;
+    const observer = new ResizeObserver(updateMinHeight);
+    observer.observe(container);
+    window.addEventListener("resize", updateMinHeight);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateMinHeight);
+    };
+  }, [updateMinHeight]);
+
   return (
     <div
       id={panelId}
@@ -115,10 +148,22 @@ function PersonaSlidePanel({
       aria-labelledby={labelledBy}
       className="relative mt-12 overflow-hidden lg:mt-16"
     >
+      {/* Invisible text-only sizer — measures tallest text section so image stays at a consistent position */}
+      <div
+        ref={measureRef}
+        className="pointer-events-none invisible absolute inset-x-0 top-0 -z-10 w-full"
+        aria-hidden
+        inert
+      >
+        {personas.map((persona) => (
+          <PersonaTextContent key={persona.tab} persona={persona} />
+        ))}
+      </div>
+
       {isSliding && transition ? (
         <>
           <div className={`invisible ${slideGridClass}`} aria-hidden>
-            <PersonaSlideContent persona={personas[displayIndex]} />
+            <PersonaSlideContent persona={personas[displayIndex]} textMinHeight={minHeight} />
           </div>
 
           <div
@@ -129,7 +174,7 @@ function PersonaSlidePanel({
             }}
             aria-hidden
           >
-            <PersonaSlideContent persona={personas[transition.from]} />
+            <PersonaSlideContent persona={personas[transition.from]} textMinHeight={minHeight} />
           </div>
 
           <div
@@ -139,12 +184,12 @@ function PersonaSlidePanel({
               transitionDuration: animate ? `${SLIDE_MS}ms` : "0ms",
             }}
           >
-            <PersonaSlideContent persona={personas[displayIndex]} />
+            <PersonaSlideContent persona={personas[displayIndex]} textMinHeight={minHeight} />
           </div>
         </>
       ) : (
         <div className={slideGridClass}>
-          <PersonaSlideContent persona={personas[displayIndex]} />
+          <PersonaSlideContent persona={personas[displayIndex]} textMinHeight={minHeight} />
         </div>
       )}
     </div>
@@ -213,7 +258,7 @@ function PersonaTabList({ activeIndex, onSelect }: PersonaTabListProps) {
     >
       <span
         aria-hidden
-        className={SLIDING_UNDERLINE_CLASS}
+        className={`${SLIDING_UNDERLINE_CLASS} !bg-brand-orange`}
         style={{
           left: line.left,
           width: line.width,
@@ -236,7 +281,7 @@ function PersonaTabList({ activeIndex, onSelect }: PersonaTabListProps) {
             onClick={() => onSelect(index)}
             onMouseEnter={(e) => syncLine(e.currentTarget)}
             className={`pb-3 custom-body-bold transition-colors ${
-              isActive ? "text-custom-black" : "text-custom-black/55 hover:text-custom-black/80"
+              isActive ? "text-brand-orange" : "text-white/55 hover:text-brand-orange/80"
             }`}
           >
             {persona.tab}
@@ -252,16 +297,25 @@ export function FrameworkPersonaSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const goTo = useCallback((index: number) => {
-    const total = personas.length;
-    const next = ((index % total) + total) % total;
-    if (next === activeIndex) {
-      return;
-    }
-    setActiveIndex(next);
+    const clamped = Math.max(0, Math.min(personas.length - 1, index));
+    if (clamped === activeIndex) return;
+    setActiveIndex(clamped);
   }, [activeIndex]);
 
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const { index } = (e as CustomEvent<{ index: number }>).detail;
+      goTo(index);
+    };
+    window.addEventListener("dpd:select-persona", handler);
+    return () => window.removeEventListener("dpd:select-persona", handler);
+  }, [goTo]);
+
+  const isFirst = activeIndex === 0;
+  const isLast = activeIndex === personas.length - 1;
+
   return (
-    <section className="bg-section-gray pt-20 text-custom-black sm:pt-24 lg:pt-28">
+    <section id="framework-personas" className="bg-custom-black pt-12 text-white scroll-mt-20">
       <div className={`${pageInset} relative pb-24 sm:pb-28`}>
         <PersonaTabList activeIndex={activeIndex} onSelect={goTo} />
 
@@ -275,16 +329,18 @@ export function FrameworkPersonaSection() {
           <button
             type="button"
             onClick={() => goTo(activeIndex - 1)}
+            disabled={isFirst}
             aria-label="Previous persona"
-            className="grid size-12 place-items-center rounded-full border border-custom-black text-custom-black transition hover:bg-custom-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
+            className="grid size-12 place-items-center rounded-full border border-white text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent"
           >
             <FaArrowLeft className="size-4" aria-hidden />
           </button>
           <button
             type="button"
             onClick={() => goTo(activeIndex + 1)}
+            disabled={isLast}
             aria-label="Next persona"
-            className="grid size-12 place-items-center rounded-full border border-custom-black text-custom-black transition hover:bg-custom-black/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
+            className="grid size-12 place-items-center rounded-full border border-white text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent"
           >
             <FaArrowRight className="size-4" aria-hidden />
           </button>

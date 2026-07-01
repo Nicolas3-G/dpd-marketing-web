@@ -22,7 +22,7 @@ export function BlogFeaturedPost({ post }: { post: BlogPost }) {
       )}
 
       <div className="relative z-10 grid lg:grid-cols-2 lg:items-stretch">
-        <div className="relative flex min-h-[380px] flex-col justify-center px-6 py-14 sm:px-10 lg:min-h-[min(85vh,640px)] lg:px-12 xl:px-16">
+        <div className="relative flex flex-col justify-center px-6 pt-10 pb-6 sm:min-h-[380px] sm:py-14 sm:px-10 lg:min-h-[min(85vh,640px)] lg:px-12 xl:px-16">
           <div className="relative z-10 flex max-w-xl flex-col gap-8">
             <div className="flex flex-col gap-3">
               <h2 className="custom-sm-title text-white">{post.title}</h2>
@@ -47,7 +47,7 @@ export function BlogFeaturedPost({ post }: { post: BlogPost }) {
         </div>
 
         {post.image && (
-          <div className="relative flex min-h-[260px] w-full flex-col items-center justify-center px-6 py-10 sm:px-8 sm:py-12 lg:min-h-[min(85vh,640px)] lg:px-10 lg:py-14 xl:px-14 xl:py-16">
+          <div className="relative flex w-full flex-col items-center justify-center px-6 pt-4 pb-10 sm:min-h-[260px] sm:px-8 sm:py-12 lg:min-h-[min(85vh,640px)] lg:px-10 lg:py-14 xl:px-14 xl:py-16">
             <div className="relative mx-auto aspect-4/3 w-[min(100%,36rem)] overflow-hidden shadow-2xl shadow-custom-black/50 sm:w-[min(100%,40rem)] xl:w-[min(100%,44rem)]">
               <Image
                 src={post.image}

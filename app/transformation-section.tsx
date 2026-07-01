@@ -14,7 +14,7 @@ const transformationMetrics = [
     direction: "up",
     value: "75",
     suffix: "%",
-    label: "Improvement in team behavior coordination",
+    label: "Improvement in team alignment",
   },
   {
     direction: "down",
@@ -120,7 +120,7 @@ export function TransformationSection() {
         <div className="mt-6 grid border border-white/20 bg-black/20 md:grid-cols-2">
           {transformationMetrics.map((metric, index) => (
             <div
-              key={metric.label}
+              key={index}
               className={`grid min-h-44 gap-6 border-white/20 p-6 sm:grid-cols-[10rem_1fr] sm:items-start sm:p-8 lg:min-h-52 lg:grid-cols-[14rem_1fr] ${
                 index > 0 ? "border-t md:border-t-0" : ""
               } ${index > 1 ? "md:border-t" : ""} ${

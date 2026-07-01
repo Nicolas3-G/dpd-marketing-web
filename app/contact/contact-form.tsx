@@ -67,7 +67,7 @@ export function ContactForm() {
     <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
       <div className="flex flex-col gap-1.5">
         <label htmlFor="contact-email" className={labelClass}>
-          Work email        </label>
+          Email</label>
         <input
           id="contact-email"
           name="email"
@@ -75,34 +75,34 @@ export function ContactForm() {
           required
           autoComplete="email"
           className={fieldClass}
-          placeholder="you@companyname.com"
+          placeholder="you@example.com"
         />
       </div>
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="contact-first" className={labelClass}>
-            First name          </label>
-          <input
-            id="contact-first"
-            name="firstName"
-            type="text"
-            required
-            autoComplete="given-name"
-            className={fieldClass}
-          />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="contact-last" className={labelClass}>
-            Last name          </label>
-          <input
-            id="contact-last"
-            name="lastName"
-            type="text"
-            required
-            autoComplete="family-name"
-            className={fieldClass}
-          />
-        </div>
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="contact-first" className={labelClass}>
+          First name
+        </label>
+        <input
+          id="contact-first"
+          name="firstName"
+          type="text"
+          required
+          autoComplete="given-name"
+          className={fieldClass}
+        />
+      </div>
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="contact-last" className={labelClass}>
+          Last name
+        </label>
+        <input
+          id="contact-last"
+          name="lastName"
+          type="text"
+          required
+          autoComplete="family-name"
+          className={fieldClass}
+        />
       </div>
       <div className="flex flex-col gap-1.5">
         <label htmlFor="contact-phone" className={labelClass}>

@@ -4,9 +4,7 @@ export type ContactPayload = {
   email: string;
   firstName: string;
   lastName: string;
-  jobTitle: string;
-  phone: string;
-  company: string;
+  phone?: string;
 };
 
 export function isResendConfigured(): boolean {
@@ -35,9 +33,7 @@ function buildEmailHtml(p: ContactPayload): string {
       </td></tr>
       <tr><td style="padding-bottom:12px"><strong>Name:</strong> ${p.firstName} ${p.lastName}</td></tr>
       <tr><td style="padding-bottom:12px"><strong>Email:</strong> <a href="mailto:${p.email}">${p.email}</a></td></tr>
-      <tr><td style="padding-bottom:12px"><strong>Job Title:</strong> ${p.jobTitle}</td></tr>
-      <tr><td style="padding-bottom:12px"><strong>Phone:</strong> ${p.phone}</td></tr>
-      <tr><td style="padding-bottom:12px"><strong>Company:</strong> ${p.company}</td></tr>
+      ${p.phone ? `<tr><td style="padding-bottom:12px"><strong>Phone:</strong> ${p.phone}</td></tr>` : ""}
     </table>
   `;
 }

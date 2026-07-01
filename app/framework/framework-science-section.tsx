@@ -7,23 +7,14 @@ export function FrameworkScienceSection() {
     <section className="bg-background py-20 text-custom-black sm:py-24 lg:py-28">
       <div className={`${pageInset} flex flex-col`}>
         <h2 className="custom-md-title-bold max-w-4xl text-left">
-          Backed by science, backed by research
+          Research-Informed. Practice-Ready.
         </h2>
 
         <div className="mt-10 w-full max-w-4xl space-y-6 text-left text-center sm:mt-12 sm:space-y-8">
           <p className="custom-body text-custom-black">
-            DPD is backed by research showing that teams perform better when they
-            share a clear behavioral language for the moment they are in.
-            Cognitive behavioral science, game theory, embodied cognition, and
-            habit formation all point to the same practical insight: people
-            collaborate more effectively when expectations, roles, and repeated
-            practice are aligned.
-          </p>
-          <p className="custom-body text-custom-black">
-            DPD turns that science into a simple operating system for meetings
-            and teamwork, helping teams reduce misinterpretation, switch cleanly
-            between Dreaming, Planning, and Doing personas, and build stronger
-            habits for coordinated action.
+            DPD draws from cognitive science, behavioral science, game theory,
+            embodied cognition, and habit formation to help people build a
+            shared language for how they think, work, and move together.
           </p>
         </div>
 

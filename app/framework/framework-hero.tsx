@@ -1,55 +1,213 @@
+"use client";
+
 import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
-const pageInset =
-  "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
+const TRANSITION_MS = 300;
+const FADE_OUT_OFFSET_PERCENT = -35;
 
-const personaCards = [
-  { label: "Dreamer Persona", imageSrc: "/Dreamers/dreamer-vert.jpg" },
-  { label: "Planner Persona", imageSrc: "/Planners/planner-vert.jpg" },
-  { label: "Doer Persona", imageSrc: "/Doers/doer-vert.jpg" },
+const personas = [
+  { label: "The Dreamer Persona", imageSrc: "/Dreamers/dreamer-vert.jpg", backgroundSrc: "/Dreamers/dreamer-1.jpg" },
+  { label: "The Planner Persona", imageSrc: "/Planners/planner-vert.jpg", backgroundSrc: "/Planners/planner-1.jpg" },
+  { label: "The Doer Persona", imageSrc: "/Doers/doer-vert.jpg", backgroundSrc: "/Doers/doer-1.jpg" },
 ] as const;
 
-/** Framework page hero — edit here without affecting the homepage. */
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function selectPersonaSection(index: number) {
+  window.dispatchEvent(new CustomEvent("dpd:select-persona", { detail: { index } }));
+  document.getElementById("framework-personas")?.scrollIntoView({ behavior: "smooth" });
+}
+
+/** Outgoing portrait — fades and drifts left, then is removed. */
+function FadingOutPortrait({ imageSrc }: { imageSrc: string }) {
+  const [exited, setExited] = useState(false);
+
+  useEffect(() => {
+    if (prefersReducedMotion()) {
+      setExited(true);
+      return;
+    }
+    const frame = requestAnimationFrame(() => setExited(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  return (
+    <div
+      className="pointer-events-none absolute inset-0 transition-[opacity,transform] ease-out motion-reduce:transition-none"
+      style={{
+        opacity: exited ? 0 : 1,
+        transform: exited ? `translateX(${FADE_OUT_OFFSET_PERCENT}%) scale(0.75)` : "translateX(0%) scale(1)",
+        transitionDuration: `${TRANSITION_MS}ms`,
+        zIndex: 10,
+      }}
+      aria-hidden
+    >
+      <Image
+        src={imageSrc}
+        alt=""
+        fill
+        sizes="(min-width: 640px) 320px, 256px"
+        className="object-cover"
+      />
+    </div>
+  );
+}
+
+/** Framework page hero — glass card always 60% section height, persona card straddling its top edge. */
 export function FrameworkHero() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const [fadingOutSrc, setFadingOutSrc] = useState<string | null>(null);
+  const [autoplay, setAutoplay] = useState(true);
+  const fadeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const persona = personas[displayIndex];
+
+  const goTo = useCallback(
+    (next: number) => {
+      const total = personas.length;
+      const clamped = ((next % total) + total) % total;
+      if (clamped === activeIndex) return;
+
+      if (fadeTimeoutRef.current) clearTimeout(fadeTimeoutRef.current);
+
+      setFadingOutSrc(personas[activeIndex].imageSrc);
+      setDisplayIndex(clamped);
+      setActiveIndex(clamped);
+
+      fadeTimeoutRef.current = setTimeout(() => {
+        setFadingOutSrc(null);
+        fadeTimeoutRef.current = null;
+      }, TRANSITION_MS);
+    },
+    [activeIndex],
+  );
+
+  const handleManualNav = useCallback(
+    (next: number) => {
+      setAutoplay(false);
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+        autoplayRef.current = null;
+      }
+      goTo(next);
+    },
+    [goTo],
+  );
+
+  useEffect(() => {
+    if (!autoplay) return;
+    autoplayRef.current = setInterval(() => {
+      setActiveIndex((prev) => {
+        const next = (prev + 1) % personas.length;
+        setFadingOutSrc(personas[prev].imageSrc);
+        setDisplayIndex(next);
+        if (fadeTimeoutRef.current) clearTimeout(fadeTimeoutRef.current);
+        fadeTimeoutRef.current = setTimeout(() => {
+          setFadingOutSrc(null);
+          fadeTimeoutRef.current = null;
+        }, TRANSITION_MS);
+        return next;
+      });
+    }, 15000);
+    return () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+    };
+  }, [autoplay]);
+
+  useEffect(() => () => {
+    if (fadeTimeoutRef.current) clearTimeout(fadeTimeoutRef.current);
+    if (autoplayRef.current) clearInterval(autoplayRef.current);
+  }, []);
+
   return (
     <section
       id="framework"
-      className="relative isolate overflow-hidden bg-background pb-20 text-custom-black sm:pb-24 lg:pb-28"
+      className="relative isolate mt-20 min-h-[calc(100svh-5rem)] overflow-hidden"
     >
-      <div
-        className={`relative z-10 ${pageInset} flex flex-col pt-24 sm:pt-28 lg:pt-32`}
-      >
-        <p className="custom-caption-bold text-custom-black">
-          A Breakthrough in Cultural Science
-        </p>
-        <h1 className="mt-6 max-w-4xl custom-lg-title-bold leading-tight sm:mt-7">
-          The DPD Framework
-        </h1>
-        <p className="mt-8 max-w-3xl custom-body text-custom-black">
-          The Dreamer-Planner-Doer (DPD) Framework is a behavioral operating
-          system designed to enhance team collaboration and productivity by
-          identifying three key personas
-        </p>
+      {/* Background images — crossfade on persona change */}
+      {personas.map((p, i) => (
+        <Image
+          key={p.backgroundSrc}
+          src={p.backgroundSrc}
+          alt=""
+          fill
+          aria-hidden
+          priority={i === 0}
+          className={`pointer-events-none object-cover -scale-x-100 transition-opacity duration-700 ${i === activeIndex ? "opacity-100" : "opacity-0"}`}
+          sizes="100vw"
+        />
+      ))}
 
-        <hr className="mt-16 w-full border-t border-custom-black/20 sm:mt-20 lg:mt-24" />
+      {/* Glass card — always bottom 60% of the section */}
+      <div className="absolute bottom-0 left-0 right-0 h-[60%] border-t border-gray-card-border bg-black/20 backdrop-blur-sm">
+        <div className="mx-5 flex h-full items-center sm:mx-[45px]">
+          <div className="text-white">
+            <p className="custom-caption-bold uppercase text-brand-orange">
+              A Breakthrough in Cognitive Persona Science
+            </p>
+            <h1 className="mt-6 custom-lg-title-bold leading-tight">
+              The DPD Framework
+            </h1>
+            <p className="mt-6 max-w-prose custom-body text-white/80">
+              The Dreamer-Planner-Doer (DPD) Framework is a Persona-Based
+              Cognitive Alignment practice designed to help people recognize
+              their current cognitive (thinking) posture, build relational
+              awareness, and create greater individual and team coherence.
+            </p>
+          </div>
+        </div>
+      </div>
 
-        <div className="mt-16 grid w-full max-w-5xl grid-cols-1 gap-12 self-center sm:mt-20 sm:grid-cols-3 sm:gap-10 lg:mt-24 lg:gap-12">
-          {personaCards.map(({ label, imageSrc }) => (
-            <figure key={label} className="flex flex-col items-center">
-              <div className="relative aspect-[3/4] w-full overflow-hidden">
-                <Image
-                  src={imageSrc}
-                  alt={label}
-                  fill
-                  sizes="(min-width: 640px) 15vw, 44vw"
-                  className="object-cover"
-                />
-              </div>
-              <figcaption className="mt-3 custom-xs-title-bold text-custom-black">
-                {label}
-              </figcaption>
-            </figure>
-          ))}
+      {/* Persona card — centered on the glass card's top edge */}
+      <div className="absolute right-10 top-[52%] z-10 hidden -translate-y-1/2 flex-col items-center gap-4 sm:right-36 md:flex">
+        <button
+          type="button"
+          onClick={() => selectPersonaSection(activeIndex)}
+          className="group flex flex-col items-center gap-4 focus-visible:outline-none"
+          aria-label={`View ${persona.label} section`}
+        >
+          {/* Card container — new portrait sits statically; outgoing fades as an overlay */}
+          <div className="relative aspect-[3/4] w-64 overflow-hidden border border-gray-card-border shadow-[0px_8px_24px_rgba(0,0,0,0.20)] group-hover:brightness-90 sm:w-80">
+            <Image
+              src={persona.imageSrc}
+              alt={persona.label}
+              fill
+              sizes="(min-width: 640px) 320px, 256px"
+              className="object-cover"
+            />
+            {fadingOutSrc !== null && (
+              <FadingOutPortrait key={fadingOutSrc} imageSrc={fadingOutSrc} />
+            )}
+          </div>
+
+          <p className="custom-body-bold text-white transition-opacity duration-300 group-hover:text-white/75">
+            {persona.label}
+          </p>
+        </button>
+
+        <div className="flex gap-3">
+          <button
+            type="button"
+            onClick={() => handleManualNav(activeIndex - 1)}
+            aria-label="Previous persona"
+            className="grid size-14 place-items-center rounded-full border border-white text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+          >
+            <FaArrowLeft className="size-5" aria-hidden />
+          </button>
+          <button
+            type="button"
+            onClick={() => handleManualNav(activeIndex + 1)}
+            aria-label="Next persona"
+            className="grid size-14 place-items-center rounded-full border border-white text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+          >
+            <FaArrowRight className="size-5" aria-hidden />
+          </button>
         </div>
       </div>
     </section>

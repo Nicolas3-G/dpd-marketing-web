@@ -136,7 +136,7 @@ export function SiteFooter() {
       >
         <video
           ref={videoRef}
-          src="/videos/footer-test.mp4"
+          src="/videos/footer-video.mp4"
           muted
           playsInline
           preload="auto"
@@ -151,9 +151,8 @@ export function SiteFooter() {
                 See it in action.
               </h2>
               <p className="mx-auto mt-6 max-w-3xl custom-body text-white-light sm:mt-8">
-                Experience the DPD Persona Based Behavioral Operating System
-                and GPS for teams, personalized to your goals, metrics, and
-                team.
+                Experience DPD: a Persona-Based Cognitive Alignment practice
+                personalized to your goals, metrics, and team.
               </p>
               <div className="mt-8 flex justify-center">
                 <a
@@ -193,8 +192,8 @@ export function SiteFooter() {
           </div>
 
           <footer className="mt-10 pb-10 sm:pb-12 lg:pb-14">
-            <div className="mx-auto max-w-4xl rounded-[3rem] border border-white/15 bg-black/20 px-14 py-8 backdrop-blur-sm">
-              <p className="mb-12 text-3xl font-bold tracking-tighter text-white">
+            <div className="mx-auto max-w-6xl rounded-[3rem] border border-white/15 bg-black/20 px-14 py-8 backdrop-blur-sm">
+              <p className="mb-20 text-3xl font-bold tracking-tighter text-white">
                 DPD Framework
               </p>
               <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
@@ -218,7 +217,7 @@ export function SiteFooter() {
                   </div>
                 ))}
               </div>
-              <div className="mt-20 flex items-center justify-between">
+              <div className="mt-28 flex items-center justify-between">
                 <ul className="flex list-none gap-5">
                   {footerSocialLinks.map(({ label, href, Icon }) => (
                     <li key={label}>
