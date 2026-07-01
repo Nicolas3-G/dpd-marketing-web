@@ -24,11 +24,10 @@ export function ContactHero() {
         aria-hidden
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
       />
-      <div className="pointer-events-none absolute inset-0 bg-black/20" aria-hidden />
 
-      <div className="relative z-10 flex min-h-[min(100vh,520px)] w-full items-center justify-center px-6 py-16 sm:px-10 sm:py-20 lg:min-h-[calc(100vh-5rem)]">
-        <div className="w-full max-w-6xl border border-white/60 bg-white/20 shadow-[0_24px_70px_rgba(0,0,0,0.14)] backdrop-blur-md">
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.9fr)_minmax(280px,1fr)]">
+      <div className="relative z-10 flex min-h-[min(100vh,520px)] w-full items-center py-16 sm:py-20 lg:min-h-[calc(100vh-5rem)]">
+        <div className="mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,1fr)]">
             <div className="flex flex-col justify-center px-8 py-10 sm:px-12 sm:py-12 lg:px-14 lg:py-14">
               <div className="relative mx-auto w-full max-w-xl lg:mx-0">
                 <h1 className="custom-lg-title-bold text-black">
@@ -60,7 +59,7 @@ export function ContactHero() {
             </div>
 
             <div className="flex items-center justify-center px-8 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
-              <div className="w-full max-w-md rounded-2xl border border-gray-card-border bg-gray-card px-6 py-8 sm:px-8 sm:py-10">
+              <div className="w-full max-w-xl rounded-2xl border border-gray-card-border bg-gray-card px-6 py-8 sm:px-8 sm:py-10">
                 <ContactForm />
               </div>
             </div>

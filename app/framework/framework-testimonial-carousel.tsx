@@ -15,10 +15,8 @@ export function FrameworkTestimonialCarousel() {
 
   const goTo = useCallback(
     (index: number) => {
-      const next = ((index % slideCount) + slideCount) % slideCount;
-      if (next === activeIndex) {
-        return;
-      }
+      const next = Math.max(0, Math.min(slideCount - 1, index));
+      if (next === activeIndex) return;
       setActiveIndex(next);
     },
     [activeIndex, slideCount],
@@ -33,6 +31,8 @@ export function FrameworkTestimonialCarousel() {
       onSelect={goTo}
       onPrev={() => goTo(activeIndex - 1)}
       onNext={() => goTo(activeIndex + 1)}
+      isFirst={activeIndex === 0}
+      isLast={activeIndex === slideCount - 1}
     />
   );
 }

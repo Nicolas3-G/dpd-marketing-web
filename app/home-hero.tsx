@@ -50,7 +50,7 @@ const TAGLINE_SUFFIX_LINE_2 = "your business";
 
 const splashWordClass = "custom-md-title";
 
-const taglineRowClass = `inline-flex flex-nowrap items-baseline gap-x-3 sm:gap-x-4 ${splashWordClass}`;
+const taglineRowClass = `inline-flex flex-nowrap items-baseline justify-center gap-x-3 sm:justify-start sm:gap-x-4 ${splashWordClass}`;
 
 const taglinePartClass =
   "shrink-0 text-custom-black transition-[opacity,transform] ease-out motion-reduce:transition-none";
@@ -268,7 +268,7 @@ function TaglineRow({
           suffixTaglineVisible={suffixTaglineVisible}
         />
       </span>
-      <span className="relative shrink-0 whitespace-nowrap leading-none pb-[1em] sm:pb-0 sm:leading-normal">
+      <span className="relative shrink-0 sm:whitespace-nowrap sm:leading-normal">
         <span
           className={`${taglinePartClass} ${taglinePartVisibilityClass(suffixVisible)}`}
           style={{ transitionDuration: `${TAGLINE_FADE_MS}ms` }}
@@ -281,8 +281,13 @@ function TaglineRow({
           </span>
         </span>
         <span
-          className={`${taglinePartClass} absolute top-[1em] left-0 whitespace-nowrap sm:hidden ${taglinePartVisibilityClass(suffixLine2Visible)}`}
-          style={{ transitionDuration: `${TAGLINE_FADE_MS}ms` }}
+          className={`${taglinePartClass} block sm:hidden ${taglinePartVisibilityClass(suffixLine2Visible)}`}
+          style={{
+            transitionDuration: `${TAGLINE_FADE_MS}ms`,
+            ...(wordmarkWidth !== undefined
+              ? { marginLeft: `calc(-${wordmarkWidth}px - 1.5rem)` }
+              : {}),
+          }}
           aria-hidden={!suffixLine2Visible}
         >
           {TAGLINE_SUFFIX_LINE_2}
@@ -628,7 +633,7 @@ export function HomeHero() {
         >
           <div
             ref={taglineMeasureRef}
-            className="pointer-events-none invisible absolute inset-0 flex items-center justify-center px-4"
+            className="pointer-events-none invisible absolute inset-0 flex items-center justify-center px-8 sm:px-4"
             aria-hidden
           >
             <TaglineRow
@@ -639,7 +644,7 @@ export function HomeHero() {
             />
           </div>
           <div
-            className={`flex w-full justify-center px-4 motion-reduce:transition-none ${
+            className={`flex w-full justify-center px-8 sm:px-4 motion-reduce:transition-none ${
               taglineLayout ? "visible" : "invisible"
             }`}
           >
@@ -673,17 +678,17 @@ export function HomeHero() {
             aria-hidden={!contentVisible}
           >
             <p className="custom-caption-bold uppercase text-custom-black">
-              Discover your persona
+              Persona-based Cognitive Alignment
             </p>
             <h1 className="mt-6 max-w-4xl custom-lg-title-bold leading-tight">
-              Behavior Coordination for{" "}
+              Built for{" "}
               <span className="text-brand-orange">
-                individuals, coaches, and teams.
+                Individuals, Coaches, Leaders, and Teams.
               </span>
             </h1>
             <p className="mt-6 max-w-2xl custom-body text-custom-black">
-              Only 10 minutes to gain practical insight into how your team
-              collaborates, communicates, and works best together.
+              DPD turns how people think into a shared language for how they
+              dream, plan, and do together.
             </p>
             <a
               href="/survey"

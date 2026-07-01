@@ -85,12 +85,12 @@ export function ScienceBanner() {
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="flex w-full flex-wrap items-center justify-center gap-x-10 gap-y-4 border-y border-white/25 bg-black/20 px-8 py-11 text-center shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:gap-x-14 sm:py-12 lg:gap-x-20">
           <p className="shrink-0 leading-[1.12] custom-sm-title text-white">
-            Science that supports{" "}
+            The Research Behind{" "}
             <span className="text-brand-orange">DPD.</span>
           </p>
           <p className="shrink-0 custom-sm-title text-white">
             <span className="text-brand-orange">
-              Behavior coordination
+              Cognitive alignment
             </span>{" "}
             that scales.
           </p>

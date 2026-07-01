@@ -83,8 +83,8 @@ export function ResearchSplitSection({
       >
         {reversed ? (
           <>
+            <div className="lg:col-start-2 lg:row-start-1">{textColumn}</div>
             <div className="lg:col-start-1 lg:row-start-1">{imageColumn}</div>
-            <div className="lg:col-start-2">{textColumn}</div>
           </>
         ) : (
           <>

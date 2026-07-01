@@ -8,17 +8,26 @@ export function ResearchHero() {
   return (
     <section
       id="science"
-      className="relative isolate overflow-x-clip  text-custom-black bg-white pb-24"
+      className="relative isolate overflow-hidden text-custom-black bg-white pb-24"
     >
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+        src="/videos/science-hero.mp4"
+      />
       <div
-        className={`${pageInset} relative flex min-h-[calc(100svh-5rem)] flex-col justify-center py-20 pt-24 sm:py-24 sm:pt-28 lg:block lg:py-28 lg:pt-32`}
+        className={`${pageInset} relative z-10 flex min-h-[calc(100svh-5rem)] flex-col justify-center py-20 pt-24 sm:py-24 sm:pt-28 lg:block lg:py-28 lg:pt-32`}
       >
         <div className="flex w-full max-w-lg flex-col items-start text-left sm:max-w-xl lg:absolute lg:top-1/2 lg:left-0 lg:max-w-[34rem] lg:-translate-y-1/2">
           <h1 className="custom-md-title-bold">
-            The science behind persona-based behavior coordination.
+            The Research Behind Persona-Based Cognitive Alignment
           </h1>
           <p className="mt-5 custom-body text-custom-black">
-          Personality assessments help teams understand tendencies. Process tools help teams organize work. DPD accelerates the human ROI of both by adding the missing behavioral operating layer that reduces cognitive load, improves relational awareness, and coordinates behavior in real time. 
+          Personality tools help people understand tendencies. Process tools help teams organize work. DPD helps people align how they think, relate, and work together in the moment.
           </p>
           <a
             href="/contact"

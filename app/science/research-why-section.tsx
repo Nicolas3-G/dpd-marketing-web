@@ -1,9 +1,7 @@
 "use client";
 
 import {
-  useCallback,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -23,10 +21,10 @@ import {
   type ResearchWorkshopProsePanel,
 } from "./research-why-data";
 
-const ITEM_FADE_MS = 500;
+const ITEM_FADE_MS = 400;
 
 const panelShellClass =
-  "flex w-full flex-col bg-custom-black px-8 py-10 sm:px-10 sm:py-12 lg:justify-center lg:px-12 lg:py-14 xl:px-14";
+  "flex w-full flex-col items-start bg-custom-black px-8 py-10 sm:px-10 sm:py-12 lg:justify-start lg:px-12 lg:py-14 xl:px-14";
 
 type ResearchWhySectionContent = {
   heading?: string;
@@ -56,95 +54,6 @@ function resolveWorkshopPanel(
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
-function useStaggeredReveal<T extends HTMLElement>(activeKey: string) {
-  const listRef = useRef<T>(null);
-  const [inView, setInView] = useState(false);
-  const [revealed, setRevealed] = useState(false);
-
-  useEffect(() => {
-    const el = listRef.current;
-    if (!el) return;
-
-    if (prefersReducedMotion()) {
-      setInView(true);
-      setRevealed(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useLayoutEffect(() => {
-    if (!inView) return;
-
-    if (prefersReducedMotion()) {
-      setRevealed(true);
-      return;
-    }
-
-    setRevealed(false);
-  }, [inView, activeKey]);
-
-  useEffect(() => {
-    if (!inView) return;
-
-    if (prefersReducedMotion()) {
-      setRevealed(true);
-      return;
-    }
-
-    const timeout = window.setTimeout(() => setRevealed(true), 50);
-    return () => window.clearTimeout(timeout);
-  }, [inView, activeKey]);
-
-  return { listRef, revealed };
-}
-
-function usePanelMinHeight() {
-  const measureRef = useRef<HTMLDivElement>(null);
-  const [minHeight, setMinHeight] = useState(0);
-
-  const updateMinHeight = useCallback(() => {
-    const container = measureRef.current;
-    if (!container) return;
-
-    const heights = Array.from(container.children).map(
-      (child) => (child as HTMLElement).offsetHeight,
-    );
-    const max = Math.max(0, ...heights);
-    if (max > 0) setMinHeight(max);
-  }, []);
-
-  useLayoutEffect(() => {
-    updateMinHeight();
-
-    const container = measureRef.current;
-    if (!container) return;
-
-    const observer = new ResizeObserver(updateMinHeight);
-    observer.observe(container);
-    window.addEventListener("resize", updateMinHeight);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", updateMinHeight);
-    };
-  }, [updateMinHeight]);
-
-  return { measureRef, minHeight };
 }
 
 const workshopTabListClass =
@@ -197,9 +106,12 @@ function WorkshopOptions({
   );
 }
 
-function WorkshopProsePanelBody({ content }: { content: ResearchWorkshopProsePanel }) {
+function WorkshopProsePanelBody({ content, title }: { content: ResearchWorkshopProsePanel; title?: string }) {
   return (
     <div className="flex max-w-2xl flex-col gap-6 sm:gap-7">
+      {title ? (
+        <h3 className="custom-md-title text-white">{title}</h3>
+      ) : null}
       {content.intro.map((paragraph) => (
         <p key={paragraph} className="custom-body text-white">
           {paragraph}
@@ -238,67 +150,63 @@ function WorkshopProsePanelBody({ content }: { content: ResearchWorkshopProsePan
   );
 }
 
-
 function WorkshopProsePanelContent({
   content,
-  activeKey,
+  isActive,
+  title,
 }: {
   content: ResearchWorkshopProsePanel;
-  activeKey: string;
+  isActive: boolean;
+  title?: string;
 }) {
-  const { listRef, revealed } = useStaggeredReveal<HTMLDivElement>(activeKey);
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isActive) return;
+    const el = divRef.current;
+    if (!el || prefersReducedMotion()) return;
+
+    el.style.transition = "none";
+    el.style.opacity = "0";
+    el.style.transform = "translateX(20px)";
+
+    void el.offsetHeight; // force reflow so browser records the start state
+
+    el.style.transition = `opacity ${ITEM_FADE_MS}ms ease-out, transform ${ITEM_FADE_MS}ms ease-out`;
+    el.style.opacity = "1";
+    el.style.transform = "translateX(0px)";
+  }, [isActive]);
 
   return (
-    <div
-      ref={listRef}
-      className={`transition-[opacity,transform] ease-out motion-reduce:transition-none ${
-        revealed ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-      }`}
-      style={{ transitionDuration: `${ITEM_FADE_MS}ms` }}
-    >
-      <WorkshopProsePanelBody content={content} />
+    <div ref={divRef}>
+      <WorkshopProsePanelBody content={content} title={title} />
     </div>
   );
-}
-
-function WorkshopPanelBody({ panel }: { panel: ResearchWorkshopPanelContent | undefined }) {
-  if (!panel) return null;
-  return <WorkshopProsePanelBody content={panel} />;
 }
 
 function WorkshopPanelContent({
   panel,
-  activeKey,
+  isActive,
+  title,
 }: {
   panel: ResearchWorkshopPanelContent | undefined;
-  activeKey: string;
+  isActive: boolean;
+  title?: string;
 }) {
   if (!panel) return null;
-  return <WorkshopProsePanelContent content={panel} activeKey={activeKey} />;
-}
-
-function WorkshopPanelMeasure({
-  panel,
-}: {
-  panel: ResearchWorkshopPanelContent | undefined;
-}) {
-  if (!panel) return null;
-
-  return (
-    <div className={panelShellClass} aria-hidden>
-      <WorkshopPanelBody panel={panel} />
-    </div>
-  );
+  return <WorkshopProsePanelContent content={panel} isActive={isActive} title={title} />;
 }
 
 function WorkshopPanel({
   workshopId,
   panel,
   idPrefix,
+  isActive,
 }: {
   workshopId: string;
   panel: ResearchWorkshopPanelContent | undefined;
   idPrefix: string;
+  isActive: boolean;
 }) {
   const slug = workshopTabSlug(workshopId);
   return (
@@ -306,9 +214,9 @@ function WorkshopPanel({
       id={`${idPrefix}-workshop-panel-${slug}`}
       role="tabpanel"
       aria-labelledby={`${idPrefix}-workshop-tab-${slug}`}
-      className={`${panelShellClass} h-full min-h-56 sm:min-h-64 lg:min-h-0`}
+      className={`${panelShellClass} h-full`}
     >
-      <WorkshopPanelContent panel={panel} activeKey={workshopId} />
+      <WorkshopPanelContent panel={panel} isActive={isActive} title={workshopId} />
     </div>
   );
 }
@@ -324,39 +232,31 @@ function WorkshopPanelsColumn({
   panels: Record<string, ResearchWorkshopPanelContent>;
   idPrefix: string;
 }) {
-  const { measureRef, minHeight } = usePanelMinHeight();
   const fallbackWorkshop = workshops[0];
-  const activePanel = resolveWorkshopPanel(
-    panels,
-    activeWorkshop,
-    fallbackWorkshop,
-  );
 
   return (
-    <div className="relative min-h-56 w-full min-w-0 sm:min-h-64 lg:min-h-0 lg:h-full">
-      <div
-        ref={measureRef}
-        className="pointer-events-none invisible absolute inset-x-0 top-0 -z-10 w-full"
-        aria-hidden
-      >
-        {workshops.map((workshopId) => (
-          <WorkshopPanelMeasure
+    <div
+      className="grid w-full min-w-0 min-h-56 sm:min-h-64 lg:min-h-0 lg:h-full"
+      style={{ gridTemplate: "1fr / 1fr" }}
+    >
+      {workshops.map((workshopId) => {
+        const isActive = workshopId === activeWorkshop;
+        return (
+          <div
             key={workshopId}
-            panel={resolveWorkshopPanel(panels, workshopId, fallbackWorkshop)}
-          />
-        ))}
-      </div>
-
-      <div
-        className="h-full"
-        style={minHeight > 0 ? { minHeight } : undefined}
-      >
-        <WorkshopPanel
-          workshopId={activeWorkshop}
-          panel={activePanel}
-          idPrefix={idPrefix}
-        />
-      </div>
+            style={{ gridArea: "1 / 1" }}
+            aria-hidden={!isActive || undefined}
+            className={!isActive ? "invisible pointer-events-none" : undefined}
+          >
+            <WorkshopPanel
+              workshopId={workshopId}
+              panel={resolveWorkshopPanel(panels, workshopId, fallbackWorkshop)}
+              idPrefix={idPrefix}
+              isActive={isActive}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -466,8 +366,8 @@ export function ResearchWhySectionLayout({
       >
         {reversed ? (
           <>
-            {panelsColumn}
-            {copyColumn}
+            <div className="lg:col-start-2 lg:row-start-1">{copyColumn}</div>
+            <div className="lg:col-start-1 lg:row-start-1">{panelsColumn}</div>
           </>
         ) : (
           <>

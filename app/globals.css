@@ -41,10 +41,20 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Helvetica, Arial, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* TITLES STYLES */
@@ -184,5 +194,14 @@ body {
 @media (min-width: 1024px) {
   .about-card-strip {
     --card-width: calc((100vw - 12.5rem) / 2);
+  }
+}
+
+@keyframes caret-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  50.01%, 100% {
+    opacity: 0;
   }
 }

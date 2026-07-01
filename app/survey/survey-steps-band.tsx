@@ -1,6 +1,10 @@
 "use client";
 
-import { ParallaxImage } from "../parallax-background";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const featureSteps = [
   {
@@ -24,15 +28,77 @@ const featureSteps = [
 ] as const;
 
 export function SurveyStepsBand() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const video = videoRef.current;
+
+    if (!container || !video) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const ctx = gsap.context(() => {
+      const setupScrub = () => {
+        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+
+        video.pause();
+
+        const rect = container.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (container.offsetHeight + vh)));
+        video.currentTime = progress * (video.duration / 2);
+        video.style.opacity = "1";
+
+        if (reducedMotion.matches) return;
+
+        const playback = { time: video.currentTime };
+
+        gsap.to(playback, {
+          time: video.duration / 2,
+          ease: "none",
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+          onUpdate: () => {
+            video.currentTime = playback.time;
+          },
+        });
+      };
+
+      if (video.readyState >= 1) {
+        setupScrub();
+      } else {
+        video.addEventListener("loadedmetadata", setupScrub, { once: true });
+      }
+    }, container);
+
+    const onResize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      ctx.revert();
+    };
+  }, []);
+
   return (
-    <section className="relative left-1/2 mt-14 w-screen -translate-x-1/2 sm:mt-16">
-      <div className="relative isolate overflow-hidden">
-        <ParallaxImage
-          src="/bg-2.jpg"
-          alt=""
-          sizes="100vw"
-          speed={0.16}
-          imageWrapperClassName="-inset-y-24"
+    <section className="relative left-1/2 w-screen -translate-x-1/2">
+      <div ref={containerRef} className="relative isolate overflow-hidden">
+        <video
+          ref={videoRef}
+          src="/videos/survey-section-1.mp4"
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          style={{ opacity: 0 }}
         />
         <div className="absolute inset-0 bg-[#071423]/55" aria-hidden />
 

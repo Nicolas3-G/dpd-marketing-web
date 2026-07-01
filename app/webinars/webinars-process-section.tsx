@@ -32,11 +32,11 @@ export function WebinarsProcessSection() {
   return (
     <section
       id="webinars-process"
-      className="overflow-hidden bg-white text-custom-black"
+      className="overflow-hidden bg-white text-custom-black bg-red-500"
     >
       <div className="grid w-full items-stretch gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-12 xl:gap-16">
         <div
-          className="min-h-48 w-full bg-custom-black sm:min-h-56 lg:min-h-0 lg:h-full"
+          className="hidden lg:block w-full bg-custom-black lg:h-full"
           aria-hidden
         />
 

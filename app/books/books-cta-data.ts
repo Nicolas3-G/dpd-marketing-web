@@ -10,5 +10,4 @@ export const booksCtaContent = {
     label: "Get the book",
     href: BOOK_AMAZON_URL,
   },
-  backgroundImage: "/bg-2.jpg",
 } as const;

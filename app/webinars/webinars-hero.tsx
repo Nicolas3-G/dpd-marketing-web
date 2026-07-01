@@ -11,7 +11,7 @@ export function WebinarsHero() {
   return (
     <section className="relative isolate flex min-h-[calc(100svh-4rem)] items-center overflow-hidden text-custom-black">
       <video
-        src="/videos/webinar-hero.mp4"
+        src="/videos/webinars-hero.mp4"
         autoPlay
         loop
         muted
@@ -20,12 +20,11 @@ export function WebinarsHero() {
         aria-hidden
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
       />
-      <div className="pointer-events-none absolute inset-0 bg-black/20" aria-hidden />
       <div className={`relative z-10 ${pageInset} py-24 lg:py-32`}>
         <div className="grid w-full gap-14 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-20">
 
           <div className="max-w-2xl">
-            <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-custom-black/15 px-4 py-2">
+            <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-gray-card-border bg-gray-card px-4 py-2">
               <span className="size-2 animate-pulse rounded-full bg-brand-orange" />
               <span className="custom-label text-custom-black/60">{badge}</span>
             </div>
@@ -50,7 +49,7 @@ export function WebinarsHero() {
             </div>
           </div>
 
-          <div className="w-full rounded-2xl border border-custom-black/10 bg-custom-black/3 p-8 lg:w-72 xl:w-80">
+          <div className="w-full rounded-2xl border border-gray-card-border bg-gray-card p-8 lg:w-72 xl:w-80">
             <p className="custom-caption-bold mb-6 uppercase text-custom-black/35">
               Each session includes
             </p>

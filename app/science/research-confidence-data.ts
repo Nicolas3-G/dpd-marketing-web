@@ -10,10 +10,10 @@ export type ResearchSplitContent = {
 export const researchConfidenceContent: ResearchSplitContent = {
   overline: "APPLY WITH CONFIDENCE",
   heading: "From research to coordinated practice",
-  lead: "Turn persona science into team behavior—not assumptions.",
+  lead: "Turn Cognitive Persona Science into a shared language for team alignment — not assumptions.",
   body: "DPD helps organizations validate how teams dream, plan, and do together using real coordination signals before rolling out programs at scale.",
   bullets: [
-    "Shorten adoption cycles by validating team behavior before full rollout",
+    "Shorten adoption cycles by testing cognitive alignment before full rollout.",
     "Replace internal guesswork with observable coordination signals",
     "Prevent misalignment caused by unclear meeting modes or role cues",
     "Reduce friction by validating behavioral design before enterprise deployment",

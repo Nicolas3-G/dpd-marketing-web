@@ -48,6 +48,8 @@ type FrameworkTestimonialSectionProps = {
   onSelect: (index: number) => void;
   onPrev: () => void;
   onNext: () => void;
+  isFirst?: boolean;
+  isLast?: boolean;
 };
 
 /** In-flow sizer: all slides share one grid cell so row height = tallest slide. */
@@ -86,6 +88,8 @@ export const FrameworkTestimonialSection = forwardRef<
     onSelect,
     onPrev,
     onNext,
+    isFirst = false,
+    isLast = false,
   },
   ref,
 ) {
@@ -99,24 +103,18 @@ export const FrameworkTestimonialSection = forwardRef<
     const section = sectionRef.current;
     const video = videoRef.current;
 
-    if (!section || !video) {
-      return;
-    }
+    if (!section || !video) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const ctx = gsap.context(() => {
       const setupScrub = () => {
-        if (!Number.isFinite(video.duration) || video.duration <= 0) {
-          return;
-        }
+        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
 
         video.pause();
         video.currentTime = 0;
 
-        if (reducedMotion.matches) {
-          return;
-        }
+        if (reducedMotion.matches) return;
 
         const playback = { time: 0 };
 
@@ -247,16 +245,18 @@ export const FrameworkTestimonialSection = forwardRef<
             <button
               type="button"
               onClick={onPrev}
+              disabled={isFirst}
               aria-label="Previous testimonial"
-              className="grid size-14 place-items-center rounded-full border border-white text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:size-16"
+              className="grid size-14 place-items-center rounded-full border border-white text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent sm:size-16"
             >
               <FaArrowLeft className="size-5 sm:size-6" aria-hidden />
             </button>
             <button
               type="button"
               onClick={onNext}
+              disabled={isLast}
               aria-label="Next testimonial"
-              className="grid size-14 place-items-center rounded-full border border-white text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:size-16"
+              className="grid size-14 place-items-center rounded-full border border-white text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent sm:size-16"
             >
               <FaArrowRight className="size-5 sm:size-6" aria-hidden />
             </button>
