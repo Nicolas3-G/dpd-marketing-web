@@ -189,7 +189,7 @@ function SurveyQuestion({
       </legend>
 
       <div
-        className={`px-6 py-4 sm:px-8 sm:py-5 ${
+        className={`px-3 py-4 sm:px-8 sm:py-5 ${
           isUpcoming
             ? "bg-[#ececec]"
             : "bg-white shadow-[0_4px_24px_rgba(51,58,72,0.06)]"
