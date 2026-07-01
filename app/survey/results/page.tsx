@@ -98,7 +98,7 @@ export default async function SurveyResultsPage({
         <div className="mt-16 sm:mt-20">
           <h3 className="mb-8 custom-xs-title-bold text-custom-black">Your Stats</h3>
           <div className="relative">
-            <div className="select-none blur-sm pointer-events-none -mx-8 px-8 sm:-mx-16 sm:px-16" aria-hidden>
+            <div className="select-none blur-sm pointer-events-none -mx-5 px-5 sm:-mx-16 sm:px-16" aria-hidden>
               <div className="flex flex-col gap-8">
                 {PERSONAS.map((persona: Persona, i: number) => (
                   <div key={persona} className="flex flex-col gap-3">
@@ -216,7 +216,7 @@ export default async function SurveyResultsPage({
             How {dominantPersona}s Are Perceived By Other Personas
           </h3>
           <div className="relative">
-            <div className="select-none blur-sm pointer-events-none -mx-8 px-8 sm:-mx-16 sm:px-16" aria-hidden>
+            <div className="select-none blur-sm pointer-events-none -mx-5 px-5 sm:-mx-16 sm:px-16" aria-hidden>
               <div className="flex flex-col gap-10">
                 {PERSONAS.filter((p) => p !== dominantPersona).map((otherPersona) => (
                   <div key={otherPersona} className="flex flex-col gap-4">
@@ -274,7 +274,7 @@ export default async function SurveyResultsPage({
         </div>
 
         <div className="relative">
-          <div className="select-none blur-sm pointer-events-none -mx-8 px-8 sm:-mx-16 sm:px-16" aria-hidden>
+          <div className="select-none blur-sm pointer-events-none -mx-5 px-5 sm:-mx-16 sm:px-16" aria-hidden>
             <p className="custom-body max-w-3xl text-custom-black">
               {TEAM_DYNAMICS_CONTENT.intro}
             </p>

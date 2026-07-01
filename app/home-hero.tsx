@@ -48,9 +48,9 @@ const TAGLINE_PREFIX = "See how";
 const TAGLINE_SUFFIX_LINE_1 = "can improve";
 const TAGLINE_SUFFIX_LINE_2 = "your business";
 
-const splashWordClass = "custom-md-title";
+const splashWordClass = "text-2xl tracking-tighter font-medium sm:text-3xl lg:text-5xl";
 
-const taglineRowClass = `inline-flex flex-nowrap items-baseline justify-center gap-x-3 sm:justify-start sm:gap-x-4 ${splashWordClass}`;
+const taglineRowClass = `inline-flex flex-nowrap items-baseline justify-center gap-x-1.5 sm:justify-start sm:gap-x-4 ${splashWordClass}`;
 
 const taglinePartClass =
   "shrink-0 text-custom-black transition-[opacity,transform] ease-out motion-reduce:transition-none";
