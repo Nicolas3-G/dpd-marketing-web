@@ -90,9 +90,9 @@ export function ScienceBanner() {
           </p>
           <p className="shrink-0 custom-sm-title text-white">
             <span className="text-brand-orange">
-              Cognitive alignment
+              Cognitive Alignment
             </span>{" "}
-            that scales.
+            That Scales.
           </p>
         </div>
       </div>
