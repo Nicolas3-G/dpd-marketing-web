@@ -1,11 +1,8 @@
 "use client";
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
 import { FaLinkedinIn, FaSpotify } from "react-icons/fa6";
 
-gsap.registerPlugin(ScrollTrigger);
+import { useScrollScrubVideo } from "@/lib/use-scroll-scrub-video";
 
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
@@ -69,59 +66,10 @@ const footerColumns: { title: string; links: FooterLink[] }[] = [
 ];
 
 export function SiteFooter() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const video = videoRef.current;
-
-    if (!section || !video) return;
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const ctx = gsap.context(() => {
-      const setupScrub = () => {
-        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
-
-        video.pause();
-        video.currentTime = 0;
-
-        if (reducedMotion.matches) return;
-
-        const playback = { time: 0 };
-
-        gsap.to(playback, {
-          time: video.duration * 2,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-          onUpdate: () => {
-            video.currentTime = playback.time;
-          },
-        });
-      };
-
-      if (video.readyState >= 1) {
-        setupScrub();
-      } else {
-        video.addEventListener("loadedmetadata", setupScrub, { once: true });
-      }
-    }, section);
-
-    const onResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", onResize);
-
-    return () => {
-      window.removeEventListener("resize", onResize);
-      ctx.revert();
-    };
-  }, []);
+  const { triggerRef: sectionRef, videoRef } = useScrollScrubVideo<HTMLElement>({
+    durationMultiplier: 2,
+    seekToScrollProgress: false,
+  });
 
   return (
     <>
@@ -199,7 +147,7 @@ export function SiteFooter() {
               <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
                 {footerColumns.map((column) => (
                   <div key={column.title}>
-                    <h3 className="custom-label-bold uppercase text-gray-light tracking-widest">
+                    <h3 className="custom-label-bold uppercase text-section-gray tracking-widest">
                       {column.title}
                     </h3>
                     <ul className="mt-4 space-y-3">
@@ -207,7 +155,7 @@ export function SiteFooter() {
                         <li key={link.href}>
                           <a
                             href={link.href}
-                            className="custom-label text-gray-light transition hover:text-white"
+                            className="custom-label text-section-gray transition hover:text-white"
                           >
                             {link.label}
                           </a>

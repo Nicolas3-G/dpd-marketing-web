@@ -1,12 +1,7 @@
 "use client";
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
-
+import { useScrollScrubVideo } from "@/lib/use-scroll-scrub-video";
 import { booksCtaContent } from "./books-cta-data";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
@@ -14,64 +9,7 @@ const pageInset =
 /** Full-width banner with purchase CTA — pattern from webinars closing banner. */
 export function BooksCtaSection() {
   const { headingLines, cta } = booksCtaContent;
-  const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const video = videoRef.current;
-
-    if (!section || !video) return;
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const ctx = gsap.context(() => {
-      const setupScrub = () => {
-        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
-
-        video.pause();
-
-        const rect = section.getBoundingClientRect();
-        const vh = window.innerHeight;
-        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (section.offsetHeight + vh)));
-        video.currentTime = progress * (video.duration / 2);
-        video.style.opacity = "1";
-
-        if (reducedMotion.matches) return;
-
-        const playback = { time: video.currentTime };
-
-        gsap.to(playback, {
-          time: video.duration / 2,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-          onUpdate: () => {
-            video.currentTime = playback.time;
-          },
-        });
-      };
-
-      if (video.readyState >= 1) {
-        setupScrub();
-      } else {
-        video.addEventListener("loadedmetadata", setupScrub, { once: true });
-      }
-    }, section);
-
-    const onResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", onResize);
-
-    return () => {
-      window.removeEventListener("resize", onResize);
-      ctx.revert();
-    };
-  }, []);
+  const { triggerRef: sectionRef, videoRef } = useScrollScrubVideo<HTMLElement>();
 
   return (
     <section

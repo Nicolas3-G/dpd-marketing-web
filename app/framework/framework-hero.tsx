@@ -5,7 +5,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 const TRANSITION_MS = 300;
-const FADE_OUT_OFFSET_PERCENT = -35;
 
 const personas = [
   { label: "The Dreamer Persona", imageSrc: "/Dreamers/dreamer-vert.jpg", backgroundSrc: "/Dreamers/dreamer-1.jpg" },
@@ -22,7 +21,7 @@ function selectPersonaSection(index: number) {
   document.getElementById("framework-personas")?.scrollIntoView({ behavior: "smooth" });
 }
 
-/** Outgoing portrait — fades and drifts left, then is removed. */
+/** Outgoing portrait — crossfades out over the incoming portrait, then is removed. */
 function FadingOutPortrait({ imageSrc }: { imageSrc: string }) {
   const [exited, setExited] = useState(false);
 
@@ -37,10 +36,9 @@ function FadingOutPortrait({ imageSrc }: { imageSrc: string }) {
 
   return (
     <div
-      className="pointer-events-none absolute inset-0 transition-[opacity,transform] ease-out motion-reduce:transition-none"
+      className="pointer-events-none absolute inset-0 transition-opacity ease-out motion-reduce:transition-none"
       style={{
         opacity: exited ? 0 : 1,
-        transform: exited ? `translateX(${FADE_OUT_OFFSET_PERCENT}%) scale(0.75)` : "translateX(0%) scale(1)",
         transitionDuration: `${TRANSITION_MS}ms`,
         zIndex: 10,
       }}
@@ -130,7 +128,7 @@ export function FrameworkHero() {
       id="framework"
       className="relative isolate mt-20 min-h-[calc(100svh-5rem)] overflow-hidden"
     >
-      {/* Background images — crossfade on persona change */}
+      {/* Background images — desktop/tablet, crossfade on persona change */}
       {personas.map((p, i) => (
         <Image
           key={p.backgroundSrc}
@@ -139,13 +137,33 @@ export function FrameworkHero() {
           fill
           aria-hidden
           priority={i === 0}
-          className={`pointer-events-none object-cover -scale-x-100 transition-opacity duration-700 ${i === activeIndex ? "opacity-100" : "opacity-0"}`}
+          className={`pointer-events-none hidden object-cover -scale-x-100 transition-opacity duration-700 md:block ${i === activeIndex ? "opacity-100" : "opacity-0"}`}
           sizes="100vw"
         />
       ))}
 
+      {/* Background images — mobile uses the persona portrait images instead */}
+      {personas.map((p, i) => (
+        <Image
+          key={p.imageSrc}
+          src={p.imageSrc}
+          alt=""
+          fill
+          aria-hidden
+          priority={i === 0}
+          className={`pointer-events-none block object-cover transition-opacity duration-700 md:hidden ${i === activeIndex ? "opacity-100" : "opacity-0"}`}
+          sizes="100vw"
+        />
+      ))}
+
+      {/* Gradient overlay — transparent at top, fading to black at the bottom */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/0 to-black/80"
+        aria-hidden
+      />
+
       {/* Glass card — always bottom 60% of the section */}
-      <div className="absolute bottom-0 left-0 right-0 h-[60%] border-t border-gray-card-border bg-black/20 backdrop-blur-sm">
+      <div className="absolute bottom-0 left-0 right-0 h-[60%] border-t border-gray-card-border backdrop-blur-sm">
         <div className="mx-5 flex h-full items-center sm:mx-[45px]">
           <div className="text-white">
             <p className="custom-caption-bold uppercase text-brand-orange">
