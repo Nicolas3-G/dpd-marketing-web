@@ -54,9 +54,9 @@ export default function Home() {
   ];
   const strategySteps = [
     {
-      title: "Discover every team member's persona profile",
+      title: "Understand each team member's current thinking posture.",
       description:
-        "Members complete the DPD Persona Survey to uncover their tendencies, building self-awareness and a understanding of how they naturally contribute.",
+        "Members complete the DPD Persona Survey to identify their current posture, build self-awareness, and understand how they can contribute with greater clarity and intention.",
       Icon: FaFingerprint,
     },
     {
@@ -79,7 +79,7 @@ export default function Home() {
       image: "/science-cards/card-1.jpg",
       imageAlt: "Flow Theory",
       description:
-        "Activated by DPD: clear meeting modes, persona alignment, shared purpose, and synchronized action.",
+        "Reinforced through DPD: clear meeting modes, persona alignment, shared purpose, and synchronized action.",
       href: "/science?tab=Flow+Theory&section=research-why#research-why",
     },
     {
@@ -88,7 +88,7 @@ export default function Home() {
       image: "/science-cards/card-2.jpg",
       imageAlt: "Game Theory",
       description:
-        "Activated by DPD: shared team cues, coordinated behavior, role clarity, and aligned action.",
+        "How DPD Applies It: DPD helps teams create shared cues, clarify roles, coordinate action, and move toward the same outcome together.",
       href: "/science?tab=Game+Theory&section=research-why-reversed#research-why-reversed",
     },
     {
@@ -97,7 +97,7 @@ export default function Home() {
       image: "/science-cards/card-3.jpg",
       imageAlt: "Neuroplasticity",
       description:
-        "Activated by DPD: repeated persona switching, deliberate practice, and behavioral reinforcement over time.",
+        "Reinforced through DPD: by repeated cognitive posture switching, deliberate practice, and new patterns of thinking over time.",
       href: "/science?tab=Neuroplasticity&section=research-why#research-why",
     },
     {
@@ -106,7 +106,7 @@ export default function Home() {
       image: "/science-cards/card-4.jpg",
       imageAlt: "Embodied Cognition",
       description:
-        "Activated by DPD: physical cues, posture, coins, and behavior-linked action.",
+        "Reinforced through DPD: physical cues, posture, coins, and behavior-linked action.",
       href: "/science?tab=Embodied+Cognition&section=research-why-reversed#research-why-reversed",
     },
   ];
@@ -128,11 +128,12 @@ export default function Home() {
             </h2>
             <div className="grid gap-5">
               <p className="max-w-xl custom-body text-custom-black">
-                DPD is not a personality test. It is a persona based behavior
-                coordination system that helps people move in sync.
+                DPD is not a personality test. It is a Persona-Based Cognitive
+                Alignment practice that helps people think, work, and move
+                together in sync.
               </p>
               <p className="max-w-xl custom-body text-custom-black">
-                Personality describes tendencies. DPD coordinates behavior.
+                Personality describes tendencies. DPD aligns people in real time.
               </p>
             </div>
           </div>
@@ -210,7 +211,6 @@ export default function Home() {
               <p className="custom-lg-title-bold">
                 Other tools structure the work. DPD aligns the people doing it.
               </p>
-              <p className="custom-lg-title-bold">We do both.</p>
             </div>
 
             <div className="grid max-w-xl gap-5 pt-[50px]">
@@ -255,12 +255,17 @@ export default function Home() {
                     {option.title}
                   </h3>
                   <p className="mt-4 custom-body text-custom-black">
-                    {option.description.startsWith("Activated by DPD:") ? (
-                      <>
-                        <span className="custom-body-bold text-brand-orange">Activated by DPD:</span>
-                        {option.description.slice("Activated by DPD:".length)}
-                      </>
-                    ) : option.description}
+                    {(() => {
+                      const prefixMatch = option.description.match(/^[^:]+:/);
+                      if (!prefixMatch) return option.description;
+                      const prefix = prefixMatch[0];
+                      return (
+                        <>
+                          <span className="custom-body-bold text-brand-orange">{prefix}</span>
+                          {option.description.slice(prefix.length)}
+                        </>
+                      );
+                    })()}
                   </p>
                 </article>
               </Link>

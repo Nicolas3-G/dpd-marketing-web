@@ -1,70 +1,9 @@
 "use client";
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useScrollScrubVideo } from "@/lib/use-scroll-scrub-video";
 
 export function ScienceBanner() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    const video = videoRef.current;
-
-    if (!container || !video) return;
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const ctx = gsap.context(() => {
-      const setupScrub = () => {
-        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
-
-        video.pause();
-
-        const rect = container.getBoundingClientRect();
-        const vh = window.innerHeight;
-        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (container.offsetHeight + vh)));
-        video.currentTime = progress * (video.duration / 2);
-        video.style.opacity = "1";
-
-        if (reducedMotion.matches) return;
-
-        const playback = { time: video.currentTime };
-
-        gsap.to(playback, {
-          time: video.duration / 2,
-          ease: "none",
-          scrollTrigger: {
-            trigger: container,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-          onUpdate: () => {
-            video.currentTime = playback.time;
-          },
-        });
-      };
-
-      if (video.readyState >= 1) {
-        setupScrub();
-      } else {
-        video.addEventListener("loadedmetadata", setupScrub, { once: true });
-      }
-    }, container);
-
-    const onResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", onResize);
-
-    return () => {
-      window.removeEventListener("resize", onResize);
-      ctx.revert();
-    };
-  }, []);
+  const { triggerRef: containerRef, videoRef } = useScrollScrubVideo<HTMLDivElement>();
 
   return (
     <div

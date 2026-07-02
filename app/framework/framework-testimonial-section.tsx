@@ -1,13 +1,11 @@
 "use client";
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { forwardRef, useEffect, useRef, type MutableRefObject } from "react";
+import { forwardRef, type MutableRefObject } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+
+import { useScrollScrubVideo } from "@/lib/use-scroll-scrub-video";
 import type { FrameworkTestimonial } from "./framework-testimonials";
 import { SLIDE_MS, useSlideCarousel } from "./use-slide-carousel";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
@@ -93,62 +91,12 @@ export const FrameworkTestimonialSection = forwardRef<
   },
   ref,
 ) {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const { triggerRef: sectionRef, videoRef } = useScrollScrubVideo<HTMLElement>({
+    seekToScrollProgress: false,
+  });
 
   const { displayIndex, isSliding, transition, enterX, exitX, animate } =
     useSlideCarousel(activeIndex, testimonials.length);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const video = videoRef.current;
-
-    if (!section || !video) return;
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const ctx = gsap.context(() => {
-      const setupScrub = () => {
-        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
-
-        video.pause();
-        video.currentTime = 0;
-
-        if (reducedMotion.matches) return;
-
-        const playback = { time: 0 };
-
-        gsap.to(playback, {
-          time: video.duration / 2,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-          onUpdate: () => {
-            video.currentTime = playback.time;
-          },
-        });
-      };
-
-      if (video.readyState >= 1) {
-        setupScrub();
-      } else {
-        video.addEventListener("loadedmetadata", setupScrub, { once: true });
-      }
-    }, section);
-
-    const onResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", onResize);
-
-    return () => {
-      window.removeEventListener("resize", onResize);
-      ctx.revert();
-    };
-  }, []);
 
   return (
     <section
