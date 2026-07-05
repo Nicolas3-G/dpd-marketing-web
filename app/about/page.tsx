@@ -41,7 +41,7 @@ export default function AboutPage() {
             <h1
               className={`${displaySerif.className} max-w-[18ch] custom-lg-title-bold lg:max-w-none`}
             >
-              Behavior coordination for teams in the AI era.
+              Persona-Based Cognitive Alignment for Teams in the AI Era
             </h1>
 
             <div className="flex w-full max-w-xl flex-col gap-4 lg:justify-self-end">
@@ -79,26 +79,31 @@ export default function AboutPage() {
         >
           <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-x-16 xl:gap-x-24">
             <h2 className="max-w-[20ch] custom-md-title-bold lg:col-start-1 lg:row-start-1 lg:max-w-[22ch]">
-              It all started with teams that could not stay in sync.
+              It all started with a simple observation: teams perform
+              better when people align how they think.
             </h2>
 
-            <p className="custom-body leading-relaxed text-custom-black lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-lg lg:pt-0.5">
-              The DPD Framework was born from founder Kokoro Robinson&apos;s early
-              fascination with Biological and Cognitive Psychology and a single
-              question: If personality can fragment unconsciously under distress,
-              what would happen if people could intentionally switch into the
-              personas needed to meet the demands of any moment—the way
-              orchestras organize collective behavior to make great music,
-              professional sports teams coordinate to execute plays, or actors
-              and actresses invoke and assume different personas for the roles
-              they perform? Over 25 years later, as AI and rapidly changing
-              workplaces transform how teams operate, that question has evolved
-              into the world&apos;s first Persona Behavioral Operating System™—a
-              science-forward platform helping SMBs, enterprise organizations,
-              coaches, and leaders improve communication, collaboration,
-              innovation, and execution through Dynamic Persona Switching:
-              Dreaming, Planning, and Doing.
-            </p>
+            <div className="flex flex-col gap-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-lg lg:pt-0.5">
+              <p className="custom-body leading-relaxed text-custom-black">
+                DPD began with founder Kokoro Robinson&apos;s study of
+                Biological and Cognitive Psychology and one question: what
+                if people could intentionally switch into the cognitive
+                posture needed to align communication, reduce friction, and
+                accelerate execution?
+              </p>
+              <p className="custom-body leading-relaxed text-custom-black">
+                Today, DPD helps individuals, coaches, leaders, and teams
+                create cognitive alignment by clarifying the mode of the
+                moment — Are we Dreaming, Planning, or Doing? — and
+                activating the matching Cognitive Persona Posture: The
+                Dreamer Persona, The Planner Persona, or The Doer Persona.
+              </p>
+              <p className="custom-body leading-relaxed text-custom-black">
+                By naming the mode, activating the matching persona, and
+                following the rules of the moment, teams move in sync,
+                reduce friction, and work in flow.
+              </p>
+            </div>
 
             <div className="relative aspect-16/10 w-full overflow-hidden rounded-2xl border border-custom-black/6 bg-[#ebe8df] lg:col-start-1 lg:row-start-2">
               <Image
@@ -127,15 +132,31 @@ export default function AboutPage() {
               </h2>
             </div>
             <p className="custom-body-bold leading-relaxed text-custom-black">
-              The DPD Framework exists to help individuals and teams build
-              Perspective Dexterity, Cognitive Agility, and relational awareness
-              through persona-based behavioral coordination. By improving
-              collaboration, innovation, and execution with greater clarity,
-              alignment, and flow, DPD helps organizations transform human
-              adaptability into sustained performance through Dynamic Persona
-              Switching: Dreaming, Planning, and Doing. That mission shows up in
-              how we build our platform, design our training, develop our tools,
-              and measure success.
+              DPD helps people and teams build relational awareness,
+              recognize what the moment needs, reduce friction, stay in
+              sync, and move forward together.
+            </p>
+            <p className="custom-body-bold leading-relaxed text-custom-black">
+              Like an orchestra, teams work better when everyone knows the
+              rhythm, their role, and when to come in. DPD gives people a
+              shared language for knowing when to dream, when to plan, and
+              when to do.
+            </p>
+            <p className="custom-body-bold leading-relaxed text-custom-black">
+              By naming the mode, activating the matching persona, and
+              following the rules of the moment, people create greater
+              clarity, alignment, and flow.
+            </p>
+            <p className="custom-body-bold leading-relaxed text-custom-black">
+              Dreaming activates The Dreamer Persona.
+              <br />
+              Planning activates The Planner Persona.
+              <br />
+              Doing activates The Doer Persona.
+            </p>
+            <p className="custom-body-bold leading-relaxed text-custom-black">
+              That mission shapes how we build our platform, design our
+              training, develop our tools, and measure success.
             </p>
           </div>
         </div>

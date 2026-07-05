@@ -60,15 +60,15 @@ export default function Home() {
       Icon: FaFingerprint,
     },
     {
-      title: "Create a shared language for better collaboration",
+      title: "Create a shared language for how your team works together.",
       description:
         "DPD gives teams a simple framework to align in real time - knowing when to dream, when to plan, and when to execute together.",
       Icon: FaUsers,
     },
     {
-      title: "Give leaders visibility into team dynamics",
+      title: "Help leaders see team posture and alignment gaps.",
       description:
-        "The DPD dashboard helps managers understand team strengths, identify gaps, and guide teams toward stronger communication, better coordination, and faster execution.",
+        "The DPD Team Persona Posture Report helps managers see how the team is showing up, identify alignment gaps, and guide stronger communication, coordination, and execution.",
       Icon: FaChartLine,
     },
   ];
@@ -164,7 +164,7 @@ export default function Home() {
           className={`${pageInset} grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-24`}
         >
           <h2 className="max-w-2xl custom-lg-title">
-            Coordinate how your team works -{" "}
+            Align how your team works{" "}
             <span className="text-brand-orange">together.</span>
           </h2>
 

@@ -51,6 +51,7 @@ export function TransformationSection() {
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
         style={{ opacity: 0 }}
       />
+      <div className="pointer-events-none absolute inset-0 bg-custom-black/20" />
       <div className={`relative z-10 ${pageInset} py-18 sm:py-20`}>
         <h2 className="custom-xs-title text-white">
           What we deliver
@@ -67,7 +68,7 @@ export function TransformationSection() {
               }`}
             >
               <div className="flex items-start gap-3">
-                <span className="mt-3 text-3xl font-light text-brand-orange">
+                <span className="mt-3 text-3xl font-light text-white">
                   {metric.direction === "up" ? "↑" : "↓"}
                 </span>
                 <p className="flex items-start text-[clamp(4.5rem,10vw,7rem)] font-medium leading-none tracking-tighter">

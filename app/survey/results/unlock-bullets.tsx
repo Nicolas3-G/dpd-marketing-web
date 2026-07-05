@@ -39,7 +39,7 @@ function UnlockBulletItem({ text, index }: { text: string; index: number }) {
   return (
     <li
       ref={itemRef}
-      className={`flex items-center justify-center gap-2.5 custom-body text-white/80 transition-opacity ease-out motion-reduce:transition-none ${
+      className={`flex items-center gap-2.5 custom-body text-white/80 transition-opacity ease-out motion-reduce:transition-none ${
         visible ? "opacity-100" : "opacity-0"
       }`}
       style={{
@@ -55,7 +55,7 @@ function UnlockBulletItem({ text, index }: { text: string; index: number }) {
 
 export function UnlockBullets({ items }: { items: string[] }) {
   return (
-    <ul className="mt-5 flex max-w-[18rem] flex-col items-center gap-2 text-center">
+    <ul className="mt-5 flex max-w-[18rem] flex-col items-start gap-2 text-left">
       {items.map((item, index) => (
         <UnlockBulletItem key={item} text={item} index={index} />
       ))}
