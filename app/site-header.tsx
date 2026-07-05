@@ -460,10 +460,7 @@ export function SiteHeader() {
   }
 
   useEffect(() => {
-    let frameId = 0;
-
     function update() {
-      frameId = 0;
       const overlaps = DARK_SECTION_IDS.some((id) => {
         const section = document.getElementById(id);
         return section ? headerOverlapsSection(section) : false;
@@ -471,18 +468,12 @@ export function SiteHeader() {
       setNavOnDark(overlaps);
     }
 
-    function requestUpdate() {
-      if (frameId) return;
-      frameId = window.requestAnimationFrame(update);
-    }
-
     update();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
     return () => {
-      if (frameId) window.cancelAnimationFrame(frameId);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
     };
   }, []);
 
