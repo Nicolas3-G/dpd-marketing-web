@@ -111,11 +111,19 @@ function usePanelMinHeight() {
 
     const observer = new ResizeObserver(updateMinHeight);
     observer.observe(container);
-    window.addEventListener("resize", updateMinHeight);
+
+    // Skip height-only resizes (mobile URL bar collapsing mid-scroll).
+    let lastWidth = window.innerWidth;
+    const onResize = () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      updateMinHeight();
+    };
+    window.addEventListener("resize", onResize);
 
     return () => {
       observer.disconnect();
-      window.removeEventListener("resize", updateMinHeight);
+      window.removeEventListener("resize", onResize);
     };
   }, [updateMinHeight]);
 

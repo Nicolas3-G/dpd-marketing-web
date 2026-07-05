@@ -7,6 +7,10 @@ import { HiArrowRight } from "react-icons/hi";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Mobile browsers fire window resize when the URL bar collapses mid-scroll;
+// refreshing every ScrollTrigger at that moment kills scroll momentum.
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
@@ -352,11 +356,7 @@ export function HomeHero() {
       }
     }, section);
 
-    const onResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", onResize);
-
     return () => {
-      window.removeEventListener("resize", onResize);
       ctx.revert();
     };
   }, [scrubActive]);
@@ -393,8 +393,16 @@ export function HomeHero() {
     };
 
     updateLayout();
-    window.addEventListener("resize", updateLayout);
-    return () => window.removeEventListener("resize", updateLayout);
+
+    // Skip height-only resizes (mobile URL bar collapsing mid-scroll).
+    let lastWidth = window.innerWidth;
+    const onResize = () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      updateLayout();
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   useEffect(() => {
