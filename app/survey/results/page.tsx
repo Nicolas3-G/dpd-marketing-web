@@ -29,6 +29,12 @@ export const metadata = createPageMetadata("Your DPD Persona", {
     "Discover your DPD persona and learn how your natural strengths align with the DPD Framework.",
 });
 
+const PERSONA_HERO_VIDEO: Partial<Record<Persona, string>> = {
+  Dreamer: "/videos/book-hero-video.mp4",
+  Planner: "/videos/webinars-hero.mp4",
+  Doer: "/videos/science-hero.mp4",
+};
+
 export default async function SurveyResultsPage({
   searchParams,
 }: {
@@ -63,7 +69,18 @@ export default async function SurveyResultsPage({
     <main>
 
       <section className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col justify-center overflow-hidden bg-white">
-        <div className="mx-5 w-[calc(100%-40px)] py-24 sm:mx-[45px] sm:w-[calc(100%-90px)] lg:py-32">
+        {PERSONA_HERO_VIDEO[dominantPersona] ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover"
+            src={PERSONA_HERO_VIDEO[dominantPersona]}
+          />
+        ) : null}
+        <div className="relative z-10 mx-5 w-[calc(100%-40px)] py-24 sm:mx-[45px] sm:w-[calc(100%-90px)] lg:py-32">
           <p className="custom-body mb-5 text-custom-black">
             Your current persona posture is
           </p>
@@ -78,7 +95,6 @@ export default async function SurveyResultsPage({
             {paragraphs[0]}
           </p>
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-px bg-custom-black/10" />
       </section>
 
       <div className="mx-5 w-[calc(100%-40px)] py-24 sm:mx-[45px] sm:w-[calc(100%-90px)] sm:py-32">
@@ -98,7 +114,7 @@ export default async function SurveyResultsPage({
         <div className="mt-16 sm:mt-20">
           <h3 className="mb-8 custom-xs-title-bold text-custom-black">Your Stats</h3>
           <div className="relative">
-            <div className="select-none blur-sm pointer-events-none -mx-5 px-5 sm:-mx-16 sm:px-16" aria-hidden>
+            <div className="select-none blur-md pointer-events-none -mx-5 px-5 sm:-mx-16 sm:px-16" aria-hidden>
               <div className="flex flex-col gap-8">
                 {PERSONAS.map((persona: Persona, i: number) => (
                   <div key={persona} className="flex flex-col gap-3">
@@ -216,7 +232,7 @@ export default async function SurveyResultsPage({
             How {dominantPersona}s Are Perceived By Other Personas
           </h3>
           <div className="relative">
-            <div className="select-none blur-sm pointer-events-none -mx-5 px-5 sm:-mx-16 sm:px-16" aria-hidden>
+            <div className="select-none blur-md pointer-events-none -mx-5 px-5 sm:-mx-16 sm:px-16" aria-hidden>
               <div className="flex flex-col gap-10">
                 {PERSONAS.filter((p) => p !== dominantPersona).map((otherPersona) => (
                   <div key={otherPersona} className="flex flex-col gap-4">
@@ -274,7 +290,7 @@ export default async function SurveyResultsPage({
         </div>
 
         <div className="relative">
-          <div className="select-none blur-sm pointer-events-none -mx-5 px-5 sm:-mx-16 sm:px-16" aria-hidden>
+          <div className="select-none blur-md pointer-events-none -mx-5 px-5 sm:-mx-16 sm:px-16" aria-hidden>
             <p className="custom-body max-w-3xl text-custom-black">
               {TEAM_DYNAMICS_CONTENT.intro}
             </p>

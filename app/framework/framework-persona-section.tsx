@@ -281,7 +281,7 @@ function PersonaTabList({ activeIndex, onSelect }: PersonaTabListProps) {
             onClick={() => onSelect(index)}
             onMouseEnter={(e) => syncLine(e.currentTarget)}
             className={`pb-3 custom-body-bold transition-colors ${
-              isActive ? "text-brand-orange" : "text-white/55 hover:text-brand-orange/80"
+              isActive ? "text-brand-orange" : "text-white/55 hover:text-white/80"
             }`}
           >
             {persona.tab}

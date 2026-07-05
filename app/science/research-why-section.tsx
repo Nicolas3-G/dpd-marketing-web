@@ -110,7 +110,7 @@ function WorkshopProsePanelBody({ content, title }: { content: ResearchWorkshopP
   return (
     <div className="flex max-w-2xl flex-col gap-6 sm:gap-7">
       {title ? (
-        <h3 className="custom-md-title text-white">{title}</h3>
+        <h3 className="custom-sm-title text-white">{title}</h3>
       ) : null}
       {content.intro.map((paragraph) => (
         <p key={paragraph} className="custom-body text-white">
