@@ -126,7 +126,7 @@ export function FrameworkHero() {
   return (
     <section
       id="framework"
-      className="relative isolate mt-20 min-h-[calc(100svh-5rem)] overflow-hidden"
+      className="relative isolate mt-20 min-h-[calc(var(--stable-vh,100svh)-5rem)] overflow-hidden"
     >
       {/* Background images — desktop/tablet, crossfade on persona change */}
       {personas.map((p, i) => (

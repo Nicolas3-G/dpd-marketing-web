@@ -20,7 +20,7 @@ export function ResearchHero() {
         src="/videos/science-hero.mp4"
       />
       <div
-        className={`${pageInset} relative z-10 flex min-h-[calc(100svh-5rem)] flex-col justify-center py-20 pt-24 sm:py-24 sm:pt-28 lg:block lg:py-28 lg:pt-32`}
+        className={`${pageInset} relative z-10 flex min-h-[calc(var(--stable-vh,100svh)-5rem)] flex-col justify-center py-20 pt-24 sm:py-24 sm:pt-28 lg:block lg:py-28 lg:pt-32`}
       >
         <div className="flex w-full max-w-lg flex-col items-start text-left sm:max-w-xl lg:absolute lg:top-1/2 lg:left-0 lg:max-w-[34rem] lg:-translate-y-1/2">
           <h1 className="custom-md-title-bold">

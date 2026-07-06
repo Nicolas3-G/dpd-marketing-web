@@ -68,7 +68,7 @@ export default async function SurveyResultsPage({
   return (
     <main>
 
-      <section className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col justify-center overflow-hidden bg-white">
+      <section className="relative isolate flex min-h-[calc(var(--stable-vh,100svh)-4rem)] flex-col justify-center overflow-hidden bg-white">
         {PERSONA_HERO_VIDEO[dominantPersona] ? (
           <video
             autoPlay
