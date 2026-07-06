@@ -19,10 +19,10 @@ export const booksExploreContent = {
       href: "/framework",
     },
     {
-      title: "Discover your persona",
+      title: "Discover your current persona",
       description:
-        "Take the assessment in about ten minutes and get practical insight into how you dream, plan, and do with others.",
-      linkLabel: "Take the test",
+        "Complete the DPD Persona Survey in about ten minutes and see how you currently dream, plan, and do with others.",
+      linkLabel: "Start the Survey",
       href: "/survey",
     },
     {

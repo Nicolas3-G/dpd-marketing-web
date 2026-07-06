@@ -693,7 +693,7 @@ export function HomeHero() {
             </h1>
             <p className="mt-6 max-w-2xl custom-body text-custom-black">
               DPD turns how people think into a shared language for how they
-              dream, plan, and do together. DPDing!
+              dream, plan, and do together.
             </p>
             <a
               href="/survey"

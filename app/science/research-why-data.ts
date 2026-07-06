@@ -46,9 +46,9 @@ export const researchWorkshopPanels: Record<
     whyItMatters: {
       heading: "Why It Matters",
       paragraphs: [
-        "Teams perform better when they are not fighting the mode.",
-        "Flow requires alignment. In team settings, that means people need shared expectations, shared timing, and a clear understanding of what kind of behavior the moment requires.",
-        "DPD helps teams stop mixing modes and start coordinating them. The result is smoother collaboration, faster decisions, better communication, stronger execution, and more momentum.",
+        "Teams perform better when they are aligned on the mode of the moment.",
+        "Flow is easier to create when people share clear expectations, timing, focus, and direction. In team settings, that means knowing whether the moment calls for Dreaming, Planning, or Doing — and activating the matching Cognitive Persona Posture.",
+        "DPD helps teams stop mixing modes and start moving together. When teams name the mode, follow the rules of the moment, and switch together when the mission changes, collaboration becomes smoother, decisions become clearer, and execution gains momentum.",
       ],
     },
     research: {
@@ -80,9 +80,9 @@ export const researchWorkshopPanels: Record<
     whyItMatters: {
       heading: "Why It Matters",
       paragraphs: [
-        "Teams improve when new behavior becomes easier to repeat.",
-        "If a team only talks about better collaboration once, behavior may not change. If the team repeatedly names the mode, assumes the right Persona Behavioral Posture, follows the rules, and switches together when the mission changes, the behavior becomes more natural over time.",
-        "The result is faster switching, stronger adaptability, lower friction, and more consistent team coordination.",
+        "Teams improve when alignment becomes easier to repeat.",
+        "With DPD, teams repeatedly name the mode, activate the matching Cognitive Persona Posture, follow the rules of the moment, and switch together when the mission changes.",
+        "Over time, this practice helps teams build stronger rhythm, faster switching, greater adaptability, lower friction, and more consistent coordination.",
       ],
     },
     research: {
@@ -108,9 +108,9 @@ export const researchWorkshopPanels: Record<
     whyItMatters: {
       heading: "Why It Matters",
       paragraphs: [
-        "Teams perform better when they are not guessing what kind of conversation they are in.",
-        "DPD reduces cognitive load by clarifying the mode, aligning expectations, and giving people a shared behavioral language for how to participate.",
-        "The result is less misinterpretation, less ego friction, clearer communication, and faster coordinated action.",
+        "Teams perform better when they know whether the moment calls for Dreaming, Planning, or Doing.",
+        "DPD reduces cognitive load by clarifying the mode, activating the matching Cognitive Persona Posture, and giving people a shared language for how to participate.",
+        "The result is less misinterpretation, lower ego friction, clearer communication, and faster coordinated action.",
       ],
     },
     research: {
@@ -131,16 +131,17 @@ export const researchWorkshopPanels: Record<
   "Habit Formation and Deliberate Practice": {
     kind: "prose",
     intro: [
-      "Habit Formation and Deliberate Practice support one of the core ideas behind DPD: repeated behavior, practiced intentionally and reinforced over time, becomes easier to access and more automatic.",
-      "Habit research shows that people tend to repeat behaviors in recurring contexts, and that habits develop through repeated action connected to stable cues.",
-      "Deliberate Practice research adds another important layer. Research shows that expert performance improves through structured, effortful practice designed to improve specific aspects of performance.",
+      "Habit Formation and Deliberate Practice support one of the core ideas behind DPD: what people practice repeatedly becomes easier to access, easier to repeat, and more natural over time.",
+      "Habit research shows that people are more likely to repeat patterns when those patterns are connected to familiar cues and recurring contexts.",
+      "Deliberate Practice adds another layer: performance improves when people practice specific skills with intention, structure, feedback, and repetition.",
     ],
     whyItMatters: {
       heading: "Why It Matters",
       paragraphs: [
-        "Teams improve when the desired behavior becomes repeatable.",
-        "Without habit formation, new language fades after training. Without deliberate practice, teams may understand DPD intellectually and still fail to use it under pressure. DPD turns the desired behavior into a repeatable rhythm.",
-        "The result is stronger team habits, faster adoption, better meeting discipline, cleaner execution, and sustained behavior change.",
+        "Teams improve when alignment becomes repeatable.",
+        "Without habit formation, new language fades after training. Without deliberate practice, teams may understand DPD intellectually but fail to use it when pressure rises.",
+        "DPD helps teams turn mode clarity into a repeatable rhythm. Teams practice naming the mode, activating the matching Cognitive Persona Posture, following the rules of the moment, and switching together when the mission changes.",
+        "The result is faster adoption, stronger meeting discipline, cleaner execution, lower friction, and lasting team coherence.",
       ],
     },
     research: {

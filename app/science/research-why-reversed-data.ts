@@ -21,29 +21,29 @@ export const researchWhyReversedWorkshopPanels: Record<
   "Executive Function and Cognitive Flexibility": {
     kind: "prose",
     intro: [
-      "Executive Function and Cognitive Flexibility support one of the core ideas behind DPD: people can pause, organize thought, inhibit the wrong response, choose the right behavioral posture, and adapt when the moment changes.",
-      "Executive functions are the brain’s higher order control processes. They help people hold information in mind, resist automatic reactions, think before acting, switch perspectives, and respond to new or complex situations. Adele Diamond’s review describes executive functions as mental processes needed when automatic behavior is not enough, especially when people must reason, plan, problem solve, or adjust behavior.",
+      "Executive Function and Cognitive Flexibility support one of the core ideas behind DPD: people can pause, choose the right cognitive posture, and adapt when the moment changes.",
+      "These mental processes help people think before acting, resist automatic reactions, switch perspectives, and respond to new or complex situations.",
     ],
     whyItMatters: {
       heading: "Why It Matters",
       paragraphs: [
-        "Teams perform better when people can stop reacting from habit and start responding to the moment.",
-        "Executive function helps individuals resist the impulse to dominate the wrong mode. Cognitive flexibility helps teams move between Dreaming, Planning, and Doing without getting stuck.",
-        "The result is better meeting discipline, clearer decisions, less premature execution, stronger planning, and faster behavioral alignment.",
+        "Teams perform better when people stop reacting from habit and start responding to what the moment requires.",
+        "DPD helps teams name the mode, activate the matching Cognitive Persona Posture, and switch between Dreaming, Planning, and Doing without getting stuck.",
+        "The result is better meeting discipline, clearer decisions, less premature execution, stronger planning, and faster team alignment.",
       ],
     },
   },
   "Game Theory": {
     kind: "prose",
     intro: [
-      "Game Theory studies strategic interaction, meaning situations where one person’s outcome depends not only on their own choices, but also on the choices of others. The Stanford Encyclopedia of Philosophy describes game theory as a way to analyze strategic interaction, including coordination problems where people must align behavior around shared expectations.",
+      "Game Theory studies strategic interaction — situations where one person’s outcome depends not only on their own choices, but also on the choices of others. In teams, this matters because people perform better when they share expectations, understand their roles, and know how to move toward the same outcome together.",
     ],
     whyItMatters: {
       heading: "Why It Matters",
       paragraphs: [
         "Teams perform better when they know what game they are playing.",
-        "Research on shared team mental models shows that teams benefit when members share an understanding of tasks, roles, goals, and how to work together. Shared mental models are linked to team processes and team performance, and team effectiveness research consistently highlights communication, coordination, cooperation, and shared cognition as core features of effective teams.",
-        "The result is less friction, faster alignment, clearer decision making, stronger collaboration, and better execution.",
+        "DPD helps teams clarify the mode of the moment: Are we Dreaming, Planning, or Doing? Once the mode is clear, people can activate the matching Cognitive Persona Posture, follow the rules of the moment, and coordinate action toward a shared goal.",
+        "The result is less friction, faster alignment, clearer decision-making, stronger collaboration, and better execution.",
       ],
     },
     research: {
@@ -69,15 +69,15 @@ export const researchWhyReversedWorkshopPanels: Record<
   "Embodied Cognition": {
     kind: "prose",
     intro: [
-      "Embodied Cognition supports one of the core ideas behind DPD: behavior is not only mental. The body, environment, posture, movement, physical cues, and situational context all influence how people think, feel, and act.",
-      "Embodied cognition research argues that cognition is deeply connected to the body’s interaction with the world. Grounded cognition proposes that bodily states, situated action, and modal simulations help underlie cognition, rather than cognition being separated from perception, action, and bodily experience.",
+      "Embodied Cognition supports one of the core ideas behind DPD: thinking does not happen in the mind alone. The body, environment, posture, movement, physical cues, and situational context all influence how people think, feel, and respond.",
+      "Embodied cognition research shows that cognition is connected to the body’s interaction with the world. In practical terms, how people sit, speak, move, listen, and engage can shape how clearly they participate in the moment.",
     ],
     whyItMatters: {
       heading: "Why It Matters",
       paragraphs: [
-        "Teams perform better when behavior is not left as an abstract idea.",
-        "If a team says, “We need to execute,” and everyone remains mentally scattered, emotionally defensive, or physically disengaged, execution will suffer. DPD helps teams make the mode visible and actionable through cues, posture, language, and ritual.",
-        "The result is faster activation, stronger presence, clearer participation, and more coordinated behavior in the room.",
+        "Teams perform better when the mode is not just talked about, but made visible.",
+        "If a team says, “We need to execute,” but people are still scattered, defensive, or unclear about the moment, execution will suffer. DPD helps teams make the mode visible and actionable through shared language, cues, posture, and ritual.",
+        "The result is faster activation, stronger presence, clearer participation, and more coordinated action in the room.",
       ],
     },
     research: {
@@ -101,15 +101,15 @@ export const researchWhyReversedWorkshopPanels: Record<
   "Default Mode Network and Task Positive Network": {
     kind: "prose",
     intro: [
-      "Default Mode Network and Task Positive Network research supports one of the core ideas behind DPD: the brain moves between different cognitive modes depending on what the moment requires.",
-      "The Default Mode Network is often associated with internally directed thought, self reflection, memory, imagination, social cognition, mind wandering, and thinking about the future. The Task Positive Network is associated with externally directed, attention demanding, goal focused tasks. Fox and colleagues showed that the human brain is organized into dynamic, anti-correlated functional networks, including task positive regions and default mode regions.",
+      "Default Mode Network and Task Positive Network research supports one of the core ideas behind DPD: people shift between different cognitive modes depending on what the moment requires.",
+      "The Default Mode Network is often associated with internally directed thinking, reflection, imagination, memory, social cognition, and thinking about the future. The Task Positive Network is often associated with externally directed attention, focus, problem-solving, and goal-directed action.",
     ],
     whyItMatters: {
       heading: "Why It Matters",
       paragraphs: [
-        "Teams perform better when they stop mixing cognitive modes.",
-        "A Dreaming conversation requires space for exploration. A Planning conversation requires structure. A Doing conversation requires focus and execution.",
-        "DPD helps teams name the mode before the meeting starts, reducing confusion and helping people align their Persona Behavioral Posture with the cognitive demands of the moment.",
+        "Teams perform better when they stop mixing modes.",
+        "A Dreaming conversation needs space for exploration. A Planning conversation needs structure. A Doing conversation needs focus and execution.",
+        "DPD helps teams name the mode before the meeting starts, activate the matching Cognitive Persona Posture, and align with the cognitive demands of the moment.",
       ],
     },
     research: {

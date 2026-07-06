@@ -30,14 +30,27 @@ export function BooksAuthorSection() {
           <h2 className="mt-3 custom-md-title-bold">
             Kokoro V. Robinson
           </h2>
-          <p className="mt-5 custom-body text-custom-black">
-            Kokoro is the author of the DPD Framework book, a behavioral
-            architect, and the creator of the Dreamer–Planner–Doer behavioral
-            operating system. Over more than three decades in global talent
-            leadership—including as a Vice President of Global Talent
-            Acquisition in Silicon Valley—he built the science-forward approach
-            teams use to coordinate behavior in real time.
-          </p>
+          <div className="mt-5 flex flex-col gap-4">
+            <p className="custom-body text-custom-black">
+              Kokoro Robinson is the author of the DPD Framework book and
+              creator of the Dreamer-Planner-Doer Framework, a Persona-Based
+              Cognitive Alignment practice that helps people and teams move
+              together in flow.
+            </p>
+            <p className="custom-body text-custom-black">
+              He studied Biological and Cognitive Psychology before
+              launching Personal Blueprint Consulting Co. in the early
+              1990s — long before coaching became mainstream and before
+              Silicon Valley popularized conversations around cognitive
+              enhancement and performance.
+            </p>
+            <p className="custom-body text-custom-black">
+              Across more than three decades in global talent leadership,
+              Kokoro helped build and scale global teams, overseeing
+              thousands of hiring decisions and compensation negotiations
+              representing an estimated value approaching $1 billion.
+            </p>
+          </div>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/team"

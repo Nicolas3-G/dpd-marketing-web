@@ -5,14 +5,14 @@ export const BOOK_AMAZON_URL =
 export const booksFeaturedContent = {
   overline: "Now available",
   title: "The DPD Framework",
-  subtitle: "Revolutionize Collaboration with Personas",
+  subtitle: "Revolutionize Collaboration with Cognitive Alignment",
   author: "Kokoro V. Robinson",
   authorHref: "/team",
   format: "Paperback & Kindle",
   coverImage: "/products/DPD Book Mockup.png",
   coverAlt: "The DPD Framework book cover",
   description:
-    "The definitive guide to the Dreamer–Planner–Doer Framework—a science-forward behavioral operating system that goes beyond personality assessments. Learn how teams name their modes, switch personas on purpose, and coordinate behavior in real time.",
+    "The definitive guide to the Dreamer-Planner-Doer Framework — a Persona-Based Cognitive Alignment practice that goes beyond personality assessments. Learn how teams name the mode of the moment, activate the matching Cognitive Persona Posture, and move together with greater clarity, rhythm, and flow.",
   primaryCta: {
     label: "Get it on Amazon",
     href: BOOK_AMAZON_URL,

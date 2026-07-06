@@ -1,10 +1,10 @@
 /** Books page hero — edit copy here without affecting other pages. */
 export const booksHeroContent = {
   eyebrow: "Publications",
-  heading: "Read the framework",
-  headingHighlight: "behind the DPD Framework.",
+  heading: "Go deeper",
+  headingHighlight: "into DPD.",
   description:
-    "Our books translate persona-based behavior coordination into language leaders, coaches, and teams can use every day—not just in workshops.",
+    "Our books help leaders, coaches, and teams understand how to use Cognitive Persona Postures to reduce friction, build alignment, and work together with greater clarity.",
   cta: {
     label: "View the book",
     href: "#featured-book",
