@@ -52,7 +52,7 @@ const restOfTeam = [
       "Instructional Designer | Learning Experience Designer | Founder Advocate",
     image: "/team/Nicole.webp",
     hoverBio:
-      "Nicole L. Weber, M.Ed., is a Learning Experience Designer with over a decade of global experience in education and corporate learning. On the DPD Instructional Design Council, she turns behavioral science into practical training and leads curriculum and certification for the Framework. She uses modern learning design and AI-enhanced tools to create inclusive, engaging experiences that help teams perform at their best.",
+      "Nicole L. Weber, M.Ed., is a Learning Experience Designer with over a decade of global experience in education and corporate learning. On the DPD Instructional Design Council, she translates Persona-Based Cognitive Alignment into practical learning experiences that make the framework clear, engaging, and easy to apply. She uses modern learning design and AI-enhanced tools to help coaches, leaders, and teams build shared language, stronger alignment, and better team flow.",
   },
 ] as const;
 
@@ -80,12 +80,18 @@ export default function TeamPage() {
             <h2 className="custom-body-bold text-custom-black">
               Executive team
             </h2>
-            <p className="max-w-md custom-body text-custom-black">
-              DPD&apos;s executive team formed around one conviction: teams need a
-              shared way to dream, plan, and execute—not another personality test.
-              Kokoro, Prabitha, and Alonzo lead strategy and product, turning the
-              framework into tools coaches and organizations use every day.
-            </p>
+            <div className="flex max-w-md flex-col gap-4">
+              <p className="custom-body text-custom-black">
+                DPD&apos;s executive team formed around one conviction: teams
+                need a shared way to think, align, and move together — not
+                another personality test.
+              </p>
+              <p className="custom-body text-custom-black">
+                Kokoro, Prabitha, and Alonzo lead strategy, product, and
+                platform development, turning the framework into practical
+                tools for coaches, leaders, and organizations.
+              </p>
+            </div>
           </div>
 
           <div className="min-w-0">
@@ -96,14 +102,21 @@ export default function TeamPage() {
         <div className="mt-16 grid w-full min-w-0 gap-12 sm:mt-20 lg:mt-24 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,1fr)] lg:items-start lg:gap-x-14 xl:gap-x-20">
           <div className="flex max-w-xl flex-col gap-4 lg:max-w-none lg:pr-4">
             <h2 className="custom-body-bold text-custom-black">
-              The rest of the team
+              Founding Team
             </h2>
-            <p className="max-w-md custom-body text-custom-black">
-              Behind the executives are founding members who build and refine what
-              teams experience every day. Nicolas shapes the platform; Nicole designs
-              the learning journeys that make the framework clear, practical, and
-              ready to use.
-            </p>
+            <div className="flex max-w-md flex-col gap-4">
+              <p className="custom-body text-custom-black">
+                Alongside the executive team are founding members who bring
+                the platform, tools, and learning experiences to life for
+                teams every day.
+              </p>
+              <p className="custom-body text-custom-black">
+                Nicolas shapes the platform. Nicole designs the learning
+                journeys. Iris Papendorf helps create the DPD Certification
+                pathways and new employee onboarding experiences that make
+                the framework practical, teachable, and scalable.
+              </p>
+            </div>
           </div>
 
           <div className="min-w-0">

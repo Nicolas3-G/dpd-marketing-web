@@ -94,8 +94,8 @@ export default function AboutPage() {
               <p className="custom-body leading-relaxed text-custom-black">
                 Today, DPD helps individuals, coaches, leaders, and teams
                 create cognitive alignment by clarifying the mode of the
-                moment — Are we Dreaming, Planning, or Doing? — and
-                activating the matching Cognitive Persona Posture: The
+                moment Are we Dreaming, Planning, or Doing? And activating
+                the matching Cognitive Persona Posture: The
                 Dreamer Persona, The Planner Persona, or The Doer Persona.
               </p>
               <p className="custom-body leading-relaxed text-custom-black">
@@ -131,30 +131,30 @@ export default function AboutPage() {
                 Our mission
               </h2>
             </div>
-            <p className="custom-body-bold leading-relaxed text-custom-black">
+            <p className="custom-body leading-relaxed text-custom-black">
               DPD helps people and teams build relational awareness,
               recognize what the moment needs, reduce friction, stay in
               sync, and move forward together.
             </p>
-            <p className="custom-body-bold leading-relaxed text-custom-black">
+            <p className="custom-body leading-relaxed text-custom-black">
               Like an orchestra, teams work better when everyone knows the
               rhythm, their role, and when to come in. DPD gives people a
               shared language for knowing when to dream, when to plan, and
               when to do.
             </p>
-            <p className="custom-body-bold leading-relaxed text-custom-black">
+            <p className="custom-body leading-relaxed text-custom-black">
               By naming the mode, activating the matching persona, and
               following the rules of the moment, people create greater
               clarity, alignment, and flow.
             </p>
-            <p className="custom-body-bold leading-relaxed text-custom-black">
+            <p className="custom-body leading-relaxed text-custom-black">
               Dreaming activates The Dreamer Persona.
               <br />
               Planning activates The Planner Persona.
               <br />
               Doing activates The Doer Persona.
             </p>
-            <p className="custom-body-bold leading-relaxed text-custom-black">
+            <p className="custom-body leading-relaxed text-custom-black">
               That mission shapes how we build our platform, design our
               training, develop our tools, and measure success.
             </p>
