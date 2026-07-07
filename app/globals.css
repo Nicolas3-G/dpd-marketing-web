@@ -6,6 +6,7 @@
   --light: #6F758A;
   --gray-light: #818387;
   --white-light: #a9acb1;
+  --gray-dark: #5C6067;
   --foreground: var(--custom-black);
   --brand-orange: #d98510;
   --brand-orange-hover: #b8730e;
@@ -22,6 +23,8 @@
   --color-custom-black: var(--custom-black);
   --color-light: var(--light);
   --color-gray-light: var(--gray-light);
+  --color-white-light: var(--white-light);
+  --color-gray-dark: var(--gray-dark);
   --color-foreground: var(--foreground);
   --color-brand-orange: var(--brand-orange);
   --color-brand-orange-hover: var(--brand-orange-hover);

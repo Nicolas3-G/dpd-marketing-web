@@ -24,9 +24,9 @@ export function WebinarsHero() {
         <div className="grid w-full gap-14 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-20">
 
           <div className="max-w-2xl">
-            <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-gray-card-border bg-gray-card px-4 py-2">
+            <div className="mb-6 inline-flex items-center gap-2.5 rounded-full bg-white px-4 py-2 shadow-[0_12px_40px_rgba(0,0,0,0.12)] ring-1 ring-custom-black/6">
               <span className="size-2 animate-pulse rounded-full bg-brand-orange" />
-              <span className="custom-label text-custom-black/60">{badge}</span>
+              <span className="custom-label text-gray-light">{badge}</span>
             </div>
 
             <h1 className="custom-lg-title-bold text-custom-black">
@@ -49,8 +49,8 @@ export function WebinarsHero() {
             </div>
           </div>
 
-          <div className="w-full rounded-2xl border border-gray-card-border bg-gray-card p-8 lg:w-72 xl:w-80">
-            <p className="custom-caption-bold mb-6 uppercase text-custom-black/35">
+          <div className="w-full rounded-2xl bg-white p-8 shadow-[0_12px_40px_rgba(0,0,0,0.12)] ring-1 ring-custom-black/6 lg:w-72 xl:w-80">
+            <p className="custom-caption-bold mb-6 uppercase text-gray-light">
               Each session includes
             </p>
             <ul className="flex flex-col gap-5">

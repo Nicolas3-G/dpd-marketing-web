@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 const fieldClass =
-  "w-full rounded-lg border-[1.5px] border-gray-card-border bg-form-input-background px-3 py-2.5 text-sm text-custom-black outline-none transition-shadow placeholder:text-gray-card-text/50 focus:border-gray-card-border focus:ring-2 focus:ring-gray-card-border/20";
+  "w-full rounded-md border-[1.5px] border-white-light bg-white px-3 py-2.5 text-sm text-custom-black outline-none transition-shadow placeholder:text-gray-card-text/50 focus:border-white-light focus:ring-2 focus:ring-gray-card-border/20";
 
-const labelClass = "custom-label capitalize text-gray-card-text";
+const labelClass = "custom-label capitalize text-gray-light";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
