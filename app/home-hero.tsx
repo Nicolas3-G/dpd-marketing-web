@@ -7,6 +7,10 @@ import { HiArrowRight } from "react-icons/hi";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Mobile browsers fire window resize when the URL bar collapses mid-scroll;
+// refreshing every ScrollTrigger at that moment kills scroll momentum.
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
@@ -352,11 +356,7 @@ export function HomeHero() {
       }
     }, section);
 
-    const onResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", onResize);
-
     return () => {
-      window.removeEventListener("resize", onResize);
       ctx.revert();
     };
   }, [scrubActive]);
@@ -393,8 +393,16 @@ export function HomeHero() {
     };
 
     updateLayout();
-    window.addEventListener("resize", updateLayout);
-    return () => window.removeEventListener("resize", updateLayout);
+
+    // Skip height-only resizes (mobile URL bar collapsing mid-scroll).
+    let lastWidth = window.innerWidth;
+    const onResize = () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      updateLayout();
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   useEffect(() => {
@@ -677,19 +685,20 @@ export function HomeHero() {
             style={{ transitionDuration: `${FADE_MS}ms` }}
             aria-hidden={!contentVisible}
           >
-            <p className="custom-caption-bold uppercase text-custom-black">
+            <p className="custom-caption-bold uppercase text-gray-dark">
               Persona-based Cognitive Alignment
             </p>
             <h1 className="mt-6 max-w-4xl custom-lg-title-bold leading-tight text-custom-black">
-              Built for Individuals, Coaches, Leaders, and Teams.
+              <span className="text-gray-dark">Built for</span> Individuals,
+              Coaches, Leaders, and Teams.
             </h1>
-            <p className="mt-6 max-w-2xl custom-body text-custom-black">
+            <p className="mt-6 max-w-2xl custom-body text-gray-dark">
               DPD turns how people think into a shared language for how they
-              dream, plan, and do together. DPDing!
+              dream, plan, and do together.
             </p>
             <a
               href="/survey"
-              className="mt-9 inline-flex h-14 items-center gap-3 rounded-full bg-custom-black px-8 custom-label-bold text-white transition hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
+              className="mt-9 inline-flex h-14 items-center gap-3 rounded-full bg-white px-8 custom-label-bold text-brand-orange transition hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
               tabIndex={contentVisible ? undefined : -1}
             >
               Take DPD Survey

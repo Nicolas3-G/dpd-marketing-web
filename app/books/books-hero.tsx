@@ -12,7 +12,7 @@ export function BooksHero() {
   return (
     <section
       id="books"
-      className="relative isolate flex min-h-[calc(100svh-4rem)] overflow-hidden bg-black text-custom-black"
+      className="relative isolate flex min-h-[calc(var(--stable-vh,100svh)-4rem)] overflow-hidden bg-black text-custom-black"
     >
       <video
         autoPlay

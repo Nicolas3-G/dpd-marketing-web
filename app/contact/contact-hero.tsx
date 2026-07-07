@@ -59,7 +59,7 @@ export function ContactHero() {
             </div>
 
             <div className="flex items-center justify-center px-8 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
-              <div className="w-full max-w-xl rounded-2xl border border-gray-card-border bg-gray-card px-6 py-8 sm:px-8 sm:py-10">
+              <div className="w-full max-w-xl rounded-2xl bg-white px-6 py-8 shadow-[0_12px_40px_rgba(0,0,0,0.12)] ring-1 ring-custom-black/6 sm:px-8 sm:py-10">
                 <ContactForm />
               </div>
             </div>

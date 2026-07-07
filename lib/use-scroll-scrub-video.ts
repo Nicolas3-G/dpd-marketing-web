@@ -6,6 +6,10 @@ import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Mobile browsers fire window resize when the URL bar collapses mid-scroll;
+// refreshing every ScrollTrigger at that moment kills scroll momentum.
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 type UseScrollScrubVideoOptions = {
   /** Fraction of the clip's full duration to scrub through (e.g. 0.5 plays through the first half). */
   durationMultiplier?: number;
@@ -90,11 +94,7 @@ export function useScrollScrubVideo<TriggerEl extends HTMLElement>({
       }
     }, trigger);
 
-    const onResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", onResize);
-
     return () => {
-      window.removeEventListener("resize", onResize);
       ctx.revert();
     };
   }, [durationMultiplier, seekToScrollProgress]);

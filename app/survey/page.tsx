@@ -18,7 +18,7 @@ const heroInset =
 export default function SurveyPage() {
   return (
     <main className="relative flex-1 overflow-x-clip bg-background text-[#333a48]">
-      <section className="relative flex min-h-[calc(100svh-4rem)] items-end overflow-hidden pb-20 pt-28 sm:pb-28 sm:pt-32 lg:pt-36">
+      <section className="relative flex min-h-[calc(var(--stable-vh,100svh)-4rem)] items-end overflow-hidden pb-20 pt-28 sm:pb-28 sm:pt-32 lg:pt-36">
         <video
           autoPlay
           muted

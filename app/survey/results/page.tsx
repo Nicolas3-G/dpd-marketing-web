@@ -68,7 +68,7 @@ export default async function SurveyResultsPage({
   return (
     <main>
 
-      <section className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col justify-center overflow-hidden bg-white">
+      <section className="relative isolate flex min-h-[calc(var(--stable-vh,100svh)-4rem)] flex-col justify-center overflow-hidden bg-white">
         {PERSONA_HERO_VIDEO[dominantPersona] ? (
           <video
             autoPlay
@@ -420,8 +420,8 @@ export default async function SurveyResultsPage({
               </p>
             </div>
 
-            <div className="flex flex-col items-center justify-center bg-custom-black p-8">
-              <p className="max-w-[26rem] custom-md-title-bold text-center text-white">
+            <div className="flex flex-col items-start justify-center bg-custom-black p-8">
+              <p className="max-w-[26rem] custom-md-title-bold text-left text-white">
                 Unlock your full results{" "}
                 <span className="text-brand-orange">in the app</span>
               </p>
@@ -434,7 +434,7 @@ export default async function SurveyResultsPage({
                 ]}
               />
 
-              <div className="mt-5 flex flex-row flex-wrap items-center justify-center gap-3">
+              <div className="mt-5 flex flex-row flex-wrap items-center justify-start gap-3">
                 <a href="#" className="transition hover:-translate-y-0.5 hover:opacity-90">
                   <Image
                     src="/store-badges/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"

@@ -6,22 +6,22 @@ export type BooksInsideTheme = {
 /** What readers take away from the book — edit themes here. */
 export const booksInsideContent = {
   heading: "What you will take away",
-  lead: "A practical operating manual for Dream, Plan, and Do—not another personality label.",
+  lead: "A practical playbook for Dreaming, Planning, and Doing — Visioning, Structuring, and Executing, without turning people into labels.",
   themes: [
     {
       title: "Persona language that sticks",
       description:
-        "Move beyond static types. Give teams shared words for Dreamer, Planner, and Doer modes so expectations stay visible in every meeting.",
+        "Move beyond static types. Give teams shared language for naming the mode, activating the matching persona, and keeping expectations visible in every meeting.",
     },
     {
       title: "Dynamic persona switching",
       description:
-        "Learn when and how to switch behavioral postures on purpose—so collaboration speeds up without people performing a fake identity.",
+        "Learn how to name the mode, activate the matching persona, and switch on purpose — so teams can move faster, reduce friction, and stay in sync.",
     },
     {
-      title: "Coordination over assessment",
+      title: "Alignment over assessment",
       description:
-        "See why personality tests describe tendencies but never coordinate behavior—and how DPD fills the missing layer your tools already need.",
+        "Personality tests describe tendencies. DPD helps people align how they think, communicate, and work together in real time.",
     },
     {
       title: "Leaders who see the rhythm",

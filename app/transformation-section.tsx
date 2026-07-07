@@ -80,7 +80,7 @@ export function TransformationSection() {
                   ) : null}
                 </p>
               </div>
-              <p className="max-w-sm custom-body-bold text-white-light sm:pt-5">
+              <p className="max-w-sm custom-body-bold text-white sm:pt-5">
                 {metric.label}
               </p>
             </div>
