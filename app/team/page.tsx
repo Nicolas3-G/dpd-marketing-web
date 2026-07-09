@@ -13,7 +13,7 @@ const pageInset =
   "mx-5 w-[calc(100%-40px)] sm:mx-[45px] sm:w-[calc(100%-90px)]";
 
 const kokoroHoverBio =
-  "Kokoro V. Robinson is the author of the DPD Framework book, a behavioral architect, global talent authority, and the creator of the DPD Framework, a science forward persona behavioral operating system that goes beyond personality assessments by enabling real time behavioral alignment. Over a career spanning more than three decades, he's built a global career in talent leadership in the Silicon Valley, serving as a Vice President of Global Talent Acquisition.";
+  "Kokoro V. Robinson is the author of the DPD Framework book, a cognitive alignment architect, global talent authority, and creator of the DPD Framework, a science-forward Persona-Based Cognitive Alignment system that helps individuals and teams recognize, switch, and coordinate cognitive posture in real time. Over more than three decades, he has built global tech teams across Silicon Valley as a Vice President of Global Talent Acquisition.";
 
 const executiveTeam = [
   {
@@ -40,19 +40,26 @@ const executiveTeam = [
 
 const restOfTeam = [
   {
-    name: "Nicolas Guimont",
-    title: "Lead Full Stack Developer, Founding Member",
-    image: "/team/Nicolas.webp",
-    hoverBio:
-      "As a founding engineer and Full Stack Developer, Nic specializes in developing intelligent, cross-platform SaaS solutions that seamlessly integrate frontend experience with robust backend infrastructure. With deep expertise across React, React Native, Next.js, Node.js, and cloud-native technologies, Nic has a proven track record of building scalable systems that drive engagement and performance.",
-  },
-  {
     name: "Nicole L. Weber, M.Ed.",
     title:
       "Instructional Designer | Learning Experience Designer | Founder Advocate",
     image: "/team/Nicole.webp",
     hoverBio:
       "Nicole L. Weber, M.Ed., is a Learning Experience Designer with over a decade of global experience in education and corporate learning. On the DPD Instructional Design Council, she translates Persona-Based Cognitive Alignment into practical learning experiences that make the framework clear, engaging, and easy to apply. She uses modern learning design and AI-enhanced tools to help coaches, leaders, and teams build shared language, stronger alignment, and better team flow.",
+  },
+  {
+    name: "Iris Papendorf",
+    title: "Strategic HRBP & People Culture Lead, Founding Member",
+    image: "/team/Iris.jpg",
+    hoverBio:
+      "Iris Papendorf is a Strategic HRBP and People & Culture leader with deep experience building remote-first organizational systems that help distributed teams work with clarity, consistency, and alignment. She partners with executive leadership to develop HR policies, onboarding structures, and cross-functional workflows, and architected DPD’s first onboarding ecosystem and tiered cognitive certification program to support scalable learning, quality control, and international growth.",
+  },
+  {
+    name: "Nicolas Guimont",
+    title: "Lead Full Stack Developer, Founding Member",
+    image: "/team/Nicolas.webp",
+    hoverBio:
+      "As a founding engineer and Full Stack Developer, Nic specializes in developing intelligent, cross-platform SaaS solutions that seamlessly integrate frontend experience with robust backend infrastructure. With deep expertise across React, React Native, Next.js, Node.js, and cloud-native technologies, Nic has a proven track record of building scalable systems that drive engagement and performance.",
   },
 ] as const;
 

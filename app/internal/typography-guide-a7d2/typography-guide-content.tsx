@@ -1,0 +1,543 @@
+import { Instrument_Serif } from "next/font/google";
+
+const displaySerif = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const guideStyles = `
+  .typography-guide-page {
+    --bg: var(--background);
+    --card-bg: #fff;
+    --border: rgba(31,37,50,.10);
+    background: var(--bg);
+    color: var(--custom-black);
+    font-family: Helvetica, Arial, sans-serif;
+    padding: 60px 40px 100px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .typography-guide-page .page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 1.5px solid var(--border);
+    padding-bottom: 28px;
+    margin-bottom: 56px;
+  }
+  .typography-guide-page .page-header-left { display: flex; flex-direction: column; gap: 6px; }
+  .typography-guide-page .page-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+  }
+  .typography-guide-page .page-title {
+    font-size: 42px;
+    line-height: 1.05;
+    color: var(--custom-black);
+  }
+  .typography-guide-page .page-meta { font-size: 13px; color: var(--light); }
+
+  /* ── Color swatches ── */
+  .typography-guide-page .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 16px;
+  }
+  .typography-guide-page .section { margin-bottom: 56px; }
+
+  .typography-guide-page .swatches {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .typography-guide-page .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .typography-guide-page .swatch-color {
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .typography-guide-page .swatch-info { display: flex; flex-direction: column; gap: 2px; }
+  .typography-guide-page .swatch-name { font-size: 13px; font-weight: 600; color: var(--custom-black); }
+  .typography-guide-page .swatch-hex  { font-size: 12px; color: var(--light); font-family: 'Courier New', monospace; }
+
+  /* ── Typeface row ── */
+  .typography-guide-page .typeface-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .typography-guide-page .typeface-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .typography-guide-page .typeface-specimen-serif {
+    font-size: 38px;
+    line-height: 1.05;
+    color: var(--custom-black);
+  }
+  .typography-guide-page .typeface-specimen-sans {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1.05;
+    color: var(--custom-black);
+  }
+  .typography-guide-page .typeface-meta { display: flex; flex-direction: column; gap: 3px; }
+  .typography-guide-page .typeface-name { font-size: 14px; font-weight: 700; color: var(--custom-black); }
+  .typography-guide-page .typeface-role { font-size: 12px; color: var(--light); }
+
+  /* ── Scale table ── */
+  .typography-guide-page .scale-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .typography-guide-page .scale-header {
+    display: grid;
+    grid-template-columns: 180px 1fr 120px 120px 120px;
+    gap: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 28px;
+  }
+  .typography-guide-page .scale-header span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+  .typography-guide-page .scale-row {
+    display: grid;
+    grid-template-columns: 180px 1fr 120px 120px 120px;
+    align-items: center;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    gap: 0;
+    transition: background .15s;
+  }
+  .typography-guide-page .scale-row:last-child { border-bottom: none; }
+  .typography-guide-page .scale-row:hover { background: #faf8f5; }
+
+  .typography-guide-page .scale-pair {
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .typography-guide-page .scale-pair:last-child { border-bottom: none; }
+  .typography-guide-page .scale-pair:nth-child(odd)  { background: #fff; }
+  .typography-guide-page .scale-pair:nth-child(even) { background: #faf8f5; }
+  .typography-guide-page .scale-pair .scale-row {
+    border-bottom: none;
+    padding-left: 40px;
+    background: transparent;
+  }
+  .typography-guide-page .scale-pair .scale-row:hover { background: rgba(0,0,0,.025); }
+  .typography-guide-page .scale-pair .scale-row:first-child {
+    border-bottom: 1px dashed rgba(31,37,50,.07);
+  }
+  .typography-guide-page .scale-pair::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    border-radius: 2px;
+    background: rgba(217,133,16,.3);
+  }
+
+  .typography-guide-page .scale-row-divider {
+    padding: 8px 28px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+  }
+
+  .typography-guide-page .token {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--brand-orange);
+    background: rgba(217,133,16,.08);
+    padding: 3px 6px;
+    border-radius: 6px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 170px;
+  }
+  .typography-guide-page .weight-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--custom-black);
+  }
+  .typography-guide-page .weight-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--section-gray);
+    flex-shrink: 0;
+  }
+  .typography-guide-page .weight-dot.bold   { background: var(--custom-black); }
+  .typography-guide-page .weight-dot.medium { background: var(--light); }
+  .typography-guide-page .weight-dot.semi   { background: #8a8fa0; }
+
+  .typography-guide-page .size-pill {
+    font-size: 12px;
+    color: var(--light);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .typography-guide-page .size-pill .base { color: var(--custom-black); font-weight: 600; font-size: 13px; }
+
+  /* specimen text inside table */
+  .typography-guide-page .specimen-lg      { font-size: 28px; font-weight: 500; letter-spacing: -.04em; line-height: 1; color: var(--custom-black); }
+  .typography-guide-page .specimen-lg-bold { font-size: 28px; font-weight: 700; letter-spacing: -.04em; line-height: 1; color: var(--custom-black); }
+  .typography-guide-page .specimen-md      { font-size: 22px; font-weight: 500; letter-spacing: -.04em; line-height: 1; color: var(--custom-black); }
+  .typography-guide-page .specimen-md-bold { font-size: 22px; font-weight: 700; letter-spacing: -.04em; line-height: 1; color: var(--custom-black); }
+  .typography-guide-page .specimen-sm      { font-size: 17px; font-weight: 700; letter-spacing: -.03em; line-height: 1; color: var(--custom-black); }
+  .typography-guide-page .specimen-xs       { font-size: 14px; font-weight: 500; letter-spacing: -.03em; line-height: 1; color: var(--custom-black); }
+  .typography-guide-page .specimen-xs-bold  { font-size: 14px; font-weight: 700; letter-spacing: -.03em; line-height: 1; color: var(--custom-black); }
+  .typography-guide-page .specimen-xxs      { font-size: 13px; font-weight: 500; letter-spacing: -.02em; line-height: 1; color: var(--custom-black); }
+  .typography-guide-page .specimen-xxs-bold { font-size: 13px; font-weight: 700; letter-spacing: -.02em; line-height: 1; color: var(--custom-black); }
+
+  .typography-guide-page .specimen-body-lg      { font-size: 15px; font-weight: 400; line-height: 1.6; color: var(--custom-black); }
+  .typography-guide-page .specimen-body-lg-bold { font-size: 15px; font-weight: 700; line-height: 1.6; color: var(--custom-black); }
+  .typography-guide-page .specimen-body    { font-size: 14px; font-weight: 500; line-height: 1.5; color: var(--custom-black); }
+  .typography-guide-page .specimen-body-bold { font-size: 14px; font-weight: 700; line-height: 1.5; color: var(--custom-black); }
+  .typography-guide-page .specimen-body-sm { font-size: 12px; font-weight: 500; line-height: 1.5; color: var(--custom-black); }
+  .typography-guide-page .specimen-body-sm-bold { font-size: 12px; font-weight: 700; line-height: 1.5; color: var(--custom-black); }
+
+  .typography-guide-page .specimen-label       { font-size: 12px; font-weight: 400; color: var(--custom-black); }
+  .typography-guide-page .specimen-label-bold  { font-size: 12px; font-weight: 700; color: var(--custom-black); }
+  .typography-guide-page .specimen-caption     { font-size: 12px; font-weight: 500; letter-spacing: .28em; color: var(--custom-black); text-transform: uppercase; }
+  .typography-guide-page .specimen-caption-bold { font-size: 12px; font-weight: 600; letter-spacing: .28em; color: var(--custom-black); text-transform: uppercase; }
+
+  /* ── Responsive note ── */
+  .typography-guide-page .responsive-note {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: rgba(217,133,16,.07);
+    border: 1px solid rgba(217,133,16,.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-top: 16px;
+  }
+  .typography-guide-page .responsive-note-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .typography-guide-page .responsive-note p { font-size: 13px; color: var(--custom-black); line-height: 1.6; }
+  .typography-guide-page .responsive-note strong { color: var(--brand-orange); }
+
+  /* ── Note at bottom ── */
+  .typography-guide-page .note {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--light);
+    line-height: 1.6;
+  }
+  .typography-guide-page .note strong { color: var(--custom-black); }
+`;
+
+const guideMarkup = `
+  <header class="page-header">
+    <div class="page-header-left">
+      <span class="page-eyebrow">DPD Framework</span>
+      <h1 class="page-title ${displaySerif.className}">Typography System</h1>
+    </div>
+    <span class="page-meta">v1.0 · June 2026</span>
+  </header>
+
+  <section class="section">
+    <p class="section-label">Brand Colors</p>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1F2532;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Custom Black</span>
+          <span class="swatch-hex">#1F2532</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#d98510;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Brand Orange</span>
+          <span class="swatch-hex">#d98510</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#6F758A;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Light</span>
+          <span class="swatch-hex">#6F758A</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#818387;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Gray Light</span>
+          <span class="swatch-hex">#818387</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#a9acb1;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">White Light</span>
+          <span class="swatch-hex">#a9acb1</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#5C6067;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Gray Dark</span>
+          <span class="swatch-hex">#5C6067</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#f4f0ea; border:1.5px solid #dedad3;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Background</span>
+          <span class="swatch-hex">#f4f0ea</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#d9d9d9;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Section Gray</span>
+          <span class="swatch-hex">#d9d9d9</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Typefaces</p>
+    <div class="typeface-row">
+      <div class="typeface-card">
+        <div class="typeface-specimen-serif ${displaySerif.className}">Instrument Serif</div>
+        <div class="typeface-meta">
+          <span class="typeface-name">Instrument Serif</span>
+          <span class="typeface-role">Display — Hero headings &amp; large display titles</span>
+        </div>
+      </div>
+      <div class="typeface-card">
+        <div class="typeface-specimen-sans">Helvetica</div>
+        <div class="typeface-meta">
+          <span class="typeface-name">Helvetica / Arial</span>
+          <span class="typeface-role">UI — All body, label, caption &amp; UI text</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Type Scale</p>
+    <div class="scale-card">
+      <div class="scale-header">
+        <span>Token</span>
+        <span>Specimen</span>
+        <span>Weight</span>
+        <span>Mobile</span>
+        <span>Desktop</span>
+      </div>
+
+      <div class="scale-row-divider">Titles</div>
+
+      <div class="scale-pair">
+        <div class="scale-row">
+          <span class="token">custom-lg-title</span>
+          <span class="specimen-lg">Display Heading</span>
+          <span class="weight-pill"><span class="weight-dot medium"></span>Medium 500</span>
+          <span class="size-pill"><span class="base">text-4xl</span>2.25rem · 36px</span>
+          <span class="size-pill"><span class="base">text-6xl</span>3.75rem · 60px</span>
+        </div>
+        <div class="scale-row">
+          <span class="token">custom-lg-title-bold</span>
+          <span class="specimen-lg-bold">Display Heading</span>
+          <span class="weight-pill"><span class="weight-dot bold"></span>Bold 700</span>
+          <span class="size-pill"><span class="base">text-4xl</span>2.25rem · 36px</span>
+          <span class="size-pill"><span class="base">text-6xl</span>3.75rem · 60px</span>
+        </div>
+      </div>
+
+      <div class="scale-pair">
+        <div class="scale-row">
+          <span class="token">custom-md-title</span>
+          <span class="specimen-md">Section Heading</span>
+          <span class="weight-pill"><span class="weight-dot medium"></span>Medium 500</span>
+          <span class="size-pill"><span class="base">text-3xl</span>1.875rem · 30px</span>
+          <span class="size-pill"><span class="base">text-5xl</span>3rem · 48px</span>
+        </div>
+        <div class="scale-row">
+          <span class="token">custom-md-title-bold</span>
+          <span class="specimen-md-bold">Section Heading</span>
+          <span class="weight-pill"><span class="weight-dot bold"></span>Bold 700</span>
+          <span class="size-pill"><span class="base">text-3xl</span>1.875rem · 30px</span>
+          <span class="size-pill"><span class="base">text-5xl</span>3rem · 48px</span>
+        </div>
+      </div>
+
+      <div class="scale-pair">
+        <div class="scale-row">
+          <span class="token">custom-sm-title</span>
+          <span class="specimen-sm">Card Heading</span>
+          <span class="weight-pill"><span class="weight-dot bold"></span>Bold 700</span>
+          <span class="size-pill"><span class="base">text-2xl</span>1.5rem · 24px</span>
+          <span class="size-pill"><span class="base">text-4xl</span>2.25rem · 36px</span>
+        </div>
+      </div>
+
+      <div class="scale-pair">
+        <div class="scale-row">
+          <span class="token">custom-xs-title</span>
+          <span class="specimen-xs">Sub Heading</span>
+          <span class="weight-pill"><span class="weight-dot medium"></span>Medium 500</span>
+          <span class="size-pill"><span class="base">text-lg</span>1.125rem · 18px</span>
+          <span class="size-pill"><span class="base">text-3xl</span>1.875rem · 30px</span>
+        </div>
+        <div class="scale-row">
+          <span class="token">custom-xs-title-bold</span>
+          <span class="specimen-xs-bold">Sub Heading</span>
+          <span class="weight-pill"><span class="weight-dot bold"></span>Bold 700</span>
+          <span class="size-pill"><span class="base">text-lg</span>1.125rem · 18px</span>
+          <span class="size-pill"><span class="base">text-3xl</span>1.875rem · 30px</span>
+        </div>
+      </div>
+
+      <div class="scale-pair">
+        <div class="scale-row">
+          <span class="token">custom-xxs-title</span>
+          <span class="specimen-xxs">Minor Heading</span>
+          <span class="weight-pill"><span class="weight-dot medium"></span>Medium 500</span>
+          <span class="size-pill"><span class="base">text-base</span>1rem · 16px</span>
+          <span class="size-pill"><span class="base">text-2xl</span>1.5rem · 24px</span>
+        </div>
+        <div class="scale-row">
+          <span class="token">custom-xxs-title-bold</span>
+          <span class="specimen-xxs-bold">Minor Heading</span>
+          <span class="weight-pill"><span class="weight-dot bold"></span>Bold 700</span>
+          <span class="size-pill"><span class="base">text-base</span>1rem · 16px</span>
+          <span class="size-pill"><span class="base">text-2xl</span>1.5rem · 24px</span>
+        </div>
+      </div>
+
+      <div class="scale-row-divider">Body</div>
+
+      <div class="scale-pair">
+        <div class="scale-row">
+          <span class="token">custom-body-lg</span>
+          <span class="specimen-body-lg">The quick brown fox jumps over the lazy dog.</span>
+          <span class="weight-pill"><span class="weight-dot medium"></span>Normal 400</span>
+          <span class="size-pill"><span class="base">text-lg</span>1.125rem · 18px</span>
+          <span class="size-pill"><span class="base">text-xl</span>1.25rem · 20px</span>
+        </div>
+        <div class="scale-row">
+          <span class="token">custom-body-lg-bold</span>
+          <span class="specimen-body-lg-bold">The quick brown fox jumps over the lazy dog.</span>
+          <span class="weight-pill"><span class="weight-dot bold"></span>Bold 700</span>
+          <span class="size-pill"><span class="base">text-lg</span>1.125rem · 18px</span>
+          <span class="size-pill"><span class="base">text-xl</span>1.25rem · 20px</span>
+        </div>
+      </div>
+
+      <div class="scale-pair">
+        <div class="scale-row">
+          <span class="token">custom-body</span>
+          <span class="specimen-body">The quick brown fox jumps over the lazy dog.</span>
+          <span class="weight-pill"><span class="weight-dot medium"></span>Medium 500</span>
+          <span class="size-pill"><span class="base">text-base</span>1rem · 16px</span>
+          <span class="size-pill"><span class="base">text-lg</span>1.125rem · 18px</span>
+        </div>
+        <div class="scale-row">
+          <span class="token">custom-body-bold</span>
+          <span class="specimen-body-bold">The quick brown fox jumps over the lazy dog.</span>
+          <span class="weight-pill"><span class="weight-dot bold"></span>Bold 700</span>
+          <span class="size-pill"><span class="base">text-base</span>1rem · 16px</span>
+          <span class="size-pill"><span class="base">text-lg</span>1.125rem · 18px</span>
+        </div>
+      </div>
+
+      <div class="scale-row-divider">Labels &amp; Captions</div>
+
+      <div class="scale-pair">
+        <div class="scale-row">
+          <span class="token">custom-label</span>
+          <span class="specimen-label">UI Label</span>
+          <span class="weight-pill"><span class="weight-dot"></span>Normal 400</span>
+          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
+          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
+        </div>
+        <div class="scale-row">
+          <span class="token">custom-label-bold</span>
+          <span class="specimen-label-bold">UI Label</span>
+          <span class="weight-pill"><span class="weight-dot bold"></span>Bold 700</span>
+          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
+          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
+        </div>
+      </div>
+
+      <div class="scale-pair">
+        <div class="scale-row">
+          <span class="token">custom-caption</span>
+          <span class="specimen-caption">Eyebrow Label</span>
+          <span class="weight-pill"><span class="weight-dot medium"></span>Medium 500</span>
+          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
+          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
+        </div>
+        <div class="scale-row">
+          <span class="token">custom-caption-bold</span>
+          <span class="specimen-caption-bold">Eyebrow Label</span>
+          <span class="weight-pill"><span class="weight-dot semi"></span>Semibold 600</span>
+          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
+          <span class="size-pill"><span class="base">text-sm</span>0.875rem · 14px</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="responsive-note">
+      <span class="responsive-note-icon">📐</span>
+      <p>All title tokens are <strong>responsive</strong> — sizes shown are mobile → desktop. Intermediate <strong>sm:</strong> breakpoint sits between the two. All titles use <strong>tracking-tighter</strong> by default.</p>
+    </div>
+  </section>
+`;
+
+export function TypographyGuideContent() {
+  return (
+    <>
+      <style>{guideStyles}</style>
+      <div
+        className="typography-guide-page"
+        dangerouslySetInnerHTML={{ __html: guideMarkup }}
+      />
+    </>
+  );
+}
