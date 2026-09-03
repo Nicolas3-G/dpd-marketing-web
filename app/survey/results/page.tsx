@@ -435,7 +435,13 @@ export default async function SurveyResultsPage({
               />
 
               <div className="mt-5 flex flex-row flex-wrap items-center justify-start gap-3">
-                <a href="#" className="transition hover:-translate-y-0.5 hover:opacity-90">
+                <a
+                  href="https://apps.apple.com/us/app/dpding-dreamer-planner-doer/id6746777165"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download on the App Store"
+                  className="transition hover:-translate-y-0.5 hover:opacity-90"
+                >
                   <Image
                     src="/store-badges/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
                     alt="Download on the App Store"
@@ -444,7 +450,13 @@ export default async function SurveyResultsPage({
                     className="h-11 w-auto"
                   />
                 </a>
-                <a href="#" className="transition hover:-translate-y-0.5 hover:opacity-90">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.dpding.app&pcampaignid=web_share"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Get it on Google Play"
+                  className="transition hover:-translate-y-0.5 hover:opacity-90"
+                >
                   <Image
                     src="/store-badges/GetItOnGooglePlay_Badge_Web_color_English.svg"
                     alt="Get it on Google Play"
