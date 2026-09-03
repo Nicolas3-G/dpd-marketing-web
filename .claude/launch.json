@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "aiemma-marketing-site",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "C:\\Users\\Yon\\Desktop\\Projects 2025\\Work Projects\\AIEMMA\\aiemma-marketing-web\\site", "--", "-p", "3001"],
+      "port": 3001
+    }
+  ]
+}
