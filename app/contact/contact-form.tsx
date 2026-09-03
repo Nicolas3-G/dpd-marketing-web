@@ -15,9 +15,12 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <p className="text-center custom-body text-gray-card-text">
-        Thanks — we received your message and will follow up soon.
-      </p>
+      <div className="flex flex-col items-center gap-2 text-center text-gray-light">
+        <p className="custom-body-bold">Thank You!</p>
+        <p className="custom-body">
+          We&apos;ve received your message and we&apos;ll reach out to you soon.
+        </p>
+      </div>
     );
   }
 
@@ -126,7 +129,7 @@ export function ContactForm() {
         disabled={status === "submitting"}
         className="mt-1 w-full rounded-full bg-custom-black py-3 custom-label-bold tracking-tight text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "submitting" ? "Sending…" : "Send Message"}
+        {status === "submitting" ? "Sending…" : "Submit"}
       </button>
     </form>
   );
