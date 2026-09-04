@@ -1,9 +1,9 @@
-const DOMAIN = "interviewdj.com";
+const DOMAIN = "dpdframework.com";
 const WWW_DOMAIN = `www.${DOMAIN}`;
 
 const EXPECTED_A_RECORD = "216.150.1.1";
 const EXPECTED_CNAME =
-  "6e76209e71e52cb4.vercel-dns-017.com.";
+  "382ec4a25a08a690.vercel-dns-016.com.";
 
 export async function GET(request: Request) {
   const authHeader = request.headers.get("authorization");
