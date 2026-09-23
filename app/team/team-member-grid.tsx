@@ -33,13 +33,18 @@ export function TeamMemberGrid({
         {members.map((member, i) => {
           const hasBio = Boolean(member.hoverBio);
           const open = hasBio && activeIndex === i;
-          const shiftSibling = activeIndex !== null && i > activeIndex;
+          const shiftSibling =
+            activeIndex !== null &&
+            activeIndex < 3 &&
+            i > activeIndex &&
+            i < 3;
 
           return (
             <li
               key={member.name}
               className={joinClasses(
                 "flex min-w-0 flex-col gap-3 transition-transform duration-500 ease-out",
+                i === 3 && "lg:col-start-1",
                 shiftSibling && siblingShift,
               )}
               onMouseLeave={() => activeIndex === i && setActiveIndex(null)}
