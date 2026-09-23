@@ -42,7 +42,7 @@ const restOfTeam = [
   {
     name: "Nicole L. Weber, M.Ed.",
     title:
-      "Instructional Designer | Learning Experience Designer | Founder Advocate",
+      "Instructional Designer, Learning Experience Designer, Founder Advocate",
     image: "/team/Nicole.webp",
     hoverBio:
       "Nicole L. Weber, M.Ed., is a Learning Experience Designer with over a decade of global experience in education and corporate learning. On the DPD Instructional Design Council, she translates Persona-Based Cognitive Alignment into practical learning experiences that make the framework clear, engaging, and easy to apply. She uses modern learning design and AI-enhanced tools to help coaches, leaders, and teams build shared language, stronger alignment, and better team flow.",
@@ -60,6 +60,13 @@ const restOfTeam = [
     image: "/team/Nicolas.webp",
     hoverBio:
       "As a founding engineer and Full Stack Developer, Nic specializes in developing intelligent, cross-platform SaaS solutions that seamlessly integrate frontend experience with robust backend infrastructure. With deep expertise across React, React Native, Next.js, Node.js, and cloud-native technologies, Nic has a proven track record of building scalable systems that drive engagement and performance.",
+  },
+  {
+    name: "Mimish Lesperance",
+    title: "Senior Marketing & GTM Consultant",
+    image: "/team/Mimish.png",
+    hoverBio:
+      "Mimish Lesperance is a global marketing and go-to-market leader, former CMO, and growth strategist with more than two decades of experience building brands, partner ecosystems, and revenue engines across technology companies. At the DPD Framework, she helps shape marketing, brand, GTM, and growth strategy, drawing on leadership experience at Cisco, Plantronics, Poly, Barracuda, and Channelscaler, where she has driven measurable results.",
   },
 ] as const;
 
@@ -121,7 +128,8 @@ export default function TeamPage() {
                 Nicolas shapes the platform. Nicole designs the learning
                 journeys. Iris Papendorf helps create the DPD Certification
                 pathways and new employee onboarding experiences that make
-                the framework practical, teachable, and scalable.
+                the framework practical, teachable, and scalable. Mimish
+                shapes marketing, brand, go-to-market, and growth strategy.
               </p>
             </div>
           </div>
