@@ -9,6 +9,7 @@ import { pageTitle } from "@/lib/metadata";
 import {
   getAllPostSlugs,
   getPostBySlug,
+  getPostHref,
   getReadTimeMinutes,
   type BlogPost,
 } from "../posts";
@@ -43,9 +44,30 @@ export async function generateMetadata({
     return { title: pageTitle("Post not found") };
   }
 
+  const description = post.subtext ?? post.title;
+
   return {
     title: pageTitle(post.title),
-    description: post.subtext ?? post.title,
+    description,
+    alternates: {
+      canonical: getPostHref(post.slug),
+    },
+    openGraph: {
+      type: "article",
+      url: getPostHref(post.slug),
+      siteName: "DPDing",
+      title: post.title,
+      description,
+      images: post.image
+        ? [{ url: post.image, alt: post.title }]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      images: post.image ? [post.image] : undefined,
+    },
   };
 }
 
@@ -123,10 +145,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div className="mt-8 sm:mt-10">
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
                   <p className="text-left custom-body text-light">
-                    <span>{post.date}</span>
-                    <span className="mx-2" aria-hidden>
-                      -
-                    </span>
+                    {post.date ? (
+                      <>
+                        <span>{post.date}</span>
+                        <span className="mx-2" aria-hidden>
+                          -
+                        </span>
+                      </>
+                    ) : null}
                     <span className="uppercase tracking-wide">
                       {readTimeMinutes} min read
                     </span>
