@@ -63,8 +63,12 @@ export default function BlogPage() {
                   href={getPostHref(post.slug)}
                   className="group block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black"
                 >
-                  <p className="custom-label text-custom-black">{post.date}</p>
-                  <p className="mt-1.5 custom-body-bold leading-snug text-custom-black sm:text-xl">
+                  {post.date ? (
+                    <p className="custom-label text-custom-black">{post.date}</p>
+                  ) : null}
+                  <p
+                    className={`${post.date ? "mt-1.5 " : ""}custom-body-bold leading-snug text-custom-black sm:text-xl`}
+                  >
                     {post.title}
                   </p>
                 </Link>
