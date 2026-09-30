@@ -58,6 +58,7 @@ export async function generateMetadata({
       siteName: "DPDing",
       title: post.title,
       description,
+      authors: [post.author],
       images: post.image
         ? [{ url: post.image, alt: post.title }]
         : undefined,
@@ -141,6 +142,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               >
                 {post.title}
               </h1>
+
+              <p className="mt-4 custom-body text-custom-black">
+                By {post.author}
+              </p>
 
               <div className="mt-8 sm:mt-10">
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
