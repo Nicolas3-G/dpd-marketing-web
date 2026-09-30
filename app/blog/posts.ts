@@ -7,6 +7,7 @@ export type BlogPost = {
   slug: string;
   date?: string;
   title: string;
+  author: string;
   subtext?: string;
   image?: string;
   /** Shown in the blog index hero when true. Falls back to the first post. */
@@ -18,6 +19,7 @@ const personaSwitching: BlogPost = {
   slug: "persona-switching",
   date: "2/26/26",
   title: "Persona Switching",
+  author: "Kokoro V. Robinson",
   subtext: "It All Begins Here",
   image: "/scroll-cards-about/card-1.jpg",
   body: [
@@ -329,6 +331,7 @@ const executionBottleneck: BlogPost = {
   date: "9/23/26",
   title:
     "The Execution Bottleneck: Why Talented Teams Get Stuck Between Thinking and Doing",
+  author: "Kokoro V. Robinson",
   image: "/blog/bottleneck.png",
   body: [
     {
@@ -751,8 +754,8 @@ const scalingPersonas: BlogPost = {
   slug: "scaling-personas",
   date: "9/24/26",
   title: "Stop Managing Personalities. Start Scaling Personas.",
+  author: "Kokoro V. Robinson",
   image: "/blog/scaling-personas.png",
-  featured: true,
   body: [
     {
       type: "heading",
@@ -1010,8 +1013,218 @@ const scalingPersonas: BlogPost = {
   ],
 };
 
+const brainHasGears: BlogPost = {
+  slug: "brain-has-gears",
+  date: "9/30/26",
+  title:
+    "The Brain Has Gears Neuroscience Reveals Why Teams May Need to Learn to Shift Thinking Modes Together",
+  author: "Kokoro V. Robinson",
+  image: "/blog/brain-has-gears.png",
+  featured: true,
+  body: [
+    {
+      type: "paragraph",
+      text: "Imagine looking down on a city at night. The buildings remain where they are and the streets have not moved, yet depending on the hour, completely different parts of the city come alive. The financial district surges in the morning. Restaurants and theaters take over in the evening. Residential neighborhoods quiet down while hospitals, airports, and distribution centers continue operating according to entirely different rhythms. The infrastructure remains interconnected. What changes is the traffic.",
+    },
+    {
+      type: "paragraph",
+      text: "The human brain operates in a similarly dynamic way. When we imagine possibilities, organize a strategy, or turn intention into action, the brain does not dismantle itself and construct something new. Instead, different networks become more or less engaged, communicate differently with one another, and redirect attention according to what the task requires.",
+    },
+    {
+      type: "paragraph",
+      text: "That distinction matters when considering the Dreamer-Planner-Doer, or DPD, Framework. The Dreamer Persona, Planner Persona, and Doer Persona are not three anatomical compartments inside the brain. There is no Dreamer lobe, Planner center, or Doer switch. Neuroscience is considerably more integrated than that. What research does show, however, may be even more interesting: different kinds of cognitive work depend on distinguishable but interacting neural systems, and the brain continually adjusts how those systems work together as demands change.",
+    },
+    {
+      type: "paragraph",
+      text: "That raises a compelling question for organizations: If the brain changes cognitive gears as the work changes, why do we so often ask teams to Dream, Plan, and Do at the same time?",
+    },
+    {
+      type: "heading",
+      text: "When the Mind Turns Inward",
+    },
+    {
+      type: "paragraph",
+      text: "Consider the familiar sight of someone looking away from a spreadsheet and staring out the window. To a manager walking past, it may appear that productivity has stopped. Inside the brain, quite a lot may be happening.",
+    },
+    {
+      type: "paragraph",
+      text: "One of the most studied large-scale systems in neuroscience is the Default Mode Network, or DMN, which researchers have associated with internally directed thought, including autobiographical memory, mental simulation, imagining possible futures, mind-wandering, and other forms of self-generated cognition. That creates an interesting parallel with what the DPD Framework calls the Dreamer Persona, which is invoked when the work requires us to Dream (Vision).",
+    },
+    {
+      type: "paragraph",
+      text: "Dreaming in this context is not simply sleeping, fantasizing, or allowing the mind to wander without purpose. It is the deliberate cognitive space in which people explore possibilities, imagine futures, challenge assumptions, connect seemingly unrelated ideas, and innovate. Instead of asking what must happen next, the Dreamer Persona asks what could happen. What are we overlooking? Where could this go? What might become possible if we temporarily released ourselves from today's constraints?",
+    },
+    {
+      type: "paragraph",
+      text: "Creative-cognition research offers an important qualification. Creativity does not appear to emerge from the Default Mode Network operating independently. Internally oriented networks can contribute to generating associations and possibilities, while executive-control systems participate in evaluating, refining, and selecting among those possibilities. The brain's creative capacity appears to depend in part on interaction.",
+    },
+    {
+      type: "paragraph",
+      text: "That matters because the same pattern appears in work. Imagination can generate an extraordinary possibility, but eventually somebody has to determine whether that possibility can survive contact with budget, time, resources, risk, and reality. Vision eventually needs structure. In DPD terms, the Dreamer Persona has done its work and the moment begins to call for the Planner Persona.",
+    },
+    {
+      type: "paragraph",
+      text: "Picture an architect standing before an empty parcel of land. In one moment, the building already exists in imagination: glass, light, open spaces, people gathering inside something that has not yet been constructed. Then the questions change. How much will it cost? What must happen first? Can the foundation support the design? What are the dependencies? What could delay construction? The vision has not disappeared; it is being organized.",
+    },
+    {
+      type: "paragraph",
+      text: "Neuroscience offers a useful parallel in what is commonly called the Central Executive Network, or CEN. The term is used to describe executive-control systems involving frontal and parietal regions of the brain and is closely related to what researchers may describe as frontoparietal control systems. The CEN is associated with capacities including working memory, maintaining goals, directing attention, evaluating information, solving problems, making decisions, and exercising cognitive control.",
+    },
+    {
+      type: "paragraph",
+      text: "For a general audience, air-traffic control may be the better metaphor. Air-traffic controllers do not invent every destination or fly every airplane. Their job is to organize movement, monitor competing priorities, identify potential conflicts, maintain awareness of the objective, and help determine what needs to happen next.",
+    },
+    {
+      type: "paragraph",
+      text: "That is essentially the work of the Planner Persona, which becomes valuable when people need to Plan (Strategy & Structure). Which possibilities deserve priority? What sequence makes sense? What are the dependencies? What resources will be required? Who owns what? Where could the plan fail, and what must be addressed before execution begins?",
+    },
+    {
+      type: "paragraph",
+      text: "Dreaming and Planning, however, should not be treated as sealed cognitive rooms. They overlap and interact. Research on creative cognition increasingly points toward cooperation between internally directed and executive-control systems. Generation and evaluation often work together. The relevant organizational lesson may therefore be less about keeping the modes completely separate and more about knowing which mode should dominate at a given point in the work.",
+    },
+    {
+      type: "paragraph",
+      text: "Eventually, even the best plan reaches a moment when another question becomes unavoidable: What are we actually going to do?",
+    },
+    {
+      type: "heading",
+      text: "When Intention Meets Reality",
+    },
+    {
+      type: "paragraph",
+      text: "Every architect eventually encounters the same unforgiving truth: somebody has to pour the concrete. A brilliant vision can remain brilliant indefinitely inside someone's imagination, and a flawless plan can remain beautifully organized on a screen. Neither becomes reality until action begins.",
+    },
+    {
+      type: "paragraph",
+      text: "The neurological movement from intention toward action involves a distributed collection of systems associated with attention, executive control, motor preparation, sensory feedback, effort allocation, and action. There is no single “Doer center” in the brain, just as there is no single network that performs every form of planning or creativity.",
+    },
+    {
+      type: "paragraph",
+      text: "Nor should Doing be confused only with physical movement. A software engineer writing code is Doing. A recruiter making a call is Doing. A marketer publishing a campaign is Doing. A leader finally making a decision is Doing. Within DPD, the Doer Persona is invoked when the work requires us to Do (Execution)—to decide, act, deliver, complete, and produce a visible result.",
+    },
+    {
+      type: "paragraph",
+      text: "The distinction among the three modes is therefore functional. The Dreamer Persona asks, What could we do? The Planner Persona asks, How should we do it? The Doer Persona asks, What are we doing now?",
+    },
+    {
+      type: "paragraph",
+      text: "Most organizations recognize all three activities intuitively. The difficulty is that teams frequently attempt to perform them simultaneously.",
+    },
+    {
+      type: "paragraph",
+      text: "Picture an ordinary strategy meeting. One executive is imagining what the product could become. While she speaks, another person is mentally calculating implementation risks. A third wants to establish ownership and deadlines. Just as the group approaches a decision, someone introduces a completely new possibility.",
+    },
+    {
+      type: "paragraph",
+      text: "Nobody in the room is necessarily wrong. The Dreamer Persona may have uncovered an extraordinary opportunity. The Planner Persona may have identified a legitimate risk. The Doer Persona may be entirely justified in insisting that the organization has talked long enough and needs to move.",
+    },
+    {
+      type: "paragraph",
+      text: "The problem may not be intelligence, commitment, or even disagreement. The problem may simply be timing.",
+    },
+    {
+      type: "paragraph",
+      text: "The organization is attempting to perform several kinds of cognitive work at once. It is the business equivalent of asking an orchestra to compose the music, revise the score, rehearse the difficult passages, and perform the finished symphony simultaneously. Under those conditions, noise should not surprise us.",
+    },
+    {
+      type: "paragraph",
+      text: "This is where DPD becomes operational. When the team needs to Dream (Vision), the Dreamer Persona takes precedence and possibilities are allowed to expand before they are prematurely eliminated. When the work shifts to Plan (Strategy & Structure), the Planner Persona becomes more important: ideas are evaluated, prioritized, sequenced, assigned, and converted into a path. When the work reaches Do (Execution), the Doer Persona takes precedence: ownership becomes explicit, action matters, and previously resolved questions are protected from unnecessary reopening.",
+    },
+    {
+      type: "paragraph",
+      text: "The principle is not rigidity. Other thoughts do not suddenly disappear. A Planner may recognize a risk during Dreaming. A Dreamer may have a valuable new idea during execution. A Doer may realize that a plan has become unnecessarily complicated. Persona Dexterity does not require suppressing those observations. It means recognizing that every thought does not have to become the team's priority the moment it appears.",
+    },
+    {
+      type: "paragraph",
+      text: "The idea can be captured without abandoning execution. A risk can be recorded without prematurely shutting down innovation. An urge to act can be acknowledged without ending necessary planning. Cognitive diversity remains intact; what changes is the team's ability to coordinate it.",
+    },
+    {
+      type: "heading",
+      text: "What Neuroscience Does and Does Not Tell Us",
+    },
+    {
+      type: "paragraph",
+      text: "There is an important boundary to maintain. It would be convenient to display three images of the brain, illuminate one region for Dreaming, another for Planning, and another for Doing, and declare that neuroscience has proven DPD. It has not.",
+    },
+    {
+      type: "paragraph",
+      text: "The brain is considerably more sophisticated. The Default Mode Network participates in forms of future-oriented thought as well as internally generated cognition. The Central Executive Network and related control systems can participate in creative cognition as well as planning and decision-making. Action involves combinations of executive, attentional, sensory, and motor systems. Even the word “Dreaming” requires precision: nighttime dreams, waking imagination, creative ideation, and ordinary mind-wandering share interesting characteristics, but they are not neurologically identical.",
+    },
+    {
+      type: "paragraph",
+      text: "The scientifically responsible proposition is therefore not that the Dreamer Persona equals the DMN, the Planner Persona equals the CEN, and the Doer Persona equals a motor network. Rather, different kinds of cognitive work rely on different configurations and interactions among brain systems, and those configurations change as the demands of the task change.",
+    },
+    {
+      type: "paragraph",
+      text: "The DMN provides a useful parallel to internally generated, associative, and future-oriented thought. The CEN provides a useful parallel to structured, goal-directed, evaluative cognition. Execution engages another constellation of attentional, executive, sensory, and motor processes. These are parallels, not one-to-one anatomical assignments.",
+    },
+    {
+      type: "paragraph",
+      text: "Far from weakening the case for DPD, that complexity points toward the part of the framework that may matter most: Persona Dexterity.",
+    },
+    {
+      type: "paragraph",
+      text: "One of the brain's greatest strengths is its capacity to adapt. It can recruit, coordinate, and reconfigure distributed systems as circumstances change. DPD asks whether teams can develop a comparable capability at the organizational level.",
+    },
+    {
+      type: "paragraph",
+      text: "Can a team recognize that the nature of the work has changed? Can it move from Dream (Vision) to Plan (Strategy & Structure) without crushing innovation too early? Can it move from Planning to Do (Execution) without continually reopening settled questions? Can someone whose natural preference favors one mode invoke another because the work requires it? Can an entire team recognize that the moment has changed and switch together, on time and on cue?",
+    },
+    {
+      type: "paragraph",
+      text: "That is the central promise of Persona Dexterity.",
+    },
+    {
+      type: "heading",
+      text: "The Brain Has Gears. Teams Need Them Too.",
+    },
+    {
+      type: "paragraph",
+      text: "High-performing teamwork does not require everyone to possess the same personality or think in precisely the same way. It requires something subtler: different minds developing enough shared awareness to recognize what kind of thinking the moment requires.",
+    },
+    {
+      type: "paragraph",
+      text: "An organization can employ extraordinary visionaries, meticulous strategists, and relentless executors and still generate friction instead of flow if those capabilities are activated without regard for timing. Talent alone does not create coordination, and neither does intelligence.",
+    },
+    {
+      type: "paragraph",
+      text: "The brain offers a useful metaphor precisely because it does not address every challenge by activating everything at maximum volume at once. Different systems take on different levels of importance depending on what the organism is trying to accomplish. Modern teams may need to learn the same lesson.",
+    },
+    {
+      type: "paragraph",
+      text: "The future of teamwork may depend less on identifying what kind of thinker a person permanently is and more on developing people's ability to adapt how they think as circumstances change. Invoke the Dreamer Persona to Dream (Vision) when the work requires imagination. Invoke the Planner Persona to Plan (Strategy & Structure) when the work requires clarity, organization, and direction. Invoke the Doer Persona to Do (Execution) when the work requires action and results. Then develop the Persona Dexterity to recognize when the moment has changed.",
+    },
+    {
+      type: "paragraph",
+      text: "The goal is not to force everyone into the same mind. It is to help different minds arrive in the same thinking mode, at the right moment, for the work that needs to be done.",
+    },
+    {
+      type: "paragraph",
+      text: "Perhaps that is one of the most useful lessons neuroscience can offer the modern workplace. Adaptability does not come from remaining permanently optimized for one kind of thinking. It comes from developing the capacity to recognize when the environment has changed—and knowing when to change gears with it.",
+    },
+    {
+      type: "heading",
+      text: "About the Author",
+    },
+    {
+      type: "paragraph",
+      text: "Kokoro V. Robinson is the creator of the DPD Framework, a persona-based Cognitive Alignment and Behavioral Coordination system built around three situational personas: Dreamer Persona — Dream (Vision); Planner Persona — Plan (Strategy & Structure); and Doer Persona — Do (Execution). The framework focuses on developing Persona Dexterity: the ability to recognize what a situation requires and intentionally switch cognitive posture, language, and behavior accordingly.",
+    },
+    {
+      type: "link",
+      label: "DPDFramework.com",
+      href: "https://DPDFramework.com",
+    },
+    {
+      type: "paragraph",
+      text: "Research note: Neuroscience research into the Default Mode Network, Central Executive Network and related executive-control systems, attention, motor systems, and cognitive control informs the scientific concepts discussed in this article. The Dreamer-Planner-Doer mapping is an interpretation and operational model developed within the DPD Framework; the underlying neuroscience should not be interpreted as independent scientific validation of DPD itself.",
+    },
+  ],
+};
+
 /** Add new posts to this array. Each slug becomes `/blog/[slug]`. */
 export const blogPosts: readonly BlogPost[] = [
+  brainHasGears,
   scalingPersonas,
   executionBottleneck,
   personaSwitching,
