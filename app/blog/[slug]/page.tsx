@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Instrument_Serif } from "next/font/google";
 
+import { BlogPostMedia, hasBlogPostMedia } from "../blog-post-media";
 import { BlogPostShare } from "../blog-post-share";
 import { pageTitle } from "@/lib/metadata";
 import {
@@ -58,7 +58,7 @@ export async function generateMetadata({
       siteName: "DPDing",
       title: post.title,
       description,
-      authors: [post.author],
+      authors: post.author ? [post.author] : undefined,
       images: post.image
         ? [{ url: post.image, alt: post.title }]
         : undefined,
@@ -143,9 +143,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 {post.title}
               </h1>
 
-              <p className="mt-4 custom-body text-custom-black">
-                By {post.author}
-              </p>
+              {post.author ? (
+                <p className="mt-4 custom-body text-custom-black">
+                  By {post.author}
+                </p>
+              ) : null}
 
               <div className="mt-8 sm:mt-10">
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
@@ -178,18 +180,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         <div className={`${pageInset} bg-white pb-16 pt-4 sm:pb-20 sm:pt-5 lg:pb-24`}>
           <div className={postColumn}>
-            {post.image && (
-              <div className="relative aspect-video w-full overflow-hidden border border-custom-black/10 bg-[#f0efea]">
-                <Image
-                  src={post.image}
-                  alt=""
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            )}
+            <BlogPostMedia post={post} />
 
-            <div className={post.image ? "mt-12 sm:mt-14" : ""}>
+            <div className={hasBlogPostMedia(post) ? "mt-12 sm:mt-14" : ""}>
               <ArticleBody post={post} />
             </div>
           </div>
