@@ -7,9 +7,11 @@ export type BlogPost = {
   slug: string;
   date?: string;
   title: string;
-  author: string;
+  author?: string;
   subtext?: string;
   image?: string;
+  /** Vimeo ID, URL, or `"placeholder"` until the video is ready. */
+  vimeo?: string;
   /** Shown in the blog index hero when true. Falls back to the first post. */
   featured?: boolean;
   body: readonly BlogPostBlock[];
@@ -1222,8 +1224,262 @@ const brainHasGears: BlogPost = {
   ],
 };
 
+const playingDifferentMusic: BlogPost = {
+  slug: "playing-different-music",
+  date: "9/30/26",
+  title: "Your Team May Not Be Misaligned. It May Be Playing Different Music",
+  vimeo: "1231868643",
+  body: [
+    {
+      type: "heading",
+      text: "What an orchestra can teach us about Dreaming, Planning, Doing—and why talented teams still create noise",
+    },
+    {
+      type: "paragraph",
+      text: "Watch a great orchestra and something becomes immediately obvious: extraordinary performance does not come from everyone doing the same thing.",
+    },
+    {
+      type: "paragraph",
+      text: "The violin remains a violin. The trumpet keeps its voice. The percussion section brings an entirely different kind of force. Each musician has different training, different responsibilities, and a different relationship to the composition.",
+    },
+    {
+      type: "paragraph",
+      text: "And yet, somehow, hundreds of individual decisions become one piece of music.",
+    },
+    {
+      type: "paragraph",
+      text: "That may reveal something important about teams that we routinely miss.",
+    },
+    {
+      type: "paragraph",
+      text: "Alignment is not sameness. Alignment is coordinated difference.",
+    },
+    {
+      type: "paragraph",
+      text: "Most organizations spend enormous energy assembling talented people and surprisingly little time teaching those people how to recognize the cognitive movement the team is in.",
+    },
+    {
+      type: "paragraph",
+      text: "One person enters the meeting imagining possibilities. Another begins identifying risks. Someone else wants milestones, owners, and deadlines. A fourth person is already trying to execute.",
+    },
+    {
+      type: "paragraph",
+      text: "Every contribution may be intelligent. Every person may be committed.",
+    },
+    {
+      type: "paragraph",
+      text: "The result can still sound like noise.",
+    },
+    {
+      type: "paragraph",
+      text: "Imagine an orchestra where the strings are rehearsing the opening movement, the brass section has jumped to the finale, the percussionist is improvising, and the conductor is still rewriting the score.",
+    },
+    {
+      type: "paragraph",
+      text: "You would never blame the instruments.",
+    },
+    {
+      type: "paragraph",
+      text: "You would ask why they are not playing the same movement.",
+    },
+    {
+      type: "paragraph",
+      text: "That is the problem the DPD Framework is designed to address.",
+    },
+    {
+      type: "heading",
+      text: "Every Team Has a Composition",
+    },
+    {
+      type: "paragraph",
+      text: "In DPD, teams move through three fundamental thinking modes.",
+    },
+    {
+      type: "paragraph",
+      text: "The Dreamer Persona helps the team Dream (Vision). This is where possibility expands. The team imagines, explores, questions assumptions, and innovates. In orchestral terms, this is where we ask what music we are trying to create in the first place.",
+    },
+    {
+      type: "paragraph",
+      text: "The Planner Persona helps the team Plan (Strategy & Structure). Possibility now needs architecture. The team determines sequence, priorities, resources, dependencies, roles, and timing. This is the score: who enters, when they enter, what tempo the work requires, and how separate contributions become coordinated.",
+    },
+    {
+      type: "paragraph",
+      text: "Then comes the Doer Persona, when the team must Do (Execution). The concert has started. The score cannot be rewritten every eight measures because someone has another interesting idea. People have to listen, act, adjust, deliver their part, and remain synchronized with the larger performance.",
+    },
+    {
+      type: "paragraph",
+      text: "All three personas matter.",
+    },
+    {
+      type: "paragraph",
+      text: "The trouble begins when all three attempt to conduct the room simultaneously.",
+    },
+    {
+      type: "heading",
+      text: "The Hidden Team Problem May Be Timing",
+    },
+    {
+      type: "paragraph",
+      text: "We often interpret workplace friction personally.",
+    },
+    {
+      type: "paragraph",
+      text: "“She always shoots ideas down.”",
+    },
+    {
+      type: "paragraph",
+      text: "“He never stops brainstorming.”",
+    },
+    {
+      type: "paragraph",
+      text: "“They just want to rush into execution.”",
+    },
+    {
+      type: "paragraph",
+      text: "Perhaps.",
+    },
+    {
+      type: "paragraph",
+      text: "But there is another explanation.",
+    },
+    {
+      type: "paragraph",
+      text: "What if the Planner is simply Planning while the rest of the room is still Dreaming? What if the Dreamer is continuing to Dream after the team has moved into execution? What if the Doer is demanding action before the Planner has created enough structure for action to succeed?",
+    },
+    {
+      type: "paragraph",
+      text: "The issue may not be personality.",
+    },
+    {
+      type: "paragraph",
+      text: "It may be cognitive timing.",
+    },
+    {
+      type: "paragraph",
+      text: "That is a very different diagnosis because it changes the intervention. Instead of trying to fix the person, the team can clarify the movement.",
+    },
+    {
+      type: "paragraph",
+      text: "“We are Dreaming right now.”",
+    },
+    {
+      type: "paragraph",
+      text: "“We've finished Dreaming. Now we Plan.”",
+    },
+    {
+      type: "paragraph",
+      text: "“The plan is sufficient. We're moving into Doer Persona.”",
+    },
+    {
+      type: "paragraph",
+      text: "That shared language creates something an orchestra already has: a cue.",
+    },
+    {
+      type: "heading",
+      text: "Persona Dexterity Is Knowing When to Change Movements",
+    },
+    {
+      type: "paragraph",
+      text: "A world-class musician does more than know how to play an instrument. They know how to enter, how to listen, how to modulate intensity, when to lead, when to support, when to pause, and how to respond when the composition changes.",
+    },
+    {
+      type: "paragraph",
+      text: "Teams need the same capability.",
+    },
+    {
+      type: "paragraph",
+      text: "DPD calls it Persona Dexterity: the ability to recognize what the moment requires, invoke the appropriate persona, adjust cognitive posture and language, and switch as the work changes.",
+    },
+    {
+      type: "paragraph",
+      text: "That does not mean personality disappears.",
+    },
+    {
+      type: "paragraph",
+      text: "The violin does not have to become a trumpet.",
+    },
+    {
+      type: "paragraph",
+      text: "People retain their experience, temperament, expertise, culture, perspective, and individual strengths. DPD is not trying to make everyone the same.",
+    },
+    {
+      type: "paragraph",
+      text: "It is trying to help different people become coherent.",
+    },
+    {
+      type: "paragraph",
+      text: "And coherence may be the better way to think about team alignment.",
+    },
+    {
+      type: "paragraph",
+      text: "A high-performing team is not a collection of identical thinkers. It is a collection of different thinkers who know what they are trying to create together, understand the movement they are currently in, and can respond to the same cue.",
+    },
+    {
+      type: "heading",
+      text: "Maybe Great Teams Don't Need More Talent",
+    },
+    {
+      type: "paragraph",
+      text: "Organizations frequently respond to performance problems by adding something: another expert, another process, another meeting, another collaboration tool.",
+    },
+    {
+      type: "paragraph",
+      text: "Sometimes those things help.",
+    },
+    {
+      type: "paragraph",
+      text: "But an orchestra does not become better simply because you add another virtuoso.",
+    },
+    {
+      type: "paragraph",
+      text: "If everyone is playing a different movement, adding another brilliant musician can make the noise louder.",
+    },
+    {
+      type: "paragraph",
+      text: "Perhaps the more important question is:",
+    },
+    {
+      type: "paragraph",
+      text: "Does everyone know what movement we're in?",
+    },
+    {
+      type: "paragraph",
+      text: "Dream the music.",
+    },
+    {
+      type: "paragraph",
+      text: "Plan the score.",
+    },
+    {
+      type: "paragraph",
+      text: "Do the performance.",
+    },
+    {
+      type: "paragraph",
+      text: "And when the composition changes, learn to switch together.",
+    },
+    {
+      type: "paragraph",
+      text: "Because the goal of DPD is not to get everyone thinking the same way.",
+    },
+    {
+      type: "paragraph",
+      text: "It is to help different minds work in the same mode, at the right moment, on time and on cue.",
+    },
+    {
+      type: "paragraph",
+      text: "That is not conformity.",
+    },
+    {
+      type: "paragraph",
+      text: "That is how difference becomes music.",
+    },
+  ],
+};
+
 /** Add new posts to this array. Each slug becomes `/blog/[slug]`. */
 export const blogPosts: readonly BlogPost[] = [
+  playingDifferentMusic,
   brainHasGears,
   scalingPersonas,
   executionBottleneck,
