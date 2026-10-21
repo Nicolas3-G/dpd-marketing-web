@@ -3,7 +3,7 @@ const WWW_DOMAIN = `www.${DOMAIN}`;
 
 const EXPECTED_A_RECORD = "216.150.1.1";
 const EXPECTED_CNAME =
-  "382ec4a25a08a690.vercel-dns-016.com.";
+  "382ec4a25a08a690.vercel-dns-016.com";
 
 export async function GET(request: Request) {
   const authHeader = request.headers.get("authorization");
@@ -109,24 +109,51 @@ async function getARecords(domain: string): Promise<string[]> {
 }
 
 async function getCnameRecords(domain: string): Promise<string[]> {
-  const response = await fetch(
-    `https://dns.google/resolve?name=${domain}&type=CNAME`,
-    {
-      cache: "no-store",
-    }
-  );
+  let lastError: unknown;
 
-  if (!response.ok) {
-    throw new Error(`DNS lookup failed: ${response.status}`);
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const response = await fetch(
+        `https://dns.google/resolve?name=${domain}&type=CNAME`,
+        {
+          cache: "no-store",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`DNS lookup failed: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.Status !== 0) {
+        throw new Error(`DNS lookup returned status ${data.Status}`);
+      }
+
+      const records =
+        data.Answer
+          ?.filter((record: { type: number }) => record.type === 5)
+          .map((record: { data: string }) =>
+            record.data.toLowerCase().replace(/\.$/, "")
+          ) ?? [];
+
+      if (records.length > 0) {
+        return records;
+      }
+
+      throw new Error("DNS lookup returned no CNAME records");
+    } catch (error) {
+      lastError = error;
+
+      if (attempt < 3) {
+        await new Promise((resolve) =>
+          setTimeout(resolve, attempt * 1000)
+        );
+      }
+    }
   }
 
-  const data = await response.json();
-
-  return (
-    data.Answer
-      ?.filter((record: { type: number }) => record.type === 5)
-      .map((record: { data: string }) => record.data) ?? []
-  );
+  throw lastError;
 }
 
 async function sendSlackAlert(message: string) {
