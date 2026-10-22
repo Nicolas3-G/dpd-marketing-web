@@ -1,21 +1,7 @@
-export type BlogPostBlock =
-  | { type: "paragraph"; text: string }
-  | { type: "heading"; text: string }
-  | { type: "link"; label: string; href: string };
+import { loadMarkdownPosts, sortPostsByDate } from "./load-markdown-posts";
+import type { BlogPost, BlogPostBlock } from "./post-types";
 
-export type BlogPost = {
-  slug: string;
-  date?: string;
-  title: string;
-  author?: string;
-  subtext?: string;
-  image?: string;
-  /** Vimeo ID, URL, or `"placeholder"` until the video is ready. */
-  vimeo?: string;
-  /** Shown in the blog index hero when true. Falls back to the first post. */
-  featured?: boolean;
-  body: readonly BlogPostBlock[];
-};
+export type { BlogPost, BlogPostBlock };
 
 const personaSwitching: BlogPost = {
   slug: "persona-switching",
@@ -1477,14 +1463,22 @@ const playingDifferentMusic: BlogPost = {
   ],
 };
 
-/** Add new posts to this array. Each slug becomes `/blog/[slug]`. */
-export const blogPosts: readonly BlogPost[] = [
+/** Existing coded posts. New articles should be pasted into `content/blog/[slug].md`. */
+const codedPosts: readonly BlogPost[] = [
   playingDifferentMusic,
   brainHasGears,
   scalingPersonas,
   executionBottleneck,
   personaSwitching,
 ];
+
+const markdownPosts = loadMarkdownPosts();
+const markdownSlugs = new Set(markdownPosts.map((post) => post.slug));
+
+export const blogPosts: readonly BlogPost[] = sortPostsByDate([
+  ...markdownPosts,
+  ...codedPosts.filter((post) => !markdownSlugs.has(post.slug)),
+]);
 
 export function getPostHref(slug: string): string {
   return `/blog/${slug}`;
