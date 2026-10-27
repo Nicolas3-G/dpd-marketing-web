@@ -37,10 +37,10 @@ export default function SurveyPage() {
               DPD Framework
             </p>
             <h1 className="mt-4 custom-lg-title-bold">
-              Quick Persona Check-In
+              Full Persona Survey
             </h1>
             <p className="mt-3 custom-body-bold uppercase tracking-[0.08em] text-custom-black">
-              Full survey in DPD App
+              94 questions · The complete DPD assessment
             </p>
           </header>
 
@@ -52,7 +52,7 @@ export default function SurveyPage() {
               Get Started
             </Link>
             <p className="custom-label text-custom-black">
-              About 5 minutes · No account required to start
+              About 15–20 minutes · No account required to start
             </p>
           </div>
         </div>

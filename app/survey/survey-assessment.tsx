@@ -5,38 +5,10 @@ import { useRouter } from "next/navigation";
 
 import { SLIDE_MS, useSlideCarousel } from "../framework/use-slide-carousel";
 
-const surveyQuestions = [
-  "I often find myself brainstorming creative ideas and imagining what could be.",
-  "I enjoy exploring possibilities and thinking about the future.",
-  "I am inspired by big-picture goals and long term visions.",
-  "I prefer structure and clear goals to guide my actions.",
-  "I enjoy creating detailed plans and organizing tasks into manageable steps.",
-  "I excel at identifying potential challenges and crafting strategies to overcome them.",
-  "I am action-oriented and prefer to dive into tasks rather than overthinking them.",
-  "I am results-driven and enjoy achieving measurable outcomes.",
-  "I make quick decisions to maintain momentum and minimize delays.",
-] as const;
-
-const SCALE_OPTIONS = [
-  { value: 0, lines: ["Strongly", "Disagree"] },
-  { value: 1, lines: ["Disagree"] },
-  { value: 2, lines: ["Slightly", "Disagree"] },
-  { value: 3, lines: ["Slightly", "Agree"] },
-  { value: 4, lines: ["Agree"] },
-  { value: 5, lines: ["Strongly", "Agree"] },
-] as const;
-
-const PROGRESS_BAR_COUNT = 3;
-const QUESTIONS_PER_SEGMENT = 3;
-const TOTAL_SURVEY_QUESTIONS = PROGRESS_BAR_COUNT * QUESTIONS_PER_SEGMENT;
+import { questionPages, pageOffsets, TOTAL_SURVEY_QUESTIONS, ANSWER_OPTIONS, surveySectionHeaders, surveySectionIndexes } from "./full-survey";
+const PROGRESS_BAR_COUNT = questionPages.length;
 const SLIDE_COUNT = PROGRESS_BAR_COUNT;
-
-const questionPages = Array.from({ length: PROGRESS_BAR_COUNT }, (_, pageIndex) =>
-  surveyQuestions.slice(
-    pageIndex * QUESTIONS_PER_SEGMENT,
-    pageIndex * QUESTIONS_PER_SEGMENT + QUESTIONS_PER_SEGMENT,
-  ),
-);
+const pageKeys = Object.keys(surveySectionHeaders) as (keyof typeof surveySectionHeaders)[];
 
 function questionAnchorId(pageIndex: number, indexWithinPage: number) {
   return `survey-question-${pageIndex}-${indexWithinPage}`;
@@ -87,10 +59,10 @@ function getQuestionFocusState(
   indexWithinPage: number,
   answers: Record<number, number | null>,
 ): QuestionFocusState {
-  const pageOffset = pageIndex * QUESTIONS_PER_SEGMENT;
+  const pageOffset = pageOffsets[pageIndex];
 
-  let firstUnanswered = QUESTIONS_PER_SEGMENT;
-  for (let i = 0; i < QUESTIONS_PER_SEGMENT; i++) {
+  let firstUnanswered: number = questionPages[pageIndex].length;
+  for (let i = 0; i < questionPages[pageIndex].length; i++) {
     if (answers[pageOffset + i] === null) {
       firstUnanswered = i;
       break;
@@ -103,7 +75,7 @@ function getQuestionFocusState(
 
   if (
     indexWithinPage === firstUnanswered &&
-    firstUnanswered < QUESTIONS_PER_SEGMENT
+    firstUnanswered < questionPages[pageIndex].length
   ) {
     return "active";
   }
@@ -112,13 +84,13 @@ function getQuestionFocusState(
 }
 
 function segmentFillPercent(answeredCount: number, segmentIndex: number) {
-  const segmentStart = segmentIndex * QUESTIONS_PER_SEGMENT;
+  const segmentStart = pageOffsets[segmentIndex];
   const answeredInSegment = Math.max(
     0,
-    Math.min(answeredCount - segmentStart, QUESTIONS_PER_SEGMENT),
+    Math.min(answeredCount - segmentStart, questionPages[segmentIndex].length),
   );
 
-  return (answeredInSegment / QUESTIONS_PER_SEGMENT) * 100;
+  return (answeredInSegment / questionPages[segmentIndex].length) * 100;
 }
 
 function SurveyProgressBar({
@@ -165,12 +137,14 @@ function SurveyProgressBar({
 function SurveyQuestion({
   questionId,
   statement,
+  questionType,
   value,
   onChange,
   focusState,
 }: {
   questionId: number;
   statement: string;
+  questionType: "agree-disagree" | "relevance";
   value: number | null;
   onChange: (index: number) => void;
   focusState: QuestionFocusState;
@@ -207,9 +181,10 @@ function SurveyQuestion({
           role="radiogroup"
           aria-labelledby={`question-${questionId}`}
           aria-disabled={isUpcoming}
-          className="grid grid-cols-6 gap-2 sm:gap-4"
+          className="grid gap-2 sm:gap-4"
+          style={{ gridTemplateColumns: `repeat(${ANSWER_OPTIONS[questionType].length}, minmax(0, 1fr))` }}
         >
-          {SCALE_OPTIONS.map(({ value: optionValue, lines }) => {
+          {ANSWER_OPTIONS[questionType].map(({ value: optionValue, lines }) => {
             const selected = value === optionValue;
             const label = lines.join(" ");
 
@@ -266,16 +241,6 @@ function SurveyQuestion({
   );
 }
 
-function SurveyPageIntro() {
-  return (
-    <div className="mb-8 sm:mb-10">
-      <p className="custom-xs-title text-brand-orange">
-        How does each of the following statements describe your current persona?
-      </p>
-    </div>
-  );
-}
-
 function SurveyQuestionPage({
   pageIndex,
   answers,
@@ -287,14 +252,14 @@ function SurveyQuestionPage({
   onAnswer: (questionIndex: number, option: number) => void;
   registerAnchors?: boolean;
 }) {
-  const pageOffset = pageIndex * QUESTIONS_PER_SEGMENT;
+  const pageOffset = pageOffsets[pageIndex];
   const questions = questionPages[pageIndex];
 
   return (
     <div className="flex flex-col">
-      <SurveyPageIntro />
+      <p className="mb-8 custom-body text-text-light">Page {pageIndex + 1} of {SLIDE_COUNT} · {TOTAL_SURVEY_QUESTIONS} questions</p>
 
-      {questions.map((statement, index) => {
+      {questions.map((question, index) => {
         const questionId = pageOffset + index;
 
         return (
@@ -307,9 +272,13 @@ function SurveyQuestionPage({
             }
             className={index === 0 ? "pb-10 sm:pb-14" : "py-10 sm:py-14"}
           >
+            {surveySectionIndexes[pageKeys[pageIndex]].includes(question.id) ? (
+              <p className="mb-8 custom-xs-title text-brand-orange">{surveySectionHeaders[pageKeys[pageIndex]][surveySectionIndexes[pageKeys[pageIndex]].indexOf(question.id)]}</p>
+            ) : null}
             <SurveyQuestion
               questionId={questionId}
-              statement={statement}
+              statement={question.text}
+              questionType={question.type}
               value={answers[questionId] ?? null}
               focusState={getQuestionFocusState(
                 pageIndex,
@@ -321,27 +290,6 @@ function SurveyQuestionPage({
           </div>
         );
       })}
-    </div>
-  );
-}
-
-function SurveyPageHeightSizer() {
-  return (
-    <div
-      className="pointer-events-none grid select-none opacity-0"
-      aria-hidden
-      inert
-    >
-      {Array.from({ length: SLIDE_COUNT }, (_, pageIndex) => (
-        <div key={`sizer-${pageIndex}`} className="col-start-1 row-start-1">
-          <SurveyQuestionPage
-            pageIndex={pageIndex}
-            answers={{}}
-            onAnswer={() => {}}
-            registerAnchors={false}
-          />
-        </div>
-      ))}
     </div>
   );
 }
@@ -359,11 +307,11 @@ export function SurveyAssessment() {
     useSlideCarousel(activePage, SLIDE_COUNT);
 
   const isQuestionPage = activePage < PROGRESS_BAR_COUNT;
-  const pageOffset = activePage * QUESTIONS_PER_SEGMENT;
+  const pageOffset = pageOffsets[activePage];
   const isCurrentPageComplete =
     isQuestionPage &&
     Array.from(
-      { length: QUESTIONS_PER_SEGMENT },
+      { length: questionPages[activePage].length },
       (_, index) => answers[pageOffset + index] !== null,
     ).every(Boolean);
   const isFirstPage = activePage === 0;
@@ -372,11 +320,11 @@ export function SurveyAssessment() {
   const setAnswer = (questionIndex: number, option: number) => {
     setAnswers((prev) => ({ ...prev, [questionIndex]: option }));
 
-    const pageIndex = Math.floor(questionIndex / QUESTIONS_PER_SEGMENT);
-    const indexWithinPage = questionIndex % QUESTIONS_PER_SEGMENT;
+    const pageIndex = pageOffsets.reduce((page, offset, i) => questionIndex >= offset ? i : page, 0);
+    const indexWithinPage = questionIndex - pageOffsets[pageIndex];
     const nextIndexWithinPage = indexWithinPage + 1;
 
-    if (nextIndexWithinPage >= QUESTIONS_PER_SEGMENT) {
+    if (nextIndexWithinPage >= questionPages[pageIndex].length) {
       return;
     }
 
@@ -438,6 +386,23 @@ export function SurveyAssessment() {
         <div className="pointer-events-none h-10 sm:h-12 bg-linear-to-b from-background to-transparent" />
       </div>
 
+      {process.env.NODE_ENV === "development" ? (
+        <button
+          type="button"
+          className="mb-6 rounded-full border border-dashed border-brand-orange px-5 py-3 custom-label-bold text-brand-orange"
+          onClick={() => {
+            if (process.env.NODE_ENV !== "development") return;
+            const answerValues = questionPages.flat().map((question, index) =>
+              answers[index] ?? ANSWER_OPTIONS[question.type][Math.floor(Math.random() * ANSWER_OPTIONS[question.type].length)].value,
+            );
+            setAnswers(Object.fromEntries(answerValues.map((value, index) => [index, value])));
+            router.push(`/survey/results?a=${btoa(answerValues.join(","))}`);
+          }}
+        >
+          Dev: Auto-complete &amp; view results
+        </button>
+      ) : null}
+
       {!isFirstPage ? (
         <div className="mb-6 mt-4 sm:mb-8 sm:mt-5">
           <button
@@ -452,9 +417,7 @@ export function SurveyAssessment() {
       ) : null}
 
       <div className="relative">
-        <SurveyPageHeightSizer />
-
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="relative overflow-hidden">
           {isSliding && transition ? (
             <>
               <div
@@ -473,7 +436,7 @@ export function SurveyAssessment() {
               </div>
 
               <div
-                className="absolute inset-0 transition-transform ease-in-out motion-reduce:transition-none"
+                className="relative transition-transform ease-in-out motion-reduce:transition-none"
                 style={{
                   transform: `translateX(${enterX}%)`,
                   transitionDuration: animate ? `${SLIDE_MS}ms` : "0ms",

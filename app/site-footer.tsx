@@ -54,6 +54,7 @@ const footerColumns: { title: string; links: FooterLink[] }[] = [
       { label: "Reports", href: "/reports" },
       { label: "Webinars", href: "/webinars" },
       { label: "Books", href: "/books" },
+      { label: "Team Persona Posture", href: "/team-persona-posture" },
     ],
   },
   {

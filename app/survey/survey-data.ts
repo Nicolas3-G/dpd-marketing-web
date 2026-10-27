@@ -1,3 +1,4 @@
+import { allQuestions } from "./full-survey";
 import type {
   PerceptionIconKey,
   StrengthIconKey,
@@ -7,8 +8,6 @@ import type {
 export const PERSONAS = ["Dreamer", "Planner", "Doer"] as const;
 export type Persona = typeof PERSONAS[number];
 
-export const QUESTIONS_PER_SEGMENT = 3;
-export const MAX_SECTION_SCORE = QUESTIONS_PER_SEGMENT * 5;
 
 export type ContentBlock = string | string[];
 
@@ -254,10 +253,8 @@ export const PERSONA_WHAT_REPRESENTS: Record<Persona, ContentBlock[]> = {
 
 
 export function computeScores(answers: number[]): number[] {
-  return PERSONAS.map((_, sectionIndex) => {
-    const offset = sectionIndex * QUESTIONS_PER_SEGMENT;
-    return answers.slice(offset, offset + QUESTIONS_PER_SEGMENT).reduce((a, b) => a + b, 0);
-  });
+  return PERSONAS.map(persona => allQuestions.reduce((sum, question, i) =>
+    sum + (question.persona === persona ? answers[i] : 0), 0));
 }
 
 export function dominantPersonaFromScores(scores: number[]): Persona {

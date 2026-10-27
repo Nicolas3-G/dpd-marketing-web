@@ -61,6 +61,16 @@ const platformMegaLinks: MegaLink[] = [
 ];
 
 const productsMegaLinks: MegaLink[] = [
+  {
+    label: "Team Persona Posture",
+    href: "/team-persona-posture",
+    preview: {
+      eyebrow: "Team Tool",
+      title: "Explore your team’s persona posture",
+      image: "/workshop/core-workshop.jpg",
+      imageAlt: "",
+    },
+  },
   // {
   //   label: "Reports",
   //   href: "/reports",

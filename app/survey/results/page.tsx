@@ -1,3 +1,4 @@
+import { isValidAnswers, personaMaxScores } from "../full-survey";
 import Image from "next/image";
 import { HiLockClosed } from "react-icons/hi";
 import { redirect } from "next/navigation";
@@ -7,7 +8,6 @@ import {
   computeScores,
   ContentBlock,
   dominantPersonaFromScores,
-  MAX_SECTION_SCORE,
   Persona,
   PERSONA_CHALLENGES,
   PERSONA_CHALLENGES_INTRO,
@@ -16,7 +16,6 @@ import {
   PERSONA_DESCRIPTIONS,
   PERSONA_STRENGTHS,
   PERSONAS,
-  QUESTIONS_PER_SEGMENT,
   TEAM_DYNAMICS_CONTENT,
 } from "../survey-data";
 import { PERCEPTION_ICONS, TEAM_DYNAMICS_ICONS } from "../survey-strength-icons";
@@ -42,7 +41,6 @@ export default async function SurveyResultsPage({
 }) {
   const params = await searchParams;
   const raw = typeof params.a === "string" ? params.a : null;
-  const totalQuestions = PERSONAS.length * QUESTIONS_PER_SEGMENT;
 
   if (!raw) {
     redirect("/survey");
@@ -57,7 +55,7 @@ export default async function SurveyResultsPage({
 
   const parsed = decoded.split(",").map(Number);
 
-  if (parsed.length !== totalQuestions || parsed.some((n) => isNaN(n) || n < 0 || n > 5)) {
+  if (!isValidAnswers(parsed)) {
     redirect("/survey");
   }
 
@@ -121,13 +119,13 @@ export default async function SurveyResultsPage({
                     <div className="flex items-baseline justify-between">
                       <p className="custom-body-bold text-custom-black">{persona}</p>
                       <p className="custom-body-bold tabular-nums text-custom-black">
-                        {scores[i]} / {MAX_SECTION_SCORE}
+                        {scores[i]} / {personaMaxScores[i]}
                       </p>
                     </div>
                     <div className="h-3 w-full overflow-hidden rounded-full bg-section-gray">
                       <div
                         className="h-full rounded-full bg-brand-orange"
-                        style={{ width: `${(scores[i] / MAX_SECTION_SCORE) * 100}%` }}
+                        style={{ width: `${Math.max(0, (scores[i] / personaMaxScores[i]) * 100)}%` }}
                       />
                     </div>
                   </div>
@@ -410,9 +408,7 @@ export default async function SurveyResultsPage({
               </p>
 
               <p className="mt-5 hidden max-w-2xl custom-body text-custom-black sm:block">
-                In the app, you&rsquo;ll take an{" "}
-                <span className="custom-body-bold">expanded, more accurate version of this survey</span>{" "}
-                to <span className="custom-body-bold">view the full details of your persona readout</span>,
+                In the app, you can <span className="custom-body-bold">view the full details of your persona readout</span>,
                 including your secondary and tertiary personas. You can also{" "}
                 <span className="custom-body-bold">share your results with your team</span> via
                 DPD meeting cards, so everyone knows the right posture to bring
