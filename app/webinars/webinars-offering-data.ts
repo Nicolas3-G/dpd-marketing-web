@@ -15,7 +15,7 @@ export const webinarsOfferingContent = {
   cards: [
     {
       title: coreWorkshop,
-      imageSrc: "/workshop/core-workshop.jpg",
+      imageSrc: "/webinars/core-webinar.jpg",
       bullets: [
         "Dream, Plan, Do framework introduced with shared persona language",
         "Priming cues that help teams enter the right behavioral posture faster",
@@ -24,7 +24,7 @@ export const webinarsOfferingContent = {
     },
     {
       title: switchingWorkshop,
-      imageSrc: "/workshop/persona-switching-workshop.jpg",
+      imageSrc: "/webinars/persona-switching-webinar.jpg",
       bullets: [
         "Practice switching between Dreamer, Planner, and Doer in real time",
         "Embodied and verbal cues that connect posture, language, and action",
@@ -34,7 +34,7 @@ export const webinarsOfferingContent = {
     },
     {
       title: leadershipWorkshop,
-      imageSrc: "/workshop/leadership-workshop.jpg",
+      imageSrc: "/webinars/leadership-webinar.jpg",
       bullets: [
         "Leader visibility into when teams should Dream, Plan, or Do",
         "Shared cues that reduce meeting misalignment and mode-mixing",

@@ -20,7 +20,7 @@ export const webinarsProcessContent = {
       number: "02",
       title: "Make a rollout plan",
       description:
-        "Map assessments, workshops, and leadership touchpoints so adoption stays practical—not another initiative on the shelf.",
+        "Map assessments, webinars, and leadership touchpoints so adoption stays practical—not another initiative on the shelf.",
     },
     {
       number: "03",

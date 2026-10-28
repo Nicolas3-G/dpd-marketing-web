@@ -11,9 +11,9 @@ export const webinarsWhyContent = {
   heading:
     "Discover why organizations choose DPD webinars as their behavior coordination partner.",
   workshops: [
-    "DPD Core Workshop",
-    "Persona Switching Workshop",
-    "Leadership Persona Workshop",
+    "DPD Core Webinar",
+    "Persona Switching Webinar",
+    "Leadership Persona Webinar",
   ] as const,
 } as const;
 
@@ -24,7 +24,7 @@ export const webinarsWorkshopPanels: Record<
   WebinarsWorkshopId,
   readonly WebinarsWorkshopPanelItem[]
 > = {
-  "DPD Core Workshop": [
+  "DPD Core Webinar": [
     {
       label:
         "Priming Theory activated through persona cues. Helps teams enter the right behavioral posture faster.",
@@ -41,7 +41,7 @@ export const webinarsWorkshopPanels: Record<
       Icon: FaRepeat,
     },
   ],
-  "Persona Switching Workshop": [
+  "Persona Switching Webinar": [
     {
       label:
         "Game Theory applied to team coordination. Helps people understand roles, rules, and shared outcomes.",
@@ -58,7 +58,7 @@ export const webinarsWorkshopPanels: Record<
       Icon: FaRepeat,
     },
   ],
-  "Leadership Persona Workshop": [
+  "Leadership Persona Webinar": [
     {
       label:
         "Teams know when to Dream, Plan, and Do together. Creates shared timing, clearer meetings, and better flow.",

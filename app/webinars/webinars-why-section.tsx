@@ -143,7 +143,7 @@ function WorkshopOptions({
     <div
       className="mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:gap-4" 
       role="tablist"
-      aria-label="Workshops"
+      aria-label="Webinars"
     >
       {workshops.map((label) => {
         const isActive = active === label;

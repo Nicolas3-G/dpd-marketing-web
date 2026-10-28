@@ -15,7 +15,7 @@ export const webinarsClosingContent = {
       title: "Learn",
       description:
         "Introduce the Dream, Plan, Do framework and shared persona language so teams enter the right behavioral posture faster.",
-      linkLabel: "Explore the Core Workshop",
+      linkLabel: "Explore the Core Webinar",
       href: "/contact",
     },
     {

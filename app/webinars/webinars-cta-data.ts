@@ -2,11 +2,11 @@
 export const webinarsCtaContent = {
   headingLines: [
     "Ready to bring behavior coordination",
-    "to your team with a DPD workshop?",
+    "to your team with a DPD webinar?",
     "Let's Dream, Plan, and Do together.",
   ],
   cta: {
-    label: "Book a workshop",
+    label: "Book a webinar",
     href: "/contact",
   },
   backgroundImage: "/scroll-cards-about/card-7.jpg",
