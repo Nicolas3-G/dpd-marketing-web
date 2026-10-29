@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { HiArrowDown, HiArrowRight } from "react-icons/hi";
+import { HiArrowDown } from "react-icons/hi";
 import { createPageMetadata } from "@/lib/metadata";
 import { TeamPersonaTool } from "./team-persona-tool";
 
@@ -19,7 +18,6 @@ export default function TeamPersonaPosturePage() {
           <p className="custom-body mt-7 max-w-xl">See how your team dreams, plans, and does. Turn individual survey results into a clearer picture of your collective strengths—and what the work needs next.</p>
           <div className="mt-10 flex flex-wrap items-center gap-6">
             <a href="#team-calculator" className="inline-flex h-14 items-center gap-3 rounded-full bg-brand-orange px-8 custom-label-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-orange-hover">Explore your team <HiArrowDown aria-hidden className="text-lg" /></a>
-            <Link href="/survey" className="inline-flex items-center gap-3 custom-label-bold text-custom-black">Take the persona survey <HiArrowRight aria-hidden className="text-lg" /></Link>
           </div>
           <p className="custom-label mt-6 text-light">No account needed. Team details stay in this page.</p>
         </div>

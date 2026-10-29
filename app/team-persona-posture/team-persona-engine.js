@@ -1,5 +1,8 @@
-/** @param {HTMLElement} root */
-export function initializeTeamPersonaTool(root) {
+/**
+ * @param {HTMLElement} root
+ * @param {import("./team-state").TeamState | undefined} initialState
+ */
+export function initializeTeamPersonaTool(root, initialState) {
   const document = {
     getElementById: id => root.querySelector(`[id="${id}"]`),
     querySelectorAll: selector => root.querySelectorAll(selector),
@@ -36,45 +39,138 @@ export function initializeTeamPersonaTool(root) {
   function derive(){
     c=[0,0,0];s2=[0,0,0];
     members.forEach(function(m){if(m.p>=0){c[m.p]++;if(m.s>=0&&m.s!==m.p)s2[m.s]++;}});
+    secOn=sum(s2)>0;
   }
   function esc(t){return String(t).replace(/[&<>"]/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]})}
   var roster=document.getElementById("roster");
-  function renderRoster(){
-    roster.innerHTML="";
-    members.forEach(function(m,k){
-      var d=document.createElement("div");d.className="member";
-      var pOpts='<option value="-1">Choose</option>'+P.map(function(p,i){return '<option value="'+i+'"'+(m.p===i?" selected":"")+'>'+p.name+'</option>'}).join("");
-      var sOpts='<option value="-1">'+(m.p>=0?"None entered":"Choose primary first")+'</option>'+P.map(function(p,i){return i===m.p?"":'<option value="'+i+'"'+(m.s===i?" selected":"")+'>'+p.name+'</option>'}).join("");
-      d.innerHTML='<div class="mtop"><span class="mnum">'+(k+1)+'</span>'+
-        '<input class="mname" id="mn'+k+'" type="text" autocomplete="off" placeholder="Team member '+(k+1)+' (optional)" aria-label="Team member '+(k+1)+' name" value="'+esc(m.name||"")+'">'+
-        '<button class="mdel" type="button" aria-label="Remove team member '+(k+1)+'">&times;</button></div>'+
-        '<div class="mpick"><label for="mp'+k+'">Primary Persona<select id="mp'+k+'" class="'+(m.p<0?"unset":"")+'">'+pOpts+'</select></label>'+
-        '<label for="ms'+k+'">Secondary Persona<select id="ms'+k+'" class="'+(m.s<0?"unset":"")+'"'+(m.p<0?" disabled":"")+'>'+sOpts+'</select></label></div>';
-      roster.appendChild(d);
-      d.querySelector(".mname").oninput=function(){m.name=this.value;render();};
-      d.querySelector("#mp"+k).onchange=function(){m.p=+this.value;if(m.s===m.p)m.s=-1;renderRoster();render();};
-      d.querySelector("#ms"+k).onchange=function(){m.s=+this.value;this.className=m.s<0?"unset":"";render();};
-      d.querySelector(".mdel").onclick=function(){members.splice(k,1);renderRoster();render();};
+  var draftName=document.getElementById("draft-name");
+  var draftPrimary={value:"-1"}, draftSecondary={value:"-1"};
+  var primaryButtons=Array.from(document.querySelectorAll('[data-persona-kind="primary"]'));
+  var secondaryButtons=Array.from(document.querySelectorAll('[data-persona-kind="secondary"]'));
+  function renderChoices() {
+    primaryButtons.forEach(function(button){ button.setAttribute('aria-checked',String(button.dataset.personaValue===draftPrimary.value)); });
+    secondaryButtons.forEach(function(button){
+      button.disabled=+draftPrimary.value<0 || button.dataset.personaValue===draftPrimary.value;
+      button.setAttribute('aria-checked',String(button.dataset.personaValue===draftSecondary.value));
     });
   }
-  document.getElementById("addMember").onclick=function(){
-    members.push({name:"",p:-1,s:-1});renderRoster();render();
-    var el=document.getElementById("mn"+(members.length-1));if(el)el.focus();
+  var entryError=document.getElementById("member-entry-error"), addButton=document.getElementById("addMember"), cancelEdit=document.getElementById("cancel-member-edit");
+  var editingIndex=-1;
+  function updateSecondary(value=-1) {
+    draftSecondary.value=String(value===+draftPrimary.value?-1:value);
+    renderChoices();
+  }
+  function clearEntry() {
+    editingIndex=-1; draftName.value=''; draftPrimary.value='-1'; updateSecondary(); entryError.textContent='';
+    addButton.textContent='Add team member'; cancelEdit.hidden=true;
+    document.getElementById('member-entry-heading').textContent='Add a team member';
+  }
+  primaryButtons.forEach(function(button){button.onclick=function(){
+    draftPrimary.value=button.dataset.personaValue;updateSecondary(+draftSecondary.value);entryError.textContent='';
+  };});
+  secondaryButtons.forEach(function(button){button.onclick=function(){
+    draftSecondary.value=draftSecondary.value===button.dataset.personaValue?'-1':button.dataset.personaValue;renderChoices();
+  };});
+  [primaryButtons, secondaryButtons].forEach(function(buttons){buttons.forEach(function(button){
+    button.onkeydown=function(event){
+      if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(event.key))return;
+      event.preventDefault();
+      var enabled=buttons.filter(function(b){return !b.disabled;});
+      var index=enabled.indexOf(button), next;
+      if(event.key==='Home')next=0;else if(event.key==='End')next=enabled.length-1;
+      else next=(index+(['ArrowLeft','ArrowUp'].includes(event.key)?-1:1)+enabled.length)%enabled.length;
+      enabled[next]?.focus();enabled[next]?.click();
+    };
+  });});
+  cancelEdit.onclick=clearEntry;
+  function animateNewCard(index) {
+    var card=roster.children[index];
+    if(!card)return;
+    if(roster.scrollHeight>roster.clientHeight)roster.scrollTop=roster.scrollHeight;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var bounds=card.getBoundingClientRect(), distance=Math.max(80,window.innerWidth-bounds.left);
+    // Animate a visual copy outside the scroll viewport so the entrance stays unclipped.
+    var visual=card.cloneNode(true);
+    visual.setAttribute('aria-hidden','true');visual.inert=true;
+    visual.style.cssText='position:fixed;z-index:40;pointer-events:none;left:'+bounds.left+'px;top:'+bounds.top+'px;width:'+bounds.width+'px;height:'+bounds.height+'px;margin:0;';
+    root.appendChild(visual);card.style.opacity='0';
+    var animation=visual.animate([{transform:'translateX('+distance+'px)',opacity:0},{transform:'translateX(0)',opacity:1}],{duration:450,easing:'cubic-bezier(0.22, 1, 0.36, 1)'});
+    animation.finished.catch(function(){}).finally(function(){visual.remove();card.style.opacity='';});
+  }
+  function renderRoster(){
+    editingIndex=-1;
+    roster.innerHTML='';
+    document.getElementById('roster-count').textContent=members.length;
+    if (!members.length) {
+      roster.innerHTML='<button class="roster-empty" type="button" aria-label="Add and edit your first team member"><span class="roster-empty-icon" aria-hidden="true">+</span><span class="empty-title">Your team starts here</span><span>Click here to create your first member, or use the form.</span></button>';
+      roster.querySelector('.roster-empty').onclick=function(){
+        members.push({name:'',p:0,s:-1});renderRoster();render();
+        roster.querySelector('.member-edit').click();animateNewCard(0);
+      };
+      return;
+    }
+    members.forEach(function(m,k){
+      var d=document.createElement('article');d.className='member persona-member-card';
+      d.innerHTML='<div class="mtop"><span class="mnum">'+(k+1)+'</span><h4 class="member-name">'+esc(m.name.trim()||'Team member '+(k+1))+'</h4></div>'+
+        '<dl class="member-personas"><div><dt>Primary Persona</dt><dd>'+esc(P[m.p]?.short||'Not selected')+'</dd></div><div><dt>Secondary Persona</dt><dd>'+esc(P[m.s]?.short||'Not entered')+'</dd></div></dl>'+
+        '<div class="member-actions"><button class="member-edit" type="button" aria-label="Edit team member '+(k+1)+'">Edit</button><button class="member-remove" type="button" aria-label="Remove team member '+(k+1)+'">Remove</button></div>';
+      roster.appendChild(d);
+      d.querySelector('.member-edit').onclick=function(){
+        renderRoster();editingIndex=k;
+        var card=roster.children[k], edited={...m};
+        card.classList.add('is-editing');
+        card.innerHTML='<label class="inline-name-label" for="edit-name-'+k+'">Member name (optional)</label><input class="inline-member-name" id="edit-name-'+k+'" value="'+esc(m.name)+'" autocomplete="off">'+
+          '<div class="inline-persona-controls"></div><div class="inline-edit-actions"><button class="btn primary inline-save" type="button">Save</button><button class="btn inline-cancel" type="button">Cancel</button></div>';
+        var controls=card.querySelector('.inline-persona-controls');
+        function drawChoices(){
+          controls.innerHTML=['primary','secondary'].map(function(kind){
+            var primary=kind==='primary', selected=primary?edited.p:edited.s;
+            return '<fieldset class="persona-choice-field"><legend>'+ (primary?'Primary Persona':'Secondary Persona (optional)')+'</legend><div class="persona-choices" role="radiogroup" aria-label="'+(primary?'Primary':'Secondary')+' Persona for team member '+(k+1)+'">'+P.map(function(p,i){
+              return '<button type="button" role="radio" class="persona-choice" data-edit-kind="'+kind+'" data-edit-value="'+i+'" aria-checked="'+(selected===i)+'"'+(!primary&&i===edited.p?' disabled':'')+'>'+p.short+'</button>';
+            }).join('')+'</div></fieldset>';
+          }).join('');
+          controls.querySelectorAll('[data-edit-kind]').forEach(function(button){button.onclick=function(){
+            var value=+button.dataset.editValue;
+            if(button.dataset.editKind==='primary'){edited.p=value;if(edited.s===value)edited.s=-1;}
+            else edited.s=edited.s===value?-1:value;
+            drawChoices();
+            controls.querySelector('[data-edit-kind="'+button.dataset.editKind+'"][data-edit-value="'+value+'"]').focus();
+          };});
+        }
+        drawChoices();
+        function finish(){renderRoster();render();roster.children[k]?.querySelector('.member-edit')?.focus();}
+        card.querySelector('.inline-save').onclick=function(){edited.name=card.querySelector('.inline-member-name').value.trim();members[k]=edited;finish();};
+        card.querySelector('.inline-cancel').onclick=finish;
+        card.querySelector('.inline-member-name').onkeydown=function(event){
+          if(event.key==='Enter'){event.preventDefault();card.querySelector('.inline-save').click();}
+          if(event.key==='Escape'){event.preventDefault();finish();}
+        };
+        card.querySelector('.inline-member-name').focus();
+      };
+      d.querySelector('.member-remove').onclick=function(){
+        members.splice(k,1);renderRoster();render();
+      };
+    });
+    var addCard=document.createElement('button');
+    addCard.type='button';addCard.className='roster-add-card';
+    addCard.setAttribute('aria-label','Add another team member');
+    addCard.innerHTML='<span aria-hidden="true">+</span><span>Add team member</span>';
+    addCard.onclick=function(){
+      members.push({name:'',p:0,s:-1});renderRoster();render();
+      roster.children[members.length-1].querySelector('.member-edit').click();
+      animateNewCard(members.length-1);
+    };
+    roster.appendChild(addCard);
+  }
+  addButton.onclick=function(){
+    if(editingIndex>=0){entryError.textContent='Save or cancel the card edit first.';return;}
+    var primary=+draftPrimary.value;
+    if(primary<0){entryError.textContent='Choose a Primary Persona before adding this member.';primaryButtons[0].focus();return;}
+    var member={name:draftName.value.trim(),p:primary,s:+draftSecondary.value};
+    members.push(member);
+    clearEntry();renderRoster();render();animateNewCard(members.length-1);draftName.focus();
+    document.getElementById('team-form-error').textContent='';
   };
-  var btnP=document.getElementById("modeP"), btnPS=document.getElementById("modePS");
-  btnP.onclick=function(){secOn=false;render();};
-  btnPS.onclick=function(){secOn=true;render();};
-
-  var pw=document.getElementById("personas");
-  P.forEach(function(p){
-    var d=document.createElement("article");d.className="pcard";
-    d.innerHTML='<header><i class="dot" style="background:'+p.color+'"></i><h3>'+p.name+'</h3></header>'+
-      '<p class="fn"><b>Function:</b> '+p.fn+'</p>'+
-      '<div class="cols"><div><h4>Strengths</h4><ul>'+p.strengths.map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul></div>'+
-      '<div><h4>When overused</h4><ul>'+p.watch.map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul></div></div>';
-    pw.appendChild(d);
-  });
-
   function list(arr){return arr.length<3?arr.join(" and "):arr.slice(0,-1).join(", ")+", and "+arr[arr.length-1]}
   function the(arr){return "the "+list(arr)}
   function mcount(k){return k===1?"1 member":k+" members"}
@@ -273,15 +369,31 @@ export function initializeTeamPersonaTool(root) {
       return {i:i,area:IMPACT[i].area,lv:lv,share:share,text:IMPACT[i][lv]};
     });
   }
+  function postureChart(){
+    var sc=scores(), total=sum(sc), leaders=ranked(sc).tops;
+    var colors=sc.map(function(_,i){return leaders.includes(i)?'var(--orange)':i===0?'#9A9AA0':i===1?'#5C6067':'#1F2532';});
+    var circumference=2*Math.PI*86, offset=0;
+    var segments=sc.map(function(score,i){
+      var length=total?score/total*circumference:0;
+      var segment='<circle cx="110" cy="110" r="86" fill="none" stroke="'+colors[i]+'" stroke-width="24" stroke-dasharray="'+length+' '+(circumference-length)+'" stroke-dashoffset="'+(-offset)+'" transform="rotate(-90 110 110)" />';
+      offset+=length;return segment;
+    }).join('');
+    var label=leaders.length===1?P[leaders[0]].short:leaders.length===3?'Balanced':'Shared lead';
+    var largest=total?pct(Math.max.apply(null,sc),total):0;
+    var description=P.map(function(p,i){return p.short+' '+pct(sc[i],total)+'%';}).join(', ');
+    return '<figure class="posture-chart" role="img" aria-label="Team persona posture: '+description+'. '+(leaders.length===1?label+' has the largest share.':'The largest shares are tied.')+'">'+
+      '<svg viewBox="0 0 220 220" aria-hidden="true">'+segments+'<text x="110" y="108" class="chart-percent" text-anchor="middle">'+largest+'%</text><text x="110" y="134" class="chart-persona" text-anchor="middle">'+label+'</text></svg>'+
+      '<figcaption class="chart-legend">'+P.map(function(p,i){return '<div class="chart-legend-item'+(leaders.includes(i)?' is-leading':'')+'"><span class="chart-swatch" style="background:'+colors[i]+'"></span><span>'+p.short+'</span><strong>'+pct(sc[i],total)+'%</strong></div>';}).join('')+'</figcaption></figure>';
+  }
   function renderQA(){
     var el=document.getElementById("qa"), d=dominantAnswer();
     el.hidden=!d; if(!d) return;
-    el.innerHTML='<div><p class="q">What is my team\'s dominant persona posture?</p><p class="a">'+d+'</p></div>'+
+    el.innerHTML='<div class="posture-summary"><div class="posture-summary-copy"><p class="q">What is my team\'s dominant persona posture?</p><p class="a">'+d+'</p></div>'+postureChart()+'</div>'+
       '<div><p class="q">How does it affect our ability to innovate, plan, and execute?</p></div>'+
       '<div class="impacts">'+impacts().map(function(x){
         return '<div class="impact"><div class="ihead"><b>'+x.area+'</b><small>'+P[x.i].name+' · '+Math.round(x.share*100)+'%</small><span class="lvl '+x.lv+'">'+LVL[x.lv]+'</span></div>'+
           '<div class="meter" aria-hidden="true"><i style="width:'+Math.round(x.share*100)+'%"></i></div><p>'+x.text+'</p></div>';
-      }).join("")+'</div>';
+      }).join("")+'<div class="ask"><div class="eyebrow">Manager asks</div><p id="question"></p></div></div>';
   }
   function renderDeep(id,d){
     var el=document.getElementById(id); el.hidden=!d; if(!d) return;
@@ -309,6 +421,7 @@ export function initializeTeamPersonaTool(root) {
     });
   }
 
+  function getState() { return {team: document.getElementById("team").value, members: members.map(m => ({...m})), secOn}; }
   function render(){
     derive();
     var a=analyze(), n=a.n, n2=sum(s2);
@@ -321,11 +434,9 @@ export function initializeTeamPersonaTool(root) {
     document.getElementById("bar").innerHTML=stot?sc.map(function(v,i){return '<i style="width:'+(v/stot*100)+'%;background:'+P[i].color+'"></i>'}).join(""):"";
     document.getElementById("summary").textContent=a.summary;
     document.getElementById("desc").textContent=a.desc;
-    document.getElementById("question").textContent=a.q;
+    var questionElement=document.getElementById("question");
+    if(questionElement)questionElement.textContent=a.q;
 
-    btnP.setAttribute("aria-checked",secOn?"false":"true");
-    btnPS.setAttribute("aria-checked",secOn?"true":"false");
-    document.getElementById("weightNote").textContent=secOn?"Each Primary Persona counts 2 points. Each Secondary Persona counts 1 point.":"Only Primary Personas count. Recommended for a team's first session.";
     var st=document.getElementById("secStatus");
     var noP=members.filter(function(m){return m.p<0}).length;
     var noS=members.filter(function(m){return m.p>=0&&m.s<0}).length;
@@ -340,7 +451,7 @@ export function initializeTeamPersonaTool(root) {
       document.getElementById("secSummary").textContent=secAnalysis();
       var smax=Math.max.apply(null,sc);
       document.getElementById("covBody").innerHTML=P.map(function(p,i){
-        return '<tr><td>'+p.name+'</td><td>'+c[i]+'</td><td>'+s2[i]+'</td><td class="'+(sc[i]===smax&&smax>0?'top':'')+'">'+sc[i]+'</td><td>'+(c[i]+s2[i])+' of '+n+'</td></tr>';
+        return '<tr><th scope="row" class="breakdown-persona">'+p.name+'</th><td data-label="Primary ×2">'+c[i]+'</td><td data-label="Secondary ×1">'+s2[i]+'</td><td data-label="Posture score" class="'+(sc[i]===smax&&smax>0?'top':'')+'">'+sc[i]+'</td><td data-label="Top two">'+(c[i]+s2[i])+' of '+n+'</td></tr>';
       }).join("");
     }
 
@@ -394,14 +505,16 @@ export function initializeTeamPersonaTool(root) {
     }
     try{navigator.clipboard.writeText(txt).then(function(){say("Copied")},fallback)}catch(e){fallback()}
   };
-  document.getElementById("reset").onclick=function(){members=[{name:"",p:-1,s:-1}];document.getElementById("team").value="";renderRoster();render();say("Cleared")};
+  document.getElementById("reset").onclick=function(){members=[];document.getElementById("team").value="";renderRoster();render();say("Cleared")};
   document.getElementById("team").oninput=render;
   function load(spec){members=spec.split(",").map(function(x){var a=x.split("-").map(Number);return {name:"",p:a[0],s:a[1]}})}
   document.querySelectorAll(".ex").forEach(function(b){b.onclick=function(){load(b.dataset.m);renderRoster();render();root.querySelector("#team-calculator").scrollIntoView({behavior:"smooth",block:"start"})}});
 
-  members=[{name:"",p:-1,s:-1}];
+  members=initialState?.members?.map(m => ({...m})) || [];
+  document.getElementById("team").value=initialState?.team || "";
+  renderChoices();
   renderRoster();
   render();
 
-  return () => clearTimeout(tt);
+  return { destroy: () => clearTimeout(tt), getState, hasPendingMember: () => editingIndex >= 0 || Boolean(draftName.value.trim()) || +draftPrimary.value >= 0 };
 }
