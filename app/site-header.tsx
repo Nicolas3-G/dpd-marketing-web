@@ -87,7 +87,7 @@ const productsMegaLinks: MegaLink[] = [
     preview: {
       eyebrow: "Webinars",
       title: "Live sessions and recorded talks",
-      image: "/workshop/core-workshop.jpg",
+      image: "/webinars/leadership-webinar.jpg",
       imageAlt: "",
     },
   },

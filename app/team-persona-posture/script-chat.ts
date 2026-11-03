@@ -20,12 +20,12 @@ export function initializeScriptChat(root: HTMLElement) {
   const revealNext = () => {
     indicator.style.display = "flex";
     const message = messages[index];
-    const delay = index === 0 ? 700 : Math.min(1800, 650 + (message.textContent?.length || 0) * 4);
+    const delay = (index === 0 ? 700 : Math.min(1800, 650 + (message.textContent?.length || 0) * 4)) / 1.3;
     timer = setTimeout(() => {
       message.style.display = "";
       animations.push(message.animate(
         [{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "translateY(0)" }],
-        { duration: 350, easing: "ease-out" },
+        { duration: 350 / 1.3, easing: "ease-out" },
       ));
       index++;
       if (index < messages.length) revealNext();

@@ -8,7 +8,7 @@ export const metadata = createPageMetadata("Your Team Posture Results", {
 });
 
 export default function TeamPostureResultsPage() {
-  return <main className="flex-1 bg-background pt-28 text-custom-black">
+  return <main className="min-h-screen flex-1 bg-background pt-28 text-custom-black">
     <EmailGate>
     <header className="mx-5 sm:mx-[45px]">
       <Link href="/team-persona-posture#team-calculator" className="custom-label-bold text-brand-orange">← Edit team</Link>

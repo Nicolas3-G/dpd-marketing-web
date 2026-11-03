@@ -1,0 +1,1494 @@
+{
+  "source": "Latest local dpd-app: personaData.js, combinedPersonaData.js, thirdPersonaData.js",
+  "profiles": {
+    "Dreamer": {
+      "summary": "The Dreamer Persona embodies a visionary, they thrive on exploring possibilities and imagining what could be rather than being constrained by what currently exists. Dreamers are creative thinkers and idea generators, often serving as the spark that ignites innovation and sets the stage for progress. They are at their best when given the freedom to think expansively, connect the seemingly unconnected, and articulate bold visions that inspire others.",
+      "strengths": [
+        {
+          "title": "Creativity and Innovation",
+          "text": "Dreamers excel at thinking outside the box, generating ideas that are often unique, unexpected, and transformative. Their ability to approach challenges with originality makes them invaluable in brainstorming and strategy sessions."
+        },
+        {
+          "title": "Visionary Thinking",
+          "text": "Dreamers see the big picture and understand how various elements can come together to create something extraordinary. They can chart long-term goals and articulate the \"why\" behind an idea, helping teams align with a shared purpose."
+        },
+        {
+          "title": "Inspiration",
+          "text": "Dreamers are natural motivators. Their enthusiasm for what’s possible energizes those around them, encouraging teams to dream bigger and embrace ambitious challenges. They have the ability to articulate visions in a way that resonates emotionally, building excitement and buy-in."
+        },
+        {
+          "title": "Seeing Connections Others Miss",
+          "text": "Dreamers have a unique ability to see relationships between ideas, trends, or concepts that others might overlook. This skill allows them to identify opportunities and potential solutions that are often groundbreaking."
+        },
+        {
+          "title": "Reframing Challenges",
+          "text": "Dreamers can reframe problems into opportunities, helping teams approach obstacles with a sense of possibility rather than limitation."
+        }
+      ],
+      "challenge": {
+        "list": [
+          "Difficulty with Execution",
+          "Overlooking Practical Constraints ",
+          "Distracted by New Ideas",
+          "Fear of Criticism"
+        ],
+        "text": "While Dreamers bring incredible value to teams and organizations, their strengths can also present challenges if not balanced with the contributions of others:"
+      },
+      "perceivedBy": {
+        "Planner": [
+          {
+            "bold": "Frustration",
+            "text": "“They’re all ideas and no plan.”"
+          },
+          {
+            "bold": "Doubt",
+            "text": "“They talk in circles and avoid commitment.”"
+          },
+          {
+            "bold": "Stress Signal",
+            "text": "“Why don’t they follow through?”"
+          },
+          {
+            "bold": "Misread Strength",
+            "text": "Vision and imagination interpreted as distraction or lack of structure."
+          }
+        ],
+        "Doer": [
+          {
+            "bold": "Impatience",
+            "text": "“They’re not grounded in reality.”"
+          },
+          {
+            "bold": "Dismissal",
+            "text": "“They talk too much and do too little.”"
+          },
+          {
+            "bold": "Stress Signal",
+            "text": "“We don’t need more ideas—we need action.”"
+          },
+          {
+            "bold": "Misread Strength",
+            "text": "Ideation mistaken as avoidance of responsibility."
+          }
+        ]
+      },
+      "reframe": "“I see things that aren’t visible yet. My role isn’t just to generate ideas—it’s to open doors to new futures. With collaboration, we can shape them into action.”",
+      "communication": {
+        "thinking": "Vision-first, possibility-focused, abstract",
+        "motivators": "Inspiration, imagination, potential, transformation",
+        "filters": "“What could this become?” “Is this exciting or meaningful?”",
+        "Effective Communication": [
+          {
+            "title": "Paint a vision.",
+            "text": "Start with the big picture or emotional why."
+          },
+          {
+            "title": "Use metaphors, stories, or bold possibilities to",
+            "text": "engage their imagination."
+          },
+          {
+            "title": "Be future-facing.",
+            "text": "Talk about what's next or what this could lead to."
+          },
+          {
+            "title": "Avoid rigidity",
+            "text": "or overwhelming details too soon - save that for later."
+          },
+          {
+            "title": "Give room to ideate",
+            "text": "- they often think while talking or dreaming aloud."
+          }
+        ],
+        "openers": [
+          "Imagine if…",
+          "What would it look like if…",
+          "Here’s the impact I believe this could have…"
+        ]
+      }
+    },
+    "Planner": {
+      "summary": "Is a strategist, this persona thrives on creating order and clarity out of chaos. Planners are the architects of success, ensuring that big ideas don’t remain abstract by organizing them into actionable steps. They bring structure, processes, and direction to teams, guiding them toward their goals with precision and focus. While Dreamers imagine what could be, Planners make those visions feasible by designing the systems and strategies needed to bring them to life.",
+      "strengths": [
+        {
+          "title": "Organizational Mastery",
+          "text": "Planners excel at creating structure and clarity, particularly in environments with competing priorities or ambiguous goals. They can take a broad vision and translate it into a well-defined plan that includes timelines, milestones, and deliverables."
+        },
+        {
+          "title": "Problem-Solving Expertise",
+          "text": "Planners are analytical thinkers who enjoy dissecting challenges and identifying solutions. They excel at spotting potential obstacles before they arise and crafting strategies to overcome them, ensuring the team stays on track."
+        },
+        {
+          "title": "Managing Complexity",
+          "text": "Where others might feel overwhelmed, Planners thrive. They can break down complex projects into manageable tasks, ensuring that even the most ambitious goals feel achievable. Their ability to manage details without losing sight of the bigger picture is invaluable."
+        },
+        {
+          "title": "Consistency and Precision",
+          "text": "Planners bring stability to teams by ensuring that processes are repeatable and reliable. Their focus on precision reduces errors and increases efficiency, making them a cornerstone of any high-functioning team."
+        },
+        {
+          "title": "Anticipation of Needs",
+          "text": "Planners excel at thinking ahead, anticipating what resources, steps, or adjustments will be required to meet future demands. Their foresight minimizes surprises and prepares the team for success."
+        }
+      ],
+      "challenge": {
+        "list": [
+          "Overthinking and Analysis Paralysis",
+          "Resistance to Change",
+          "Micromanagement Tendencies",
+          "Struggles with Ambiguity"
+        ],
+        "text": "While Planners bring essential skills to the table, their strengths can sometimes present challenges if not balanced by the contributions of Dreamers and Doers:"
+      },
+      "perceivedBy": {
+        "Dreamer": [
+          {
+            "bold": "Constriction",
+            "text": "“They shut down my creativity.”"
+          },
+          {
+            "bold": "Judgment",
+            "text": "“They only care about logic and rules.”"
+          },
+          {
+            "bold": "Stress Signal",
+            "text": "“They ask too many questions and kill momentum.”"
+          },
+          {
+            "bold": "Misread Strength",
+            "text": "Strategic rigor seen as resistance or fear."
+          }
+        ],
+        "Doer": [
+          {
+            "bold": "Slowdown",
+            "text": "“They overthink and stall execution.”"
+          },
+          {
+            "bold": "Annoyance",
+            "text": "“They care more about process than progress.”"
+          },
+          {
+            "bold": "Stress Signal",
+            "text": "“They create bottlenecks by needing more information.”"
+          },
+          {
+            "bold": "Misread Strength",
+            "text": "Structural clarity seen as bureaucratic control."
+          }
+        ]
+      },
+      "reframe": "“My questions are not roadblocks—they’re maps. I don’t resist progress—I prepare the runway so the mission doesn’t crash.”",
+      "communication": {
+        "thinking": "Structure-first, risk-aware, analytical",
+        "motivators": "Clarity, precision, stability, being prepared",
+        "filters": "“How does this work?” “Is this logical?” “What’s the process?”",
+        "Effective Communication": [
+          {
+            "title": "Lead with logic and structure.",
+            "text": "Lay out your thoughts in a clear, organized sequence."
+          },
+          {
+            "title": "Provide rationale, contingencies, and context.",
+            "text": "Anticipate their 'what if' questions."
+          },
+          {
+            "title": "Show your homework.",
+            "text": "They trust data, thoughtful frameworks, and well-reasoned plans."
+          },
+          {
+            "title": "Honor their need for time to process.",
+            "text": "They might not respond immediately - but will bring deep thinking to the conversation."
+          }
+        ],
+        "openers": [
+          "Here’s the step-by-step we’re considering…",
+          "Let’s walk through the plan and risks…",
+          "I’ve outlined a few options with pros and cons…"
+        ]
+      }
+    },
+    "Doer": {
+      "summary": "The Doer Persona is an implementer, they turn plans into action and ensure that projects are completed efficiently and effectively. Doers are the driving force behind execution, propelling teams forward with their energy, focus, and results-oriented willset and mindset. They thrive on tangible outcomes and measurable achievements, often becoming the \"go-to\" individuals when progress needs to be made.Doers bring a bias for action that keeps momentum alive, preventing teams from getting stuck in endless ideation or planning. They excel in high-pressure environments where decisions must be made quickly, and tasks require immediate attention.",
+      "strengths": [
+        {
+          "title": "Speed and Efficiency",
+          "text": "Doers have a natural ability to get things done quickly without over complicating the process. Their focus on action ensures that teams don’t lose time or opportunities due to unnecessary delays."
+        },
+        {
+          "title": "Results-Oriented",
+          "text": "Doers prioritize outcomes over process. They set clear, measurable goals and work tirelessly to achieve them, making them highly effective in roles that demand accountability and deliverables."
+        },
+        {
+          "title": "Decisiveness",
+          "text": "Doers are quick to make decisions, even in uncertain situations. Their confidence and clarity minimize bottlenecks and keep projects moving forward, especially when time is critical."
+        },
+        {
+          "title": "Problem-Solving in Action",
+          "text": "Doers excel at tackling obstacles as they arise, relying on their resourcefulness and adaptability to find solutions in the moment."
+        },
+        {
+          "title": "Focus and Determination",
+          "text": "Once a goal is set, Doers are relentless in their pursuit of completion. Their ability to prioritize and concentrate on key tasks ensures steady progress."
+        }
+      ],
+      "challenge": {
+        "list": [
+          "Overlooking the Bigger Picture  ",
+          "Skipping Planning Steps",
+          "Impatience with Delays",
+          "Resistance to Feedback"
+        ],
+        "text": "While Doers are invaluable for execution, their action-oriented willset and mindset can sometimes lead to challenges if not balanced by other personas:"
+      },
+      "perceivedBy": {
+        "Dreamer": [
+          {
+            "bold": "Dismissive",
+            "text": "“They don’t appreciate the big picture.”"
+          },
+          {
+            "bold": "Judgmental",
+            "text": "“They’re reactive and impulsive.”"
+          },
+          {
+            "bold": "Stress Signal",
+            "text": "“They bulldoze ideas before they’re ready.”"
+          },
+          {
+            "bold": "Misread Strength",
+            "text": "Urgency seen as impatience or lack of vision."
+          }
+        ],
+        "Planner": [
+          {
+            "bold": "Skeptical",
+            "text": "“They act before thinking things through.”"
+          },
+          {
+            "bold": "Controlling",
+            "text": "“They skip over systems and mess up the process.”"
+          },
+          {
+            "bold": "Stress Signal",
+            "text": "“They don’t consider consequences.”"
+          },
+          {
+            "bold": "Misread Strength",
+            "text": "Initiative interpreted as recklessness."
+          }
+        ]
+      },
+      "reframe": "“I move fast because I believe in outcomes. I’m not against structure or vision—I just don’t wait for perfect conditions to build.”",
+      "communication": {
+        "thinking": "Action-first, outcome-driven, now-focused",
+        "motivators": "Progress, efficiency, visible impact",
+        "filters": "“What needs to happen?” “Is this worth my time?” “What’s the result?”",
+        "Effective Communication": [
+          {
+            "title": "Get to the point quickly.",
+            "text": "Start with the outcome, ask, or next step."
+          },
+          {
+            "title": "Be clear, direct, and brief.",
+            "text": "Avoid overly long explanations."
+          },
+          {
+            "title": "Respect their time.",
+            "text": "Frame things around action or results."
+          },
+          {
+            "title": "Include concrete takeaways.",
+            "text": "Let them know what to do and when."
+          },
+          {
+            "title": "Don’t overtalk or overprocess.",
+            "text": "They value clarity, not chatter."
+          }
+        ],
+        "openers": [
+          "Here’s what needs to happen next…",
+          "Quick update: here’s where we are and what’s needed.",
+          "I’ve got a solution that’ll get us moving forward fast."
+        ]
+      }
+    }
+  },
+  "combined": {
+    "Dreamer+Planner": {
+      "title": "The Vision-Aligned Strategist",
+      "Core Identity": "Leads with imagination, anchored by structure.",
+      "Strengths": "Visionary ideas grounded in thoughtful planning.",
+      "Blind Spots": "May stall execution or become perfectionistic in ideation.",
+      "Needs": "A Doer to help accelerate action and avoid paralysis by analysis.",
+      "Invoked Stance": "The Vision Strategist",
+      "Common Inclinations": [
+        "Balancing expansive vision with structural clarity",
+        "Thinking in arcs, systems, and long-term purpose",
+        "Preferring ideas with tangible pathways"
+      ],
+      "Activated Strengths": [
+        "Bridging vision and structure",
+        "Turning dreams into executable plans",
+        "Long-range thinking with practical application"
+      ],
+      "Friction Risks": [
+        "Overprocessing vision",
+        "Perfectionism",
+        "Fear of chaos",
+        "Resisting improvisation",
+        "Alienating fast-moving Doers"
+      ],
+      "Stretch Points": [
+        "Welcome creative mess",
+        "Co-create with Doers",
+        "Loosen grip on structure when needed"
+      ]
+    },
+    "Dreamer+Doer": {
+      "title": "The Bold Builder",
+      "Core Identity": "Leads with vision, fueled by action.",
+      "Strengths": "Moves fast on big ideas, inspires progress.",
+      "Blind Spots": "May bypass planning, repeat mistakes, or burn out.",
+      "Needs": "A Planner to create sustainable systems and mitigate risk.",
+      "Invoked Stance": "The Vision-In-Motion Maker",
+      "Common Inclinations": [
+        "Moving quickly from idea to motion",
+        "Generating imaginative solutions and testing immediately",
+        "Energized by ideas that can be trialed"
+      ],
+      "Activated Strengths": [
+        "Prototyping boldly",
+        "Inspiring through courage and action",
+        "Bridging creativity with execution",
+        "Learning through doing"
+      ],
+      "Friction Risks": [
+        "Skipping planning",
+        "Scattered focus",
+        "Underestimating risk",
+        "Burning out",
+        "Clashing with Planners"
+      ],
+      "Stretch Points": [
+        "Collaborate with Planners",
+        "Pause for reflection",
+        "Slow down to sequence ideas"
+      ]
+    },
+    "Planner+Dreamer": {
+      "title": "The Creative Architect",
+      "Core Identity": "Leads with systems, inspired by vision.",
+      "Strengths": "Grounds creative thinking in actionable frameworks.",
+      "Blind Spots": "May struggle to move quickly or trust spontaneity.",
+      "Needs": "A Doer to ensure momentum and decisiveness.",
+      "Invoked Stance": "The Architect of Possibility",
+      "Common Inclinations": [
+        "Organizing first, imagining later",
+        "Seeking meaningful possibilities that are scalable",
+        "Comfortable building within constraints"
+      ],
+      "Activated Strengths": [
+        "Scaling ideas with structure",
+        "Logical imagination",
+        "Translating vision into action with guardrails",
+        "Blending inspiration with rigor"
+      ],
+      "Friction Risks": [
+        "Limiting creativity through structure",
+        "Overcontrolling",
+        "Draining spontaneity",
+        "Misaligning with Dreamers"
+      ],
+      "Stretch Points": [
+        "Explore before containing",
+        "Let ideas lead",
+        "Loosen perfection filters"
+      ]
+    },
+    "Planner+Doer": {
+      "title": "The Precision Executor",
+      "Core Identity": "Leads with structure, backed by follow-through.",
+      "Strengths": "Makes detailed plans and executes them reliably.",
+      "Blind Spots": "May resist new ideas or overlook emerging trends.",
+      "Needs": "A Dreamer to expand possibilities and future-scope.",
+      "Invoked Stance": "The Strategic Executor",
+      "Common Inclinations": [
+        "Organizing before acting",
+        "Building with structure and speed",
+        "Pushing for completion and precision",
+        "Avoiding improvisation"
+      ],
+      "Activated Strengths": [
+        "Operational excellence",
+        "Converting plans into action with consistency",
+        "Leading workflows and outcomes with precision"
+      ],
+      "Friction Risks": [
+        "Over-correction",
+        "Dismissing ideation",
+        "Micromanaging",
+        "Skipping purpose",
+        "Misreading creative pauses"
+      ],
+      "Stretch Points": [
+        "Allow unstructured time",
+        "Co-dream with visionaries",
+        "Trust team process"
+      ]
+    },
+    "Doer+Dreamer": {
+      "title": "The Adaptive Achiever",
+      "Core Identity": "Leads with action, sparked by vision.",
+      "Strengths": "Gets things done with creative flair and flexibility.",
+      "Blind Spots": "May jump into ideas without a stable plan or structure.",
+      "Needs": "A Planner to ensure sustainable processes and long-term thinking.",
+      "Invoked Stance": "The Instinctive Builder of Bold Ideas",
+      "Common Inclinations": [
+        "Acting on instinct, then adjusting based on inspiration",
+        "Solving through movement",
+        "Executing rough ideas immediately"
+      ],
+      "Activated Strengths": [
+        "Momentum-based creativity",
+        "Turning thoughts into rapid execution",
+        "Courage to try and refine",
+        "Resilient through uncertainty"
+      ],
+      "Friction Risks": [
+        "Abandoning ideas quickly",
+        "Lacking structure",
+        "Impulsivity",
+        "Tension with Planners",
+        "Exhausting slower thinkers"
+      ],
+      "Stretch Points": [
+        "Slow down to see the pattern",
+        "Invite Planners to stabilize ideas"
+      ]
+    },
+    "Doer+Planner": {
+      "title": "The Tactical Leader",
+      "Core Identity": "Leads with execution, guided by planning.",
+      "Strengths": "Drives progress through disciplined, detail-oriented action.",
+      "Blind Spots": "May undervalue ideation or resist disruptive innovation.",
+      "Needs": "A Dreamer to encourage creative expansion and strategic leaps.",
+      "Invoked Stance": "The Relentless Finisher",
+      "Common Inclinations": [
+        "Jumping into action with speed, then organizing mid-motion",
+        "Valuing measurable outcomes",
+        "Pushing for rigor and delivery"
+      ],
+      "Activated Strengths": [
+        "Driving results with clarity and urgency",
+        "Delivering outcomes fast",
+        "Managing projects and systems efficiently"
+      ],
+      "Friction Risks": [
+        "Pressuring progress",
+        "Dismissing dream space",
+        "Rigidity",
+        "Skipping feedback",
+        "Overlooking big-picture strategy"
+      ],
+      "Stretch Points": [
+        "Ask: Is this the right solution?",
+        "Invite feedback early",
+        "Make space for vision"
+      ]
+    }
+  },
+  "growth": {
+    "Dreamer": [
+      {
+        "id": "personaRole",
+        "title": "Persona name and role",
+        "blocks": [
+          {
+            "label": "",
+            "text": "The Dreamer — The Seer, The Imaginator, The Architect of Possibility"
+          },
+          {
+            "label": "",
+            "text": "When this persona arrives, the room stretches. Time bends. Futures whisper.The Dreamer doesn’t just imagine a better world—they live inside it before it exists."
+          }
+        ]
+      },
+      {
+        "id": "worldView",
+        "title": "Worldview",
+        "blocks": [
+          {
+            "label": "",
+            "text": "Life is not a fixed road—it’s a canvas still wet with potential."
+          },
+          {
+            "label": "",
+            "text": "Dreamers look at the world not for what it is, but what it might become."
+          },
+          {
+            "label": "",
+            "text": "\"Reality is negotiable. Everything begins in wonder.\""
+          }
+        ]
+      },
+      {
+        "id": "coreQuestions",
+        "title": "Core questions",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "What if we tried something no one has dared yet?",
+              "Where is the magic hiding?",
+              "Why are we settling?",
+              "What’s the wild version of this idea?",
+              "What’s missing that only imagination can reveal?",
+              "How would a visionary respond right now?",
+              "Who are we becoming?",
+              "What would I regret not exploring?",
+              "What would this look like if we removed fear?",
+              "Is the story we’re telling still true—or just familiar?"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "emotionalLandscape",
+        "title": "Emotional landscape",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Embraced feelings: Inspiration, curiosity, anticipation",
+              "Disruptors: Dismissal, suffocation, meaningless busyness"
+            ]
+          },
+          {
+            "label": "",
+            "text": "“I come alive in the presence of possibility.”"
+          }
+        ]
+      },
+      {
+        "id": "communicationStyle",
+        "title": "Communication style",
+        "blocks": [
+          {
+            "label": "",
+            "text": "They speak in metaphors, spirals, and unfinished melodies."
+          },
+          {
+            "label": "",
+            "text": "They don’t always land on conclusions—but they open doors."
+          },
+          {
+            "label": "Favorite words",
+            "text": "‘Imagine’, ‘What if’, ‘The future’, ‘Meaningful’, ‘Bold’"
+          },
+          {
+            "label": "Phrases to avoid",
+            "items": [
+              "“That’s not realistic.”",
+              "“We’ve always done it this way.”",
+              "“Let’s be practical.”"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "energySignature",
+        "title": "Energy signature",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Wide eyes. Moving hands. Wandering thoughts that spark clarity.",
+              "Misunderstood as scattered—they’re just tuned to future frequencies."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "triggersAndShadows",
+        "title": "Triggers and shadows",
+        "blocks": [
+          {
+            "label": "Triggers",
+            "items": [
+              "Being told to “be realistic”",
+              "Feeling unseen or dismissed as too “out there”"
+            ]
+          },
+          {
+            "label": "Shadow behaviors",
+            "items": [
+              "Endless ideation without traction",
+              "Escaping hard truths with fantasy",
+              "Detachment when misunderstood"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "coreValues",
+        "title": "Core values",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Freedom of thought",
+              "Vision bigger than ego",
+              "Emotional authenticity",
+              "Beauty in the unknown",
+              "Courage to explore"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "relationshipToTime",
+        "title": "Relationship to time",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Tomorrow is more interesting than yesterday",
+              "The present is a portal to what’s next",
+              "Often forgets the clock exists"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "strengthsWhenActivated",
+        "title": "Strengths when activated",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Unlocks creative possibility",
+              "Restores meaning to motion",
+              "Challenges the default",
+              "Enchants teams with vision",
+              "Turns stagnation into exploration"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "collaborationBehavior",
+        "title": "Collaboration behaviors",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Needs space to ideate aloud",
+              "Values emotional and intellectual play",
+              "May feel unseen by Doers or over structured by Planners"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "heroicExpression",
+        "title": "Heroic expression",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Gifts the world a future it hadn’t earned",
+              "Sees patterns others miss",
+              "Reminds teams why they started"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "practiceRituals",
+        "title": "Practice rituals",
+        "blocks": [
+          {
+            "label": "Warm-ups",
+            "items": [
+              "3-min free write on 'what excites me now?'",
+              "Sky walks—no phone, just clouds",
+              "Instrumentals + narrating your own future"
+            ]
+          },
+          {
+            "label": "Cool-downs",
+            "items": [
+              "Archive one idea without judgment",
+              "Offer one dream without needing approval",
+              "Ask: 'What do I want to remember tomorrow?'"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "neuralRewiringPractices",
+        "title": "Neural rewiring practices",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Dreaming activates innovation pathways",
+              "Rehearsing bold thoughts wires future fluency",
+              "Let novelty replace perfection"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "thirdPersonaReflectionPrompts",
+        "title": "Reflection prompts",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "What’s an idea I’ve hidden because it felt like too much?",
+              "Who told me imagination was dangerous?",
+              "What would I create if no one was watching?",
+              "What part of my day longs for more magic?",
+              "Where am I following a map I didn’t draw?"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "resolveations",
+        "title": "Resolveations",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Resolve to imagine without permission",
+              "Resolve to believe in futures unproven",
+              "Resolve to soften execution with vision"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "willationStatements",
+        "title": "Willation statements",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "I will let my wonder speak before logic answers",
+              "I will interrupt stagnation with a dream",
+              "I will gift the team one wild possibility—without apology",
+              "I will act as if imagination is leadership, because it is"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "affirmations",
+        "title": "Affirmations",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "My ideas are valid—even before they’re understood",
+              "I am a conduit for vision",
+              "The world needs what I haven’t yet fully said",
+              "I am not too much—I’m in tune with what’s next"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "timeReflection",
+        "title": "Time orientation reflection",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Past: Where your spark began",
+              "Present: The portal to reimagine",
+              "Future: The gift waiting to be claimed"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "quoteAnchors",
+        "title": "Quote anchors",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "“Imagination is the only weapon in the war against reality.” — Lewis Carroll",
+              "“The best way to predict the future is to invent it.” — Alan Kay",
+              "“Dreams are today’s answers to tomorrow’s questions.” — Edgar Cayce"
+            ]
+          }
+        ]
+      }
+    ],
+    "Planner": [
+      {
+        "id": "personaRole",
+        "title": "Persona name and role",
+        "blocks": [
+          {
+            "label": "",
+            "text": "The Planner — The Strategist, The Organizer, The Architect of Clarity"
+          },
+          {
+            "label": "",
+            "text": "When the Planner persona enters the room, chaos becomes coordinated, potential becomes a process, and dreams become detailed blueprints. The Planner is the master of thoughtful systems, efficient paths, and strategic execution."
+          }
+        ]
+      },
+      {
+        "id": "worldView",
+        "title": "Worldview",
+        "blocks": [
+          {
+            "label": "",
+            "text": ""
+          },
+          {
+            "label": "",
+            "text": "Planners believe the world makes sense when there’s structure. They see behind-the-scenes mechanisms others overlook and instinctively want to bring order to complexity."
+          },
+          {
+            "label": "",
+            "text": "“The future is built with steps, not sparks.”"
+          }
+        ]
+      },
+      {
+        "id": "coreQuestions",
+        "title": "Core questions",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "What’s the real objective here?",
+              "What steps are missing?",
+              "What assumptions are we making?",
+              "How do we reduce risk without losing momentum?",
+              "Where might this break down?",
+              "What happens after this phase?",
+              "Who’s accountable for what?",
+              "Is this the best use of time and energy?",
+              "What’s the clearest path forward?",
+              "How can we make this sustainable?"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "emotionalLandscape",
+        "title": "Emotional landscape",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Embraced feelings: Confidence from organization, calm from structure, satisfaction from completion.",
+              "Disruptors: Ambiguity, shifting plans, pressure to act before thinking."
+            ]
+          },
+          {
+            "label": "",
+            "text": "\"I feel safest when I know the plan—and the plan is sound.\""
+          }
+        ]
+      },
+      {
+        "id": "communicationStyle",
+        "title": "Communication style",
+        "blocks": [
+          {
+            "label": "",
+            "text": "Planners communicate with logic, precision, and frameworks."
+          },
+          {
+            "label": "",
+            "text": "They’re less concerned with flair and more focused on flow."
+          },
+          {
+            "label": "Favorite words",
+            "text": "“Let’s outline the key phases.”, “We need a clearer timeline.”, “What’s our scope?”"
+          },
+          {
+            "label": "Phrases to avoid",
+            "items": [
+              "“Let’s just wing it.”",
+              "“We’ll figure it out as we go.”",
+              "“This doesn’t need structure.”"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "energySignature",
+        "title": "Energy signature",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Centered eyes. Tidy workspace. Calm, measured tone.",
+              "Thinks before responding.",
+              "Often misunderstood as rigid—but they’re internally streamlining complexity."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "triggersAndShadows",
+        "title": "Triggers and shadows",
+        "blocks": [
+          {
+            "label": "Triggers",
+            "items": [
+              "Being forced into spontaneous decisions",
+              "Working with unstructured collaborators who resist clarity"
+            ]
+          },
+          {
+            "label": "Shadow behaviors",
+            "items": [
+              "Over-controlling processes",
+              "Fixation on perfection",
+              "Slowness disguised as prudence"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "coreValues",
+        "title": "Core values",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Thoughtful preparation",
+              "Logical sequencing",
+              "Integrity in process",
+              "Accountability",
+              "Strategic clarity"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "relationshipToTime",
+        "title": "Relationship to time",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "The past provides lessons and frameworks.",
+              "The present must be managed efficiently.",
+              "The future requires preparation.",
+              "Planners rarely lose track of time—they measure it."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "strengthsWhenActivated",
+        "title": "Strengths when activated",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Turns vague ideas into actionable roadmaps",
+              "Anchors teams with feasibility and structure",
+              "Prevents failure through foresight",
+              "Brings calm to the chaotic",
+              "Connects ambition to accountability"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "collaborationBehavior",
+        "title": "Collaboration behaviors",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Needs space to build frameworks before acting",
+              "Appreciates clear expectations and timelines",
+              "Struggles with loose boundaries or shifting commitments"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "heroicExpression",
+        "title": "Heroic expression",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Architect of success: Turns chaos into clarity",
+              "Strategic stabilizer: Grounds teams in process",
+              "Risk-mapper: Sees what could go wrong—before it does"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "practiceRituals",
+        "title": "Practice rituals",
+        "blocks": [
+          {
+            "label": "Warm-ups",
+            "items": [
+              "Build a checklist for the top 3 outcomes today",
+              "Sketch a timeline of the week ahead",
+              "Review yesterday’s to-do list and reframe one item more clearly"
+            ]
+          },
+          {
+            "label": "Cool-downs",
+            "items": [
+              "Reflect on what worked and why",
+              "Update one process that could run smoother",
+              "Tidy the desk, inbox, or task board"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "neuralRewiringPractices",
+        "title": "Neural rewiring practices",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Practice sequence-thinking with low-stakes tasks",
+              "Turn reactive habits into plans",
+              "Visualize successful execution before acting"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "thirdPersonaReflectionPrompts",
+        "title": "Reflection prompts",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Where in my life do I resist structure?",
+              "What might I gain from slowing down and mapping it out?",
+              "What part of me avoids the next step? Why?",
+              "Who do I know that embodies the Planner—and what can I learn from them?",
+              "What have I rushed that now needs a framework?"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "resolveations",
+        "title": "Resolveations",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Resolve to trade urgency for clarity",
+              "Resolve to respect structure as a creative act",
+              "Resolve to plan like the future depends on it"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "willationStatements",
+        "title": "Willation statements",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "I will slow down enough to see the next step.",
+              "I will offer structure without apology.",
+              "I will make room for process to become sacred.",
+              "I will define success before chasing it."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "affirmations",
+        "title": "Affirmations",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Order brings me peace.",
+              "I can trust preparation to hold the vision.",
+              "My clarity helps others breathe.",
+              "Process is power—not prison."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "timeReflection",
+        "title": "Time orientation reflection",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Past: Holds blueprints and lessons",
+              "Present: Where structure gets built",
+              "Future: A place best reached through maps, not leaps"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "quoteAnchors",
+        "title": "Quote anchors",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "“A goal without a plan is just a wish.” — Antoine de Saint-Exupéry",
+              "“Plans are nothing; planning is everything.” — Dwight D. Eisenhower",
+              "“Order is not pressure which is imposed on society from without, but an equilibrium which is set up from within.” — José Ortega y Gasset"
+            ]
+          }
+        ]
+      }
+    ],
+    "Doer": [
+      {
+        "id": "personaRole",
+        "title": "Persona name and role",
+        "blocks": [
+          {
+            "label": "",
+            "text": "The Doer — The Finisher, The Firestarter, The Engine of Momentum"
+          },
+          {
+            "label": "",
+            "text": "The Doer shows up with urgency, clarity, and forward motion. While others are still planning or dreaming, the Doer moves the world by moving their feet. They bring gravity to intentions, translating them into tangible, often immediate, results."
+          }
+        ]
+      },
+      {
+        "id": "worldView",
+        "title": "Worldview",
+        "blocks": [
+          {
+            "label": "",
+            "text": ""
+          },
+          {
+            "label": "",
+            "text": "Doers see the world through action and accountability. To them, momentum is proof of commitment. They seek traction, not just vision or logic."
+          },
+          {
+            "label": "",
+            "text": "“Ideas are only as good as their execution.”"
+          }
+        ]
+      },
+      {
+        "id": "coreQuestions",
+        "title": "Core questions",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "What needs to get done right now?",
+              "What’s the fastest way to get results?",
+              "Who’s waiting on me?",
+              "Where is the bottleneck?",
+              "How can I eliminate it?",
+              "Why are we still talking about this?",
+              "What’s the one action that would unlock everything?",
+              "What’s blocking progress?",
+              "Can we test it live?",
+              "Who’s accountable for follow-through?"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "emotionalLandscape",
+        "title": "Emotional landscape",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Embraced feelings: Momentum, progress, clear wins",
+              "Disruptors: Delay, indecision, circular conversation"
+            ]
+          },
+          {
+            "label": "",
+            "text": "\"I move, therefore I am.\""
+          }
+        ]
+      },
+      {
+        "id": "communicationStyle",
+        "title": "Communication style",
+        "blocks": [
+          {
+            "label": "",
+            "text": "Doers are blunt, direct, and focused on results."
+          },
+          {
+            "label": "",
+            "text": "They skip the fluff and speak in outcomes."
+          },
+          {
+            "label": "Favorite words",
+            "text": "“What’s next?”, “Let’s move.”, “Done is better than perfect.”"
+          },
+          {
+            "label": "Phrases to avoid",
+            "items": [
+              "“Let’s keep exploring.”",
+              "“Let’s wait and see.”",
+              "“Let’s put a pin in it.”"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "energySignature",
+        "title": "Energy signature",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Quick strides. Leaned-forward posture. Focused eyes.",
+              "Often misunderstood as impatient—but they’re simply tuned to efficiency."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "triggersAndShadows",
+        "title": "Triggers and shadows",
+        "blocks": [
+          {
+            "label": "Triggers",
+            "items": [
+              "Getting stuck in overplanning",
+              "Being looped into endless ideation with no output"
+            ]
+          },
+          {
+            "label": "Shadow behaviors",
+            "items": [
+              "Acting without alignment",
+              "Dismissing valuable ideas as “too slow”",
+              "Micromanaging when results stall"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "coreValues",
+        "title": "Core values",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Efficiency",
+              "Completion",
+              "Accountability",
+              "Clear outcomes",
+              "Real-world results"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "relationshipToTime",
+        "title": "Relationship to time",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "The past is irrelevant unless it holds a tactic.",
+              "The present is where movement happens.",
+              "The future is only real if it's being built right now."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "strengthsWhenActivated",
+        "title": "Strengths when activated",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Cuts through clutter and indecision",
+              "Inspires urgency and accountability in teams",
+              "Turns strategy into results",
+              "Finishes strong",
+              "Unlocks progress where others get stuck"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "collaborationBehavior",
+        "title": "Collaboration behaviors",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Needs clarity of task and autonomy to act",
+              "Frustrated by ambiguity or delays",
+              "May overlook emotional or strategic nuances without priming"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "heroicExpression",
+        "title": "Heroic expression",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Action catalyst: Turns stalled plans into active momentum",
+              "Closer: Finishes what others start",
+              "Operator: Makes visions real, fast"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "practiceRituals",
+        "title": "Practice rituals",
+        "blocks": [
+          {
+            "label": "Warm-ups",
+            "items": [
+              "Choose your top 1–2 actions for the day",
+              "Start a stopwatch and race a 15-minute sprint",
+              "Ask: “If I only had 1 hour today, what would I do?”"
+            ]
+          },
+          {
+            "label": "Cool-downs",
+            "items": [
+              "List what you completed—and what unblocked it",
+              "Celebrate momentum",
+              "Capture any blockers for tomorrow’s first move"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "neuralRewiringPractices",
+        "title": "Neural rewiring practices",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Rehearse follow-through in your mind",
+              "Visualize finishing before starting",
+              "Set micro-rewards after each win"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "thirdPersonaReflectionPrompts",
+        "title": "Reflection prompts",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Where do I avoid action out of fear of imperfection?",
+              "What feels hard to finish—and why?",
+              "Where have I substituted talk for traction?",
+              "Who inspires me to move—and what do they teach me?",
+              "What momentum could I create today by starting before I feel ready?"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "resolveations",
+        "title": "Resolveations",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Resolve to finish more than I start",
+              "Resolve to let action teach me what perfection cannot",
+              "Resolve to clear the path by walking it"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "willationStatements",
+        "title": "Willation statements",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "I will act even when unsure—because motion reveals clarity.",
+              "I will create momentum, not just manage plans.",
+              "I will close the loop, not just start it.",
+              "I will show up for the finish, not just the kickoff."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "affirmations",
+        "title": "Affirmations",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "My energy is a gift.",
+              "Finishing is my superpower.",
+              "I create progress others can feel.",
+              "Movement is meaningful—even when messy."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "timeReflection",
+        "title": "Time orientation reflection",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "Past: Measured in wins and unfinished loops",
+              "Present: The proving ground of action",
+              "Future: Only matters if I’m building toward it today"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "quoteAnchors",
+        "title": "Quote anchors",
+        "blocks": [
+          {
+            "label": "",
+            "items": [
+              "“Vision without execution is hallucination.” — Thomas Edison",
+              "“Done is better than perfect.” — Sheryl Sandberg",
+              "“Start where you are. Use what you have. Do what you can.” — Arthur Ashe"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

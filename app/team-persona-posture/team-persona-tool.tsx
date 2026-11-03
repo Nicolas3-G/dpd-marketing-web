@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { initializeTextReveal } from "./text-reveal";
 import { initializeScriptChat } from "./script-chat";
@@ -21,7 +21,7 @@ export function TeamPersonaTool({ mode = "form" }: { mode?: "form" | "results" }
   const initializeChat = initializeScriptChat;
   const initializeText = initializeTextReveal;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const element = root.current;
     if (!element) return;
     let initialState: TeamState | undefined;
@@ -50,6 +50,7 @@ export function TeamPersonaTool({ mode = "form" }: { mode?: "form" | "results" }
     if (entryPanel) rosterObserver.observe(entryPanel);
     sizeRoster();
     element.dataset.ready = "true";
+    if (mode === "results") window.scrollTo({ top: 0, behavior: "instant" });
     const chart = mode === "results" ? element.querySelector<HTMLElement>(".posture-chart") : null;
     const chartAnimations: Animation[] = [];
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -96,7 +97,7 @@ export function TeamPersonaTool({ mode = "form" }: { mode?: "form" | "results" }
       }
       try {
         sessionStorage.setItem(TEAM_SUBMISSION_KEY, JSON.stringify(state));
-        router.push("/team-persona-posture/results");
+        router.push("/team-persona-posture/results", { scroll: false });
       } catch {
         if (error) error.textContent = "Allow session storage in your browser to view your team results.";
       }
@@ -112,7 +113,28 @@ export function TeamPersonaTool({ mode = "form" }: { mode?: "form" | "results" }
       slides[current].classList.add("is-active");
       slides[current].setAttribute("aria-hidden", "false");
     }, 4000);
+    let anchorFrame = 0;
+    let scrollFrame = 0;
+    const scrollToEntry = () => {
+      if (mode !== "form" || window.location.hash !== "#team-calculator") return;
+      window.cancelAnimationFrame(anchorFrame);
+      window.cancelAnimationFrame(scrollFrame);
+      // The form is inserted after hydration, so Next's initial hash scroll can miss it.
+      anchorFrame = window.requestAnimationFrame(() => {
+        scrollFrame = window.requestAnimationFrame(() => {
+          const entry = element.querySelector<HTMLElement>("#team-calculator");
+          entry?.setAttribute("tabindex", "-1");
+          entry?.focus({ preventScroll: true });
+          entry?.scrollIntoView({ behavior: "instant", block: "start" });
+        });
+      });
+    };
+    window.addEventListener("hashchange", scrollToEntry);
+    scrollToEntry();
     return () => {
+      window.removeEventListener("hashchange", scrollToEntry);
+      window.cancelAnimationFrame(anchorFrame);
+      window.cancelAnimationFrame(scrollFrame);
       rosterObserver.disconnect();
       chartObserver.disconnect();
       gateObserver.disconnect();

@@ -3,6 +3,13 @@ export function initializeMeetingTimeline(root: HTMLElement) {
   if (!section) return () => {};
   const tabs = Array.from(section.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
   const panels = Array.from(section.querySelectorAll<HTMLElement>('[role="tabpanel"]'));
+  // Keep inactive panels in the sizing grid; the global [hidden] rule uses display:none.
+  panels.forEach((panel, index) => {
+    panel.hidden = false;
+    panel.toggleAttribute("data-inactive", index !== 0);
+    panel.inert = index !== 0;
+    panel.setAttribute("aria-hidden", String(index !== 0));
+  });
   tabs.forEach(tab => {
     const ring = document.createElement("span");
     ring.className = "timeline-number-border";
@@ -10,6 +17,12 @@ export function initializeMeetingTimeline(root: HTMLElement) {
     ring.innerHTML = '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" pathLength="100" /></svg>';
     tab.querySelector(".timeline-number")?.appendChild(ring);
   });
+  const previousButton = section.querySelector<HTMLButtonElement>('[data-meeting-direction="previous"]')!;
+  const nextButton = section.querySelector<HTMLButtonElement>('[data-meeting-direction="next"]')!;
+  const updateControls = () => {
+    previousButton.disabled = active === 0;
+    nextButton.disabled = active === tabs.length - 1;
+  };
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let active = 0;
   let interacted = false;
@@ -44,17 +57,19 @@ export function initializeMeetingTimeline(root: HTMLElement) {
     progress.style.width = `${end - start}px`;
     progress.style.transform = `scaleX(${Math.max(0, Math.min(1, (target - start) / (end - start)))})`;
   };
-  const select = (index: number, focus = false) => {
+  const select = (index: number, focus = false, direction = index < active ? -1 : 1) => {
     const previous = active;
     animation?.cancel();
     outgoingAnimation?.cancel();
     active = index;
+    updateControls();
     elapsed = 0;
     paintProgress();
     tabs.forEach((tab, i) => {
       tab.setAttribute("aria-selected", String(i === index));
       tab.tabIndex = i === index ? 0 : -1;
-      panels[i].hidden = i !== index;
+      panels[i].hidden = false;
+      panels[i].toggleAttribute("data-inactive", i !== index);
       panels[i].inert = i !== index;
       panels[i].setAttribute("aria-hidden", String(i !== index));
     });
@@ -78,27 +93,38 @@ export function initializeMeetingTimeline(root: HTMLElement) {
     if (focus) tabs[index].focus();
     if (!reducedMotion.matches && previous !== index) {
       const outgoing = panels[previous];
-      outgoing.hidden = false;
+      outgoing.removeAttribute("data-inactive");
       outgoing.inert = true;
       outgoing.setAttribute("aria-hidden", "true");
       const incomingBounds = panels[index].getBoundingClientRect();
       const outgoingBounds = outgoing.getBoundingClientRect();
-      const enterDistance = window.innerWidth - incomingBounds.left + 24;
-      const exitDistance = outgoingBounds.right + 24;
+      const enterDistance = direction > 0
+        ? window.innerWidth - incomingBounds.left + 24
+        : -(incomingBounds.right + 24);
+      const exitDistance = direction > 0
+        ? -(outgoingBounds.right + 24)
+        : window.innerWidth - outgoingBounds.left + 24;
       const timing = { duration: 650, easing: "cubic-bezier(0.22, 1, 0.36, 1)" };
       outgoingAnimation = outgoing.animate(
-        [{ transform: "translateX(0)" }, { transform: `translateX(-${exitDistance}px)` }], timing,
+        [{ transform: "translateX(0)" }, { transform: `translateX(${exitDistance}px)` }], timing,
       );
       animation = panels[index].animate(
         [{ transform: `translateX(${enterDistance}px)` }, { transform: "translateX(0)" }], timing,
       );
       outgoingAnimation.finished.then(() => {
-        if (active !== previous) outgoing.hidden = true;
+        if (active !== previous) outgoing.setAttribute("data-inactive", "");
       }).catch(() => {});
     }
   };
   const stop = () => { interacted = true; paintProgress(); };
   const click = (event: Event) => {
+    const arrow = (event.target as Element).closest<HTMLButtonElement>("[data-meeting-direction]");
+    if (arrow && !arrow.disabled) {
+      stop();
+      const direction = arrow.dataset.meetingDirection === "previous" ? -1 : 1;
+      select(Math.max(0, Math.min(tabs.length - 1, active + direction)), false, direction);
+      return;
+    }
     const tab = (event.target as HTMLElement).closest<HTMLButtonElement>('[role="tab"]');
     if (tab && tabs.includes(tab)) select(tabs.indexOf(tab));
   };
@@ -114,7 +140,8 @@ export function initializeMeetingTimeline(root: HTMLElement) {
     else if (["ArrowLeft", "ArrowUp"].includes(event.key)) next = (index - 1 + tabs.length) % tabs.length;
     else return;
     event.preventDefault();
-    select(next, true);
+    const direction = ["ArrowLeft", "ArrowUp", "Home"].includes(event.key) ? -1 : 1;
+    select(next, true, direction);
   };
   section.addEventListener("pointerdown", stop);
   section.addEventListener("focusin", stop);
@@ -130,11 +157,12 @@ export function initializeMeetingTimeline(root: HTMLElement) {
     lastTime = time;
     if (!interacted && !selectionAnimating && visible && !document.hidden && !root.closest("[inert]") && !reducedMotion.matches) {
       elapsed += delta;
-      if (elapsed >= 5000) select((active + 1) % tabs.length);
+      if (elapsed >= 5000) select((active + 1) % tabs.length, false, 1);
       paintProgress(elapsed / 5000);
     }
     frame = window.requestAnimationFrame(tick);
   };
+  updateControls();
   paintProgress();
   frame = window.requestAnimationFrame(tick);
   return () => {

@@ -83,6 +83,16 @@ export function initializeTeamPersonaTool(root, initialState) {
     };
   });});
   cancelEdit.onclick=clearEntry;
+  document.getElementById("reset-member-form").onclick=function(){
+    members=[];
+    document.getElementById("team").value='';
+    clearEntry();
+    renderRoster();
+    render();
+    document.getElementById('team-form-error').textContent='';
+    try { window.sessionStorage.removeItem('dpd-team-submission'); } catch(e) {}
+    draftName.focus();
+  };
   function animateNewCard(index) {
     var card=roster.children[index];
     if(!card)return;
@@ -154,7 +164,7 @@ export function initializeTeamPersonaTool(root, initialState) {
     var addCard=document.createElement('button');
     addCard.type='button';addCard.className='roster-add-card';
     addCard.setAttribute('aria-label','Add another team member');
-    addCard.innerHTML='<span aria-hidden="true">+</span><span>Add team member</span>';
+    addCard.innerHTML="<span aria-hidden=\"true\"><svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 448 512\" aria-hidden=\"true\" height=\"18\" width=\"18\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z\"></path></svg></span><span>Add team member</span>";
     addCard.onclick=function(){
       members.push({name:'',p:0,s:-1});renderRoster();render();
       roster.children[members.length-1].querySelector('.member-edit').click();
