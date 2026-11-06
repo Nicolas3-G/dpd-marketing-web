@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { HiArrowDown, HiArrowLeft, HiArrowRight, HiCheck } from "react-icons/hi";
 import { PERSONAS, type Persona } from "../survey-data";
@@ -13,7 +13,8 @@ const tabsClass = "flex flex-wrap gap-2";
 const tabClass = (selected: boolean) => `rounded-full border px-5 py-3 custom-label-bold transition focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black ${selected ? "border-custom-black bg-custom-black text-white" : "border-gray-card-border bg-white text-custom-black hover:border-custom-black"}`;
 const reportLinks = [
   { id: "combination", title: "Your persona combination", description: "How your top two personas work together." },
-  { id: "personas", title: "Your individual personas", description: "Explore your primary and secondary readouts." },
+  { id: "primary", title: "Your primary persona", description: "Explore the persona you naturally lead with." },
+  { id: "secondary", title: "Your secondary persona", description: "Explore the persona that supports your primary." },
   { id: "growth", title: "Your growth opportunity", description: "Practice your least-expressed persona." },
   { id: "communication", title: "Communication playbook", description: "Connect more effectively with every persona." },
 ];
@@ -30,25 +31,23 @@ function Topic({ title, children }: { title: string; children: ReactNode }) {
 function Report({ index, id, title, description, children }: { index: number; id: string; title: string; description: string; children: ReactNode }) {
   return <section id={id} aria-labelledby={`${id}-title`}>
     <div className="mb-8 flex items-start gap-4 sm:gap-7">
-      <span className="custom-label-bold pt-1 text-brand-orange">0{index}</span>
+      {index > 0 ? <span className="custom-label-bold pt-1 text-brand-orange">0{index}</span> : null}
       <div><h2 id={`${id}-title`} tabIndex={-1} className="custom-xs-title-bold text-custom-black outline-none">{title}</h2><p className="custom-label mt-2 text-light">{description}</p></div>
     </div>
     <div className="pb-12">{children}</div>
   </section>;
 }
 
-export function PersonalResults({ scores, maxScores }: { scores: number[]; maxScores: number[] }) {
+export function PersonalResults({ scores, maxScores, initialReport = null }: { scores: number[]; maxScores: number[]; initialReport?: string | null }) {
   const ranked = PERSONAS.map((persona, i) => ({ persona, score: scores[i], maximum: maxScores[i] })).sort((a, b) => b.score - a.score);
   const [primary, secondary, third] = ranked;
   const combinationKey = `${primary.persona}+${secondary.persona}` as keyof typeof reports.combined;
   const combination = reports.combined[combinationKey];
-  const [individual, setIndividual] = useState<Persona>(primary.persona);
-  const [communication, setCommunication] = useState<Persona>(primary.persona);
-  const profile = reports.profiles[individual];
+  const [communication, setCommunication] = useState<Persona>(PERSONAS[0]);
   const comm = reports.profiles[communication].communication;
   const growth = reports.growth[third.persona];
 
-  const [activeReport, setActiveReport] = useState<string | null>(null);
+  const [activeReport, setActiveReport] = useState<string | null>(initialReport);
   const [leavingReport, setLeavingReport] = useState<string | null>(null);
   const [transitioning, setTransitioning] = useState(false);
   const browserRef = useRef<HTMLDivElement>(null);
@@ -56,10 +55,37 @@ export function PersonalResults({ scores, maxScores }: { scores: number[]; maxSc
   const reportRef = useRef<HTMLDivElement>(null);
   const exploreReport = (id: string | null) => {
     if (transitioning || id === activeReport) return;
+    if (!id && window.history.state?.dpdReportEntry) {
+      window.history.back();
+      return;
+    }
+    const url = new URL(window.location.href);
+    if (id) url.searchParams.set("report", id);
+    else url.searchParams.delete("report");
+    window.history.pushState({ dpdReportEntry: Boolean(id) }, "", url);
+    if (id === "communication") setCommunication(PERSONAS[0]);
     setLeavingReport(activeReport);
     setActiveReport(id);
     setTransitioning(true);
   };
+  useEffect(() => {
+    const restoreReport = () => {
+      const requested = new URL(window.location.href).searchParams.get("report");
+      const id = reportLinks.slice(1).some(report => report.id === requested) ? requested : null;
+      if (id === activeReport) return;
+      if (id === "communication") setCommunication(PERSONAS[0]);
+      setLeavingReport(activeReport);
+      setActiveReport(id);
+      setTransitioning(true);
+    };
+    window.addEventListener("popstate", restoreReport);
+    return () => window.removeEventListener("popstate", restoreReport);
+  }, [activeReport]);
+  useEffect(() => {
+    const previousRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    return () => { window.history.scrollRestoration = previousRestoration; };
+  }, []);
   useLayoutEffect(() => {
     if (!transitioning) return;
     const browser = browserRef.current;
@@ -103,7 +129,7 @@ export function PersonalResults({ scores, maxScores }: { scores: number[]; maxSc
         <h2 className="custom-xs-title-bold mt-7">{combination.title}</h2>
         <p className="custom-body mt-5 max-w-2xl text-light">{combination["Core Identity"]} Your primary persona is where you tend to start; your secondary adds another way to contribute. You can practice all three.</p>
         <div className="mt-8 flex flex-wrap gap-4">
-          <button type="button" onClick={() => exploreReport("combination")} className="inline-flex h-14 items-center gap-3 rounded-full bg-brand-orange px-7 custom-label-bold text-white transition hover:bg-brand-orange-hover">Explore your profile <HiArrowDown aria-hidden className="size-5" /></button>
+          <button type="button" onClick={() => document.getElementById("profile-overview")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" })} className="inline-flex h-14 items-center gap-3 rounded-full bg-brand-orange px-7 custom-label-bold text-white transition hover:bg-brand-orange-hover">Explore your profile <HiArrowDown aria-hidden className="size-5" /></button>
           <Link href="/survey#assessment" className="inline-flex h-14 items-center gap-2 px-2 custom-label-bold">Retake survey <HiArrowRight aria-hidden className="size-4" /></Link>
         </div>
       </div>
@@ -117,11 +143,38 @@ export function PersonalResults({ scores, maxScores }: { scores: number[]; maxSc
       </aside>
     </section>
 
+    <div className={`${inset} border-t border-custom-black/15 pt-10 sm:pt-14 scroll-mt-28`} id="profile-overview">
+      <Report index={0} {...reportLinks[0]}>
+        <div>
+          <p className={label}>{primary.persona} + {secondary.persona}</p><h3 className="custom-xs-title-bold mt-4">{combination.title}</h3><p className="custom-body mt-4 max-w-3xl text-light">{combination["Core Identity"]}</p>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="bg-white p-6 sm:p-8"><Topic title="Strengths"><Text>{combination.Strengths}</Text></Topic></div>
+            <div className="bg-white p-6 sm:p-8"><Topic title="Blind spots"><Text>{combination["Blind Spots"]}</Text></Topic></div>
+            <div className="bg-white p-6 sm:p-8"><Topic title="What helps you thrive"><Text>{combination.Needs}</Text></Topic></div>
+            <div className="bg-white p-6 sm:p-8"><Topic title="Your invoked stance"><Text>{combination["Invoked Stance"]}</Text></Topic></div>
+          </div>
+          <div className="-mx-5 mt-6 px-5 pb-10 text-custom-black sm:-mx-[45px] sm:mt-8 sm:px-[45px] sm:pb-14">
+            <div className="grid gap-8 sm:grid-cols-2 sm:gap-10 lg:gap-12">
+              {[
+                { title: "Common inclinations", items: combination["Common Inclinations"] },
+                { title: "Activated strengths", items: combination["Activated Strengths"] },
+                { title: "Friction risks", items: combination["Friction Risks"] },
+                { title: "Stretch points", items: combination["Stretch Points"] },
+              ].map(({ title, items }) => <section key={title} className="border-t border-custom-black/15 pt-8 sm:pt-9">
+                <h3 className="custom-xs-title-bold text-brand-orange">{title}</h3>
+                <ul className="mt-4 space-y-4">{items.map(item => <li key={item} className="flex gap-3 custom-body text-custom-black"><span aria-hidden="true" className="shrink-0">-</span><span>{item}</span></li>)}</ul>
+              </section>)}
+            </div>
+          </div>
+        </div>
+      </Report>
+    </div>
+
     <section id="report-browser" className={`${inset} scroll-mt-28 pb-16 sm:pb-24`} aria-labelledby="reports-title">
       <div ref={browserRef} className="personal-report-browser relative grid">
       <div ref={selectionRef} inert={activeReport !== null || transitioning} className={`col-start-1 row-start-1 min-w-0 ${activeReport && !transitioning ? "hidden" : ""}`}>
         <div className="border-t border-custom-black/15 py-10 sm:py-14"><p className={label}>Go a little deeper</p><h2 id="reports-title" tabIndex={-1} className="custom-sm-title mt-3 outline-none">Your results, at your pace.</h2><p className="custom-body mt-4 max-w-2xl text-light">Choose a report to explore your profile in more detail.</p></div>
-        <div className="grid gap-5 pb-10 md:grid-cols-2">{reportLinks.map((report, i) => <button key={report.id} type="button" onClick={() => exploreReport(report.id)} className="group flex min-h-60 flex-col items-start rounded-2xl border border-custom-black/10 bg-white p-7 text-left transition hover:border-custom-black focus-visible:outline-2 focus-visible:outline-offset-4 sm:p-9">
+        <div className="grid gap-5 pb-10 sm:grid-cols-2">{reportLinks.slice(1).map((report, i) => <button key={report.id} type="button" onClick={() => exploreReport(report.id)} className="group flex min-h-60 flex-col items-start rounded-2xl border border-custom-black/10 bg-white p-7 text-left transition hover:border-custom-black focus-visible:outline-2 focus-visible:outline-offset-4 sm:p-9">
           <span className="custom-label-bold text-brand-orange">0{i + 1}</span>
           <h3 className="custom-xs-title-bold mt-6">{report.title}</h3>
           <p className="custom-body mt-3 text-light">{report.description}</p>
@@ -130,39 +183,27 @@ export function PersonalResults({ scores, maxScores }: { scores: number[]; maxSc
       </div>
       <div ref={reportRef} inert={!activeReport || transitioning} className={`col-start-1 row-start-1 min-w-0 ${!activeReport && !transitioning ? "hidden" : ""}`}>
         <button type="button" onClick={() => exploreReport(null)} className="mb-8 inline-flex items-center gap-3 rounded-full border border-custom-black/20 px-5 py-3 custom-label-bold transition hover:bg-custom-black hover:text-white"><HiArrowLeft aria-hidden className="size-5" />All reports</button>
-      {shownReport === reportLinks[0].id && <Report index={1} {...reportLinks[0]}>
-        <div className="rounded-2xl bg-white p-6 sm:p-9">
-          <p className={label}>{primary.persona} + {secondary.persona}</p><h3 className="custom-xs-title-bold mt-4">{combination.title}</h3><p className="custom-body mt-4 max-w-3xl text-light">{combination["Core Identity"]}</p>
-          <div className="mt-8 grid gap-8 md:grid-cols-2">
-            <Topic title="Strengths"><Text>{combination.Strengths}</Text></Topic>
-            <Topic title="Blind spots"><Text>{combination["Blind Spots"]}</Text></Topic>
-            <Topic title="What helps you thrive"><Text>{combination.Needs}</Text></Topic>
-            <Topic title="Your invoked stance"><Text>{combination["Invoked Stance"]}</Text></Topic>
-            <Topic title="Common inclinations"><BulletList items={combination["Common Inclinations"]} /></Topic>
-            <Topic title="Activated strengths"><BulletList items={combination["Activated Strengths"]} /></Topic>
-            <Topic title="Friction risks"><BulletList items={combination["Friction Risks"]} /></Topic>
-            <Topic title="Stretch points"><BulletList items={combination["Stretch Points"]} /></Topic>
-          </div>
-        </div>
-      </Report>}
-      {shownReport === reportLinks[1].id && <Report index={2} {...reportLinks[1]}>
-        <div className={tabsClass} role="group" aria-label="Choose your individual persona report">{[primary, secondary].map(({ persona }, i) => <button type="button" key={persona} aria-pressed={individual === persona} className={tabClass(individual === persona)} onClick={() => setIndividual(persona)}>{i === 0 ? "Primary" : "Secondary"}: {persona}</button>)}</div>
-        <div className="mt-6 space-y-8 rounded-2xl bg-white p-6 sm:p-9" key={individual}>
-          <Topic title={`Your ${individual} persona`}><Text>{profile.summary}</Text></Topic>
+      {[primary, secondary].map(({ persona }, personaIndex) => {
+        const report = reportLinks[personaIndex + 1];
+        const profile = reports.profiles[persona];
+        return shownReport === report.id ? <Report key={report.id} index={personaIndex + 1} {...report}>
+        <div className="space-y-8 rounded-2xl bg-white p-6 sm:p-9">
+          <Topic title={`Your ${persona} persona`}><Text>{profile.summary}</Text></Topic>
           <Topic title="Strengths"><div className="grid gap-6 sm:grid-cols-2">{profile.strengths.map(item => <div key={item.title}><h4 className="custom-body-bold">{item.title}</h4><p className="custom-body mt-2 text-light">{item.text}</p></div>)}</div></Topic>
           <Topic title="Challenges"><Text>{profile.challenge.text}</Text><BulletList items={profile.challenge.list} /></Topic>
           <Topic title="How other personas may perceive you"><div className="grid gap-5 md:grid-cols-2">{Object.entries(profile.perceivedBy).map(([other, perceptions], perspectiveIndex) => <div key={other} className={`rounded-xl p-5 sm:p-6 ${perspectiveIndex === 0 ? "bg-background" : "bg-custom-black text-white"}`}><h4 className="custom-body-bold">From a {other} perspective</h4><ul className="mt-3 space-y-3">{perceptions.map((item, i) => <li key={i} className={`custom-body ${perspectiveIndex === 0 ? "text-light" : "text-white/75"}`}><strong className={perspectiveIndex === 0 ? "text-custom-black" : "text-white"}>{item.bold}: </strong>{item.text}</li>)}</ul></div>)}</div></Topic>
           <Topic title="A useful reframe"><blockquote className="border-l-2 border-brand-orange pl-5 custom-body">{profile.reframe}</blockquote></Topic>
         </div>
-      </Report>}
-      {shownReport === reportLinks[2].id && <Report index={3} {...reportLinks[2]}>
+        </Report> : null;
+      })}
+      {shownReport === reportLinks[3].id && <Report index={3} {...reportLinks[3]}>
         <div className="rounded-2xl bg-custom-black p-6 text-white sm:p-9"><p className="custom-label-bold uppercase tracking-[0.08em] text-brand-orange">Least expressed · {third.persona}</p><h3 className="custom-xs-title-bold mt-4">More range, not a fixed limitation.</h3><p className="custom-body mt-4 max-w-3xl text-white/75">Your {third.persona} persona scored lowest in this assessment. It is a posture you can practice, rather than an ability you don’t have.</p></div>
         <div className="mt-6 columns-1 gap-5 md:columns-2">{growth.map(topic => <section key={topic.id} className="mb-5 break-inside-avoid rounded-2xl bg-white p-6 sm:p-8">
           <h3 className="custom-xxs-title-bold text-custom-black">{topic.title}</h3>
           <div className="mt-5 space-y-5">{topic.blocks.map((block, j) => <div key={j}>{block.label ? <h4 className="custom-label-bold mb-2 text-light">{block.label}</h4> : null}{"text" in block ? <Text>{block.text}</Text> : <BulletList items={block.items} />}</div>)}</div>
         </section>)}</div>
       </Report>}
-      {shownReport === reportLinks[3].id && <Report index={4} {...reportLinks[3]}>
+      {shownReport === reportLinks[4].id && <Report index={4} {...reportLinks[4]}>
         <div className={tabsClass} role="group" aria-label="Choose a communication guide">{PERSONAS.map(persona => <button type="button" key={persona} aria-pressed={communication === persona} className={tabClass(communication === persona)} onClick={() => setCommunication(persona)}>{persona}</button>)}</div>
         <div className="mt-6 rounded-2xl bg-white p-6 sm:p-9" key={communication}>
           <h3 className="custom-xs-title-bold">Connecting with a {communication}</h3>

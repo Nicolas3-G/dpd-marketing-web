@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-
-import { SLIDE_MS, useSlideCarousel } from "../framework/use-slide-carousel";
 
 import { questionPages, pageOffsets, TOTAL_SURVEY_QUESTIONS, ANSWER_OPTIONS, surveySectionHeaders, surveySectionIndexes } from "./full-survey";
 const PROGRESS_BAR_COUNT = questionPages.length;
@@ -12,16 +10,6 @@ const pageKeys = Object.keys(surveySectionHeaders) as (keyof typeof surveySectio
 
 function questionAnchorId(pageIndex: number, indexWithinPage: number) {
   return `survey-question-${pageIndex}-${indexWithinPage}`;
-}
-
-function getSlideAnimationDelay() {
-  if (typeof window === "undefined") {
-    return SLIDE_MS;
-  }
-
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ? 0
-    : SLIDE_MS;
 }
 
 function scrollToQuestion(pageIndex: number, indexWithinPage: number) {
@@ -41,15 +29,6 @@ function scrollToQuestion(pageIndex: number, indexWithinPage: number) {
     behavior: reducedMotion ? "auto" : "smooth",
     block: "center",
   });
-}
-
-function scrollToQuestionAfterSlide(
-  pageIndex: number,
-  indexWithinPage: number,
-) {
-  window.setTimeout(() => {
-    scrollToQuestion(pageIndex, indexWithinPage);
-  }, getSlideAnimationDelay());
 }
 
 type QuestionFocusState = "active" | "completed" | "upcoming";
@@ -127,7 +106,7 @@ function SurveyProgressBar({
           );
         })}
       </div>
-      <span className="shrink-0 custom-body-bold tabular-nums text-custom-black">
+      <span className="w-[5ch] shrink-0 text-right custom-body-bold tabular-nums text-custom-black">
         {percent}%
       </span>
     </div>
@@ -303,8 +282,21 @@ export function SurveyAssessment() {
   );
   const [activePage, setActivePage] = useState(0);
 
-  const { displayIndex, isSliding, transition, enterX, exitX, animate } =
-    useSlideCarousel(activePage, SLIDE_COUNT);
+  const questionPageRef = useRef<HTMLDivElement>(null);
+  const previousPageRef = useRef(activePage);
+  useLayoutEffect(() => {
+    if (previousPageRef.current === activePage) return;
+    const direction = activePage > previousPageRef.current ? 1 : -1;
+    previousPageRef.current = activePage;
+    // Reset the viewport in the same commit as the new questions, before paint.
+    document.getElementById("assessment")?.scrollIntoView({ behavior: "instant", block: "start" });
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const animation = questionPageRef.current?.animate([
+      { opacity: 0, transform: `translateX(${direction * 24}px)` },
+      { opacity: 1, transform: "translateX(0)" },
+    ], { duration: 300, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "both" });
+    return () => animation?.cancel();
+  }, [activePage]);
 
   const isQuestionPage = activePage < PROGRESS_BAR_COUNT;
   const pageOffset = pageOffsets[activePage];
@@ -335,34 +327,25 @@ export function SurveyAssessment() {
     });
   };
 
-  const scrollToAssessment = () => {
-    document.getElementById("assessment")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
   const handlePrevious = () => {
-    if (isFirstPage || isSliding) {
+    if (isFirstPage) {
       return;
     }
 
     setActivePage((page) => page - 1);
-    scrollToAssessment();
   };
 
   const handleNext = () => {
-    if (!isCurrentPageComplete || isLastQuestionPage || isSliding) {
+    if (!isCurrentPageComplete || isLastQuestionPage) {
       return;
     }
 
     const nextPage = activePage + 1;
     setActivePage(nextPage);
-    scrollToQuestionAfterSlide(nextPage, 0);
   };
 
   const handleFinish = () => {
-    if (!isCurrentPageComplete || !isLastQuestionPage || isSliding) {
+    if (!isCurrentPageComplete || !isLastQuestionPage) {
       return;
     }
 
@@ -408,7 +391,6 @@ export function SurveyAssessment() {
           <button
             type="button"
             onClick={handlePrevious}
-            disabled={isSliding}
             className="inline-flex h-11 items-center justify-center rounded-full border border-custom-black/20 px-6 custom-label-bold text-custom-black transition hover:border-custom-black/40 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50"
           >
             Previous
@@ -416,47 +398,12 @@ export function SurveyAssessment() {
         </div>
       ) : null}
 
-      <div className="relative">
-        <div className="relative overflow-hidden">
-          {isSliding && transition ? (
-            <>
-              <div
-                className="absolute inset-0 transition-transform ease-in-out motion-reduce:transition-none"
-                style={{
-                  transform: `translateX(${exitX}%)`,
-                  transitionDuration: animate ? `${SLIDE_MS}ms` : "0ms",
-                }}
-                aria-hidden
-              >
-                <SurveyQuestionPage
-                  pageIndex={transition.from}
-                  answers={answers}
-                  onAnswer={setAnswer}
-                />
-              </div>
-
-              <div
-                className="relative transition-transform ease-in-out motion-reduce:transition-none"
-                style={{
-                  transform: `translateX(${enterX}%)`,
-                  transitionDuration: animate ? `${SLIDE_MS}ms` : "0ms",
-                }}
-              >
-                <SurveyQuestionPage
-                  pageIndex={displayIndex}
-                  answers={answers}
-                  onAnswer={setAnswer}
-                />
-              </div>
-            </>
-          ) : (
-            <SurveyQuestionPage
-              pageIndex={displayIndex}
-              answers={answers}
-              onAnswer={setAnswer}
-            />
-          )}
-        </div>
+      <div ref={questionPageRef}>
+        <SurveyQuestionPage
+          pageIndex={activePage}
+          answers={answers}
+          onAnswer={setAnswer}
+        />
       </div>
 
       <div className="mt-4 flex justify-center sm:mt-6">
@@ -464,7 +411,7 @@ export function SurveyAssessment() {
           <button
             type="button"
             onClick={handleFinish}
-            disabled={!isCurrentPageComplete || isSliding}
+            disabled={!isCurrentPageComplete}
             className="inline-flex h-14 min-w-[200px] items-center justify-center rounded-full bg-brand-orange px-10 custom-label-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
           >
             Finish
@@ -473,7 +420,7 @@ export function SurveyAssessment() {
           <button
             type="button"
             onClick={handleNext}
-            disabled={!isCurrentPageComplete || isSliding}
+            disabled={!isCurrentPageComplete}
             className="inline-flex h-14 min-w-[200px] items-center justify-center rounded-full bg-brand-orange px-10 custom-label-bold text-white shadow-[0_12px_28px_var(--brand-orange-glow)] transition hover:-translate-y-0.5 hover:bg-brand-orange-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-custom-black disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
           >
             Next

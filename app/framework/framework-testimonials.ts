@@ -19,8 +19,8 @@ export const frameworkTestimonials: FrameworkTestimonial[] = [
   },
   {
     quote:
-      "It's not just another personality test — it actually gives you insight you can use in your life, business, or relationships.",
-    name: "Leena",
-    role: "App Store Review",
+      "The DPD Team Persona Posture Report helped me understand in minutes what might otherwise have taken months to discover.",
+    name: "Marie-France Lesperance",
+    role: "CMO, Channelscaler",
   },
 ];
