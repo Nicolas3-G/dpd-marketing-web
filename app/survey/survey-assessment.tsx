@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 
 import { questionPages, pageOffsets, TOTAL_SURVEY_QUESTIONS, ANSWER_OPTIONS, surveySectionHeaders, surveySectionIndexes } from "./full-survey";
@@ -273,7 +273,7 @@ function SurveyQuestionPage({
   );
 }
 
-export function SurveyAssessment() {
+export function SurveyAssessment({ debugPanel }: { debugPanel?: ReactNode }) {
   const router = useRouter();
   const [answers, setAnswers] = useState<Record<number, number | null>>(() =>
     Object.fromEntries(
@@ -362,6 +362,7 @@ export function SurveyAssessment() {
       id="assessment"
       className="mx-auto mt-16 max-w-4xl scroll-mt-28 pb-20 sm:mt-20 sm:pb-28"
     >
+      {debugPanel}
       <div className="sticky top-20 z-30">
         <div className="bg-background">
           <SurveyProgressBar answers={answers} />

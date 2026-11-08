@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { createPageMetadata } from "@/lib/metadata";
+import { PreviewSurveyDebug } from "./preview-survey-debug";
 import { SurveyAssessment } from "./survey-assessment";
 import { SurveyStepsBand } from "./survey-steps-band";
 
@@ -60,7 +61,7 @@ export default function SurveyPage() {
 
       <div className={pageInset}>
         <SurveyStepsBand />
-        <SurveyAssessment />
+        <SurveyAssessment debugPanel={<PreviewSurveyDebug />} />
       </div>
     </main>
   );
