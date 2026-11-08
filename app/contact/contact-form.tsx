@@ -41,6 +41,8 @@ export function ContactForm() {
           email: String(data.get("email") ?? "").trim(),
           firstName: String(data.get("firstName") ?? "").trim(),
           lastName: String(data.get("lastName") ?? "").trim(),
+          position: String(data.get("position") ?? "").trim(),
+          company: String(data.get("company") ?? "").trim(),
           phone: String(data.get("phone") ?? "").trim(),
         }),
       });
@@ -81,6 +83,7 @@ export function ContactForm() {
           placeholder="you@example.com"
         />
       </div>
+      <div className="grid gap-5 sm:grid-cols-2">
       <div className="flex flex-col gap-1.5">
         <label htmlFor="contact-first" className={labelClass}>
           First name
@@ -104,6 +107,31 @@ export function ContactForm() {
           type="text"
           required
           autoComplete="family-name"
+          className={fieldClass}
+        />
+      </div>
+      </div>
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="contact-company" className={labelClass}>
+          Company <span className="text-gray-card-text/60 custom-label font-normal">(optional)</span>
+        </label>
+        <input
+          id="contact-company"
+          name="company"
+          type="text"
+          autoComplete="organization"
+          className={fieldClass}
+        />
+      </div>
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="contact-position" className={labelClass}>
+          Position <span className="text-gray-card-text/60 custom-label font-normal">(optional)</span>
+        </label>
+        <input
+          id="contact-position"
+          name="position"
+          type="text"
+          autoComplete="organization-title"
           className={fieldClass}
         />
       </div>

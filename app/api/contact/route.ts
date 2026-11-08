@@ -13,13 +13,15 @@ function parsePayload(body: unknown): ContactPayload | null {
   const email = String(raw.email ?? "").trim();
   const firstName = String(raw.firstName ?? "").trim();
   const lastName = String(raw.lastName ?? "").trim();
+  const position = String(raw.position ?? "").trim() || undefined;
+  const company = String(raw.company ?? "").trim() || undefined;
   const phone = String(raw.phone ?? "").trim() || undefined;
 
   if (!email || !firstName || !lastName || !email.includes("@")) {
     return null;
   }
 
-  return { email, firstName, lastName, phone };
+  return { email, firstName, lastName, position, company, phone };
 }
 
 export async function POST(request: Request) {

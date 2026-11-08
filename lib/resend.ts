@@ -4,6 +4,8 @@ export type ContactPayload = {
   email: string;
   firstName: string;
   lastName: string;
+  position?: string;
+  company?: string;
   phone?: string;
 };
 
@@ -33,7 +35,13 @@ function buildEmailHtml(p: ContactPayload): string {
       </td></tr>
       <tr><td style="padding-bottom:12px"><strong>Name:</strong> ${p.firstName} ${p.lastName}</td></tr>
       <tr><td style="padding-bottom:12px"><strong>Email:</strong> <a href="mailto:${p.email}">${p.email}</a></td></tr>
+      ${p.company ? `<tr><td style="padding-bottom:12px"><strong>Company:</strong> ${escapeHtml(p.company)}</td></tr>` : ""}
+      ${p.position ? `<tr><td style="padding-bottom:12px"><strong>Position:</strong> ${escapeHtml(p.position)}</td></tr>` : ""}
       ${p.phone ? `<tr><td style="padding-bottom:12px"><strong>Phone:</strong> ${p.phone}</td></tr>` : ""}
     </table>
   `;
+}
+
+function escapeHtml(value: string): string {
+  return value.replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]!);
 }

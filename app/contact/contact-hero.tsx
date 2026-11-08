@@ -40,7 +40,7 @@ export function ContactHero() {
                 </p>
                 <ul className="mt-8 list-disc flex max-w-prose flex-col gap-4 pl-5">
                   {bullets.map((text) => (
-                    <li key={text} className="custom-body-bold text-black">
+                    <li key={text} className="custom-body text-black">
                       {text}
                     </li>
                   ))}
