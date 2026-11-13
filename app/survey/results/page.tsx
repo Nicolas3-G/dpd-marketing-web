@@ -17,6 +17,6 @@ export default async function SurveyResultsPage({ searchParams }: {
   try { answers = atob(params.a).split(",").map(Number); }
   catch { redirect("/survey"); }
   if (!isValidAnswers(answers)) redirect("/survey");
-  const initialReport = typeof params.report === "string" && ["primary", "secondary", "growth", "communication"].includes(params.report) ? params.report : null;
+  const initialReport = typeof params.report === "string" && ["combination", "primary", "secondary", "growth", "communication"].includes(params.report) ? params.report : null;
   return <PersonalResults scores={computeScores(answers)} maxScores={personaMaxScores} initialReport={initialReport} />;
 }
